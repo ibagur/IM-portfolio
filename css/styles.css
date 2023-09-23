@@ -37,7 +37,7 @@ main {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 30px;
-    padding: 30px 60px 30px 60px;
+    padding: 30px 10% 30px 10%;
 }
 
 .project {
