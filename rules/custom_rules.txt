@@ -1,0 +1,20 @@
+! iCloud Sync Services - High Priority Allow Rules
+@@||icloud.com^$important
+@@||apple-cloudkit.com^$important
+@@||icloud.apple.com^$important
+@@||cdn-apple.com^$important
+@@||apple-cloudkit.net^$important
+@@||icloud.net^$important
+@@||me.com^$important
+@@||icloud.com.cn^$important
+
+! Specific iCloud service domains
+@@||p42-sync.icloud.com^$important
+@@||p42.synchro.icloud.com^$important
+@@||p42-sync.push.apple.com^$important
+@@||sync.icloud.com^$important
+@@||push.apple.com^$important
+
+! Apple Content Delivery Network domains used by iCloud
+@@||mzstatic.com^$important
+@@||cdn.apple-cloudkit.com^$important
