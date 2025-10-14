@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudan Cholera Cases by State - Bar Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        #chartContainer {
+            position: relative;
+            height: 500px;
+            width: 100%;
+            padding-top: 20px;
+        }
+        .stats {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 4px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #009999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sudan Cholera Epidemic - Cumulative Cases by State</h1>
+        <div class="subtitle">Cumulative cases (bars, left axis) and Case Fatality Rate (red line, right axis) ordered alphabetically</div>
+        
+        <div id="chartContainer">
+            <canvas id="barChart"></canvas>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-label">Total Cases</div>
+                <div class="stat-value" id="totalCases">-</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Total Deaths</div>
+                <div class="stat-value" id="totalDeaths">-</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">States Affected</div>
+                <div class="stat-value" id="statesAffected">-</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Average CFR</div>
+                <div class="stat-value" id="avgCFR">-</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sudan cholera data
+        const data = [
+            { state: "Khartoum", cases: 24361, deaths: 431, cfr: 1.8 },
+            { state: "White Nile", cases: 14054, deaths: 462, cfr: 3.3 },
+            { state: "North Kordofan", cases: 13602, deaths: 620, cfr: 4.6 },
+            { state: "Al Jazirah", cases: 13188, deaths: 245, cfr: 1.9 },
+            { state: "Al Qadarif", cases: 11989, deaths: 228, cfr: 1.9 },
+            { state: "North Darfur", cases: 7954, deaths: 163, cfr: 2.0 },
+            { state: "Kassala", cases: 7890, deaths: 209, cfr: 2.6 },
+            { state: "River Nile", cases: 6381, deaths: 83, cfr: 1.3 },
+            { state: "South Darfur", cases: 5781, deaths: 266, cfr: 4.6 },
+            { state: "Blue Nile", cases: 4532, deaths: 61, cfr: 1.3 },
+            { state: "Central Darfur", cases: 2691, deaths: 43, cfr: 1.6 },
+            { state: "Northern", cases: 2123, deaths: 29, cfr: 1.4 },
+            { state: "South Kordufan", cases: 2034, deaths: 175, cfr: 8.6 },
+            { state: "Red Sea", cases: 1895, deaths: 25, cfr: 1.3 },
+            { state: "Sennar", cases: 1640, deaths: 206, cfr: 12.6 },
+            { state: "East Darfur", cases: 1239, deaths: 78, cfr: 6.3 },
+            { state: "West Kordufan", cases: 457, deaths: 86, cfr: 18.8 },
+            { state: "West Darfur", cases: 96, deaths: 11, cfr: 11.5 }
+        ];
+
+        // Sort alphabetically by state name
+        const sortedData = [...data].sort((a, b) => a.state.localeCompare(b.state));
+
+        // Extract labels and values
+        const labels = sortedData.map(d => d.state);
+        const cases = sortedData.map(d => d.cases);
+
+        // Calculate statistics
+        const totalCases = data.reduce((sum, d) => sum + d.cases, 0);
+        const totalDeaths = data.reduce((sum, d) => sum + d.deaths, 0);
+        const avgCFR = (totalDeaths / totalCases * 100).toFixed(1);
+
+        document.getElementById('totalCases').textContent = totalCases.toLocaleString();
+        document.getElementById('totalDeaths').textContent = totalDeaths.toLocaleString();
+        document.getElementById('statesAffected').textContent = data.length;
+        document.getElementById('avgCFR').textContent = avgCFR + '%';
+
+        // Create the chart
+        const ctx = document.getElementById('barChart').getContext('2d');
+        const barChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Cumulative Cases',
+                    data: cases,
+                    backgroundColor: '#009999',
+                    borderColor: '#007777',
+                    borderWidth: 1,
+                    yAxisID: 'y',
+                    order: 2,
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'top',
+                        formatter: function(value) {
+                            return value.toLocaleString();
+                        },
+                        color: '#333',
+                        font: {
+                            weight: 'bold',
+                            size: 10
+                        }
+                    }
+                },
+                {
+                    label: 'CFR (%)',
+                    data: sortedData.map(d => d.cfr),
+                    type: 'scatter',
+                    borderColor: 'transparent',
+                    backgroundColor: 'transparent',
+                    pointRadius: 0,
+                    pointHoverRadius: 0,
+                    pointStyle: 'circle',
+                    yAxisID: 'y1',
+                    order: 1,
+                    datalabels: {
+                        display: false
+                    }
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                layout: {
+                    padding: {
+                        top: 10
+                    }
+                },
+                plugins: {
+                    datalabels: {
+                        display: true
+                    },
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            usePointStyle: true,
+                            padding: 15,
+                            font: {
+                                size: 12
+                            },
+                            boxHeight: 8,
+                            generateLabels: function(chart) {
+                                const original = Chart.defaults.plugins.legend.labels.generateLabels;
+                                const labels = original.call(this, chart);
+                                
+                                // Customize the CFR label to show a red circle
+                                labels.forEach(label => {
+                                    if (label.text === 'CFR (%)') {
+                                        label.pointStyle = 'circle';
+                                        label.fillStyle = '#e63946';
+                                        label.strokeStyle = '#e63946';
+                                        label.lineWidth = 0;
+                                    }
+                                });
+                                
+                                return labels;
+                            }
+                        }
+                    },
+                    title: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const stateData = sortedData[context.dataIndex];
+                                if (context.dataset.label === 'Cumulative Cases') {
+                                    return [
+                                        `Cases: ${context.parsed.y.toLocaleString()}`,
+                                        `Deaths: ${stateData.deaths.toLocaleString()}`
+                                    ];
+                                } else {
+                                    return `CFR: ${stateData.cfr}%`;
+                                }
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Cumulative Cases',
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            },
+                            color: '#009999'
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return value.toLocaleString();
+                            },
+                            color: '#009999'
+                        },
+                        grid: {
+                            color: 'rgba(0, 153, 153, 0.1)'
+                        }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Case Fatality Rate (%)',
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            },
+                            color: '#e63946'
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            },
+                            color: '#e63946'
+                        },
+                        grid: {
+                            drawOnChartArea: false
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'State',
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        },
+                        ticks: {
+                            maxRotation: 45,
+                            minRotation: 45
+                        }
+                    }
+                }
+            },
+            plugins: [{
+                id: 'lollipopStems',
+                afterDatasetsDraw(chart) {
+                    const ctx = chart.ctx;
+                    const meta = chart.getDatasetMeta(1); // CFR dataset
+                    
+                    ctx.save();
+                    ctx.strokeStyle = '#e63946';
+                    ctx.lineWidth = 2;
+                    
+                    meta.data.forEach((point, index) => {
+                        const x = point.x;
+                        const yTop = point.y;
+                        const yBottom = chart.scales.y1.getPixelForValue(0);
+                        
+                        // Draw stem from bottom to the point
+                        ctx.beginPath();
+                        ctx.moveTo(x, yBottom);
+                        ctx.lineTo(x, yTop);
+                        ctx.stroke();
+                        
+                        // Draw the circle
+                        ctx.fillStyle = '#e63946';
+                        ctx.beginPath();
+                        ctx.arc(x, yTop, 12, 0, 2 * Math.PI);
+                        ctx.fill();
+                        
+                        // Draw CFR text inside the circle
+                        const cfrValue = sortedData[index].cfr;
+                        ctx.fillStyle = 'white';
+                        ctx.font = 'bold 9px Arial';
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        ctx.fillText(cfrValue + '%', x, yTop);
+                    });
+                    
+                    ctx.restore();
+                }
+            }, ChartDataLabels]
+        });
+    </script>
+</body>
+</html>
