@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudan Cholera Epidemic - Bubble Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+        #map {
+            width: 100%;
+            height: 700px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            z-index: 1;
+        }
+        .bubble-marker {
+            background-color: #009999;
+            border: 2px solid #007777;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+            opacity: 0.85;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .bubble-marker:hover {
+            opacity: 1;
+            transform: scale(1.1);
+            z-index: 1000;
+        }
+        .leaflet-popup-content {
+            margin: 10px;
+            font-size: 13px;
+        }
+        .leaflet-popup-content strong {
+            font-size: 14px;
+            color: #009999;
+        }
+        .cfr-label {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            pointer-events: none;
+        }
+        .cfr-label::before {
+            display: none !important;
+        }
+        .legend {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 4px;
+        }
+        .legend-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        .legend-item {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        .legend-scale {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .legend-bubble {
+            background-color: #009999;
+            border-radius: 50%;
+            display: inline-block;
+            border: 2px solid #007777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sudan Cholera Epidemic - Bubble Map</h1>
+        <div class="subtitle">Bubble size represents Cumulative Cases | Values shown are Case Fatality Rate (CFR)</div>
+        
+        <div id="map"></div>
+        
+        <div class="legend">
+            <div class="legend-title">CFR-Colored Bubble Map</div>
+            <div class="legend-item">🔵 Bubble Size: Proportional to Cumulative Cases</div>
+            <div class="legend-item">🎨 Bubble Color: Based on Case Fatality Rate (CFR)</div>
+            <div class="legend-item">📊 Labels show State Name and CFR %</div>
+            <div class="legend-scale" style="margin-top: 10px;">
+                <span>Bubble Size Scale:</span>
+                <div style="width: 20px; height: 20px; background: #e36159; border-radius: 50%; border: 2px solid #c44a42;"></div>
+                <span>~1,000 cases</span>
+                <div style="width: 40px; height: 40px; background: #e36159; border-radius: 50%; border: 2px solid #c44a42;"></div>
+                <span>~10,000 cases</span>
+                <div style="width: 60px; height: 60px; background: #e36159; border-radius: 50%; border: 2px solid #c44a42;"></div>
+                <span>~24,000 cases</span>
+            </div>
+            <div class="legend-scale" style="margin-top: 10px;">
+                <span>CFR Color Gradient:</span>
+                <div style="width: 40px; height: 25px; background: rgb(255, 230, 228); border: 1px solid #999; border-radius: 4px;"></div>
+                <span>Low (1.3%)</span>
+                <div style="width: 40px; height: 25px; background: rgb(250, 180, 175); border: 1px solid #999; border-radius: 4px;"></div>
+                <span>Medium (~6%)</span>
+                <div style="width: 40px; height: 25px; background: rgb(240, 130, 120); border: 1px solid #999; border-radius: 4px;"></div>
+                <span>High (~12%)</span>
+                <div style="width: 40px; height: 25px; background: rgb(227, 97, 89); border: 1px solid #999; border-radius: 4px;"></div>
+                <span>Highest (18.8%)</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Sudan cholera data with approximate geographic centroids
+        const data = [
+            { state: "Khartoum", cases: 24361, deaths: 431, cfr: 1.8, lat: 15.5007, lon: 32.5599 },
+            { state: "White Nile", cases: 14054, deaths: 462, cfr: 3.3, lat: 13.0, lon: 32.7 },
+            { state: "North Kordofan", cases: 13602, deaths: 620, cfr: 4.6, lat: 13.8, lon: 29.4 },
+            { state: "Al Jazirah", cases: 13188, deaths: 245, cfr: 1.9, lat: 14.5, lon: 33.0 },
+            { state: "Al Qadarif", cases: 11989, deaths: 228, cfr: 1.9, lat: 14.0, lon: 35.4 },
+            { state: "North Darfur", cases: 7954, deaths: 163, cfr: 2.0, lat: 15.5, lon: 25.3 },
+            { state: "Kassala", cases: 7890, deaths: 209, cfr: 2.6, lat: 15.5, lon: 36.4 },
+            { state: "River Nile", cases: 6381, deaths: 83, cfr: 1.3, lat: 17.7, lon: 33.9 },
+            { state: "South Darfur", cases: 5781, deaths: 266, cfr: 4.6, lat: 11.5, lon: 24.9 },
+            { state: "Blue Nile", cases: 4532, deaths: 61, cfr: 1.3, lat: 11.5, lon: 34.4 },
+            { state: "Central Darfur", cases: 2691, deaths: 43, cfr: 1.6, lat: 12.8, lon: 24.5 },
+            { state: "Northern", cases: 2123, deaths: 29, cfr: 1.4, lat: 19.5, lon: 30.5 },
+            { state: "South Kordufan", cases: 2034, deaths: 175, cfr: 8.6, lat: 11.2, lon: 29.4 },
+            { state: "Red Sea", cases: 1895, deaths: 25, cfr: 1.3, lat: 18.5, lon: 37.5 },
+            { state: "Sennar", cases: 1640, deaths: 206, cfr: 12.6, lat: 13.5, lon: 33.6 },
+            { state: "East Darfur", cases: 1239, deaths: 78, cfr: 6.3, lat: 11.5, lon: 26.5 },
+            { state: "West Kordufan", cases: 457, deaths: 86, cfr: 18.8, lat: 11.5, lon: 28.2 },
+            { state: "West Darfur", cases: 96, deaths: 11, cfr: 11.5, lat: 12.8, lon: 22.9 }
+        ];
+
+        // Initialize the map centered on Sudan
+        const map = L.map('map').setView([14.5, 30.5], 6);
+
+        // Add OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            maxZoom: 19,
+            minZoom: 5
+        }).addTo(map);
+
+        // Calculate radius scale based on cases
+        const maxCases = Math.max(...data.map(d => d.cases));
+        const minCases = Math.min(...data.map(d => d.cases));
+        
+        function getRadius(cases) {
+            const minRadius = 20000; // in meters for Leaflet
+            const maxRadius = 120000;
+            const normalized = Math.sqrt((cases - minCases) / (maxCases - minCases));
+            return minRadius + (normalized * (maxRadius - minRadius));
+        }
+
+        // Calculate CFR-based color using #e36159 gradient
+        const maxCFR = Math.max(...data.map(d => d.cfr));
+        const minCFR = Math.min(...data.map(d => d.cfr));
+        
+        function getCFRColor(cfr) {
+            // Normalize CFR to 0-1 range
+            const normalized = (cfr - minCFR) / (maxCFR - minCFR);
+            
+            // Base color: #e36159 (RGB: 227, 97, 89)
+            const targetR = 227;
+            const targetG = 97;
+            const targetB = 89;
+            
+            // Light color for low CFR (very light pink)
+            const lightR = 255;
+            const lightG = 230;
+            const lightB = 228;
+            
+            // Interpolate between light and target color
+            const r = Math.round(lightR + (targetR - lightR) * normalized);
+            const g = Math.round(lightG + (targetG - lightG) * normalized);
+            const b = Math.round(lightB + (targetB - lightB) * normalized);
+            
+            return `rgb(${r}, ${g}, ${b})`;
+        }
+
+        // Add bubbles with CFR-based coloring
+        data.forEach(d => {
+            const radius = getRadius(d.cases);
+            const fillColor = getCFRColor(d.cfr);
+            
+            // Create circle bubble with CFR-based color
+            const circle = L.circle([d.lat, d.lon], {
+                color: '#c44a42',
+                fillColor: fillColor,
+                fillOpacity: 0.7,
+                weight: 2,
+                radius: radius
+            }).addTo(map);
+
+            // Create popup content
+            const popupContent = `
+                <strong>${d.state} State</strong><br>
+                <b>Cumulative Cases:</b> ${d.cases.toLocaleString()}<br>
+                <b>Cumulative Deaths:</b> ${d.deaths.toLocaleString()}<br>
+                <b>CFR:</b> ${d.cfr}%
+            `;
+
+            circle.bindPopup(popupContent);
+
+            // Add state name and CFR text as permanent labels
+            const labelTooltip = L.tooltip({
+                permanent: true,
+                direction: 'center',
+                className: 'cfr-label',
+                opacity: 1
+            }).setContent(`
+                <div style="text-align: center;">
+                    <div style="color: black; font-weight: bold; font-size: 11px; text-shadow: 1px 1px 1px rgba(255,255,255,0.8); margin-bottom: 2px;">${d.state}</div>
+                    <div style="border-top: 1px solid rgba(0,0,0,0.3); padding-top: 2px;">
+                        <span style="color: black; font-weight: bold; font-size: 12px; text-shadow: 1px 1px 1px rgba(255,255,255,0.8);">${d.cfr}%</span>
+                    </div>
+                </div>
+            `);
+            
+            circle.bindTooltip(labelTooltip);
+
+            // Hover effects
+            circle.on('mouseover', function() {
+                this.setStyle({ fillOpacity: 0.9, weight: 3 });
+            });
+            circle.on('mouseout', function() {
+                this.setStyle({ fillOpacity: 0.7, weight: 2 });
+            });
+        });
+
+        // Add scale control
+        L.control.scale({ imperial: false, metric: true }).addTo(map);
+    </script>
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudan Cholera Weekly Cases - Timeline</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        #chartContainer {
+            position: relative;
+            height: 500px;
+            width: 100%;
+        }
+        .stats {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 4px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #009999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sudan Cholera Epidemic - Weekly Suspected Cases Timeline</h1>
+        <div class="subtitle">Bar chart showing weekly suspected cases from 2024-W00 to 2025-W41</div>
+        
+        <div id="chartContainer">
+            <canvas id="weeklyChart"></canvas>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <div class="stat-label">Total Suspected Cases</div>
+                <div class="stat-value" id="totalCases">-</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Peak Week</div>
+                <div class="stat-value" id="peakWeek">-</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Peak Cases</div>
+                <div class="stat-value" id="peakCases">-</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-label">Weeks Tracked</div>
+                <div class="stat-value" id="weeksTracked">-</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Weekly cholera data
+        const weeklyData = [
+            { week: "2024-W00", cases: 25 },
+            { week: "2024-W30", cases: 23 },
+            { week: "2024-W31", cases: 62 },
+            { week: "2024-W32", cases: 132 },
+            { week: "2024-W33", cases: 171 },
+            { week: "2024-W34", cases: 560 },
+            { week: "2024-W35", cases: 1654 },
+            { week: "2024-W36", cases: 3035 },
+            { week: "2024-W37", cases: 3238 },
+            { week: "2024-W38", cases: 3928 },
+            { week: "2024-W39", cases: 5057 },
+            { week: "2024-W40", cases: 3649 },
+            { week: "2024-W41", cases: 3027 },
+            { week: "2024-W42", cases: 2430 },
+            { week: "2024-W43", cases: 2078 },
+            { week: "2024-W44", cases: 2248 },
+            { week: "2024-W45", cases: 3443 },
+            { week: "2024-W46", cases: 4088 },
+            { week: "2024-W47", cases: 3713 },
+            { week: "2024-W48", cases: 2309 },
+            { week: "2024-W49", cases: 1464 },
+            { week: "2024-W50", cases: 1360 },
+            { week: "2024-W51", cases: 1393 },
+            { week: "2024-W52", cases: 1208 },
+            { week: "2024-W53", cases: 835 },
+            { week: "2025-W00", cases: 19 },
+            { week: "2025-W01", cases: 649 },
+            { week: "2025-W02", cases: 452 },
+            { week: "2025-W03", cases: 248 },
+            { week: "2025-W04", cases: 498 },
+            { week: "2025-W05", cases: 440 },
+            { week: "2025-W06", cases: 455 },
+            { week: "2025-W07", cases: 1373 },
+            { week: "2025-W08", cases: 1831 },
+            { week: "2025-W09", cases: 557 },
+            { week: "2025-W10", cases: 549 },
+            { week: "2025-W11", cases: 404 },
+            { week: "2025-W12", cases: 313 },
+            { week: "2025-W13", cases: 442 },
+            { week: "2025-W14", cases: 296 },
+            { week: "2025-W15", cases: 349 },
+            { week: "2025-W16", cases: 633 },
+            { week: "2025-W17", cases: 929 },
+            { week: "2025-W18", cases: 856 },
+            { week: "2025-W19", cases: 813 },
+            { week: "2025-W20", cases: 2685 },
+            { week: "2025-W21", cases: 9316 },
+            { week: "2025-W22", cases: 4405 },
+            { week: "2025-W23", cases: 3107 },
+            { week: "2025-W24", cases: 2372 },
+            { week: "2025-W25", cases: 2015 },
+            { week: "2025-W26", cases: 1949 },
+            { week: "2025-W27", cases: 2326 },
+            { week: "2025-W28", cases: 1807 },
+            { week: "2025-W29", cases: 2263 },
+            { week: "2025-W30", cases: 3310 },
+            { week: "2025-W31", cases: 3504 },
+            { week: "2025-W32", cases: 3040 },
+            { week: "2025-W33", cases: 3063 },
+            { week: "2025-W34", cases: 2769 },
+            { week: "2025-W35", cases: 2633 },
+            { week: "2025-W36", cases: 2389 },
+            { week: "2025-W37", cases: 2019 },
+            { week: "2025-W38", cases: 1281 },
+            { week: "2025-W39", cases: 1084 },
+            { week: "2025-W40", cases: 611 },
+            { week: "2025-W41", cases: 36 }
+        ];
+
+        // Extract labels and values
+        const labels = weeklyData.map(d => d.week);
+        const cases = weeklyData.map(d => d.cases);
+
+        // Calculate statistics
+        const totalCases = cases.reduce((sum, c) => sum + c, 0);
+        const maxCases = Math.max(...cases);
+        const peakWeekIndex = cases.indexOf(maxCases);
+        const peakWeek = weeklyData[peakWeekIndex].week;
+
+        document.getElementById('totalCases').textContent = totalCases.toLocaleString();
+        document.getElementById('peakWeek').textContent = peakWeek;
+        document.getElementById('peakCases').textContent = maxCases.toLocaleString();
+        document.getElementById('weeksTracked').textContent = weeklyData.length;
+
+        // Create the chart
+        const ctx = document.getElementById('weeklyChart').getContext('2d');
+        const weeklyChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Suspected Cases',
+                    data: cases,
+                    backgroundColor: '#009999',
+                    borderColor: '#007777',
+                    borderWidth: 1,
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'top',
+                        rotation: -90,
+                        formatter: function(value) {
+                            return value.toLocaleString();
+                        },
+                        color: '#333',
+                        font: {
+                            weight: 'bold',
+                            size: 8
+                        }
+                    }
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    datalabels: {
+                        display: true
+                    },
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return 'Cases: ' + context.parsed.y.toLocaleString();
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Suspected Cases',
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            },
+                            color: '#009999'
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return value.toLocaleString();
+                            },
+                            color: '#009999'
+                        },
+                        grid: {
+                            color: 'rgba(0, 153, 153, 0.1)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Week',
+                            font: {
+                                size: 14,
+                                weight: 'bold'
+                            }
+                        },
+                        ticks: {
+                            maxRotation: 90,
+                            minRotation: 45,
+                            autoSkip: true,
+                            maxTicksLimit: 30
+                        }
+                    }
+                }
+            },
+            plugins: [ChartDataLabels]
+        });
+    </script>
+</body>
+</html>
