@@ -89,9 +89,15 @@
             display: inline-block;
             border-radius: 50%;
             margin-right: 10px;
+            flex-shrink: 0;
+        }
+        .legend-circle.official {
             border: 2px solid #c62828;
             background: rgba(198, 40, 40, 0.35);
-            flex-shrink: 0;
+        }
+        .legend-circle.estimated {
+            border: 2px solid #f57c00;
+            background: rgba(245, 124, 0, 0.35);
         }
         .popup-content {
             font-size: 13px;
@@ -127,6 +133,14 @@
         .popup-content .value {
             color: #616161;
         }
+        .popup-content .coord-source {
+            font-size: 11px;
+            color: #757575;
+            font-style: italic;
+            margin-top: 8px;
+            padding-top: 6px;
+            border-top: 1px solid #e0e0e0;
+        }
         .community-label {
             font-size: 11px;
             font-weight: bold;
@@ -141,11 +155,11 @@
             pointer-events: none;
         }
         .note-box {
-            background: #ffebee;
+            background: #e8f5e9;
             padding: 10px;
             border-radius: 6px;
             margin-top: 12px;
-            border-left: 4px solid #c62828;
+            border-left: 4px solid #4caf50;
             font-size: 11px;
             color: #616161;
         }
@@ -158,52 +172,53 @@
         <h2>🌀 Hurricane Melissa</h2>
         <h3>Impact Overview</h3>
         <div class="stat-highlight">
-            <strong>12 communities</strong> mapped<br>
-            <strong>7,566 customers</strong> affected
+            <strong>17 communities</strong> mapped<br>
+            <strong>8,811 customers</strong> affected
         </div>
         
         <h3>Distribution by Parish</h3>
         <p>
-            <strong>Westmoreland:</strong> 9 communities<br>
+            <strong>Westmoreland:</strong> 10 communities<br>
             <strong>Saint Ann:</strong> 1 community<br>
             <strong>Saint Elizabeth:</strong> 1 community<br>
-            <strong>Saint James:</strong> 1 community
+            <strong>Saint James:</strong> 1 community<br>
+            <strong>Estimated locations:</strong> 5 communities
         </p>
         
         <div class="note-box">
-            <strong>Note:</strong> 5 communities (1,245 customers) excluded - no ADM3 match in official dataset
+            <strong>✓ Complete Coverage:</strong> All 17 communities now have coordinate data
         </div>
     </div>
     
     <div class="legend">
         <h4>📊 Bubble Size = Customers</h4>
         <div class="legend-item">
-            <span class="legend-circle" style="width: 32px; height: 32px;"></span>
+            <span class="legend-circle official" style="width: 32px; height: 32px;"></span>
             <span>1,500+ customers</span>
         </div>
         <div class="legend-item">
-            <span class="legend-circle" style="width: 22px; height: 22px;"></span>
+            <span class="legend-circle official" style="width: 22px; height: 22px;"></span>
             <span>500-1,500 customers</span>
         </div>
         <div class="legend-item">
-            <span class="legend-circle" style="width: 14px; height: 14px;"></span>
+            <span class="legend-circle official" style="width: 14px; height: 14px;"></span>
             <span>100-500 customers</span>
         </div>
         <div class="legend-item">
-            <span class="legend-circle" style="width: 9px; height: 9px;"></span>
+            <span class="legend-circle official" style="width: 9px; height: 9px;"></span>
             <span>&lt;100 customers</span>
         </div>
-        <div style="margin-top: 12px; padding-top: 10px; border-top: 1px solid #e0e0e0; font-size: 11px; color: #757575;">
-            Coordinates from ADM3 centroid data<br>
-            Click bubbles for details
+        <div style="margin-top: 12px; padding-top: 10px; border-top: 1px solid #e0e0e0; font-size: 11px;">
+            <div style="margin: 5px 0;"><span class="legend-circle official" style="width: 12px; height: 12px; display: inline-block;"></span> Official ADM3 location</div>
+            <div style="margin: 5px 0;"><span class="legend-circle estimated" style="width: 12px; height: 12px; display: inline-block;"></span> Estimated location</div>
         </div>
     </div>
 
     <script>
-        // Initialize map centered on western Jamaica (Westmoreland focus)
+        // Initialize map centered on western Jamaica
         var map = L.map('map').setView([18.25, -78.0], 10);
 
-        // Add tile layer with better styling
+        // Add tile layer
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '© OpenStreetMap contributors',
             maxZoom: 18,
@@ -219,8 +234,10 @@
                 "adm2": "Grange Hill",
                 "adm1": "Westmoreland",
                 "adm3_pcode": "JM140605",
-                "lat": 18.32359000293295,
-                "lon": -78.18585703635613
+                "lat": 18.31062,
+                "lon": -78.18431,
+                "coord_source": "geoview.info",
+                "has_adm3": true
         },
         {
                 "name": "Whitehouse",
@@ -229,8 +246,10 @@
                 "adm2": "Whitehouse",
                 "adm1": "Westmoreland",
                 "adm3_pcode": "JM141410",
-                "lat": 18.09702425267021,
-                "lon": -77.96485188106725
+                "lat": 18.094397,
+                "lon": -77.966727,
+                "coord_source": "maptons.com",
+                "has_adm3": true
         },
         {
                 "name": "Darliston",
@@ -239,8 +258,10 @@
                 "adm2": "Darliston",
                 "adm1": "Westmoreland",
                 "adm3_pcode": "JM140410",
-                "lat": 18.23481179566322,
-                "lon": -77.98014715255643
+                "lat": 18.234902,
+                "lon": -77.975293,
+                "coord_source": "maptons.com",
+                "has_adm3": true
         },
         {
                 "name": "Frome",
@@ -249,8 +270,10 @@
                 "adm2": "Grange Hill",
                 "adm1": "Westmoreland",
                 "adm3_pcode": "JM140602",
-                "lat": 18.2826334082353,
-                "lon": -78.16532741920803
+                "lat": 18.292711,
+                "lon": -78.152168,
+                "coord_source": "maptons.com",
+                "has_adm3": true
         },
         {
                 "name": "Whithorn",
@@ -259,8 +282,22 @@
                 "adm2": "Savanna-la-mar",
                 "adm1": "Westmoreland",
                 "adm3_pcode": "JM141321",
-                "lat": 18.2704886340744,
-                "lon": -78.03555486361093
+                "lat": 18.26582,
+                "lon": -78.0253,
+                "coord_source": "geoview.info",
+                "has_adm3": true
+        },
+        {
+                "name": "Bay Road",
+                "customers": 500,
+                "adm3": "Not in official dataset",
+                "adm2": "-",
+                "adm1": "-",
+                "adm3_pcode": "N/A",
+                "lat": 18.24402,
+                "lon": -78.20773,
+                "coord_source": "Little London centroid",
+                "has_adm3": false
         },
         {
                 "name": "Water Works",
@@ -270,7 +307,9 @@
                 "adm1": "Westmoreland",
                 "adm3_pcode": "JM141320",
                 "lat": 18.24075006605744,
-                "lon": -78.0480290079956
+                "lon": -78.0480290079956,
+                "coord_source": "ADM3 Centroid (Geodatabase)",
+                "has_adm3": true
         },
         {
                 "name": "Cave",
@@ -279,8 +318,10 @@
                 "adm2": "Cave Valley",
                 "adm1": "Saint Ann",
                 "adm3_pcode": "JM070304",
-                "lat": 18.22856145460591,
-                "lon": -77.35766968635221
+                "lat": 18.23268,
+                "lon": -77.36337,
+                "coord_source": "satellite map",
+                "has_adm3": true
         },
         {
                 "name": "Burnt Savannah",
@@ -289,8 +330,10 @@
                 "adm2": "Santa Cruz",
                 "adm1": "Saint Elizabeth",
                 "adm3_pcode": "JM090702",
-                "lat": 18.03963918033146,
-                "lon": -77.75116787424273
+                "lat": 18.3168,
+                "lon": -78.1263,
+                "coord_source": "getamap.net",
+                "has_adm3": true
         },
         {
                 "name": "Burnt Savannah",
@@ -299,8 +342,10 @@
                 "adm2": "Santa Cruz",
                 "adm1": "Saint Elizabeth",
                 "adm3_pcode": "JM141201",
-                "lat": 18.32316655342266,
-                "lon": -78.1219162345859
+                "lat": 18.3168,
+                "lon": -78.1263,
+                "coord_source": "getamap.net",
+                "has_adm3": true
         },
         {
                 "name": "Broughton",
@@ -310,7 +355,33 @@
                 "adm1": "Westmoreland",
                 "adm3_pcode": "JM140901",
                 "lat": 18.22010711044265,
-                "lon": -78.21733923186311
+                "lon": -78.21733923186311,
+                "coord_source": "ADM3 Centroid (Geodatabase)",
+                "has_adm3": true
+        },
+        {
+                "name": "Albany",
+                "customers": 322,
+                "adm3": "Not in official dataset",
+                "adm2": "-",
+                "adm1": "-",
+                "adm3_pcode": "N/A",
+                "lat": 18.29183,
+                "lon": -76.85663,
+                "coord_source": "geoview.info",
+                "has_adm3": false
+        },
+        {
+                "name": "Top Road",
+                "customers": 235,
+                "adm3": "Not in official dataset",
+                "adm2": "-",
+                "adm1": "-",
+                "adm3_pcode": "N/A",
+                "lat": 18.24402,
+                "lon": -78.20773,
+                "coord_source": "Little London centroid",
+                "has_adm3": false
         },
         {
                 "name": "Belmont",
@@ -319,8 +390,34 @@
                 "adm2": "Greater Montego Bay",
                 "adm1": "Saint James",
                 "adm3_pcode": "JM100503",
-                "lat": 18.43164697830104,
-                "lon": -77.95895583333503
+                "lat": 18.153564,
+                "lon": -78.026674,
+                "coord_source": "maptons.com",
+                "has_adm3": true
+        },
+        {
+                "name": "New Hope",
+                "customers": 108,
+                "adm3": "Not in official dataset",
+                "adm2": "-",
+                "adm1": "-",
+                "adm3_pcode": "N/A",
+                "lat": 18.103682,
+                "lon": -77.975293,
+                "coord_source": "maptons.com",
+                "has_adm3": false
+        },
+        {
+                "name": "Baulk",
+                "customers": 80,
+                "adm3": "Not in official dataset",
+                "adm2": "-",
+                "adm1": "-",
+                "adm3_pcode": "N/A",
+                "lat": 18.30643,
+                "lon": -78.11128,
+                "coord_source": "places-in-the-world.com",
+                "has_adm3": false
         },
         {
                 "name": "Ferris",
@@ -329,24 +426,31 @@
                 "adm2": "Savanna-la-mar",
                 "adm1": "Westmoreland",
                 "adm3_pcode": "JM141305",
-                "lat": 18.22486107419987,
-                "lon": -78.06665906038171
+                "lat": 18.22663,
+                "lon": -78.07156,
+                "coord_source": "geoview.info",
+                "has_adm3": true
         }
 ];
 
         // Function to calculate bubble radius based on customers
         function getRadius(customers) {
-            // Refined scaling for better visualization
             return Math.sqrt(customers) * 1.8;
+        }
+
+        // Function to get color based on whether community has official ADM3
+        function getColor(hasAdm3) {
+            return hasAdm3 ? '#c62828' : '#f57c00';  // Red for official, Orange for estimated
         }
 
         // Add circles for each community
         communities.forEach(function(community) {
             var radius = getRadius(community.customers);
+            var color = getColor(community.has_adm3);
             
             var circle = L.circle([community.lat, community.lon], {
-                color: '#c62828',
-                fillColor: '#c62828',
+                color: color,
+                fillColor: color,
                 fillOpacity: 0.35,
                 radius: radius * 100,
                 weight: 2.5
@@ -355,12 +459,19 @@
             // Create enhanced popup content
             var popupContent = '<div class="popup-content">' +
                 '<strong>' + community.name + '</strong>' +
-                '<div class="customers">' + community.customers.toLocaleString() + ' customers</div>' +
-                '<div class="detail-row"><span class="label">ADM3:</span><span class="value">' + community.adm3 + '</span></div>' +
-                '<div class="detail-row"><span class="label">ADM2:</span><span class="value">' + community.adm2 + '</span></div>' +
-                '<div class="detail-row"><span class="label">Parish:</span><span class="value">' + community.adm1 + '</span></div>' +
-                '<div class="detail-row"><span class="label">Code:</span><span class="value">' + community.adm3_pcode + '</span></div>' +
-                '</div>';
+                '<div class="customers">' + community.customers.toLocaleString() + ' customers</div>';
+            
+            if (community.has_adm3) {
+                popupContent += '<div class="detail-row"><span class="label">ADM3:</span><span class="value">' + community.adm3 + '</span></div>' +
+                    '<div class="detail-row"><span class="label">ADM2:</span><span class="value">' + community.adm2 + '</span></div>' +
+                    '<div class="detail-row"><span class="label">Parish:</span><span class="value">' + community.adm1 + '</span></div>' +
+                    '<div class="detail-row"><span class="label">Code:</span><span class="value">' + community.adm3_pcode + '</span></div>';
+            } else {
+                popupContent += '<div class="detail-row"><span class="label">Status:</span><span class="value">Estimated location</span></div>' +
+                    '<div class="detail-row"><span class="label">Note:</span><span class="value">No ADM3 match in dataset</span></div>';
+            }
+            
+            popupContent += '<div class="coord-source">Coordinates: ' + community.coord_source + '</div></div>';
 
             circle.bindPopup(popupContent);
 
@@ -399,8 +510,13 @@
 
         // Calculate and log statistics
         var totalCustomers = communities.reduce((sum, c) => sum + c.customers, 0);
-        console.log('Total customers affected (mapped):', totalCustomers);
-        console.log('Number of communities mapped:', communities.length);
+        var withAdm3 = communities.filter(c => c.has_adm3).length;
+        var withoutAdm3 = communities.filter(c => !c.has_adm3).length;
+        
+        console.log('Total customers affected:', totalCustomers);
+        console.log('Total communities:', communities.length);
+        console.log('Communities with ADM3:', withAdm3);
+        console.log('Communities with estimated locations:', withoutAdm3);
         
         // Fit map to show all markers with padding
         var group = new L.featureGroup(map._layers);
