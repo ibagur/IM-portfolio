@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hurricane Melissa - Affected Communities in Jamaica</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+        .info-panel {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+            max-width: 320px;
+        }
+        .info-panel h2 {
+            margin: 0 0 15px 0;
+            font-size: 20px;
+            color: #c62828;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .info-panel h3 {
+            margin: 15px 0 8px 0;
+            font-size: 14px;
+            color: #424242;
+            font-weight: 600;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 5px;
+        }
+        .info-panel p {
+            margin: 5px 0;
+            font-size: 13px;
+            color: #616161;
+            line-height: 1.5;
+        }
+        .stat-highlight {
+            background: #fff3e0;
+            padding: 8px 12px;
+            border-radius: 6px;
+            margin: 10px 0;
+            border-left: 4px solid #ff6f00;
+        }
+        .stat-highlight strong {
+            color: #e65100;
+            font-size: 15px;
+        }
+        .legend {
+            position: absolute;
+            bottom: 30px;
+            right: 10px;
+            background: white;
+            padding: 18px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+        .legend h4 {
+            margin: 0 0 12px 0;
+            font-size: 14px;
+            font-weight: 600;
+            color: #424242;
+        }
+        .legend-item {
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            color: #616161;
+        }
+        .legend-circle {
+            display: inline-block;
+            border-radius: 50%;
+            margin-right: 10px;
+            border: 2px solid #c62828;
+            background: rgba(198, 40, 40, 0.35);
+            flex-shrink: 0;
+        }
+        .popup-content {
+            font-size: 13px;
+            min-width: 200px;
+        }
+        .popup-content strong {
+            color: #c62828;
+            font-size: 16px;
+            display: block;
+            margin-bottom: 8px;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 5px;
+        }
+        .popup-content .customers {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1565c0;
+            margin: 8px 0;
+            padding: 8px;
+            background: #e3f2fd;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .popup-content .detail-row {
+            margin: 6px 0;
+            display: flex;
+            gap: 5px;
+        }
+        .popup-content .label {
+            font-weight: 600;
+            color: #424242;
+        }
+        .popup-content .value {
+            color: #616161;
+        }
+        .community-label {
+            font-size: 11px;
+            font-weight: bold;
+            color: #1a237e;
+            text-shadow: 
+                -1px -1px 0 #fff,  
+                1px -1px 0 #fff,
+                -1px 1px 0 #fff,
+                1px 1px 0 #fff,
+                2px 2px 3px rgba(0,0,0,0.3);
+            white-space: nowrap;
+            pointer-events: none;
+        }
+        .note-box {
+            background: #ffebee;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 12px;
+            border-left: 4px solid #c62828;
+            font-size: 11px;
+            color: #616161;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    
+    <div class="info-panel">
+        <h2>🌀 Hurricane Melissa</h2>
+        <h3>Impact Overview</h3>
+        <div class="stat-highlight">
+            <strong>12 communities</strong> mapped<br>
+            <strong>7,566 customers</strong> affected
+        </div>
+        
+        <h3>Distribution by Parish</h3>
+        <p>
+            <strong>Westmoreland:</strong> 9 communities<br>
+            <strong>Saint Ann:</strong> 1 community<br>
+            <strong>Saint Elizabeth:</strong> 1 community<br>
+            <strong>Saint James:</strong> 1 community
+        </p>
+        
+        <div class="note-box">
+            <strong>Note:</strong> 5 communities (1,245 customers) excluded - no ADM3 match in official dataset
+        </div>
+    </div>
+    
+    <div class="legend">
+        <h4>📊 Bubble Size = Customers</h4>
+        <div class="legend-item">
+            <span class="legend-circle" style="width: 32px; height: 32px;"></span>
+            <span>1,500+ customers</span>
+        </div>
+        <div class="legend-item">
+            <span class="legend-circle" style="width: 22px; height: 22px;"></span>
+            <span>500-1,500 customers</span>
+        </div>
+        <div class="legend-item">
+            <span class="legend-circle" style="width: 14px; height: 14px;"></span>
+            <span>100-500 customers</span>
+        </div>
+        <div class="legend-item">
+            <span class="legend-circle" style="width: 9px; height: 9px;"></span>
+            <span>&lt;100 customers</span>
+        </div>
+        <div style="margin-top: 12px; padding-top: 10px; border-top: 1px solid #e0e0e0; font-size: 11px; color: #757575;">
+            Coordinates from ADM3 centroid data<br>
+            Click bubbles for details
+        </div>
+    </div>
+
+    <script>
+        // Initialize map centered on western Jamaica (Westmoreland focus)
+        var map = L.map('map').setView([18.25, -78.0], 10);
+
+        // Add tile layer with better styling
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors',
+            maxZoom: 18,
+            minZoom: 8
+        }).addTo(map);
+
+        // Communities data with actual coordinates
+        var communities = [
+        {
+                "name": "Grange Hill",
+                "customers": 1988,
+                "adm3": "Grange Hill",
+                "adm2": "Grange Hill",
+                "adm1": "Westmoreland",
+                "adm3_pcode": "JM140605",
+                "lat": 18.32359000293295,
+                "lon": -78.18585703635613
+        },
+        {
+                "name": "Whitehouse",
+                "customers": 1260,
+                "adm3": "Whitehouse",
+                "adm2": "Whitehouse",
+                "adm1": "Westmoreland",
+                "adm3_pcode": "JM141410",
+                "lat": 18.09702425267021,
+                "lon": -77.96485188106725
+        },
+        {
+                "name": "Darliston",
+                "customers": 898,
+                "adm3": "Darliston",
+                "adm2": "Darliston",
+                "adm1": "Westmoreland",
+                "adm3_pcode": "JM140410",
+                "lat": 18.23481179566322,
+                "lon": -77.98014715255643
+        },
+        {
+                "name": "Frome",
+                "customers": 819,
+                "adm3": "Frome",
+                "adm2": "Grange Hill",
+                "adm1": "Westmoreland",
+                "adm3_pcode": "JM140602",
+                "lat": 18.2826334082353,
+                "lon": -78.16532741920803
+        },
+        {
+                "name": "Whithorn",
+                "customers": 723,
+                "adm3": "Whithorn",
+                "adm2": "Savanna-la-mar",
+                "adm1": "Westmoreland",
+                "adm3_pcode": "JM141321",
+                "lat": 18.2704886340744,
+                "lon": -78.03555486361093
+        },
+        {
+                "name": "Water Works",
+                "customers": 467,
+                "adm3": "Water Works",
+                "adm2": "Savanna-la-mar",
+                "adm1": "Westmoreland",
+                "adm3_pcode": "JM141320",
+                "lat": 18.24075006605744,
+                "lon": -78.0480290079956
+        },
+        {
+                "name": "Cave",
+                "customers": 386,
+                "adm3": "Cave Valley",
+                "adm2": "Cave Valley",
+                "adm1": "Saint Ann",
+                "adm3_pcode": "JM070304",
+                "lat": 18.22856145460591,
+                "lon": -77.35766968635221
+        },
+        {
+                "name": "Burnt Savannah",
+                "customers": 368,
+                "adm3": "Burnt Savannah",
+                "adm2": "Santa Cruz",
+                "adm1": "Saint Elizabeth",
+                "adm3_pcode": "JM090702",
+                "lat": 18.03963918033146,
+                "lon": -77.75116787424273
+        },
+        {
+                "name": "Burnt Savannah",
+                "customers": 368,
+                "adm3": "Burnt Savannah",
+                "adm2": "Santa Cruz",
+                "adm1": "Saint Elizabeth",
+                "adm3_pcode": "JM141201",
+                "lat": 18.32316655342266,
+                "lon": -78.1219162345859
+        },
+        {
+                "name": "Broughton",
+                "customers": 352,
+                "adm3": "Broughton",
+                "adm2": "Negril",
+                "adm1": "Westmoreland",
+                "adm3_pcode": "JM140901",
+                "lat": 18.22010711044265,
+                "lon": -78.21733923186311
+        },
+        {
+                "name": "Belmont",
+                "customers": 230,
+                "adm3": "Belmont",
+                "adm2": "Greater Montego Bay",
+                "adm1": "Saint James",
+                "adm3_pcode": "JM100503",
+                "lat": 18.43164697830104,
+                "lon": -77.95895583333503
+        },
+        {
+                "name": "Ferris",
+                "customers": 75,
+                "adm3": "Ferris",
+                "adm2": "Savanna-la-mar",
+                "adm1": "Westmoreland",
+                "adm3_pcode": "JM141305",
+                "lat": 18.22486107419987,
+                "lon": -78.06665906038171
+        }
+];
+
+        // Function to calculate bubble radius based on customers
+        function getRadius(customers) {
+            // Refined scaling for better visualization
+            return Math.sqrt(customers) * 1.8;
+        }
+
+        // Add circles for each community
+        communities.forEach(function(community) {
+            var radius = getRadius(community.customers);
+            
+            var circle = L.circle([community.lat, community.lon], {
+                color: '#c62828',
+                fillColor: '#c62828',
+                fillOpacity: 0.35,
+                radius: radius * 100,
+                weight: 2.5
+            }).addTo(map);
+
+            // Create enhanced popup content
+            var popupContent = '<div class="popup-content">' +
+                '<strong>' + community.name + '</strong>' +
+                '<div class="customers">' + community.customers.toLocaleString() + ' customers</div>' +
+                '<div class="detail-row"><span class="label">ADM3:</span><span class="value">' + community.adm3 + '</span></div>' +
+                '<div class="detail-row"><span class="label">ADM2:</span><span class="value">' + community.adm2 + '</span></div>' +
+                '<div class="detail-row"><span class="label">Parish:</span><span class="value">' + community.adm1 + '</span></div>' +
+                '<div class="detail-row"><span class="label">Code:</span><span class="value">' + community.adm3_pcode + '</span></div>' +
+                '</div>';
+
+            circle.bindPopup(popupContent);
+
+            // Add label for all communities
+            var labelSize = community.customers > 800 ? '12px' : '10px';
+            var label = L.marker([community.lat, community.lon], {
+                icon: L.divIcon({
+                    className: 'label',
+                    html: '<div class="community-label" style="font-size: ' + labelSize + ';">' + 
+                          community.name + '</div>',
+                    iconSize: [120, 20]
+                })
+            }).addTo(map);
+
+            // Hover effects
+            circle.on('mouseover', function(e) {
+                this.setStyle({
+                    fillOpacity: 0.6,
+                    weight: 3
+                });
+            });
+            
+            circle.on('mouseout', function(e) {
+                this.setStyle({
+                    fillOpacity: 0.35,
+                    weight: 2.5
+                });
+            });
+        });
+
+        // Add a scale control
+        L.control.scale({
+            imperial: false,
+            metric: true
+        }).addTo(map);
+
+        // Calculate and log statistics
+        var totalCustomers = communities.reduce((sum, c) => sum + c.customers, 0);
+        console.log('Total customers affected (mapped):', totalCustomers);
+        console.log('Number of communities mapped:', communities.length);
+        
+        // Fit map to show all markers with padding
+        var group = new L.featureGroup(map._layers);
+        map.fitBounds(group.getBounds().pad(0.1));
+    </script>
+</body>
+</html>
