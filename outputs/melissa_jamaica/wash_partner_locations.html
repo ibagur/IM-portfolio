@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WASH Partner Operational Locations - Jamaica</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+        }
+        
+        #map {
+            width: 100%;
+            height: 100vh;
+        }
+        
+        .map-title {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        
+        .map-title h1 {
+            font-size: 24px;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .map-title p {
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+        
+        .legend {
+            position: absolute;
+            bottom: 30px;
+            right: 10px;
+            z-index: 1000;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            font-size: 13px;
+        }
+        
+        .legend h4 {
+            margin: 0 0 10px 0;
+            color: #2c3e50;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+        }
+        
+        .legend-circle {
+            border-radius: 50%;
+            background-color: rgba(0, 153, 153, 0.6);
+            border: 2px solid #009999;
+            margin-right: 10px;
+        }
+        
+        .leaflet-popup-content {
+            margin: 15px;
+            min-width: 250px;
+        }
+        
+        .popup-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #009999;
+        }
+        
+        .partner-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .partner-item {
+            padding: 10px;
+            margin: 8px 0;
+            background: #ecf0f1;
+            border-radius: 5px;
+            border-left: 4px solid #009999;
+        }
+        
+        .partner-name {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .activities {
+            font-size: 12px;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+        
+        .activity-badge {
+            display: inline-block;
+            background: #009999;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 3px;
+            margin-right: 5px;
+            font-size: 11px;
+        }
+        
+        /* Circle marker labels - properly centered */
+        .circle-label {
+            background: none;
+            border: none;
+            box-shadow: none;
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 12px;
+            pointer-events: none;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        @media (max-width: 768px) {
+            .map-title h1 {
+                font-size: 18px;
+            }
+            .map-title p {
+                font-size: 12px;
+            }
+            .legend {
+                bottom: 10px;
+                right: 10px;
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="map-title">
+        <h1>WASH Partner Operational Locations</h1>
+        <p>Jamaica - Hurricane Melissa Response</p>
+    </div>
+    
+    <div id="map"></div>
+    
+    <div class="legend">
+        <h4>Partner Count</h4>
+        <div class="legend-item">
+            <div class="legend-circle" style="width: 30px; height: 30px;"></div>
+            <span>3+ partners</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-circle" style="width: 20px; height: 20px;"></div>
+            <span>2 partners</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-circle" style="width: 12px; height: 12px;"></div>
+            <span>1 partner</span>
+        </div>
+        <p style="margin-top: 10px; color: #7f8c8d; font-size: 11px;">Click bubbles for details</p>
+    </div>
+    
+    <script>
+        // Initialize map centered on western Jamaica
+        const map = L.map('map').setView([18.25, -78.0], 10);
+        
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+            maxZoom: 18
+        }).addTo(map);
+        
+        // Location data
+        const locations = [{"location": "Belmont", "lat": 18.275, "lon": -78.055, "partner_count": 1, "partners": [{"name": "UNICEF/Water Mission partnership", "activities": ["Water Trucking/Distribution"]}]}, {"location": "Black River", "lat": 18.02636, "lon": -77.84873, "partner_count": 2, "partners": [{"name": "Food for the Poor", "activities": ["Water Trucking/Distribution"]}, {"name": "Samaritan's Purse", "activities": ["Water Treatment"]}]}, {"location": "Black River (community,  health facility)", "lat": 18.02636, "lon": -77.84873, "partner_count": 1, "partners": [{"name": "Samaritan's Purse", "activities": ["Water Trucking/Distribution"]}]}, {"location": "Bluefields", "lat": 18.165, "lon": -78.04, "partner_count": 1, "partners": [{"name": "Food for the Poor", "activities": ["Water Trucking/Distribution"]}]}, {"location": "Cave", "lat": 18.28, "lon": -78.08, "partner_count": 1, "partners": [{"name": "UNICEF/Water Mission partnership", "activities": ["Water Trucking/Distribution"]}]}, {"location": "Copperwood", "lat": 18.43, "lon": -78.19, "partner_count": 1, "partners": [{"name": "Global Support and Development (GSD)", "activities": ["Water Trucking/Distribution"]}]}, {"location": "Crawford", "lat": 18.22, "lon": -78.105, "partner_count": 1, "partners": [{"name": "Food for the Poor", "activities": ["Water Trucking/Distribution"]}]}, {"location": "Darliston", "lat": 18.251, "lon": -78.043, "partner_count": 1, "partners": [{"name": "UNICEF/Water Mission partnership", "activities": ["Water Trucking/Distribution"]}]}, {"location": "Drew Hill", "lat": 18.425, "lon": -78.185, "partner_count": 1, "partners": [{"name": "Global Support and Development (GSD)", "activities": ["Water Trucking/Distribution"]}]}, {"location": "Elgin Town", "lat": 18.42, "lon": -78.18, "partner_count": 1, "partners": [{"name": "Global Support and Development (GSD)", "activities": ["Water Trucking/Distribution"]}]}, {"location": "Esher", "lat": 18.415, "lon": -78.195, "partner_count": 1, "partners": [{"name": "Global Support and Development (GSD)", "activities": ["Water Trucking/Distribution"]}]}, {"location": "Ferris Cross", "lat": 18.24, "lon": -78.045, "partner_count": 1, "partners": [{"name": "UNICEF/Water Mission partnership", "activities": ["Water Treatment"]}]}, {"location": "Fyffes Pen", "lat": 18.215, "lon": -78.125, "partner_count": 1, "partners": [{"name": "Food for the Poor", "activities": ["Water Trucking/Distribution"]}]}, {"location": "Giddy Hall", "lat": 18.21, "lon": -78.12, "partner_count": 1, "partners": [{"name": "Food for the Poor", "activities": ["Water Trucking/Distribution"]}]}, {"location": "Ginger Hill", "lat": 18.225, "lon": -78.115, "partner_count": 1, "partners": [{"name": "Food for the Poor", "activities": ["Water Trucking/Distribution"]}]}, {"location": "Great Bay", "lat": 18.46, "lon": -78.22, "partner_count": 1, "partners": [{"name": "Mission Mules", "activities": ["Water Trucking/Distribution", "Water Treatment"]}]}, {"location": "Hanover (police station)", "lat": 18.450419, "lon": -78.176394, "partner_count": 1, "partners": [{"name": "Global Support and Development (GSD)", "activities": ["Water Trucking/Distribution"]}]}, {"location": "Haughton Court (police station)", "lat": 18.44, "lon": -78.175, "partner_count": 1, "partners": [{"name": "Global Support and Development (GSD)", "activities": ["Water Trucking/Distribution"]}]}, {"location": "Haughton Garden", "lat": 18.44, "lon": -78.175, "partner_count": 1, "partners": [{"name": "Global Support and Development (GSD)", "activities": ["Water Trucking/Distribution"]}]}, {"location": "Hopewell", "lat": 18.465, "lon": -78.125, "partner_count": 1, "partners": [{"name": "Global Support and Development (GSD)", "activities": ["Water Trucking/Distribution"]}]}, {"location": "Johnson Town", "lat": 18.435, "lon": -78.17, "partner_count": 1, "partners": [{"name": "Global Support and Development (GSD)", "activities": ["Water Trucking/Distribution"]}]}, {"location": "Lucea (Health Center, JDF camp, police station, fire station)", "lat": 18.450419, "lon": -78.176394, "partner_count": 1, "partners": [{"name": "Global Support and Development (GSD)", "activities": ["Water Trucking/Distribution"]}]}, {"location": "Malcolm Shorty", "lat": 18.43, "lon": -78.2, "partner_count": 1, "partners": [{"name": "Global Support and Development (GSD)", "activities": ["Water Trucking/Distribution"]}]}, {"location": "Noel Holmes Hospital", "lat": 18.45, "lon": -78.15, "partner_count": 1, "partners": [{"name": "Global Support and Development (GSD)", "activities": ["Water Trucking/Distribution"]}]}, {"location": "Pertersville", "lat": 18.24, "lon": -78.065, "partner_count": 1, "partners": [{"name": "Food for the Poor", "activities": ["Water Trucking/Distribution"]}]}, {"location": "Petersfield", "lat": 18.266667, "lon": -78.066667, "partner_count": 3, "partners": [{"name": "Food for the Poor", "activities": ["Water Trucking/Distribution"]}, {"name": "Project Hope", "activities": ["Water Trucking/Distribution"]}, {"name": "UNICEF/Water Mission partnership", "activities": ["Water Trucking/Distribution"]}]}, {"location": "Sandy Bay (community, police station, health center)", "lat": 18.45, "lon": -78.15, "partner_count": 1, "partners": [{"name": "Global Support and Development (GSD)", "activities": ["Water Trucking/Distribution"]}]}, {"location": "Savannah La Mar", "lat": 18.229168, "lon": -78.13934, "partner_count": 1, "partners": [{"name": "Food for the Poor", "activities": ["Water Trucking/Distribution"]}]}, {"location": "Scotts Cove", "lat": 18.185, "lon": -78.03, "partner_count": 1, "partners": [{"name": "Food for the Poor", "activities": ["Water Trucking/Distribution"]}]}, {"location": "Shorty Malcom complex", "lat": 18.43, "lon": -78.2, "partner_count": 1, "partners": [{"name": "Global Support and Development (GSD)", "activities": ["Water Trucking/Distribution"]}]}, {"location": "Zion", "lat": 18.24, "lon": -78.095, "partner_count": 1, "partners": [{"name": "Food for the Poor", "activities": ["Water Trucking/Distribution"]}]}, {"location": "kingsville", "lat": 18.425, "lon": -78.182, "partner_count": 1, "partners": [{"name": "Global Support and Development (GSD)", "activities": ["Water Trucking/Distribution"]}]}];
+        
+        // Function to calculate bubble radius based on partner count
+        function getRadius(count) {
+            if (count >= 3) return 2500;
+            if (count === 2) return 1500;
+            return 800;
+        }
+        
+        // Function to create popup content
+        function createPopupContent(location) {
+            let html = `<div class="popup-title">${location.location}</div>`;
+            html += `<ul class="partner-list">`;
+            
+            location.partners.forEach(partner => {
+                html += `<li class="partner-item">`;
+                html += `<div class="partner-name">${partner.name}</div>`;
+                if (partner.activities.length > 0) {
+                    html += `<div class="activities">`;
+                    partner.activities.forEach(activity => {
+                        html += `<span class="activity-badge">${activity}</span>`;
+                    });
+                    html += `</div>`;
+                }
+                html += `</li>`;
+            });
+            
+            html += `</ul>`;
+            return html;
+        }
+        
+        // Add circles and labels for each location
+        locations.forEach(location => {
+            const radius = getRadius(location.partner_count);
+            
+            // Add circle marker with new color
+            const circle = L.circle([location.lat, location.lon], {
+                color: '#009999',
+                fillColor: '#009999',
+                fillOpacity: 0.5,
+                radius: radius,
+                weight: 2
+            }).addTo(map);
+            
+            // Add popup on click
+            circle.bindPopup(createPopupContent(location), {
+                maxWidth: 300,
+                className: 'custom-popup'
+            });
+            
+            // Add number label in center - properly centered
+            const label = L.marker([location.lat, location.lon], {
+                icon: L.divIcon({
+                    className: 'circle-label',
+                    html: `${location.partner_count}`,
+                    iconSize: [20, 20]
+                })
+            }).addTo(map);
+            
+            // Make label clickable too
+            label.on('click', () => {
+                circle.openPopup();
+            });
+        });
+        
+        // Fit map to show all markers
+        const bounds = L.latLngBounds(locations.map(loc => [loc.lat, loc.lon]));
+        map.fitBounds(bounds, { padding: [50, 50] });
+    </script>
+</body>
+</html>
