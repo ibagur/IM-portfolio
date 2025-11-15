@@ -260,17 +260,64 @@
             border-left: 3px solid #009999;
         }
 
+        /* Toggle button styles */
+        .toggle-btn {
+            display: none; /* Hidden on desktop by default */
+            position: absolute;
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid #009999;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 18px;
+            padding: 10px;
+            z-index: 1001;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            min-width: 44px;
+            min-height: 44px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .toggle-btn:hover {
+            background: rgba(0, 153, 153, 0.1);
+            transform: scale(1.05);
+        }
+
+        .toggle-btn:active {
+            transform: scale(0.95);
+        }
+
+        .toggle-icon {
+            color: #009999;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        /* Panel content - visible by default on desktop */
+        .panel-content {
+            display: block;
+        }
+
         @media (max-width: 768px) {
-            .map-title h1 {
-                font-size: 18px;
+            /* Reduced title on mobile to maximize map space */
+            .map-title {
+                padding: 8px 15px;
+                top: 5px;
             }
 
+            .map-title h1 {
+                font-size: 14px;
+                margin-bottom: 0;
+            }
+
+            /* Hide subtitle and last updated on mobile */
             .map-title p {
-                font-size: 12px;
+                display: none;
             }
 
             .map-last-updated {
-                font-size: 9px;
+                display: none;
             }
 
             .legend {
@@ -290,6 +337,111 @@
                 padding: 4px;
                 font-size: 10px;
             }
+
+            /* Mobile: Show toggle buttons */
+            .toggle-btn {
+                display: flex !important;
+            }
+
+            /* Mobile: Left panel (activities-legend) */
+            #locations-panel {
+                padding: 0;
+                max-width: 60px;
+                max-height: 60px;
+                overflow: hidden;
+                transition: all 0.4s ease;
+            }
+
+            #locations-panel .toggle-btn {
+                position: relative;
+                top: 0;
+                left: 0;
+                margin: 8px;
+            }
+
+            #locations-panel .panel-content {
+                display: none;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            #locations-panel.expanded {
+                max-width: calc(100vw - 20px);
+                max-height: calc(100vh - 80px);
+                overflow-y: auto;
+                padding: 15px;
+            }
+
+            #locations-panel.expanded .panel-content {
+                display: block;
+                opacity: 1;
+            }
+
+            #locations-panel.expanded .toggle-icon {
+                font-size: 16px;
+            }
+
+            #locations-panel.expanded .toggle-icon::after {
+                content: '✕';
+            }
+
+            #locations-panel:not(.expanded) .toggle-icon::after {
+                content: '☰';
+            }
+
+            #locations-panel .toggle-icon {
+                font-size: 0; /* Hide original text */
+            }
+
+            /* Mobile: Right panel (legend) */
+            #legend-panel {
+                padding: 0;
+                max-width: 60px;
+                max-height: 60px;
+                overflow: hidden;
+                transition: all 0.4s ease;
+            }
+
+            #legend-panel .toggle-btn {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin: 8px;
+            }
+
+            #legend-panel .panel-content {
+                display: none;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+            }
+
+            #legend-panel.expanded {
+                max-width: 280px;
+                max-height: calc(100vh - 80px);
+                overflow-y: auto;
+                padding: 15px;
+            }
+
+            #legend-panel.expanded .panel-content {
+                display: block;
+                opacity: 1;
+            }
+
+            #legend-panel.expanded .toggle-icon {
+                font-size: 16px;
+            }
+
+            #legend-panel.expanded .toggle-icon::after {
+                content: '✕';
+            }
+
+            #legend-panel:not(.expanded) .toggle-icon::after {
+                content: '▶';
+            }
+
+            #legend-panel .toggle-icon {
+                font-size: 0; /* Hide original text */
+            }
         }
     </style>
 </head>
@@ -303,9 +455,13 @@
 
     <div id="map"></div>
 
-    <div class="activities-legend">
-        <h4>Partner Activities by Location</h4>
-        <table class="legend-table" id="partner-table">
+    <div class="activities-legend" id="locations-panel">
+        <button class="toggle-btn" id="toggle-locations" aria-label="Toggle locations table" aria-expanded="false">
+            <span class="toggle-icon">☰</span>
+        </button>
+        <div class="panel-content">
+            <h4>Partner Activities by Location</h4>
+            <table class="legend-table" id="partner-table">
             <thead>
                 <tr>
                     <th>Location</th>
@@ -317,10 +473,15 @@
                 <!-- Generated dynamically -->
             </tbody>
         </table>
+        </div>
     </div>
 
-    <div class="legend">
-        <h4>Partner Count</h4>
+    <div class="legend" id="legend-panel">
+        <button class="toggle-btn" id="toggle-legend" aria-label="Toggle legend" aria-expanded="false">
+            <span class="toggle-icon">▶</span>
+        </button>
+        <div class="panel-content">
+            <h4>Partner Count</h4>
         <div class="legend-item">
             <div class="legend-circle" style="width: 30px; height: 30px;"></div>
             <span>3+ partners</span>
@@ -345,6 +506,7 @@
         </div>
 
         <p style="margin-top: 10px; color: #7f8c8d; font-size: 11px;">Click markers for details</p>
+        </div>
     </div>
 
     <script>
@@ -567,6 +729,102 @@
         if (document.getElementById('last-updated-date')) {
             document.getElementById('last-updated-date').textContent = lastUpdated;
         }
+
+        // ========================================
+        // Mobile Panel Toggle Functionality
+        // ========================================
+
+        // Toggle panel function
+        function togglePanel(panelId, buttonId) {
+            const panel = document.getElementById(panelId);
+            const button = document.getElementById(buttonId);
+
+            if (panel && button) {
+                const isExpanded = panel.classList.contains('expanded');
+                panel.classList.toggle('expanded');
+                button.setAttribute('aria-expanded', !isExpanded);
+            }
+        }
+
+        // Add event listeners for toggle buttons
+        const toggleLocationsBtn = document.getElementById('toggle-locations');
+        const toggleLegendBtn = document.getElementById('toggle-legend');
+
+        if (toggleLocationsBtn) {
+            toggleLocationsBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                togglePanel('locations-panel', 'toggle-locations');
+            });
+
+            // Keyboard accessibility
+            toggleLocationsBtn.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    togglePanel('locations-panel', 'toggle-locations');
+                }
+            });
+        }
+
+        if (toggleLegendBtn) {
+            toggleLegendBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                togglePanel('legend-panel', 'toggle-legend');
+            });
+
+            // Keyboard accessibility
+            toggleLegendBtn.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    togglePanel('legend-panel', 'toggle-legend');
+                }
+            });
+        }
+
+        // Mobile detection and responsive behavior
+        const mobileMediaQuery = window.matchMedia('(max-width: 768px)');
+
+        function handleMobileChange(e) {
+            const locationsPanel = document.getElementById('locations-panel');
+            const legendPanel = document.getElementById('legend-panel');
+
+            if (e.matches) {
+                // Mobile: Ensure panels start collapsed
+                locationsPanel?.classList.remove('expanded');
+                legendPanel?.classList.remove('expanded');
+                toggleLocationsBtn?.setAttribute('aria-expanded', 'false');
+                toggleLegendBtn?.setAttribute('aria-expanded', 'false');
+            } else {
+                // Desktop: Remove expanded class if present
+                locationsPanel?.classList.remove('expanded');
+                legendPanel?.classList.remove('expanded');
+            }
+        }
+
+        // Initial check
+        handleMobileChange(mobileMediaQuery);
+
+        // Listen for viewport changes (orientation, resize)
+        mobileMediaQuery.addEventListener('change', handleMobileChange);
+
+        // Optional: Close panel when clicking outside (mobile only)
+        document.addEventListener('click', function(e) {
+            if (mobileMediaQuery.matches) {
+                const locationsPanel = document.getElementById('locations-panel');
+                const legendPanel = document.getElementById('legend-panel');
+
+                // Close locations panel if clicking outside
+                if (locationsPanel?.classList.contains('expanded') &&
+                    !locationsPanel.contains(e.target)) {
+                    togglePanel('locations-panel', 'toggle-locations');
+                }
+
+                // Close legend panel if clicking outside
+                if (legendPanel?.classList.contains('expanded') &&
+                    !legendPanel.contains(e.target)) {
+                    togglePanel('legend-panel', 'toggle-legend');
+                }
+            }
+        });
     </script>
 </body>
 
