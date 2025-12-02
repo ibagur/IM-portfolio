@@ -82,6 +82,11 @@
         .popup-content strong {
             color: #d9534f;
         }
+        .state-label {
+            background: transparent;
+            border: none;
+            box-shadow: none;
+        }
     </style>
 </head>
 <body>
@@ -737,6 +742,29 @@ const northKordofanBoundary = [
             fillOpacity: 0.15,
             dashArray: '5, 5'
         }).addTo(map).bindPopup('<div class="popup-content"><h4>North Kordofan State</h4><p><strong>Total Cases: 14,373</strong></p></div>');
+        
+        // Add state name labels
+        // White Nile label
+        const whiteNileLabel = L.marker([13.629069110248343, 32.417825495842884], {
+            icon: L.divIcon({
+                className: 'state-label',
+                html: '<div style="font-size: 16px; font-weight: bold; color: #2c7873; text-shadow: 2px 2px 4px white, -2px -2px 4px white, 2px -2px 4px white, -2px 2px 4px white; white-space: nowrap;">White Nile</div>',
+                iconSize: [100, 20],
+                iconAnchor: [50, 10]
+            }),
+            interactive: false
+        }).addTo(map);
+        
+        // North Kordofan label
+        const northKordofanLabel = L.marker([14.788055902937364, 29.68164768658586], {
+            icon: L.divIcon({
+                className: 'state-label',
+                html: '<div style="font-size: 16px; font-weight: bold; color: #d9822b; text-shadow: 2px 2px 4px white, -2px -2px 4px white, 2px -2px 4px white, -2px 2px 4px white; white-space: nowrap;">North Kordofan</div>',
+                iconSize: [140, 20],
+                iconAnchor: [70, 10]
+            }),
+            interactive: false
+        }).addTo(map);
         
         // Locality data for White Nile state
         const whiteNileLocalities = [
