@@ -278,24 +278,23 @@
         
         legend.onAdd = function(map) {
             const div = L.DomUtil.create('div', 'legend');
-            const maxCases = Math.max(...allLocalities.map(l => l.cases));
-            const midCases = Math.floor(maxCases / 2);
-            const minCases = Math.min(...allLocalities.map(l => l.cases));
+            
+            // Use normalized, rounded figures for better readability
+            const legendValues = [
+                { cases: 8000, radius: getRadius(8000), label: '> 8,000' },
+                { cases: 4000, radius: getRadius(4000), label: '> 4,000' },
+                { cases: 2000, radius: getRadius(2000), label: '> 2,000' },
+                { cases: 500, radius: getRadius(500), label: '> 500' }
+            ];
             
             div.innerHTML = `
                 <h4>Cholera Cases</h4>
-                <div class="legend-item">
-                    <span class="legend-circle" style="width: 40px; height: 40px; background-color: rgba(217, 83, 79, 0.6); border: 2px solid #a02622;"></span>
-                    ${maxCases.toLocaleString()} cases
-                </div>
-                <div class="legend-item">
-                    <span class="legend-circle" style="width: 24px; height: 24px; background-color: rgba(217, 83, 79, 0.6); border: 2px solid #a02622;"></span>
-                    ~${midCases.toLocaleString()} cases
-                </div>
-                <div class="legend-item">
-                    <span class="legend-circle" style="width: 10px; height: 10px; background-color: rgba(217, 83, 79, 0.6); border: 2px solid #a02622;"></span>
-                    ${minCases.toLocaleString()} cases
-                </div>
+                ${legendValues.map(item => `
+                    <div class="legend-item">
+                        <span class="legend-circle" style="width: ${item.radius * 2}px; height: ${item.radius * 2}px; background-color: rgba(217, 83, 79, 0.6); border: 2px solid #a02622;"></span>
+                        ${item.label} cases
+                    </div>
+                `).join('')}
                 <hr style="margin: 10px 0; border: none; border-top: 1px solid #ddd;">
                 <h4>States</h4>
                 <div class="legend-item">
