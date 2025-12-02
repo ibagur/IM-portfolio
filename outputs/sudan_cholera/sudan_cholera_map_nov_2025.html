@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cholera Cases - White Nile & North Kordofan States, Sudan</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        #map {
+            width: 100%;
+            height: 100vh;
+        }
+        .legend {
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+        .legend h4 {
+            margin: 0 0 10px 0;
+            font-size: 14px;
+        }
+        .legend-item {
+            margin: 5px 0;
+            font-size: 12px;
+        }
+        .legend-circle {
+            display: inline-block;
+            border-radius: 50%;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+        .state-color {
+            display: inline-block;
+            width: 20px;
+            height: 3px;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+        .info-box {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            max-width: 280px;
+        }
+        .info-box h3 {
+            margin: 0 0 10px 0;
+            font-size: 16px;
+            color: #2c7873;
+        }
+        .info-box p {
+            margin: 5px 0;
+            font-size: 13px;
+        }
+        .info-box hr {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin: 10px 0;
+        }
+        .leaflet-popup-content-wrapper {
+            border-radius: 8px;
+        }
+        .popup-content {
+            font-family: Arial, sans-serif;
+        }
+        .popup-content h4 {
+            margin: 0 0 8px 0;
+            color: #2c7873;
+            font-size: 14px;
+        }
+        .popup-content p {
+            margin: 4px 0;
+            font-size: 12px;
+        }
+        .popup-content strong {
+            color: #d9534f;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    
+    <script>
+        // Initialize the map centered on central Sudan to show both states
+        const map = L.map('map').setView([13.3, 31.0], 7);
+        
+        // Add OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors',
+            maxZoom: 19
+        }).addTo(map);
+        
+        // White Nile state boundary (approximate polygon)
+        const whiteNileBoundary = [
+            [14.5, 31.8],
+            [14.5, 33.2],
+            [13.8, 33.5],
+            [12.2, 33.3],
+            [11.8, 32.8],
+            [12.0, 31.5],
+            [13.0, 31.3],
+            [14.0, 31.5],
+            [14.5, 31.8]
+        ];
+        
+        // North Kordofan state boundary (approximate polygon)
+        const northKordofanBoundary = [
+            [15.8, 28.5],
+            [15.8, 31.5],
+            [14.5, 31.8],
+            [14.0, 31.5],
+            [13.0, 31.3],
+            [12.0, 31.5],
+            [11.5, 30.5],
+            [11.5, 28.5],
+            [12.5, 27.5],
+            [14.0, 27.5],
+            [15.8, 28.5]
+        ];
+        
+        // Add highlighted boundary for White Nile state
+        L.polygon(whiteNileBoundary, {
+            color: '#2c7873',
+            weight: 3,
+            fillColor: '#6fb3ae',
+            fillOpacity: 0.15,
+            dashArray: '5, 5'
+        }).addTo(map).bindPopup('<div class="popup-content"><h4>White Nile State</h4><p><strong>Total Cases: 14,219</strong></p></div>');
+        
+        // Add highlighted boundary for North Kordofan state
+        L.polygon(northKordofanBoundary, {
+            color: '#d9822b',
+            weight: 3,
+            fillColor: '#f0ad4e',
+            fillOpacity: 0.15,
+            dashArray: '5, 5'
+        }).addTo(map).bindPopup('<div class="popup-content"><h4>North Kordofan State</h4><p><strong>Total Cases: 14,373</strong></p></div>');
+        
+        // Locality data for White Nile state
+        const whiteNileLocalities = [
+            {
+                name: 'Kosti',
+                state: 'White Nile',
+                lat: 13.1332037,
+                lng: 32.6410763,
+                cases: 4063
+            },
+            {
+                name: 'Aj Jabalain',
+                state: 'White Nile',
+                lat: 12.4546423,
+                lng: 32.98883190000001,
+                cases: 2514
+            },
+            {
+                name: 'Ad Duwaim',
+                state: 'White Nile',
+                lat: 13.2403881,
+                lng: 32.5372741,
+                cases: 2003
+            },
+            {
+                name: 'Rabak',
+                state: 'White Nile',
+                lat: 13.1795278,
+                lng: 32.7520139,
+                cases: 1523
+            },
+            {
+                name: 'Al Gitaina',
+                state: 'White Nile',
+                lat: 14.3369803,
+                lng: 32.2653887,
+                cases: 1014
+            }
+        ];
+        
+        // Locality data for North Kordofan state
+        const northKordofanLocalities = [
+            {
+                name: 'Sheikan',
+                state: 'North Kordofan',
+                lat: 12.9314886,
+                lng: 29.9740534,
+                cases: 8555
+            },
+            {
+                name: 'Um Rawaba',
+                state: 'North Kordofan',
+                lat: 13.0671702,
+                lng: 31.4456179,
+                cases: 3428
+            },
+            {
+                name: 'Ar Rahad-NK',
+                state: 'North Kordofan',
+                lat: 12.7180779,
+                lng: 30.6487508,
+                cases: 742
+            },
+            {
+                name: 'Gharb Bara',
+                state: 'North Kordofan',
+                lat: 13.6400877,
+                lng: 29.6035495,
+                cases: 605
+            },
+            {
+                name: 'Um Dam Haj',
+                state: 'North Kordofan',
+                lat: 15.170596,
+                lng: 29.4179324,
+                cases: 580
+            }
+        ];
+        
+        // Combine all localities
+        const allLocalities = [...whiteNileLocalities, ...northKordofanLocalities];
+        
+        // Function to calculate bubble radius based on cases
+        function getRadius(cases) {
+            // Scale radius proportionally to cases
+            const maxCases = Math.max(...allLocalities.map(l => l.cases));
+            const minRadius = 8;
+            const maxRadius = 40;
+            return minRadius + (cases / maxCases) * (maxRadius - minRadius);
+        }
+        
+        // Add bubble markers for each locality
+        allLocalities.forEach(locality => {
+            const radius = getRadius(locality.cases);
+            
+            const circle = L.circleMarker([locality.lat, locality.lng], {
+                radius: radius,
+                fillColor: '#d9534f',
+                color: '#a02622',
+                weight: 2,
+                opacity: 0.8,
+                fillOpacity: 0.6
+            }).addTo(map);
+            
+            // Create popup content
+            const popupContent = `
+                <div class="popup-content">
+                    <h4>${locality.name}</h4>
+                    <p><strong>State:</strong> ${locality.state}</p>
+                    <p><strong>Cases:</strong> ${locality.cases.toLocaleString()}</p>
+                </div>
+            `;
+            
+            circle.bindPopup(popupContent);
+            
+            // Add hover effect
+            circle.on('mouseover', function(e) {
+                this.setStyle({
+                    fillOpacity: 0.9,
+                    weight: 3
+                });
+            });
+            
+            circle.on('mouseout', function(e) {
+                this.setStyle({
+                    fillOpacity: 0.6,
+                    weight: 2
+                });
+            });
+        });
+        
+        // Add legend
+        const legend = L.control({position: 'bottomright'});
+        
+        legend.onAdd = function(map) {
+            const div = L.DomUtil.create('div', 'legend');
+            const maxCases = Math.max(...allLocalities.map(l => l.cases));
+            const midCases = Math.floor(maxCases / 2);
+            const minCases = Math.min(...allLocalities.map(l => l.cases));
+            
+            div.innerHTML = `
+                <h4>Cholera Cases</h4>
+                <div class="legend-item">
+                    <span class="legend-circle" style="width: 40px; height: 40px; background-color: rgba(217, 83, 79, 0.6); border: 2px solid #a02622;"></span>
+                    ${maxCases.toLocaleString()} cases
+                </div>
+                <div class="legend-item">
+                    <span class="legend-circle" style="width: 24px; height: 24px; background-color: rgba(217, 83, 79, 0.6); border: 2px solid #a02622;"></span>
+                    ~${midCases.toLocaleString()} cases
+                </div>
+                <div class="legend-item">
+                    <span class="legend-circle" style="width: 10px; height: 10px; background-color: rgba(217, 83, 79, 0.6); border: 2px solid #a02622;"></span>
+                    ${minCases.toLocaleString()} cases
+                </div>
+                <hr style="margin: 10px 0; border: none; border-top: 1px solid #ddd;">
+                <h4>States</h4>
+                <div class="legend-item">
+                    <span class="state-color" style="background-color: #2c7873;"></span>
+                    White Nile
+                </div>
+                <div class="legend-item">
+                    <span class="state-color" style="background-color: #d9822b;"></span>
+                    North Kordofan
+                </div>
+            `;
+            return div;
+        };
+        
+        legend.addTo(map);
+        
+        // Add info box
+        const info = L.control({position: 'topleft'});
+        
+        info.onAdd = function(map) {
+            const div = L.DomUtil.create('div', 'info-box');
+            const totalCases = allLocalities.reduce((sum, loc) => sum + loc.cases, 0);
+            const mostAffected = allLocalities.reduce((max, loc) => loc.cases > max.cases ? loc : max);
+            
+            div.innerHTML = `
+                <h3>Sudan Cholera Outbreak</h3>
+                <p><strong>Total Cases:</strong> ${totalCases.toLocaleString()}</p>
+                <p><strong>States:</strong> 2</p>
+                <p><strong>Localities:</strong> ${allLocalities.length}</p>
+                <hr>
+                <p><strong>White Nile State</strong></p>
+                <p>Cases: 14,219 | Localities: 5</p>
+                <p><strong>North Kordofan State</strong></p>
+                <p>Cases: 14,373 | Localities: 5</p>
+                <hr>
+                <p><strong>Most Affected Locality:</strong></p>
+                <p>${mostAffected.name} (${mostAffected.cases.toLocaleString()})</p>
+            `;
+            return div;
+        };
+        
+        info.addTo(map);
+    </script>
+</body>
+</html>
