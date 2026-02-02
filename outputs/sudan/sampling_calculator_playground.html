@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WASH Assessment Sampling Calculator</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: #1a1a1a;
+      color: #e0e0e0;
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .controls {
+      width: 380px;
+      background: #242424;
+      padding: 24px;
+      overflow-y: auto;
+      border-right: 1px solid #333;
+    }
+
+    .preview {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .preview-area {
+      flex: 1;
+      padding: 24px;
+      overflow-y: auto;
+      background: #1a1a1a;
+    }
+
+    .prompt-area {
+      background: #242424;
+      border-top: 1px solid #333;
+      padding: 20px 24px;
+    }
+
+    h1 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    h2 {
+      font-size: 14px;
+      font-weight: 600;
+      margin: 20px 0 12px 0;
+      color: #aaa;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .section {
+      margin-bottom: 20px;
+    }
+
+    .preset-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .preset-btn {
+      padding: 10px;
+      background: #2a2a2a;
+      border: 1px solid #444;
+      border-radius: 6px;
+      color: #e0e0e0;
+      cursor: pointer;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+
+    .preset-btn:hover {
+      background: #333;
+      border-color: #555;
+    }
+
+    .preset-btn.active {
+      background: #0066cc;
+      border-color: #0066cc;
+      color: #fff;
+    }
+
+    .control-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 6px;
+      color: #bbb;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      height: 4px;
+      background: #3a3a3a;
+      border-radius: 2px;
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      background: #0066cc;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 16px;
+      height: 16px;
+      background: #0066cc;
+      cursor: pointer;
+      border-radius: 50%;
+      border: none;
+    }
+
+    .value-display {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 4px;
+      font-size: 12px;
+      color: #888;
+    }
+
+    .value-current {
+      font-weight: 600;
+      color: #0066cc;
+      font-size: 14px;
+    }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 8px 10px;
+      background: #2a2a2a;
+      border: 1px solid #444;
+      border-radius: 6px;
+      color: #e0e0e0;
+      font-size: 14px;
+      font-family: 'Monaco', 'Courier New', monospace;
+    }
+
+    input[type="number"]:focus {
+      outline: none;
+      border-color: #0066cc;
+    }
+
+    .camp-list {
+      margin-top: 12px;
+    }
+
+    .camp-item {
+      background: #2a2a2a;
+      border: 1px solid #444;
+      border-radius: 6px;
+      padding: 12px;
+      margin-bottom: 8px;
+    }
+
+    .camp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .camp-name {
+      font-weight: 600;
+      color: #fff;
+      font-size: 13px;
+    }
+
+    .camp-pop {
+      font-size: 12px;
+      color: #888;
+    }
+
+    .camp-slider-group {
+      margin-top: 8px;
+    }
+
+    .stats-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #242424;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .stats-table th {
+      background: #2a2a2a;
+      padding: 12px;
+      text-align: left;
+      font-size: 12px;
+      font-weight: 600;
+      color: #aaa;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .stats-table td {
+      padding: 12px;
+      border-top: 1px solid #333;
+      font-size: 14px;
+    }
+
+    .stats-table tr:hover {
+      background: #2a2a2a;
+    }
+
+    .metric-value {
+      font-family: 'Monaco', 'Courier New', monospace;
+      color: #0066cc;
+      font-weight: 600;
+    }
+
+    .metric-good {
+      color: #00cc66;
+    }
+
+    .metric-warning {
+      color: #ffaa00;
+    }
+
+    .metric-bad {
+      color: #ff4444;
+    }
+
+    .summary-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .summary-card {
+      background: #242424;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .summary-label {
+      font-size: 12px;
+      color: #888;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .summary-value {
+      font-size: 24px;
+      font-weight: 600;
+      font-family: 'Monaco', 'Courier New', monospace;
+    }
+
+    .summary-note {
+      font-size: 11px;
+      color: #666;
+      margin-top: 4px;
+    }
+
+    .interpretation {
+      background: #242424;
+      border-left: 3px solid #0066cc;
+      padding: 16px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+
+    .interpretation-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #0066cc;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .interpretation-text {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #bbb;
+    }
+
+    .prompt-label {
+      font-size: 11px;
+      color: #666;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .prompt-text {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 6px;
+      padding: 12px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #e0e0e0;
+      margin-bottom: 12px;
+      min-height: 60px;
+    }
+
+    .copy-btn {
+      padding: 10px 20px;
+      background: #0066cc;
+      border: none;
+      border-radius: 6px;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: #0052a3;
+    }
+
+    .copy-btn.copied {
+      background: #00cc66;
+    }
+
+    .formula-box {
+      background: #2a2a2a;
+      border: 1px solid #444;
+      border-radius: 6px;
+      padding: 12px;
+      font-family: 'Monaco', 'Courier New', monospace;
+      font-size: 12px;
+      color: #e0e0e0;
+      margin-bottom: 20px;
+      overflow-x: auto;
+    }
+
+    .formula-var {
+      color: #ff9900;
+    }
+
+    .formula-op {
+      color: #888;
+    }
+
+    .formula-num {
+      color: #00cc66;
+    }
+  </style>
+</head>
+<body>
+  <div class="controls">
+    <h1>Sampling Calculator</h1>
+
+    <div class="preset-grid">
+      <button class="preset-btn" onclick="applyPreset('current', this)">Current Plan<br><small>(n=345)</small></button>
+      <button class="preset-btn" onclick="applyPreset('compromise', this)">Compromise<br><small>(n=560)</small></button>
+      <button class="preset-btn active" onclick="applyPreset('ideal', this)">Ideal Plan<br><small>(n=652)</small></button>
+      <button class="preset-btn" onclick="applyPreset('custom', this)">Custom</button>
+    </div>
+
+    <h2>Survey Parameters</h2>
+
+    <div class="control-group">
+      <label>Confidence Level</label>
+      <input type="range" id="confidence" min="90" max="99" value="95" step="1" oninput="updateState('confidence', this.value)">
+      <div class="value-display">
+        <span>90%</span>
+        <span class="value-current" id="confidence-display">95%</span>
+        <span>99%</span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label>Design Effect (DEFF)</label>
+      <input type="range" id="deff" min="1.0" max="3.5" value="2.0" step="0.1" oninput="updateState('deff', this.value)">
+      <div class="value-display">
+        <span>1.0 (SRS)</span>
+        <span class="value-current" id="deff-display">2.0</span>
+        <span>3.5 (high ICC)</span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label>Target Overall Margin of Error (%)</label>
+      <input type="range" id="targetMoe" min="3" max="10" value="5.4" step="0.1" oninput="updateState('targetMoe', this.value)">
+      <div class="value-display">
+        <span>±3%</span>
+        <span class="value-current" id="targetMoe-display">±5.4%</span>
+        <span>±10%</span>
+      </div>
+    </div>
+
+    <h2>Camp Populations</h2>
+
+    <div class="camp-list">
+      <div class="camp-item">
+        <div class="camp-header">
+          <span class="camp-name">Camp A</span>
+          <span class="camp-pop" id="campA-pop">20,142 people</span>
+        </div>
+        <div class="camp-slider-group">
+          <label>Population</label>
+          <input type="number" id="campA-population" value="20142" oninput="updateState('campA.population', this.value)">
+        </div>
+      </div>
+
+      <div class="camp-item">
+        <div class="camp-header">
+          <span class="camp-name">Camp B</span>
+          <span class="camp-pop" id="campB-pop">21,000 people</span>
+        </div>
+        <div class="camp-slider-group">
+          <label>Population</label>
+          <input type="number" id="campB-population" value="21000" oninput="updateState('campB.population', this.value)">
+        </div>
+      </div>
+
+      <div class="camp-item">
+        <div class="camp-header">
+          <span class="camp-name">Camp C</span>
+          <span class="camp-pop" id="campC-pop">12,504 people</span>
+        </div>
+        <div class="camp-slider-group">
+          <label>Population</label>
+          <input type="number" id="campC-population" value="12504" oninput="updateState('campC.population', this.value)">
+        </div>
+      </div>
+
+      <div class="camp-item">
+        <div class="camp-header">
+          <span class="camp-name">Camp D</span>
+          <span class="camp-pop" id="campD-pop">42,050 people</span>
+        </div>
+        <div class="camp-slider-group">
+          <label>Population</label>
+          <input type="number" id="campD-population" value="42050" oninput="updateState('campD.population', this.value)">
+        </div>
+      </div>
+    </div>
+
+    <h2>Advanced Options</h2>
+
+    <div class="control-group">
+      <label>Assumed Household Size</label>
+      <input type="range" id="hhSize" min="4" max="8" value="6" step="0.5" oninput="updateState('hhSize', this.value)">
+      <div class="value-display">
+        <span>4</span>
+        <span class="value-current" id="hhSize-display">6</span>
+        <span>8</span>
+      </div>
+    </div>
+
+    <div class="control-group">
+      <label>Households per Cluster (target)</label>
+      <input type="range" id="hhPerCluster" min="10" max="30" value="19" step="1" oninput="updateState('hhPerCluster', this.value)">
+      <div class="value-display">
+        <span>10</span>
+        <span class="value-current" id="hhPerCluster-display">19</span>
+        <span>30</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="preview">
+    <div class="preview-area">
+      <div class="summary-cards">
+        <div class="summary-card">
+          <div class="summary-label">Total Sample</div>
+          <div class="summary-value" id="total-sample">652</div>
+          <div class="summary-note" id="total-households">15,949 total HH</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-label">Overall MoE</div>
+          <div class="summary-value metric-value" id="overall-moe">±5.4%</div>
+          <div class="summary-note">95% confidence</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-label">Total Clusters</div>
+          <div class="summary-value" id="total-clusters">35</div>
+          <div class="summary-note" id="cluster-range">13-21 HH/cluster</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-label">Effective Sample</div>
+          <div class="summary-value" id="effective-sample">326</div>
+          <div class="summary-note">n / DEFF = 652 / 2.0</div>
+        </div>
+      </div>
+
+      <div class="interpretation" id="overall-interpretation">
+        <div class="interpretation-title">Overall Assessment</div>
+        <div class="interpretation-text" id="interpretation-text">
+          Excellent precision for strategic planning and camp-level programming decisions.
+        </div>
+      </div>
+
+      <h2>Camp-Level Breakdown</h2>
+      <table class="stats-table">
+        <thead>
+          <tr>
+            <th>Camp</th>
+            <th>Population</th>
+            <th>Sample (HH)</th>
+            <th>Clusters</th>
+            <th>HH/Cluster</th>
+            <th>MoE</th>
+            <th>k (interval)</th>
+          </tr>
+        </thead>
+        <tbody id="camp-table-body">
+        </tbody>
+      </table>
+
+      <h2>Margin of Error Formula</h2>
+      <div class="formula-box">
+<span class="formula-var">MoE</span> <span class="formula-op">=</span> <span class="formula-var">Z</span> <span class="formula-op">×</span> √(<span class="formula-num">0.25</span> <span class="formula-op">×</span> <span class="formula-var">DEFF</span> <span class="formula-op">/</span> <span class="formula-var">n</span>)
+
+<span class="formula-op">Where:</span>
+  <span class="formula-var">Z</span> <span class="formula-op">=</span> <span id="z-value">1.96</span> (for <span id="conf-level">95%</span> confidence)
+  <span class="formula-var">DEFF</span> <span class="formula-op">=</span> <span id="deff-value">2.0</span>
+  <span class="formula-var">n</span> <span class="formula-op">=</span> sample size
+
+<span class="formula-op">Effective Sample Size:</span>
+  <span class="formula-var">n_eff</span> <span class="formula-op">=</span> <span class="formula-var">n</span> <span class="formula-op">/</span> <span class="formula-var">DEFF</span>
+      </div>
+
+      <h2>Example: Confidence Interval for 50% Prevalence</h2>
+      <div class="interpretation">
+        <div class="interpretation-text" id="ci-example">
+          If 50% of households report insufficient water access, the 95% confidence interval is 44.6% to 55.4%.
+        </div>
+      </div>
+    </div>
+
+    <div class="prompt-area">
+      <div class="prompt-label">Generated Prompt</div>
+      <div class="prompt-text" id="prompt-output"></div>
+      <button class="copy-btn" id="copy-btn" onclick="copyPrompt()">Copy Prompt</button>
+    </div>
+  </div>
+
+  <script>
+    const PRESETS = {
+      current: {
+        sampleSize: 345,
+        overallMoe: 7.5,
+        campA: { population: 20142, sample: 72, clusters: 4, hhPerCluster: 18, moe: 16.3 },
+        campB: { population: 21000, sample: 76, clusters: 4, hhPerCluster: 19, moe: 15.9 },
+        campC: { population: 12504, sample: 45, clusters: 4, hhPerCluster: 11, moe: 20.7 },
+        campD: { population: 42050, sample: 152, clusters: 5, hhPerCluster: 30, moe: 11.2 }
+      },
+      compromise: {
+        sampleSize: 560,
+        overallMoe: 5.8,
+        campA: { population: 20142, sample: 115, clusters: 5, hhPerCluster: 23, moe: 12.9 },
+        campB: { population: 21000, sample: 120, clusters: 5, hhPerCluster: 24, moe: 12.6 },
+        campC: { population: 12504, sample: 85, clusters: 5, hhPerCluster: 17, moe: 15.0 },
+        campD: { population: 42050, sample: 240, clusters: 10, hhPerCluster: 24, moe: 8.9 }
+      },
+      ideal: {
+        sampleSize: 652,
+        overallMoe: 5.4,
+        campA: { population: 20142, sample: 160, clusters: 8, hhPerCluster: 20, moe: 11.0 },
+        campB: { population: 21000, sample: 168, clusters: 8, hhPerCluster: 21, moe: 10.7 },
+        campC: { population: 12504, sample: 104, clusters: 8, hhPerCluster: 13, moe: 13.6 },
+        campD: { population: 42050, sample: 220, clusters: 11, hhPerCluster: 20, moe: 9.3 }
+      }
+    };
+
+    const state = {
+      confidence: 95,
+      deff: 2.0,
+      targetMoe: 5.4,
+      hhSize: 6,
+      hhPerCluster: 19,
+      campA: { population: 20142 },
+      campB: { population: 21000 },
+      campC: { population: 12504 },
+      campD: { population: 42050 },
+      currentPreset: 'ideal',
+      usePresetValues: true
+    };
+
+    function getZValue(confidence) {
+      const z = {
+        90: 1.645,
+        95: 1.96,
+        99: 2.576
+      };
+      return z[confidence] || 1.96;
+    }
+
+    function calculateMoE(n, deff, confidence) {
+      const z = getZValue(confidence);
+      const nEff = n / deff;
+      return z * Math.sqrt(0.25 / nEff) * 100;
+    }
+
+    function calculateSampleSize(moe, deff, confidence) {
+      const z = getZValue(confidence);
+      const e = moe / 100;
+      return Math.ceil((z * z * 0.25 * deff) / (e * e));
+    }
+
+    function allocateSample(totalPopulation, totalSample, camps) {
+      const allocation = {};
+      for (const [name, data] of Object.entries(camps)) {
+        const popPercent = data.population / totalPopulation;
+        allocation[name] = Math.round(totalSample * popPercent);
+      }
+      return allocation;
+    }
+
+    function calculateCampMetrics(camps, deff, confidence, hhSize, hhPerCluster) {
+      const metrics = {};
+      const totalPop = Object.values(camps).reduce((sum, c) => sum + c.population, 0);
+      const targetSample = calculateSampleSize(state.targetMoe, deff, confidence);
+      const allocation = allocateSample(totalPop, targetSample, camps);
+
+      for (const [name, data] of Object.entries(camps)) {
+        const sample = allocation[name];
+        const moe = calculateMoE(sample, deff, confidence);
+        const estimatedHH = Math.floor(data.population / hhSize);
+        const clusters = Math.max(1, Math.round(sample / hhPerCluster));
+        const actualHHPerCluster = Math.round(sample / clusters);
+        const k = Math.round(estimatedHH / sample);
+
+        metrics[name] = {
+          population: data.population,
+          sample,
+          clusters,
+          hhPerCluster: actualHHPerCluster,
+          moe,
+          estimatedHH,
+          k
+        };
+      }
+
+      return metrics;
+    }
+
+    function renderPreview() {
+      const camps = {
+        campA: state.campA,
+        campB: state.campB,
+        campC: state.campC,
+        campD: state.campD
+      };
+
+      let metrics, overallMoE;
+
+      // Use preset values if a preset is active
+      if (state.usePresetValues && state.currentPreset !== 'custom') {
+        const preset = PRESETS[state.currentPreset];
+        metrics = {
+          campA: { ...preset.campA, estimatedHH: Math.floor(preset.campA.population / state.hhSize) },
+          campB: { ...preset.campB, estimatedHH: Math.floor(preset.campB.population / state.hhSize) },
+          campC: { ...preset.campC, estimatedHH: Math.floor(preset.campC.population / state.hhSize) },
+          campD: { ...preset.campD, estimatedHH: Math.floor(preset.campD.population / state.hhSize) }
+        };
+
+        // Calculate k values for each camp
+        for (const [name, m] of Object.entries(metrics)) {
+          m.k = Math.round(m.estimatedHH / m.sample);
+        }
+
+        overallMoE = preset.overallMoe;
+      } else {
+        // Calculate dynamically for custom settings
+        metrics = calculateCampMetrics(camps, state.deff, state.confidence, state.hhSize, state.hhPerCluster);
+        const totalSample = Object.values(metrics).reduce((sum, m) => sum + m.sample, 0);
+        overallMoE = calculateMoE(totalSample, state.deff, state.confidence);
+      }
+
+      const totalPop = Object.values(camps).reduce((sum, c) => sum + c.population, 0);
+      const totalSample = Object.values(metrics).reduce((sum, m) => sum + m.sample, 0);
+      const totalClusters = Object.values(metrics).reduce((sum, m) => sum + m.clusters, 0);
+      const effectiveSample = Math.round(totalSample / state.deff);
+      const totalHH = Math.floor(totalPop / state.hhSize);
+
+      // Update summary cards
+      document.getElementById('total-sample').textContent = totalSample;
+      document.getElementById('total-households').textContent = `${totalHH.toLocaleString()} total HH`;
+      document.getElementById('overall-moe').textContent = `±${overallMoE.toFixed(1)}%`;
+      document.getElementById('total-clusters').textContent = totalClusters;
+
+      const hhSizes = Object.values(metrics).map(m => m.hhPerCluster);
+      const minHH = Math.min(...hhSizes);
+      const maxHH = Math.max(...hhSizes);
+      document.getElementById('cluster-range').textContent = `${minHH}-${maxHH} HH/cluster`;
+      document.getElementById('effective-sample').textContent = effectiveSample;
+
+      // Update interpretation
+      let rating, ratingClass, interpretation;
+      if (overallMoE <= 5.5) {
+        rating = '★ Excellent';
+        ratingClass = 'metric-good';
+        interpretation = 'Excellent precision for strategic planning and camp-level programming decisions.';
+      } else if (overallMoE <= 6.5) {
+        rating = '✓ Good';
+        ratingClass = 'metric-value';
+        interpretation = 'Good overall precision, suitable for strategic planning and advocacy.';
+      } else if (overallMoE <= 8.0) {
+        rating = '⚠ Adequate';
+        ratingClass = 'metric-warning';
+        interpretation = 'Adequate for overall trends, but may be limited for camp-level analysis.';
+      } else {
+        rating = '✗ Poor';
+        ratingClass = 'metric-bad';
+        interpretation = 'Marginal precision. Consider increasing sample size for actionable results.';
+      }
+
+      document.getElementById('overall-moe').className = `summary-value ${ratingClass}`;
+      document.getElementById('interpretation-text').textContent = `${rating}: ${interpretation}`;
+
+      // Update camp table
+      const tbody = document.getElementById('camp-table-body');
+      tbody.innerHTML = '';
+
+      const campNames = { campA: 'Camp A', campB: 'Camp B', campC: 'Camp C', campD: 'Camp D' };
+      for (const [key, name] of Object.entries(campNames)) {
+        const m = metrics[key];
+        const row = document.createElement('tr');
+
+        let moeClass = 'metric-value';
+        if (m.moe > 15) moeClass = 'metric-bad';
+        else if (m.moe > 12) moeClass = 'metric-warning';
+        else if (m.moe <= 10) moeClass = 'metric-good';
+
+        row.innerHTML = `
+          <td><strong>${name}</strong></td>
+          <td>${m.population.toLocaleString()}</td>
+          <td class="metric-value">${m.sample}</td>
+          <td>${m.clusters}</td>
+          <td>${m.hhPerCluster}</td>
+          <td class="${moeClass}">±${m.moe.toFixed(1)}%</td>
+          <td class="metric-value">${m.k}</td>
+        `;
+        tbody.appendChild(row);
+      }
+
+      // Update formula values
+      document.getElementById('z-value').textContent = getZValue(state.confidence);
+      document.getElementById('conf-level').textContent = `${state.confidence}%`;
+      document.getElementById('deff-value').textContent = state.deff;
+
+      // Update CI example
+      const ciLower = (50 - overallMoE).toFixed(1);
+      const ciUpper = (50 + overallMoE).toFixed(1);
+      document.getElementById('ci-example').textContent =
+        `If 50% of households report insufficient water access, the ${state.confidence}% confidence interval is ${ciLower}% to ${ciUpper}%.`;
+
+      updatePrompt();
+    }
+
+    function updatePrompt() {
+      const camps = {
+        campA: state.campA,
+        campB: state.campB,
+        campC: state.campC,
+        campD: state.campD
+      };
+
+      const metrics = calculateCampMetrics(camps, state.deff, state.confidence, state.hhSize, state.hhPerCluster);
+      const totalPop = Object.values(camps).reduce((sum, c) => sum + c.population, 0);
+      const totalSample = Object.values(metrics).reduce((sum, m) => sum + m.sample, 0);
+      const totalClusters = Object.values(metrics).reduce((sum, m) => sum + m.clusters, 0);
+      const overallMoE = calculateMoE(totalSample, state.deff, state.confidence);
+
+      const parts = [];
+      parts.push(`Design a WASH assessment sampling plan for ${totalPop.toLocaleString()} people across 4 IDP camps in Tawila, North Darfur.`);
+
+      if (state.confidence !== 95) {
+        parts.push(`Use ${state.confidence}% confidence level.`);
+      } else {
+        parts.push(`Use 95% confidence level.`);
+      }
+
+      if (state.deff !== 2.0) {
+        parts.push(`Assume design effect (DEFF) of ${state.deff}.`);
+      }
+
+      parts.push(`The total sample size should be ${totalSample} households across ${totalClusters} clusters, achieving approximately ±${overallMoE.toFixed(1)}% margin of error overall.`);
+
+      parts.push(`\n\nCamp allocation:`);
+      const campNames = { campA: 'Camp A', campB: 'Camp B', campC: 'Camp C', campD: 'Camp D' };
+      for (const [key, name] of Object.entries(campNames)) {
+        const m = metrics[key];
+        parts.push(`\n• ${name} (${m.population.toLocaleString()} people): ${m.sample} HH in ${m.clusters} clusters (${m.hhPerCluster} HH/cluster, k=${m.k}), MoE ±${m.moe.toFixed(1)}%`);
+      }
+
+      if (state.hhSize !== 6) {
+        parts.push(`\n\nAssume average household size of ${state.hhSize} people.`);
+      }
+
+      parts.push(`\n\nProvide sampling intervals (k values) for systematic sampling and explain the expected precision for overall and camp-level estimates.`);
+
+      document.getElementById('prompt-output').textContent = parts.join(' ');
+    }
+
+    function updateState(path, value) {
+      const numValue = parseFloat(value);
+      const keys = path.split('.');
+
+      if (keys.length === 1) {
+        state[keys[0]] = numValue;
+      } else {
+        state[keys[0]][keys[1]] = numValue;
+      }
+
+      // Switch to custom mode when user adjusts any parameter
+      if (state.usePresetValues && state.currentPreset !== 'custom') {
+        state.usePresetValues = false;
+        state.currentPreset = 'custom';
+        document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.preset-btn')[3].classList.add('active'); // Activate Custom button
+      }
+
+      // Update displays
+      if (path === 'confidence') {
+        document.getElementById('confidence-display').textContent = `${numValue}%`;
+      } else if (path === 'deff') {
+        document.getElementById('deff-display').textContent = numValue.toFixed(1);
+      } else if (path === 'targetMoe') {
+        document.getElementById('targetMoe-display').textContent = `±${numValue.toFixed(1)}%`;
+      } else if (path === 'hhSize') {
+        document.getElementById('hhSize-display').textContent = numValue.toFixed(1);
+      } else if (path === 'hhPerCluster') {
+        document.getElementById('hhPerCluster-display').textContent = numValue;
+      }
+
+      renderPreview();
+    }
+
+    function applyPreset(name, button) {
+      document.querySelectorAll('.preset-btn').forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      state.currentPreset = name;
+
+      if (name === 'custom') {
+        // Switch to dynamic calculation mode
+        state.usePresetValues = false;
+        renderPreview();
+        return;
+      }
+
+      const preset = PRESETS[name];
+      if (!preset) return;
+
+      // Use preset values
+      state.usePresetValues = true;
+
+      // Update populations
+      state.campA.population = preset.campA.population;
+      state.campB.population = preset.campB.population;
+      state.campC.population = preset.campC.population;
+      state.campD.population = preset.campD.population;
+
+      document.getElementById('campA-population').value = preset.campA.population;
+      document.getElementById('campB-population').value = preset.campB.population;
+      document.getElementById('campC-population').value = preset.campC.population;
+      document.getElementById('campD-population').value = preset.campD.population;
+
+      // Update targetMoE display to match preset
+      state.targetMoe = preset.overallMoe;
+      document.getElementById('targetMoe').value = preset.overallMoe;
+      document.getElementById('targetMoe-display').textContent = `±${preset.overallMoe.toFixed(1)}%`;
+
+      renderPreview();
+    }
+
+    function copyPrompt() {
+      const text = document.getElementById('prompt-output').textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('copy-btn');
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = 'Copy Prompt';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+
+    // Initialize
+    renderPreview();
+  </script>
+</body>
+</html>
