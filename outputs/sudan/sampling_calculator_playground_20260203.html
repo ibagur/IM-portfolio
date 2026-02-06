@@ -377,7 +377,7 @@
     <h1>Sampling Calculator</h1>
 
     <div class="preset-grid">
-      <button class="preset-btn" onclick="applyPreset('current', this)">Current Plan<br><small>(n=369)</small></button>
+      <button class="preset-btn" onclick="applyPreset('current', this)">Current Plan<br><small>(n=345)</small></button>
       <button class="preset-btn" onclick="applyPreset('compromise', this)">Compromise<br><small>(n=560)</small></button>
       <button class="preset-btn active" onclick="applyPreset('ideal', this)">Ideal Plan<br><small>(n=652)</small></button>
       <button class="preset-btn" onclick="applyPreset('custom', this)">Custom</button>
@@ -566,12 +566,12 @@
   <script>
     const PRESETS = {
       current: {
-        sampleSize: 369,
-        overallMoe: 7.2,
-        campA: { population: 20142, sample: 79, clusters: 4, hhPerCluster: 20, moe: 15.6 },
-        campB: { population: 21000, sample: 69, clusters: 4, hhPerCluster: 17, moe: 16.7 },
-        campC: { population: 12504, sample: 56, clusters: 4, hhPerCluster: 14, moe: 18.5 },
-        campD: { population: 42050, sample: 165, clusters: 5, hhPerCluster: 33, moe: 10.8 }
+        sampleSize: 345,
+        overallMoe: 7.5,
+        campA: { population: 20142, sample: 72, clusters: 4, hhPerCluster: 18, moe: 16.3 },
+        campB: { population: 21000, sample: 76, clusters: 4, hhPerCluster: 19, moe: 15.9 },
+        campC: { population: 12504, sample: 45, clusters: 4, hhPerCluster: 11, moe: 20.7 },
+        campD: { population: 42050, sample: 152, clusters: 5, hhPerCluster: 30, moe: 11.2 }
       },
       compromise: {
         sampleSize: 560,
