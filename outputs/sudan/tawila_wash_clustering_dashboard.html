@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tawila IDP Camp — WASH Household Clustering Analysis</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1" integrity="sha384-jb8JQMbMoBUzgWatfe6COACi2ljcDdZQ2OxczGA3bGNeWe+6DChMTBJemed7ZnvJ" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --bg-primary: #f0f2f5;
+            --bg-card: #ffffff;
+            --bg-header: #1b2a4a;
+            --text-primary: #1a1a2e;
+            --text-secondary: #6b7280;
+            --text-on-dark: #ffffff;
+            --cluster-1: #c0392b;
+            --cluster-1-light: #e74c3c;
+            --cluster-0: #2980b9;
+            --cluster-0-light: #3498db;
+            --positive: #27ae60;
+            --negative: #e74c3c;
+            --warning: #f39c12;
+            --gap: 16px;
+            --radius: 10px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+
+        .dashboard-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: var(--gap);
+        }
+
+        .dashboard-header {
+            background: linear-gradient(135deg, var(--bg-header), #2c3e6b);
+            color: var(--text-on-dark);
+            padding: 28px 32px;
+            border-radius: var(--radius);
+            margin-bottom: var(--gap);
+        }
+
+        .dashboard-header h1 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .dashboard-header .subtitle {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        /* Cluster Toggle */
+        .cluster-toggle {
+            display: flex;
+            gap: 10px;
+            margin: var(--gap) 0;
+            flex-wrap: wrap;
+        }
+        .cluster-btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: 2px solid #ddd;
+            background: white;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .cluster-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .cluster-btn.active-0 { border-color: var(--cluster-0); background: #fdf2f2; color: var(--cluster-0); }
+        .cluster-btn.active-1 { border-color: var(--cluster-1); background: #f0f7ff; color: var(--cluster-1); }
+        .cluster-btn.active-all { border-color: #7f8c8d; background: #f8f9fa; color: #2c3e50; }
+
+        /* Section headers */
+        .section-header {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 24px 0 12px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .section-icon { font-size: 20px; }
+
+        /* KPI Row */
+        .kpi-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: var(--gap);
+            margin-bottom: var(--gap);
+        }
+
+        .kpi-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 18px 20px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+            border-left: 4px solid #ddd;
+        }
+        .kpi-card.severity-high { border-left-color: var(--negative); }
+        .kpi-card.severity-medium { border-left-color: var(--warning); }
+        .kpi-card.severity-low { border-left-color: var(--positive); }
+
+        .kpi-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        .kpi-value {
+            font-size: 26px;
+            font-weight: 700;
+        }
+        .kpi-detail {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 2px;
+        }
+
+        /* Chart layout */
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+            gap: var(--gap);
+            margin-bottom: var(--gap);
+        }
+
+        .chart-container {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+
+        .chart-container h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .chart-container canvas {
+            max-height: 300px;
+        }
+
+        /* Cluster comparison cards */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--gap);
+            margin-bottom: var(--gap);
+        }
+
+        .cluster-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 24px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+            border-top: 4px solid #ddd;
+        }
+        .cluster-card.cluster-0 { border-top-color: var(--cluster-0); }
+        .cluster-card.cluster-1 { border-top-color: var(--cluster-1); }
+
+        .cluster-card h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .cluster-card .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 12px;
+        }
+        .cluster-card.cluster-0 .badge { background: var(--cluster-0); }
+        .cluster-card.cluster-1 .badge { background: var(--cluster-1); }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px solid #f3f4f6;
+            font-size: 13px;
+        }
+        .stat-row:last-child { border-bottom: none; }
+        .stat-label { color: var(--text-secondary); }
+        .stat-value { font-weight: 600; }
+        .stat-value.high-risk { color: var(--negative); }
+        .stat-value.medium-risk { color: var(--warning); }
+        .stat-value.low-risk { color: var(--positive); }
+
+        /* Insight boxes */
+        .insight-box {
+            background: #fffbeb;
+            border: 1px solid #fbbf24;
+            border-radius: var(--radius);
+            padding: 16px 20px;
+            margin-bottom: var(--gap);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .insight-box.action {
+            background: #eff6ff;
+            border-color: #3b82f6;
+        }
+        .insight-box h4 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        /* Full-width chart */
+        .full-width-chart {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+            margin-bottom: var(--gap);
+        }
+        .full-width-chart h3 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .full-width-chart canvas {
+            max-height: 350px;
+        }
+
+        /* Methodology note */
+        .methodology {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+            margin-top: 24px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+        .methodology h3 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 1200px) {
+            .comparison-grid[style*="repeat(4"] { grid-template-columns: repeat(2, 1fr) !important; }
+        }
+        @media (max-width: 900px) {
+            .comparison-grid { grid-template-columns: 1fr !important; }
+            .chart-grid { grid-template-columns: 1fr; }
+        }
+
+        @media print {
+            body { background: white; }
+            .dashboard-container { max-width: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+
+        <div class="dashboard-header">
+            <h1>Tawila IDP Camp — WASH Household Clustering Analysis</h1>
+            <div class="subtitle">Unsupervised classification of 369 households across Water, Sanitation & Hygiene indicators &bull; Sudan, February 2026</div>
+        </div>
+
+        <!-- KEY FINDING -->
+        <div class="insight-box">
+            <h4>Key Finding: Two Distinct Population Groups Identified</h4>
+            The analysis identified <strong>two statistically distinct clusters</strong> of households with dramatically different WASH conditions.
+            <strong style="color:var(--cluster-1)">Cluster 1 ("High Vulnerability", 47%)</strong> faces severe, compounding deprivation across all WASH domains — low water availability, damaged/shared latrines, minimal soap, and high protection risks.
+            <strong style="color:var(--cluster-0)">Cluster 0 ("Moderate Needs", 53%)</strong> has significantly better access but still falls short of humanitarian standards. The differences are statistically significant across 17 of 22 key indicators (p&lt;0.01).
+        </div>
+
+        <!-- GEOGRAPHIC FINDING -->
+        <div class="insight-box" style="background:#fef2f2; border-color:#ef4444;">
+            <h4>Geographic Concentration: Deprivation Maps to Specific Camps</h4>
+            The two clusters are <strong>not randomly distributed</strong> — they are strongly concentrated by camp location (Chi-square p&nbsp;=&nbsp;2.3&times;10<sup>-24</sup>).
+            <strong style="color:var(--cluster-1)">Camps B (SCI, 86% high-vulnerability) and C (TGH, 84%)</strong> are the epicentres of WASH deprivation, while
+            <strong style="color:var(--cluster-0)">Camp D (SI, 77% moderate-needs)</strong> is significantly better served.
+            <strong>Camp A (IRC)</strong> is mixed (37% high-vulnerability, 63% moderate).
+            This means response prioritisation can be <strong>geographically targeted</strong>.
+        </div>
+
+        <!-- CAMP BREAKDOWN -->
+        <div class="section-header"><span class="section-icon">&#127758;</span> Geographic Breakdown by Camp</div>
+
+        <div class="chart-grid">
+            <div class="chart-container">
+                <h3>Cluster Composition by Camp</h3>
+                <canvas id="chart-camp-cluster"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3>Key WASH Indicators by Camp</h3>
+                <canvas id="chart-camp-indicators"></canvas>
+            </div>
+        </div>
+
+        <!-- Camp detail cards -->
+        <div class="comparison-grid" style="grid-template-columns: repeat(4, 1fr);">
+            <div class="cluster-card" id="camp-card-A" style="border-top-color:#f39c12;"></div>
+            <div class="cluster-card" id="camp-card-B" style="border-top-color:var(--cluster-1);"></div>
+            <div class="cluster-card" id="camp-card-C" style="border-top-color:var(--cluster-1);"></div>
+            <div class="cluster-card" id="camp-card-D" style="border-top-color:var(--cluster-0);"></div>
+        </div>
+
+        <!-- KPI OVERVIEW -->
+        <div class="section-header"><span class="section-icon">&#128202;</span> Overall Camp Statistics</div>
+        <div class="kpi-row" id="kpi-row"></div>
+
+        <!-- CLUSTER COMPARISON -->
+        <div class="section-header"><span class="section-icon">&#128101;</span> Cluster Profiles — Side by Side</div>
+
+        <div class="comparison-grid">
+            <div class="cluster-card cluster-1">
+                <span class="badge">HIGH VULNERABILITY</span>
+                <h3 style="color:var(--cluster-1)">Cluster 1 — 173 households (47%)</h3>
+                <div id="cluster-1-stats"></div>
+            </div>
+            <div class="cluster-card cluster-0">
+                <span class="badge">MODERATE NEEDS</span>
+                <h3 style="color:var(--cluster-0)">Cluster 0 — 196 households (53%)</h3>
+                <div id="cluster-0-stats"></div>
+            </div>
+        </div>
+
+        <!-- WATER -->
+        <div class="section-header"><span class="section-icon">&#128167;</span> Water Supply & Access</div>
+        <div class="chart-grid">
+            <div class="chart-container">
+                <h3>Litres per Person per Day — Distribution</h3>
+                <canvas id="chart-lpd"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3>Water Access Indicators by Cluster (%)</h3>
+                <canvas id="chart-water-access"></canvas>
+            </div>
+        </div>
+        <div class="chart-grid">
+            <div class="chart-container">
+                <h3>Primary Water Source — Cluster 1</h3>
+                <canvas id="chart-ws-0"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3>Primary Water Source — Cluster 0</h3>
+                <canvas id="chart-ws-1"></canvas>
+            </div>
+        </div>
+
+        <!-- SANITATION -->
+        <div class="section-header"><span class="section-icon">&#128701;</span> Sanitation</div>
+        <div class="chart-grid">
+            <div class="chart-container">
+                <h3>Sanitation Risk Indicators by Cluster (%)</h3>
+                <canvas id="chart-sanitation"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3>Shared Sanitation Facilities</h3>
+                <canvas id="chart-shared-san"></canvas>
+            </div>
+        </div>
+
+        <!-- HYGIENE -->
+        <div class="section-header"><span class="section-icon">&#129532;</span> Hygiene</div>
+        <div class="chart-grid">
+            <div class="chart-container">
+                <h3>Hygiene Indicators by Cluster (%)</h3>
+                <canvas id="chart-hygiene"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3>Hygiene Satisfaction</h3>
+                <canvas id="chart-satisfaction"></canvas>
+            </div>
+        </div>
+
+        <!-- CONCERNS & VULNERABILITY -->
+        <div class="section-header"><span class="section-icon">&#9888;&#65039;</span> Priority Concerns & Vulnerability</div>
+        <div class="chart-grid">
+            <div class="chart-container">
+                <h3>Biggest WASH Concern — Cluster 1</h3>
+                <canvas id="chart-concern-0"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3>Biggest WASH Concern — Cluster 0</h3>
+                <canvas id="chart-concern-1"></canvas>
+            </div>
+        </div>
+
+        <div class="full-width-chart">
+            <h3>Vulnerability Indicators by Cluster (%)</h3>
+            <canvas id="chart-vulnerability"></canvas>
+        </div>
+
+        <!-- K=3 ALTERNATIVE ANALYSIS -->
+        <div class="section-header"><span class="section-icon">&#128300;</span> Alternative View: K=3 Clustering — Differentiating Types of Deprivation</div>
+
+        <div class="insight-box" style="background:#f0fdf4; border-color:#22c55e;">
+            <h4>What K=3 Reveals: The High-Vulnerability Group Has Two Distinct Sub-Profiles</h4>
+            Splitting into three clusters preserves the "Low Need" group (43%) but separates the deprived households into two sub-groups with very different response needs:
+            <strong style="color:#c0392b">Cluster 2 "Multi-Sector Crisis" (39%)</strong> — dominated by <em>water scarcity</em>: 80% report water problems, 80% spend >31 min fetching, median 10.7 L/p/d. Largest HH (8.5 people), 50% have disabilities. Concentrated in <strong>Camp C (93%)</strong>.
+            <strong style="color:#f39c12">Cluster 1 "Sanitation Crisis" (18%)</strong> — dominated by <em>sanitation infrastructure failure</em>: 94% report sanitation problems, 88% observe open defecation, 71% have damaged latrines, 68% feel unsafe. Concentrated in <strong>Camp B (54%)</strong>. Their top concern is sanitation (39%), not water.
+            This distinction is <strong>actionable</strong>: Camp C needs water infrastructure; Camp B needs latrine rehabilitation.
+        </div>
+
+        <div class="chart-grid">
+            <div class="chart-container">
+                <h3>K=3 — Cluster Composition by Camp</h3>
+                <canvas id="chart-k3-camp"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3>K=3 — Key WASH Indicators by Cluster (%)</h3>
+                <canvas id="chart-k3-indicators"></canvas>
+            </div>
+        </div>
+
+        <div class="chart-grid">
+            <div class="chart-container">
+                <h3>K=3 — Water &amp; Hygiene Indicators</h3>
+                <canvas id="chart-k3-water"></canvas>
+            </div>
+            <div class="chart-container">
+                <h3>K=3 — Biggest WASH Concern by Cluster</h3>
+                <canvas id="chart-k3-concerns"></canvas>
+            </div>
+        </div>
+
+        <!-- K=3 Cluster detail cards -->
+        <div class="comparison-grid" style="grid-template-columns: repeat(3, 1fr);">
+            <div class="cluster-card" id="k3-card-0" style="border-top-color:#27ae60;"></div>
+            <div class="cluster-card" id="k3-card-1" style="border-top-color:#f39c12;"></div>
+            <div class="cluster-card" id="k3-card-2" style="border-top-color:#c0392b;"></div>
+        </div>
+
+        <!-- ACTIONABLE INSIGHTS -->
+        <div class="section-header"><span class="section-icon">&#127919;</span> Recommendations for Humanitarian Response</div>
+
+        <div class="insight-box action">
+            <h4>1. Priority Water Interventions — Focus on Camps B &amp; C</h4>
+            Cluster 0 households receive only <strong>10 L/p/d median</strong> (vs. Sphere minimum of 15 L/p/d). Camp C is most critical at <strong>6.6 L/p/d</strong>, Camp B at 10.3 L/p/d. 79% of Cluster 0 reports water access problems, and 57% spend over 31 minutes fetching water.
+            <strong>Action:</strong> Prioritize water trucking and additional water points for Camps B (SCI) and C (TGH). Camp C urgently needs container distribution given its extremely low per-capita consumption. Consider 13% of Cluster 0 relying on unprotected wells for targeted water treatment.
+        </div>
+
+        <div class="insight-box action">
+            <h4>2. Sanitation Infrastructure — Critical in Camps B &amp; C</h4>
+            Camps B and C have 84-86% shared latrines, 67% report damaged facilities (Camp B), and 70% feel unsafe (Camp C). Open defecation observation is 75% in Camp B.
+            <strong>Action:</strong> Emergency latrine construction/rehabilitation and desludging in Camps B and C. Installation of lighting and locks is critical for protection, particularly in Camp C where 70% feel unsafe. Gender-segregated facilities are a priority. Camp A also needs attention (61% sanitation problems).
+        </div>
+
+        <div class="insight-box action">
+            <h4>3. Hygiene Kit Distribution — Camp C Most Acute</h4>
+            Only <strong>1.8% of Camp C has enough soap</strong> — virtually none. Camp B is at 8.7%. Camp B has 96% reporting hygiene item problems. Handwashing with water and soap is available to only 17% of Cluster 0.
+            <strong>Action:</strong> Immediate targeted hygiene kit distribution to Camps C (TGH) and B (SCI), with soap, menstrual hygiene materials, and water treatment products. Prioritize households with children under 5 (75% of Cluster 0) and PLW (65%).
+        </div>
+
+        <div class="insight-box action">
+            <h4>4. Geographic Targeting Strategy</h4>
+            The strong geographic concentration of vulnerability (Camps B: 86% and C: 84% high-vulnerability vs. Camp D: 23%) enables efficient area-based targeting.
+            <strong>Action:</strong> Camps B and C should be treated as priority areas for all WASH interventions. Camp D (SI) can serve as a model for what improved conditions look like. Camp A (IRC) needs mixed-approach programming given its 37% high-vulnerability households are interspersed with better-off ones. Coordinate with SCI (Camp B), TGH (Camp C), and IRC (Camp A) on differentiated response packages.
+        </div>
+
+        <div class="insight-box action">
+            <h4>5. Vulnerability-Based Targeting Within Camps</h4>
+            Cluster 0 has significantly higher vulnerability: larger household sizes (8.4 vs 6.6), more children under 5 (75% vs 63%), more PLW (65% vs 45%), higher malnutrition treatment (26% vs 11%), and more disabilities (46% vs 24%).
+            <strong>Action:</strong> Within the priority camps, use these demographic markers for further beneficiary prioritization. The compounding nature of vulnerabilities in Cluster 0 suggests these households need integrated, multi-sector support beyond WASH alone.
+        </div>
+
+        <!-- METHODOLOGY -->
+        <div class="methodology">
+            <h3>Methodology</h3>
+            <p><strong>Data:</strong> 369 households surveyed across 4 camp sections in Tawila IDP camp, Sudan (February 2026). Survey covers Water Supply, Sanitation, Solid Waste Management, and Hygiene domains.</p>
+            <p><strong>Feature Selection:</strong> 70 features selected from 234 survey variables, covering demographics (14), water supply (24), sanitation (11), solid waste (4), and hygiene (17). Categorical variables encoded as ordinal or binary. Missing values imputed with median (continuous) or 0 (binary flags for conditional questions).</p>
+            <p><strong>Clustering:</strong> K-Means clustering with PCA dimensionality reduction (80% variance retained). Optimal K=2 selected via silhouette analysis (score=0.595). Validated against hierarchical clustering (Ward linkage) with 86% agreement. All 17 key indicator differences are statistically significant (Kruskal-Wallis, p&lt;0.01).</p>
+            <p><strong>Geographic Analysis:</strong> Post-hoc Chi-square test confirms clusters are strongly associated with camp location (Chi-square=113.2, p=2.3&times;10<sup>-24</sup>, df=3). Camps B (SCI) and C (TGH) are predominantly Cluster 0; Camp D (SI) is predominantly Cluster 1; Camp A (IRC) is mixed.</p>
+            <p><strong>Limitations:</strong> Clustering captures the dominant axis of variation (WASH deprivation severity). Further sub-clustering within each group may reveal additional nuance. Self-reported data may have response biases. The 15 L/p/d Sphere standard is referenced as a minimum benchmark. The geographic concentration could partly reflect differing survey methodologies between organisations, though the consistency across multiple independent indicators suggests real differences.</p>
+        </div>
+
+    </div>
+
+    <script>
+    // === EMBEDDED DATA ===
+    const S = {
+        "0": {"n":173,"pct":46.9,"avg_hh_size":8.4,"female_headed_pct":74.6,"has_children_u5_pct":75.1,"has_plw_pct":64.7,"has_malnutrition_pct":26.0,"has_disabilities_pct":45.7,"enough_water_drinking_pct":49.7,"enough_water_domestic_pct":30.1,"water_problems_pct":79.2,"avg_lpd":121.8,"median_lpd":64.0,"avg_lpd_pp":14.7,"median_lpd_pp":10.0,"sanitation_problems_pct":75.7,"feel_unsafe_latrine_pct":64.7,"open_defecation_observed_pct":75.1,"latrine_damaged_pct":66.5,"visible_feces_pct":0.0,"open_defecation_practice_pct":4.6,"hygiene_problems_pct":84.4,"enough_soap_pct":6.9,"water_soap_handwashing_pct":16.8,
+        "water_sources":{"Public tap/standpipe":55.5,"Protected well":15.6,"Unprotected well":13.3,"Tanker trucks":8.1,"Donkey cart vendor":4.0,"Handpumps/boreholes":2.3,"Water seller/kiosks":1.2},
+        "concerns":{"Water access (quality & quantity)":52.6,"Sanitation facilities":20.2,"Personal hygiene":15.6,"Healthy environment":8.1,"No concern":2.9,"Other":0.6},
+        "shared_sanitation":{"Shared (Yes)":80.3,"Not shared (No)":17.9,"Other":1.2,"Don't know":0.6},
+        "satisfaction":{"Unsatisfied":52.6,"Very satisfied":21.4,"Satisfied":15.6,"Very unsatisfied":9.8,"Don't know":0.6}},
+        "1": {"n":196,"pct":53.1,"avg_hh_size":6.6,"female_headed_pct":80.6,"has_children_u5_pct":63.3,"has_plw_pct":45.4,"has_malnutrition_pct":10.7,"has_disabilities_pct":24.0,"enough_water_drinking_pct":77.0,"enough_water_domestic_pct":61.2,"water_problems_pct":27.0,"avg_lpd":207.9,"median_lpd":128.0,"avg_lpd_pp":34.1,"median_lpd_pp":21.3,"sanitation_problems_pct":28.1,"feel_unsafe_latrine_pct":35.2,"open_defecation_observed_pct":30.1,"latrine_damaged_pct":17.9,"visible_feces_pct":0.0,"open_defecation_practice_pct":0.5,"hygiene_problems_pct":69.9,"enough_soap_pct":25.5,"water_soap_handwashing_pct":51.0,
+        "water_sources":{"Public tap/standpipe":62.2,"Tanker trucks":24.0,"Protected well":8.7,"Water seller/kiosks":2.0,"Other":1.5,"Unprotected well":1.5},
+        "concerns":{"Water access (quality & quantity)":36.2,"No concern":23.0,"Sanitation facilities":17.9,"Personal hygiene":12.8,"Healthy environment":9.2,"Other":1.0},
+        "shared_sanitation":{"Not shared (No)":59.7,"Shared (Yes)":40.3},
+        "satisfaction":{"Satisfied":33.2,"Unsatisfied":29.6,"Very satisfied":28.1,"Very unsatisfied":8.2,"Don't know":1.0}}
+    };
+    const LPD_BINS = ["0-5","5-10","10-15","15-20","20-30","30-50","50-100","100+"];
+    const LPD_DATA = {"0":[30,50,36,15,12,13,6,1],"1":[12,27,26,20,24,42,22,11]};
+
+    // === CAMP DATA ===
+    const CAMPS = {
+        "Camp A": {"n":79,"org":"IRC","c0_n":29,"c1_n":50,"c0_pct":36.7,"c1_pct":63.3,"avg_hh_size":9.2,"median_lpd_pp":17.9,"enough_water_pct":92.4,"water_problems_pct":30.4,"sanitation_problems_pct":60.8,"feel_unsafe_pct":40.5,"enough_soap_pct":20.3,"hygiene_problems_pct":86.1,"latrine_damaged_pct":41.8,"open_defecation_observed_pct":54.4,"shared_san_pct":45.6},
+        "Camp B": {"n":69,"org":"SCI","c0_n":59,"c1_n":10,"c0_pct":85.5,"c1_pct":14.5,"avg_hh_size":7.4,"median_lpd_pp":10.3,"enough_water_pct":37.7,"water_problems_pct":73.9,"sanitation_problems_pct":73.9,"feel_unsafe_pct":60.9,"enough_soap_pct":8.7,"hygiene_problems_pct":95.7,"latrine_damaged_pct":66.7,"open_defecation_observed_pct":75.4,"shared_san_pct":84.1},
+        "Camp C": {"n":56,"org":"TGH","c0_n":47,"c1_n":9,"c0_pct":83.9,"c1_pct":16.1,"avg_hh_size":8.3,"median_lpd_pp":6.6,"enough_water_pct":46.4,"water_problems_pct":75.0,"sanitation_problems_pct":55.4,"feel_unsafe_pct":69.6,"enough_soap_pct":1.8,"hygiene_problems_pct":58.9,"latrine_damaged_pct":42.9,"open_defecation_observed_pct":58.9,"shared_san_pct":85.7},
+        "Camp D": {"n":165,"org":"SI","c0_n":38,"c1_n":127,"c0_pct":23.0,"c1_pct":77.0,"avg_hh_size":6.4,"median_lpd_pp":20.0,"enough_water_pct":67.9,"water_problems_pct":44.2,"sanitation_problems_pct":33.9,"feel_unsafe_pct":41.2,"enough_soap_pct":23.6,"hygiene_problems_pct":70.3,"latrine_damaged_pct":28.5,"open_defecation_observed_pct":37.0,"shared_san_pct":46.1}
+    };
+
+    const C0 = 'rgba(192, 57, 43, 0.85)';
+    const C0L = 'rgba(231, 76, 60, 0.3)';
+    const C1 = 'rgba(41, 128, 185, 0.85)';
+    const C1L = 'rgba(52, 152, 219, 0.3)';
+
+    // === KPI CARDS ===
+    function renderKPIs() {
+        const kpis = [
+            {label: 'Households Surveyed', value: '369', detail: '4 camp sections', severity: ''},
+            {label: 'High Vulnerability (C1)', value: '173', detail: '46.9% of sample', severity: 'high'},
+            {label: 'Moderate Needs (C0)', value: '196', detail: '53.1% of sample', severity: 'medium'},
+            {label: 'Avg L/p/d (C1)', value: '10.0', detail: 'Median — below 15 L/p/d Sphere standard', severity: 'high'},
+            {label: 'Avg L/p/d (C0)', value: '21.3', detail: 'Median — meets Sphere minimum', severity: 'low'},
+            {label: 'Water Access Problems', value: '79%→27%', detail: 'C1 vs C0', severity: 'high'},
+            {label: 'Enough Soap', value: '7%→26%', detail: 'C1 vs C0', severity: 'high'},
+            {label: 'Feel Unsafe at Latrine', value: '65%→35%', detail: 'C0 vs C1 — protection concern', severity: 'high'},
+        ];
+        const container = document.getElementById('kpi-row');
+        container.innerHTML = kpis.map(k => `
+            <div class="kpi-card severity-${k.severity}">
+                <div class="kpi-label">${k.label}</div>
+                <div class="kpi-value">${k.value}</div>
+                <div class="kpi-detail">${k.detail}</div>
+            </div>
+        `).join('');
+    }
+
+    // === CLUSTER STAT CARDS ===
+    function renderClusterStats(clusterId, containerId) {
+        const s = S[clusterId];
+        const rows = [
+            ['Avg Household Size', s.avg_hh_size],
+            ['Female-Headed HH', s.female_headed_pct + '%'],
+            ['Median L/person/day', s.median_lpd_pp, s.median_lpd_pp < 15 ? 'high-risk' : 'low-risk'],
+            ['Enough Water (Drinking)', s.enough_water_drinking_pct + '%', s.enough_water_drinking_pct < 60 ? 'high-risk' : 'low-risk'],
+            ['Enough Water (Domestic)', s.enough_water_domestic_pct + '%', s.enough_water_domestic_pct < 50 ? 'high-risk' : 'low-risk'],
+            ['Water Access Problems', s.water_problems_pct + '%', s.water_problems_pct > 50 ? 'high-risk' : s.water_problems_pct > 30 ? 'medium-risk' : 'low-risk'],
+            ['Sanitation Problems', s.sanitation_problems_pct + '%', s.sanitation_problems_pct > 50 ? 'high-risk' : 'low-risk'],
+            ['Feel Unsafe at Latrine', s.feel_unsafe_latrine_pct + '%', s.feel_unsafe_latrine_pct > 50 ? 'high-risk' : 'medium-risk'],
+            ['Open Defecation Observed', s.open_defecation_observed_pct + '%', s.open_defecation_observed_pct > 50 ? 'high-risk' : 'low-risk'],
+            ['Latrine Damaged/Full (30d)', s.latrine_damaged_pct + '%', s.latrine_damaged_pct > 50 ? 'high-risk' : 'low-risk'],
+            ['Enough Soap', s.enough_soap_pct + '%', s.enough_soap_pct < 20 ? 'high-risk' : 'medium-risk'],
+            ['Water+Soap for Handwashing', s.water_soap_handwashing_pct + '%', s.water_soap_handwashing_pct < 30 ? 'high-risk' : 'low-risk'],
+            ['Hygiene Item Problems', s.hygiene_problems_pct + '%', s.hygiene_problems_pct > 70 ? 'high-risk' : 'medium-risk'],
+            ['Children Under 5', s.has_children_u5_pct + '%'],
+            ['Pregnant/Lactating Women', s.has_plw_pct + '%'],
+            ['Malnutrition Treatment', s.has_malnutrition_pct + '%', s.has_malnutrition_pct > 20 ? 'high-risk' : 'medium-risk'],
+            ['People with Disabilities', s.has_disabilities_pct + '%', s.has_disabilities_pct > 40 ? 'high-risk' : 'medium-risk'],
+        ];
+        document.getElementById(containerId).innerHTML = rows.map(r =>
+            `<div class="stat-row"><span class="stat-label">${r[0]}</span><span class="stat-value ${r[2]||''}">${r[1]}</span></div>`
+        ).join('');
+    }
+
+    // === CHARTS ===
+    function createChart(id, config) {
+        const ctx = document.getElementById(id);
+        if (!ctx) return;
+        return new Chart(ctx.getContext('2d'), config);
+    }
+
+    function renderCharts() {
+        // LPD Distribution
+        createChart('chart-lpd', {
+            type: 'bar',
+            data: {
+                labels: LPD_BINS,
+                datasets: [
+                    {label: 'Cluster 1 (High Vulnerability)', data: LPD_DATA['0'], backgroundColor: C0, borderRadius: 3},
+                    {label: 'Cluster 0 (Moderate Needs)', data: LPD_DATA['1'], backgroundColor: C1, borderRadius: 3}
+                ]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                plugins: {
+                    legend: {position: 'top', labels: {usePointStyle: true, padding: 15}},
+                    annotation: {}
+                },
+                scales: {
+                    x: {title: {display: true, text: 'Litres per Person per Day'}},
+                    y: {title: {display: true, text: 'Number of Households'}, beginAtZero: true}
+                }
+            }
+        });
+
+        // Water Access Indicators
+        const waterLabels = ['Enough Water\n(Drinking)', 'Enough Water\n(Domestic)', 'Water Access\nProblems', 'Fetch >31 min'];
+        createChart('chart-water-access', {
+            type: 'bar',
+            data: {
+                labels: waterLabels,
+                datasets: [
+                    {label: 'Cluster 1', data: [S['0'].enough_water_drinking_pct, S['0'].enough_water_domestic_pct, S['0'].water_problems_pct, 56.6], backgroundColor: C0, borderRadius: 3},
+                    {label: 'Cluster 0', data: [S['1'].enough_water_drinking_pct, S['1'].enough_water_domestic_pct, S['1'].water_problems_pct, 35.7], backgroundColor: C1, borderRadius: 3}
+                ]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                plugins: {legend: {position: 'top', labels: {usePointStyle: true}}},
+                scales: {y: {beginAtZero: true, max: 100, title: {display: true, text: '%'}}}
+            }
+        });
+
+        // Water source doughnuts
+        for (const c of ['0', '1']) {
+            const ws = S[c].water_sources;
+            const colors = ['#3498db', '#e74c3c', '#2ecc71', '#f39c12', '#9b59b6', '#1abc9c', '#e67e22'];
+            createChart(`chart-ws-${c}`, {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(ws),
+                    datasets: [{data: Object.values(ws), backgroundColor: colors.map(c => c + 'CC'), borderWidth: 2, borderColor: '#fff'}]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false, cutout: '55%',
+                    plugins: {
+                        legend: {position: 'right', labels: {font: {size: 11}, padding: 8, usePointStyle: true}},
+                        tooltip: {callbacks: {label: ctx => `${ctx.label}: ${ctx.parsed}%`}}
+                    }
+                }
+            });
+        }
+
+        // Sanitation
+        const sanLabels = ['Sanitation\nProblems', 'Feel Unsafe\nat Latrine', 'Open Defecation\nObserved', 'Latrine\nDamaged/Full', 'Shared\nLatrine'];
+        createChart('chart-sanitation', {
+            type: 'bar',
+            data: {
+                labels: sanLabels,
+                datasets: [
+                    {label: 'Cluster 1', data: [S['0'].sanitation_problems_pct, S['0'].feel_unsafe_latrine_pct, S['0'].open_defecation_observed_pct, S['0'].latrine_damaged_pct, 80.3], backgroundColor: C0, borderRadius: 3},
+                    {label: 'Cluster 0', data: [S['1'].sanitation_problems_pct, S['1'].feel_unsafe_latrine_pct, S['1'].open_defecation_observed_pct, S['1'].latrine_damaged_pct, 40.3], backgroundColor: C1, borderRadius: 3}
+                ]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                plugins: {legend: {position: 'top', labels: {usePointStyle: true}}},
+                scales: {y: {beginAtZero: true, max: 100, title: {display: true, text: '%'}}}
+            }
+        });
+
+        // Shared sanitation stacked
+        const sharedLabels = ['Cluster 1', 'Cluster 0'];
+        createChart('chart-shared-san', {
+            type: 'bar',
+            data: {
+                labels: sharedLabels,
+                datasets: [
+                    {label: 'Shared', data: [80.3, 40.3], backgroundColor: 'rgba(231,76,60,0.7)', borderRadius: 3},
+                    {label: 'Not Shared', data: [17.9, 59.7], backgroundColor: 'rgba(46,204,113,0.7)', borderRadius: 3}
+                ]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                plugins: {legend: {position: 'top', labels: {usePointStyle: true}}},
+                scales: {x: {stacked: true}, y: {stacked: true, beginAtZero: true, max: 100, title: {display: true, text: '%'}}}
+            }
+        });
+
+        // Hygiene
+        const hygLabels = ['Enough\nSoap', 'Water+Soap\nHandwashing', 'Hygiene Item\nProblems', 'Hygiene\nProblems (%)'];
+        createChart('chart-hygiene', {
+            type: 'bar',
+            data: {
+                labels: hygLabels,
+                datasets: [
+                    {label: 'Cluster 1', data: [S['0'].enough_soap_pct, S['0'].water_soap_handwashing_pct, S['0'].hygiene_problems_pct, 84.4], backgroundColor: C0, borderRadius: 3},
+                    {label: 'Cluster 0', data: [S['1'].enough_soap_pct, S['1'].water_soap_handwashing_pct, S['1'].hygiene_problems_pct, 69.9], backgroundColor: C1, borderRadius: 3}
+                ]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                plugins: {legend: {position: 'top', labels: {usePointStyle: true}}},
+                scales: {y: {beginAtZero: true, max: 100, title: {display: true, text: '%'}}}
+            }
+        });
+
+        // Satisfaction
+        const satOrder = ['Very satisfied', 'Satisfied', 'Unsatisfied', 'Very unsatisfied'];
+        const satColors = ['rgba(39,174,96,0.75)', 'rgba(46,204,113,0.6)', 'rgba(243,156,18,0.7)', 'rgba(231,76,60,0.75)'];
+        createChart('chart-satisfaction', {
+            type: 'bar',
+            data: {
+                labels: ['Cluster 1', 'Cluster 0'],
+                datasets: satOrder.map((s, i) => ({
+                    label: s,
+                    data: [S['0'].satisfaction[s] || 0, S['1'].satisfaction[s] || 0],
+                    backgroundColor: satColors[i],
+                    borderRadius: 2
+                }))
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                plugins: {legend: {position: 'top', labels: {usePointStyle: true, font: {size: 11}}}},
+                scales: {x: {stacked: true}, y: {stacked: true, beginAtZero: true, max: 100, title: {display: true, text: '%'}}}
+            }
+        });
+
+        // Concerns doughnuts
+        for (const c of ['0', '1']) {
+            const cn = S[c].concerns;
+            const colors = ['#3498db', '#e74c3c', '#f39c12', '#2ecc71', '#95a5a6', '#9b59b6'];
+            createChart(`chart-concern-${c}`, {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(cn),
+                    datasets: [{data: Object.values(cn), backgroundColor: colors.map(c => c + 'CC'), borderWidth: 2, borderColor: '#fff'}]
+                },
+                options: {
+                    responsive: true, maintainAspectRatio: false, cutout: '50%',
+                    plugins: {
+                        legend: {position: 'right', labels: {font: {size: 10}, padding: 6, usePointStyle: true}},
+                        tooltip: {callbacks: {label: ctx => `${ctx.label}: ${ctx.parsed}%`}}
+                    }
+                }
+            });
+        }
+
+        // Vulnerability
+        const vulnLabels = ['Children\nUnder 5', 'Pregnant/\nLactating', 'Malnutrition\nTreatment', 'Disabilities', 'Female-\nHeaded HH'];
+        createChart('chart-vulnerability', {
+            type: 'bar',
+            data: {
+                labels: vulnLabels,
+                datasets: [
+                    {label: 'Cluster 1 (High Vulnerability)', data: [S['0'].has_children_u5_pct, S['0'].has_plw_pct, S['0'].has_malnutrition_pct, S['0'].has_disabilities_pct, S['0'].female_headed_pct], backgroundColor: C0, borderRadius: 3},
+                    {label: 'Cluster 0 (Moderate Needs)', data: [S['1'].has_children_u5_pct, S['1'].has_plw_pct, S['1'].has_malnutrition_pct, S['1'].has_disabilities_pct, S['1'].female_headed_pct], backgroundColor: C1, borderRadius: 3}
+                ]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                plugins: {legend: {position: 'top', labels: {usePointStyle: true}}},
+                scales: {y: {beginAtZero: true, max: 100, title: {display: true, text: '%'}}}
+            }
+        });
+    }
+
+    // === CAMP CHARTS ===
+    function renderCampCharts() {
+        const campNames = ['Camp A', 'Camp B', 'Camp C', 'Camp D'];
+        const campLabels = campNames.map(c => `${c}\n(${CAMPS[c].org}, n=${CAMPS[c].n})`);
+
+        // Cluster composition stacked bar
+        createChart('chart-camp-cluster', {
+            type: 'bar',
+            data: {
+                labels: campLabels,
+                datasets: [
+                    {label: 'Cluster 1 (High Vulnerability)', data: campNames.map(c => CAMPS[c].c0_pct), backgroundColor: C0, borderRadius: 3},
+                    {label: 'Cluster 0 (Moderate Needs)', data: campNames.map(c => CAMPS[c].c1_pct), backgroundColor: C1, borderRadius: 3}
+                ]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                plugins: {
+                    legend: {position: 'top', labels: {usePointStyle: true}},
+                    tooltip: {callbacks: {label: ctx => {
+                        const camp = campNames[ctx.dataIndex];
+                        const d = CAMPS[camp];
+                        const n = ctx.datasetIndex === 0 ? d.c0_n : d.c1_n;
+                        return `${ctx.dataset.label}: ${ctx.parsed.y}% (${n} HH)`;
+                    }}}
+                },
+                scales: {x: {stacked: true}, y: {stacked: true, beginAtZero: true, max: 100, title: {display: true, text: '% of households'}}}
+            }
+        });
+
+        // Key indicators by camp (grouped bar)
+        const campColors = ['#f39c12', '#c0392b', '#c0392b', '#2980b9'];
+        const campBgColors = campColors.map(c => c + 'CC');
+        createChart('chart-camp-indicators', {
+            type: 'bar',
+            data: {
+                labels: ['Median\nL/p/d', 'Enough\nWater %', 'Water\nProblems %', 'Sanitation\nProblems %', 'Enough\nSoap %', 'Feel\nUnsafe %'],
+                datasets: campNames.map((camp, i) => ({
+                    label: `${camp} (${CAMPS[camp].org})`,
+                    data: [
+                        CAMPS[camp].median_lpd_pp,
+                        CAMPS[camp].enough_water_pct,
+                        CAMPS[camp].water_problems_pct,
+                        CAMPS[camp].sanitation_problems_pct,
+                        CAMPS[camp].enough_soap_pct,
+                        CAMPS[camp].feel_unsafe_pct
+                    ],
+                    backgroundColor: campBgColors[i],
+                    borderColor: campColors[i],
+                    borderWidth: 1,
+                    borderRadius: 3
+                }))
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                plugins: {legend: {position: 'top', labels: {usePointStyle: true, font: {size: 11}}}},
+                scales: {y: {beginAtZero: true, title: {display: true, text: '% (or L/p/d for first indicator)'}}}
+            }
+        });
+    }
+
+    // === CAMP DETAIL CARDS ===
+    function renderCampCards() {
+        const campNames = ['Camp A', 'Camp B', 'Camp C', 'Camp D'];
+        const severity = {'Camp A': 'mixed', 'Camp B': 'critical', 'Camp C': 'critical', 'Camp D': 'better'};
+        const sevBadgeColor = {'mixed': '#f39c12', 'critical': '#c0392b', 'better': '#2980b9'};
+        const sevBadgeLabel = {'mixed': 'MIXED', 'critical': 'CRITICAL NEED', 'better': 'BETTER SERVED'};
+
+        campNames.forEach(camp => {
+            const d = CAMPS[camp];
+            const sev = severity[camp];
+            const riskClass = (val, threshold, invert) => {
+                if (invert) return val < threshold ? 'high-risk' : 'low-risk';
+                return val > threshold ? 'high-risk' : val > threshold * 0.6 ? 'medium-risk' : 'low-risk';
+            };
+            const letter = camp.split(' ')[1];
+            const html = `
+                <span class="badge" style="background:${sevBadgeColor[sev]}">${sevBadgeLabel[sev]}</span>
+                <h3>${camp} <span style="font-size:12px; color:var(--text-secondary); font-weight:400">(${d.org}, n=${d.n})</span></h3>
+                <div class="stat-row"><span class="stat-label">High Vulnerability</span><span class="stat-value ${d.c0_pct > 60 ? 'high-risk' : d.c0_pct > 40 ? 'medium-risk' : 'low-risk'}">${d.c0_pct}% (${d.c0_n})</span></div>
+                <div class="stat-row"><span class="stat-label">Median L/p/d</span><span class="stat-value ${d.median_lpd_pp < 15 ? 'high-risk' : 'low-risk'}">${d.median_lpd_pp}</span></div>
+                <div class="stat-row"><span class="stat-label">Enough Water</span><span class="stat-value ${d.enough_water_pct < 50 ? 'high-risk' : d.enough_water_pct < 70 ? 'medium-risk' : 'low-risk'}">${d.enough_water_pct}%</span></div>
+                <div class="stat-row"><span class="stat-label">Water Problems</span><span class="stat-value ${d.water_problems_pct > 60 ? 'high-risk' : d.water_problems_pct > 40 ? 'medium-risk' : 'low-risk'}">${d.water_problems_pct}%</span></div>
+                <div class="stat-row"><span class="stat-label">Sanitation Problems</span><span class="stat-value ${d.sanitation_problems_pct > 60 ? 'high-risk' : d.sanitation_problems_pct > 40 ? 'medium-risk' : 'low-risk'}">${d.sanitation_problems_pct}%</span></div>
+                <div class="stat-row"><span class="stat-label">Feel Unsafe</span><span class="stat-value ${d.feel_unsafe_pct > 60 ? 'high-risk' : d.feel_unsafe_pct > 40 ? 'medium-risk' : 'low-risk'}">${d.feel_unsafe_pct}%</span></div>
+                <div class="stat-row"><span class="stat-label">Shared Latrine</span><span class="stat-value ${d.shared_san_pct > 70 ? 'high-risk' : d.shared_san_pct > 50 ? 'medium-risk' : 'low-risk'}">${d.shared_san_pct}%</span></div>
+                <div class="stat-row"><span class="stat-label">Latrine Damaged</span><span class="stat-value ${d.latrine_damaged_pct > 50 ? 'high-risk' : d.latrine_damaged_pct > 35 ? 'medium-risk' : 'low-risk'}">${d.latrine_damaged_pct}%</span></div>
+                <div class="stat-row"><span class="stat-label">Enough Soap</span><span class="stat-value ${d.enough_soap_pct < 10 ? 'high-risk' : d.enough_soap_pct < 20 ? 'medium-risk' : 'low-risk'}">${d.enough_soap_pct}%</span></div>
+                <div class="stat-row"><span class="stat-label">Open Defecation Obs.</span><span class="stat-value ${d.open_defecation_observed_pct > 60 ? 'high-risk' : d.open_defecation_observed_pct > 40 ? 'medium-risk' : 'low-risk'}">${d.open_defecation_observed_pct}%</span></div>
+            `;
+            document.getElementById('camp-card-' + letter).innerHTML = html;
+        });
+    }
+
+    // === K=3 DATA ===
+    const K3 = {
+        "0": {"n":159,"pct":43.1,"label":"Low Need","color":"#27ae60",
+            "avg_hh_size":6.9,"female_headed_pct":79.9,"has_children_u5_pct":64.8,"has_plw_pct":49.1,"has_malnutrition_pct":11.3,"has_disabilities_pct":18.2,"vulnerability_score":1.43,
+            "enough_water_drinking_pct":88.1,"enough_water_domestic_pct":74.2,"water_problems_pct":16.4,"avg_lpd_pp":34.7,"median_lpd_pp":21.3,"fetch_gt31min_pct":30.2,
+            "sanitation_problems_pct":28.9,"feel_unsafe_pct":37.7,"open_def_observed_pct":32.7,"latrine_damaged_pct":23.3,"shared_latrine_pct":39.6,
+            "enough_soap_pct":30.8,"water_soap_hw_pct":60.4,"hygiene_problems_pct":73.6,
+            "camps":{"Camp A":33.3,"Camp B":3.8,"Camp C":2.5,"Camp D":60.4},
+            "concerns":{"Water access":32.7,"No concern":27.0,"Sanitation":18.2,"Hygiene":11.9,"Environment":9.4}},
+        "1": {"n":65,"pct":17.6,"label":"Sanitation Crisis","color":"#f39c12",
+            "avg_hh_size":6.8,"female_headed_pct":78.5,"has_children_u5_pct":70.8,"has_plw_pct":60.0,"has_malnutrition_pct":27.7,"has_disabilities_pct":38.5,"vulnerability_score":1.97,
+            "enough_water_drinking_pct":56.9,"enough_water_domestic_pct":33.8,"water_problems_pct":73.8,"avg_lpd_pp":19.8,"median_lpd_pp":13.3,"fetch_gt31min_pct":38.5,
+            "sanitation_problems_pct":93.8,"feel_unsafe_pct":67.7,"open_def_observed_pct":87.7,"latrine_damaged_pct":70.8,"shared_latrine_pct":76.9,
+            "enough_soap_pct":4.6,"water_soap_hw_pct":13.8,"hygiene_problems_pct":95.4,
+            "camps":{"Camp A":16.9,"Camp B":53.8,"Camp C":0.0,"Camp D":29.2},
+            "concerns":{"Sanitation":38.5,"Water access":23.1,"Hygiene":21.5,"Environment":13.8,"No concern":3.1}},
+        "2": {"n":145,"pct":39.3,"label":"Multi-Sector Crisis","color":"#c0392b",
+            "avg_hh_size":8.5,"female_headed_pct":75.2,"has_children_u5_pct":72.4,"has_plw_pct":57.9,"has_malnutrition_pct":20.7,"has_disabilities_pct":49.7,"vulnerability_score":2.01,
+            "enough_water_drinking_pct":41.4,"enough_water_domestic_pct":22.1,"water_problems_pct":80.0,"avg_lpd_pp":15.3,"median_lpd_pp":10.7,"fetch_gt31min_pct":80.0,
+            "sanitation_problems_pct":54.5,"feel_unsafe_pct":53.1,"open_def_observed_pct":55.2,"latrine_damaged_pct":46.2,"shared_latrine_pct":72.4,
+            "enough_soap_pct":6.9,"water_soap_hw_pct":16.6,"hygiene_problems_pct":71.7,
+            "camps":{"Camp A":10.3,"Camp B":19.3,"Camp C":35.9,"Camp D":34.5},
+            "concerns":{"Water access":65.5,"Hygiene":13.1,"Sanitation":11.0,"Environment":5.5,"No concern":3.4}}
+    };
+    const K3_CAMP = {
+        "Camp A":{"n":79,"org":"IRC","c0_pct":67.1,"c1_pct":13.9,"c2_pct":19.0},
+        "Camp B":{"n":69,"org":"SCI","c0_pct":8.7,"c1_pct":50.7,"c2_pct":40.6},
+        "Camp C":{"n":56,"org":"TGH","c0_pct":7.1,"c1_pct":0.0,"c2_pct":92.9},
+        "Camp D":{"n":165,"org":"SI","c0_pct":58.2,"c1_pct":11.5,"c2_pct":30.3}
+    };
+    const K3C = ['rgba(39,174,96,0.85)', 'rgba(243,156,18,0.85)', 'rgba(192,57,43,0.85)'];
+
+    // === K=3 CHARTS ===
+    function renderK3Charts() {
+        const campNames = ['Camp A','Camp B','Camp C','Camp D'];
+        const campLabels = campNames.map(c => `${c}\n(${K3_CAMP[c].org})`);
+
+        // Camp composition
+        createChart('chart-k3-camp', {
+            type: 'bar',
+            data: {
+                labels: campLabels,
+                datasets: [
+                    {label:'C0: Low Need', data: campNames.map(c=>K3_CAMP[c].c0_pct), backgroundColor: K3C[0], borderRadius:3},
+                    {label:'C1: Sanitation Crisis', data: campNames.map(c=>K3_CAMP[c].c1_pct), backgroundColor: K3C[1], borderRadius:3},
+                    {label:'C2: Multi-Sector Crisis', data: campNames.map(c=>K3_CAMP[c].c2_pct), backgroundColor: K3C[2], borderRadius:3}
+                ]
+            },
+            options: {
+                responsive:true, maintainAspectRatio:false,
+                plugins:{legend:{position:'top',labels:{usePointStyle:true,font:{size:11}}}},
+                scales:{x:{stacked:true},y:{stacked:true,beginAtZero:true,max:100,title:{display:true,text:'%'}}}
+            }
+        });
+
+        // Key indicators grouped bar
+        const indLabels = ['Sanitation\nProblems','Open Def.\nObserved','Latrine\nDamaged','Water\nProblems','Fetch\n>31 min','Shared\nLatrine'];
+        createChart('chart-k3-indicators', {
+            type: 'bar',
+            data: {
+                labels: indLabels,
+                datasets: ['0','1','2'].map((c,i) => ({
+                    label: `C${c}: ${K3[c].label}`,
+                    data: [K3[c].sanitation_problems_pct, K3[c].open_def_observed_pct, K3[c].latrine_damaged_pct,
+                           K3[c].water_problems_pct, K3[c].fetch_gt31min_pct, K3[c].shared_latrine_pct],
+                    backgroundColor: K3C[i], borderRadius:3
+                }))
+            },
+            options: {
+                responsive:true, maintainAspectRatio:false,
+                plugins:{legend:{position:'top',labels:{usePointStyle:true,font:{size:11}}}},
+                scales:{y:{beginAtZero:true,max:100,title:{display:true,text:'%'}}}
+            }
+        });
+
+        // Water & hygiene indicators
+        const whLabels = ['Enough Water\n(Drinking)','Enough Water\n(Domestic)','Enough\nSoap','Water+Soap\nHandwashing','Hygiene\nProblems'];
+        createChart('chart-k3-water', {
+            type: 'bar',
+            data: {
+                labels: whLabels,
+                datasets: ['0','1','2'].map((c,i) => ({
+                    label: `C${c}: ${K3[c].label}`,
+                    data: [K3[c].enough_water_drinking_pct, K3[c].enough_water_domestic_pct,
+                           K3[c].enough_soap_pct, K3[c].water_soap_hw_pct, K3[c].hygiene_problems_pct],
+                    backgroundColor: K3C[i], borderRadius:3
+                }))
+            },
+            options: {
+                responsive:true, maintainAspectRatio:false,
+                plugins:{legend:{position:'top',labels:{usePointStyle:true,font:{size:11}}}},
+                scales:{y:{beginAtZero:true,max:100,title:{display:true,text:'%'}}}
+            }
+        });
+
+        // Concerns stacked bar
+        const concernKeys = ['Water access','Sanitation','Hygiene','Environment','No concern'];
+        const concernColors = ['#3498db','#e74c3c','#f39c12','#2ecc71','#95a5a6'];
+        createChart('chart-k3-concerns', {
+            type: 'bar',
+            data: {
+                labels: ['C0: Low Need\n(n=159)','C1: Sanitation\nCrisis (n=65)','C2: Multi-Sector\nCrisis (n=145)'],
+                datasets: concernKeys.map((key,i) => ({
+                    label: key,
+                    data: ['0','1','2'].map(c => K3[c].concerns[key] || 0),
+                    backgroundColor: concernColors[i] + 'CC',
+                    borderRadius: 2
+                }))
+            },
+            options: {
+                responsive:true, maintainAspectRatio:false,
+                plugins:{legend:{position:'top',labels:{usePointStyle:true,font:{size:10}}}},
+                scales:{x:{stacked:true},y:{stacked:true,beginAtZero:true,max:100,title:{display:true,text:'%'}}}
+            }
+        });
+    }
+
+    // === K=3 DETAIL CARDS ===
+    function renderK3Cards() {
+        ['0','1','2'].forEach(c => {
+            const d = K3[c];
+            const campStr = Object.entries(d.camps).filter(([_,v])=>v>10).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`${k}: ${v}%`).join(', ');
+            const html = `
+                <span class="badge" style="background:${d.color}">${d.label.toUpperCase()}</span>
+                <h3 style="color:${d.color}">Cluster ${c} — ${d.n} HH (${d.pct}%)</h3>
+                <div class="stat-row"><span class="stat-label">Main camps</span><span class="stat-value" style="font-size:12px">${campStr}</span></div>
+                <div class="stat-row"><span class="stat-label">Avg HH Size</span><span class="stat-value">${d.avg_hh_size}</span></div>
+                <div class="stat-row"><span class="stat-label">Median L/p/d</span><span class="stat-value ${d.median_lpd_pp<15?'high-risk':'low-risk'}">${d.median_lpd_pp}</span></div>
+                <div class="stat-row"><span class="stat-label">Water Problems</span><span class="stat-value ${d.water_problems_pct>60?'high-risk':d.water_problems_pct>30?'medium-risk':'low-risk'}">${d.water_problems_pct}%</span></div>
+                <div class="stat-row"><span class="stat-label">Enough Water (Drinking)</span><span class="stat-value ${d.enough_water_drinking_pct<50?'high-risk':d.enough_water_drinking_pct<70?'medium-risk':'low-risk'}">${d.enough_water_drinking_pct}%</span></div>
+                <div class="stat-row"><span class="stat-label">Fetch >31 min</span><span class="stat-value ${d.fetch_gt31min_pct>60?'high-risk':d.fetch_gt31min_pct>35?'medium-risk':'low-risk'}">${d.fetch_gt31min_pct}%</span></div>
+                <div class="stat-row"><span class="stat-label">Sanitation Problems</span><span class="stat-value ${d.sanitation_problems_pct>60?'high-risk':d.sanitation_problems_pct>40?'medium-risk':'low-risk'}">${d.sanitation_problems_pct}%</span></div>
+                <div class="stat-row"><span class="stat-label">Feel Unsafe</span><span class="stat-value ${d.feel_unsafe_pct>60?'high-risk':d.feel_unsafe_pct>40?'medium-risk':'low-risk'}">${d.feel_unsafe_pct}%</span></div>
+                <div class="stat-row"><span class="stat-label">Open Def. Observed</span><span class="stat-value ${d.open_def_observed_pct>60?'high-risk':d.open_def_observed_pct>40?'medium-risk':'low-risk'}">${d.open_def_observed_pct}%</span></div>
+                <div class="stat-row"><span class="stat-label">Latrine Damaged</span><span class="stat-value ${d.latrine_damaged_pct>50?'high-risk':d.latrine_damaged_pct>35?'medium-risk':'low-risk'}">${d.latrine_damaged_pct}%</span></div>
+                <div class="stat-row"><span class="stat-label">Shared Latrine</span><span class="stat-value ${d.shared_latrine_pct>70?'high-risk':d.shared_latrine_pct>50?'medium-risk':'low-risk'}">${d.shared_latrine_pct}%</span></div>
+                <div class="stat-row"><span class="stat-label">Enough Soap</span><span class="stat-value ${d.enough_soap_pct<10?'high-risk':d.enough_soap_pct<20?'medium-risk':'low-risk'}">${d.enough_soap_pct}%</span></div>
+                <div class="stat-row"><span class="stat-label">Vulnerability Score</span><span class="stat-value">${d.vulnerability_score}</span></div>
+                <div class="stat-row"><span class="stat-label">Disabilities</span><span class="stat-value ${d.has_disabilities_pct>40?'high-risk':d.has_disabilities_pct>25?'medium-risk':'low-risk'}">${d.has_disabilities_pct}%</span></div>
+            `;
+            document.getElementById('k3-card-' + c).innerHTML = html;
+        });
+    }
+
+    // === INIT ===
+    renderKPIs();
+    renderClusterStats('0', 'cluster-1-stats');
+    renderClusterStats('1', 'cluster-0-stats');
+    renderCharts();
+    renderCampCharts();
+    renderCampCards();
+    renderK3Charts();
+    renderK3Cards();
+    </script>
+</body>
+</html>
