@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ArcGIS Reference Guide — Ebola DRC WASH Dashboard 2026</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Roboto,Arial,sans-serif;font-size:14px;line-height:1.65;color:#222;background:#f2f4f7}
+header{background:#003366;color:#fff;padding:24px 40px}
+header h1{font-size:22px;font-weight:700;margin-bottom:4px}
+header p{font-size:13px;opacity:.85;margin-top:4px}
+.container{max-width:1140px;margin:0 auto;padding:28px 36px}
+.toc{background:#fff;border:1px solid #ddd;border-radius:6px;padding:14px 20px;margin-bottom:24px;display:flex;gap:32px;align-items:center;flex-wrap:wrap}
+.toc span{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#888;margin-right:4px}
+.toc a{color:#003366;text-decoration:none;font-size:13px;margin-right:20px}
+.toc a:hover{text-decoration:underline}
+section{background:#fff;border-radius:6px;padding:28px 32px;margin-bottom:22px;border:1px solid #e0e4ea}
+h2{font-size:17px;color:#003366;border-left:4px solid #003366;padding-left:10px;margin-bottom:18px}
+h3{font-size:14px;color:#333;margin:20px 0 8px;font-weight:700}
+p{margin-bottom:10px}
+ul,ol{padding-left:20px;margin-bottom:10px}
+li{margin:4px 0}
+
+/* ── MAIN TABLE ─────────────────────────────────────────────────────── */
+.ref-table{width:100%;border-collapse:collapse;font-size:13px;margin:4px 0}
+.ref-table thead tr{background:#003366}
+.ref-table th{color:#fff;text-align:left;padding:10px 12px;font-weight:600;font-size:12px;white-space:nowrap}
+.ref-table td{padding:9px 12px;border-bottom:1px solid #eaecf0;vertical-align:top}
+.ref-table tr:nth-child(even) td{background:#f8f9fb}
+.ref-table tr:hover td{background:#eef4ff}
+.ref-table .type-kpi{background:#f0fdf4;color:#166534;border:1px solid #86efac;border-radius:4px;padding:2px 7px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block}
+.ref-table .type-layer{background:#eff6ff;color:#1e40af;border:1px solid #93c5fd;border-radius:4px;padding:2px 7px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block}
+.ref-table .section-header td{background:#e8edf5;font-weight:700;color:#003366;font-size:12px;text-transform:uppercase;letter-spacing:.06em;padding:7px 12px}
+
+/* ── CATEGORY BLOCKS ─────────────────────────────────────────────── */
+.cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:12px 0}
+@media(max-width:700px){.cat-grid{grid-template-columns:1fr}}
+.cat-card{border-radius:6px;overflow:hidden;border:1px solid #e0e4ea}
+.cat-card-head{padding:10px 14px;font-weight:700;font-size:13px;display:flex;align-items:center;gap:8px}
+.cat-card-body{padding:12px 14px;font-size:13px;line-height:1.6;background:#fff}
+.cat-badge{display:inline-block;width:14px;height:14px;border-radius:3px;flex-shrink:0}
+.cat-a .cat-card-head{background:#fef2f2;color:#991b1b}
+.cat-a .cat-badge{background:#dc2626}
+.cat-b .cat-card-head{background:#fff7ed;color:#9a3412}
+.cat-b .cat-badge{background:#ea580c}
+.cat-c .cat-card-head{background:#fffbeb;color:#92400e}
+.cat-c .cat-badge{background:#d97706}
+.sub-criterion{margin:6px 0 6px 14px;padding:8px 10px;background:#f8f9fb;border-left:3px solid #e0e4ea;border-radius:0 4px 4px 0;font-size:12.5px}
+.sub-criterion strong{color:#333}
+
+/* ── CALLOUTS ────────────────────────────────────────────────────── */
+.callout{border-radius:6px;padding:10px 14px;margin:12px 0;font-size:13px;border-left:4px solid;line-height:1.5}
+.callout-info{background:#e8f4fd;border-color:#2196f3;color:#1a5276}
+.callout-warn{background:#fff8e1;border-color:#f9a825;color:#7a5200}
+
+/* ── DIAGRAM ─────────────────────────────────────────────────────── */
+.diagram{margin:16px 0;overflow-x:auto}
+footer{text-align:center;color:#999;font-size:12px;padding:20px}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>ArcGIS Reference Guide — WASH Cluster Ebola Dashboard</h1>
+  <p>DRC 2026 · 17th epidemic · Bundibugyo strain · Declared 2026-05-15</p>
+  <p>This document describes what the dashboard shows, how the data flows, and how equivalent outputs can be produced in ArcGIS.</p>
+</header>
+
+<div class="container">
+
+  <nav class="toc">
+    <span>Contents</span>
+    <a href="#elements">1. Dashboard Elements</a>
+    <a href="#workflow">2. Data Workflow</a>
+    <a href="#categories">3. Zone Classification</a>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       SECTION 1 — DASHBOARD ELEMENTS
+  ══════════════════════════════════════════════════════════════════ -->
+  <section id="elements">
+    <h2>1. Dashboard Elements</h2>
+    <p>The dashboard presents seven summary indicators and five interactive map layers. The table below lists each element, the data it draws from, and the closest ArcGIS equivalent.</p>
+
+    <table class="ref-table">
+      <thead>
+        <tr>
+          <th style="width:3%">#</th>
+          <th style="width:16%">Element</th>
+          <th style="width:9%">Type</th>
+          <th style="width:22%">What it shows</th>
+          <th style="width:25%">Data source(s)</th>
+          <th>ArcGIS equivalent</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- KPI section -->
+        <tr class="section-header"><td colspan="6">Key Performance Indicators (KPIs)</td></tr>
+        <tr>
+          <td>1</td>
+          <td><strong>Category A zones</strong></td>
+          <td><span class="type-kpi">KPI</span></td>
+          <td>Count of health zones with at least one active confirmed case</td>
+          <td>INSP SitRep — per-zone cumulative confirmed cases (latest date per zone)</td>
+          <td><strong>ArcGIS Dashboards — Indicator widget</strong>; filter the zones Feature Layer where <code>category = "A"</code> and use COUNT aggregation</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><strong>Category B zones</strong></td>
+          <td><span class="type-kpi">KPI</span></td>
+          <td>Count of alert zones — spatially adjacent to Cat A or with confirmed traced contacts</td>
+          <td>INSP SitRep — per-zone cases &amp; contacts traced; DRC health zones shapefile (adjacency)</td>
+          <td><strong>ArcGIS Dashboards — Indicator widget</strong>; filter where <code>category = "B"</code></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><strong>Category C zones</strong></td>
+          <td><span class="type-kpi">KPI</span></td>
+          <td>Count of preparedness zones designated in the national MoH plan</td>
+          <td>Static MoH plan list (manually curated — not derived from SitRep)</td>
+          <td><strong>ArcGIS Dashboards — Indicator widget</strong>; filter where <code>category = "C"</code></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><strong>Confirmed cases</strong></td>
+          <td><span class="type-kpi">KPI</span></td>
+          <td>National cumulative confirmed cases at the most recent SitRep date</td>
+          <td>INSP SitRep — national cumulative confirmed cases (single national time series)</td>
+          <td><strong>ArcGIS Dashboards — Indicator widget</strong>; hosted table with MAX on the value field</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><strong>Confirmed deaths</strong></td>
+          <td><span class="type-kpi">KPI</span></td>
+          <td>National cumulative confirmed deaths at the most recent SitRep date</td>
+          <td>INSP SitRep — national cumulative confirmed deaths (single national time series)</td>
+          <td><strong>ArcGIS Dashboards — Indicator widget</strong>; hosted table with MAX on the value field</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td><strong>HCF in A+B zones</strong></td>
+          <td><span class="type-kpi">KPI</span></td>
+          <td>Total count of health facilities located in Category A or B zones</td>
+          <td>GRID3 DRC health facility count (per zone) + zone category</td>
+          <td><strong>ArcGIS Dashboards — Indicator widget</strong>; SUM of <code>healthsite_count</code> filtered to zones where <code>category IN ("A","B")</code></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td><strong>WASH partners</strong></td>
+          <td><span class="type-kpi">KPI</span></td>
+          <td>Count of distinct WASH cluster partners active anywhere in the response area</td>
+          <td>OCHA WASH capacity assessment (Excel, EHA cluster sheet)</td>
+          <td><strong>ArcGIS Dashboards — Indicator widget</strong>; hosted table with COUNT DISTINCT on the canonical partner name field</td>
+        </tr>
+
+        <!-- Layers section -->
+        <tr class="section-header"><td colspan="6">Map Layers</td></tr>
+        <tr>
+          <td>8</td>
+          <td><strong>MoH zone categories</strong></td>
+          <td><span class="type-layer">Map layer</span></td>
+          <td>All 519 DRC health zones coloured by MoH category (A = dark red · B = orange · C = amber · uncategorised = grey). Default layer shown on opening.</td>
+          <td>DRC health zones shapefile + derived category attribute (from SitRep cases, contacts, and static C list)</td>
+          <td><strong>ArcGIS Online Feature Layer</strong> (polygon) with <strong>Unique Value</strong> symbology on the category field. Display in ArcGIS Dashboards <strong>Map widget</strong>; configure layer toggle in the Map widget layer list.</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td><strong>Importation risk</strong></td>
+          <td><span class="type-layer">Map layer</span></td>
+          <td>Zones coloured by estimated volume of population movement arriving from Cat A zones. Three tiers derived from equal-proportion tertiles: High · Medium · Low. Cat A source zones shown separately.</td>
+          <td>Flowminder outflow OD matrix — Cat A origin rows summed per destination zone (> 100-person threshold)</td>
+          <td><strong>ArcGIS Online Feature Layer</strong> (polygon) with <strong>Classified Breaks</strong> symbology on the importation volume field (3 classes). Toggle layer off by default in the Map widget.</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td><strong>Mobility flow lines</strong></td>
+          <td><span class="type-layer">Map layer</span></td>
+          <td>Directed lines connecting origin and destination zone centroids, scaled in width by movement volume. Lines originating from Cat A zones are rendered at full opacity; all others are subdued.</td>
+          <td>Flowminder outflow OD matrix — all origin–destination pairs above 100 persons</td>
+          <td><strong>ArcGIS Online Feature Layer</strong> (polyline) with <strong>Proportional Symbols</strong> line width based on the volume field. Add a binary field to distinguish Cat A origins for a two-class opacity rule. Toggle off by default.</td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td><strong>Health facilities (GRID3)</strong></td>
+          <td><span class="type-layer">Map layer</span></td>
+          <td>Individual geolocated health facilities in the four operational provinces (Ituri, Nord-Kivu, Haut-Uele, Tshopo), with sub-filtering by facility type. Points cluster at small scales.</td>
+          <td>GRID3 DRC health facilities v8 (point shapefile), spatially joined to health zone</td>
+          <td><strong>ArcGIS Online Feature Layer</strong> (point) with <strong>Feature clustering</strong> enabled in the layer settings. Use a Definition Query to limit to the four provinces. A <strong>Serial chart</strong> widget can act as a sub-filter by facility type linked to the map.</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td><strong>WASH partner presence</strong></td>
+          <td><span class="type-layer">Map layer</span></td>
+          <td>Zone centroids sized proportionally by the number of distinct WASH partners active in each zone. Pop-up lists the partner names.</td>
+          <td>OCHA WASH capacity assessment (Excel, EHA cluster sheet); partner names deduplicated before counting</td>
+          <td><strong>ArcGIS Online Feature Layer</strong> (point) with <strong>Proportional Symbols</strong> size based on the partner count field. Toggle off by default.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       SECTION 2 — DATA WORKFLOW
+  ══════════════════════════════════════════════════════════════════ -->
+  <section id="workflow">
+    <h2>2. Data Workflow</h2>
+    <p>The diagram below shows how raw data sources are transformed into the dashboard outputs. Zone name harmonisation is applied to every source before joining — the DRC health zone names are inconsistently spelled across datasets and must be reconciled to the canonical shapefile name.</p>
+
+    <div class="diagram">
+      <svg width="860" height="370" viewBox="0 0 860 370" xmlns="http://www.w3.org/2000/svg"
+           font-family="'Segoe UI',Arial,sans-serif" font-size="11.5">
+        <defs>
+          <marker id="w-arr" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto">
+            <path d="M0,0 L7,2.5 L0,5 Z" fill="#94a3b8"/>
+          </marker>
+          <marker id="w-arr-g" markerWidth="7" markerHeight="5" refX="6" refY="2.5" orient="auto">
+            <path d="M0,0 L7,2.5 L0,5 Z" fill="#16a34a"/>
+          </marker>
+        </defs>
+
+        <!-- ── Column headers ── -->
+        <text x="115" y="18" text-anchor="middle" fill="#1e3a5f" font-weight="700" font-size="12">Data sources</text>
+        <text x="430" y="18" text-anchor="middle" fill="#713f12" font-weight="700" font-size="12">Processing</text>
+        <text x="750" y="18" text-anchor="middle" fill="#14532d" font-weight="700" font-size="12">Dashboard outputs</text>
+
+        <!-- ── Source boxes (left) ── -->
+        <!-- S1 Health zones shapefile -->
+        <rect x="10" y="28" width="210" height="26" rx="4" fill="#eff6ff" stroke="#93c5fd"/>
+        <text x="115" y="45" text-anchor="middle" fill="#1e40af">DRC health zones (shapefile)</text>
+
+        <!-- S2 Cases / contacts / deaths -->
+        <rect x="10" y="62" width="210" height="26" rx="4" fill="#eff6ff" stroke="#93c5fd"/>
+        <text x="115" y="73" text-anchor="middle" fill="#1e40af">INSP SitRep — per-zone</text>
+        <text x="115" y="84" text-anchor="middle" fill="#1e40af">cases · contacts · deaths</text>
+
+        <!-- S3 National totals -->
+        <rect x="10" y="100" width="210" height="26" rx="4" fill="#eff6ff" stroke="#93c5fd"/>
+        <text x="115" y="117" text-anchor="middle" fill="#1e40af">INSP SitRep — national totals</text>
+
+        <!-- S4 Flowminder OD matrix -->
+        <rect x="10" y="134" width="210" height="26" rx="4" fill="#eff6ff" stroke="#93c5fd"/>
+        <text x="115" y="151" text-anchor="middle" fill="#1e40af">Flowminder OD matrix</text>
+
+        <!-- S5 GRID3 HCF -->
+        <rect x="10" y="168" width="210" height="26" rx="4" fill="#eff6ff" stroke="#93c5fd"/>
+        <text x="115" y="185" text-anchor="middle" fill="#1e40af">GRID3 health facilities</text>
+
+        <!-- S6 WASH Excel -->
+        <rect x="10" y="202" width="210" height="26" rx="4" fill="#eff6ff" stroke="#93c5fd"/>
+        <text x="115" y="219" text-anchor="middle" fill="#1e40af">WASH capacity assessment (Excel)</text>
+
+        <!-- S7 MoH C list (manual) -->
+        <rect x="10" y="236" width="210" height="26" rx="4" fill="#eff6ff" stroke="#93c5fd" stroke-dasharray="4,2"/>
+        <text x="115" y="249" text-anchor="middle" fill="#1e40af">MoH plan Cat C list</text>
+        <text x="115" y="260" text-anchor="middle" fill="#6b7280" font-size="10" font-style="italic">(manually maintained)</text>
+
+        <!-- ── Processing boxes (middle) ── -->
+        <!-- P0 Harmonise names (shared) -->
+        <rect x="320" y="28" width="220" height="36" rx="5" fill="#fefce8" stroke="#ca8a04" stroke-width="1.5"/>
+        <text x="430" y="44" text-anchor="middle" fill="#713f12" font-weight="700">Zone name harmonisation</text>
+        <text x="430" y="57" text-anchor="middle" fill="#713f12" font-size="10">Reconcile spelling variants across all sources</text>
+
+        <!-- P1 Category derivation -->
+        <rect x="320" y="84" width="220" height="48" rx="5" fill="#fefce8" stroke="#ca8a04" stroke-width="1.5"/>
+        <text x="430" y="100" text-anchor="middle" fill="#713f12" font-weight="700">Zone category derivation</text>
+        <text x="430" y="115" text-anchor="middle" fill="#713f12" font-size="10">A = active cases · B = adjacent or contacts</text>
+        <text x="430" y="127" text-anchor="middle" fill="#713f12" font-size="10">C = MoH plan list (carried forward)</text>
+
+        <!-- P2 Importation risk -->
+        <rect x="320" y="152" width="220" height="36" rx="5" fill="#fefce8" stroke="#ca8a04" stroke-width="1.5"/>
+        <text x="430" y="168" text-anchor="middle" fill="#713f12" font-weight="700">Importation risk score</text>
+        <text x="430" y="181" text-anchor="middle" fill="#713f12" font-size="10">Sum Cat A outflows per receiving zone → tertiles</text>
+
+        <!-- P3 Flow geometry -->
+        <rect x="320" y="208" width="220" height="36" rx="5" fill="#fefce8" stroke="#ca8a04" stroke-width="1.5"/>
+        <text x="430" y="224" text-anchor="middle" fill="#713f12" font-weight="700">Flow line geometry</text>
+        <text x="430" y="237" text-anchor="middle" fill="#713f12" font-size="10">OD pairs &gt; 100 persons → directed line segments</text>
+
+        <!-- P4 Partner aggregation -->
+        <rect x="320" y="264" width="220" height="36" rx="5" fill="#fefce8" stroke="#ca8a04" stroke-width="1.5"/>
+        <text x="430" y="280" text-anchor="middle" fill="#713f12" font-weight="700">Partner aggregation</text>
+        <text x="430" y="293" text-anchor="middle" fill="#713f12" font-size="10">Deduplicate names · count distinct per zone</text>
+
+        <!-- ── Output boxes (right) ── -->
+        <!-- O1 KPIs -->
+        <rect x="630" y="28" width="220" height="56" rx="5" fill="#f0fdf4" stroke="#4ade80" stroke-width="1.5"/>
+        <text x="740" y="46" text-anchor="middle" fill="#14532d" font-weight="700">7 KPI values</text>
+        <text x="740" y="60" text-anchor="middle" fill="#14532d" font-size="10">Cat A · B · C counts · Cases · Deaths</text>
+        <text x="740" y="72" text-anchor="middle" fill="#14532d" font-size="10">HCF in A+B · WASH partners</text>
+
+        <!-- O2 Category layer -->
+        <rect x="630" y="98" width="220" height="30" rx="4" fill="#f0fdf4" stroke="#4ade80"/>
+        <text x="740" y="117" text-anchor="middle" fill="#14532d">Zone categories layer (choropleth)</text>
+
+        <!-- O3 Import risk layer -->
+        <rect x="630" y="140" width="220" height="30" rx="4" fill="#f0fdf4" stroke="#4ade80"/>
+        <text x="740" y="159" text-anchor="middle" fill="#14532d">Importation risk layer (choropleth)</text>
+
+        <!-- O4 Flow lines -->
+        <rect x="630" y="182" width="220" height="30" rx="4" fill="#f0fdf4" stroke="#4ade80"/>
+        <text x="740" y="201" text-anchor="middle" fill="#14532d">Mobility flow lines layer</text>
+
+        <!-- O5 HCF -->
+        <rect x="630" y="224" width="220" height="30" rx="4" fill="#f0fdf4" stroke="#4ade80"/>
+        <text x="740" y="243" text-anchor="middle" fill="#14532d">Health facilities layer (cluster)</text>
+
+        <!-- O6 Partners -->
+        <rect x="630" y="266" width="220" height="30" rx="4" fill="#f0fdf4" stroke="#4ade80"/>
+        <text x="740" y="285" text-anchor="middle" fill="#14532d">WASH partner bubbles layer</text>
+
+        <!-- ── Arrows: sources → harmonisation ── -->
+        <line x1="220" y1="41" x2="318" y2="41" stroke="#94a3b8" stroke-width="1.3" marker-end="url(#w-arr)"/>
+        <line x1="220" y1="75" x2="280" y2="75" stroke="#94a3b8" stroke-width="1.3"/>
+        <line x1="220" y1="113" x2="280" y2="113" stroke="#94a3b8" stroke-width="1.3"/>
+        <line x1="220" y1="147" x2="280" y2="147" stroke="#94a3b8" stroke-width="1.3"/>
+        <line x1="220" y1="181" x2="280" y2="181" stroke="#94a3b8" stroke-width="1.3"/>
+        <line x1="220" y1="215" x2="280" y2="215" stroke="#94a3b8" stroke-width="1.3"/>
+        <line x1="220" y1="249" x2="280" y2="249" stroke="#94a3b8" stroke-width="1.3"/>
+        <!-- vertical connector from all sources to processing fan-in point -->
+        <line x1="280" y1="41" x2="280" y2="280" stroke="#94a3b8" stroke-width="1.3"/>
+        <!-- fan-out from vertical to each processing box -->
+        <line x1="280" y1="46" x2="318" y2="46" stroke="#94a3b8" stroke-width="1.3" marker-end="url(#w-arr)"/>
+        <line x1="280" y1="108" x2="318" y2="108" stroke="#94a3b8" stroke-width="1.3" marker-end="url(#w-arr)"/>
+        <line x1="280" y1="170" x2="318" y2="170" stroke="#94a3b8" stroke-width="1.3" marker-end="url(#w-arr)"/>
+        <line x1="280" y1="226" x2="318" y2="226" stroke="#94a3b8" stroke-width="1.3" marker-end="url(#w-arr)"/>
+        <line x1="280" y1="282" x2="318" y2="282" stroke="#94a3b8" stroke-width="1.3" marker-end="url(#w-arr)"/>
+
+        <!-- ── Arrows: processing → outputs ── -->
+        <!-- Harmonisation → KPIs (contributes to everything) -->
+        <line x1="540" y1="46" x2="628" y2="46" stroke="#16a34a" stroke-width="1.5" marker-end="url(#w-arr-g)"/>
+        <!-- Category derivation → KPIs + category layer -->
+        <line x1="540" y1="108" x2="590" y2="108" stroke="#16a34a" stroke-width="1.5"/>
+        <line x1="590" y1="56" x2="628" y2="56" stroke="#16a34a" stroke-width="1.5" marker-end="url(#w-arr-g)"/>
+        <line x1="590" y1="113" x2="628" y2="113" stroke="#16a34a" stroke-width="1.5" marker-end="url(#w-arr-g)"/>
+        <line x1="590" y1="56" x2="590" y2="113" stroke="#16a34a" stroke-width="1.5"/>
+        <!-- Import risk → import risk layer -->
+        <line x1="540" y1="170" x2="628" y2="155" stroke="#16a34a" stroke-width="1.5" marker-end="url(#w-arr-g)"/>
+        <!-- Flow geometry → flow lines -->
+        <line x1="540" y1="226" x2="628" y2="197" stroke="#16a34a" stroke-width="1.5" marker-end="url(#w-arr-g)"/>
+        <!-- Partner aggregation → partners layer + KPI -->
+        <line x1="540" y1="282" x2="590" y2="282" stroke="#16a34a" stroke-width="1.5"/>
+        <line x1="590" y1="72" x2="628" y2="72" stroke="#16a34a" stroke-width="1.5" marker-end="url(#w-arr-g)"/>
+        <line x1="590" y1="281" x2="628" y2="281" stroke="#16a34a" stroke-width="1.5" marker-end="url(#w-arr-g)"/>
+        <line x1="590" y1="72" x2="590" y2="282" stroke="#16a3a4" stroke-width="1.5"/>
+
+        <!-- GRID3 → HCF layer (direct) -->
+        <line x1="220" y1="181" x2="240" y2="181" stroke="#94a3b8" stroke-width="1.3"/>
+        <line x1="240" y1="239" x2="628" y2="239" stroke="#94a3b8" stroke-width="1.3" stroke-dasharray="4,2" marker-end="url(#w-arr)"/>
+
+        <!-- Note label for GRID3 direct pass-through -->
+        <text x="420" y="252" text-anchor="middle" fill="#6b7280" font-size="10" font-style="italic">points passed through directly</text>
+      </svg>
+    </div>
+
+    <div class="callout callout-info">
+      <strong>Zone name harmonisation</strong> is a prerequisite for every join in the pipeline. The DRC health zone names differ across datasets — e.g. <em>Mongbwalu</em> in some sources maps to <em>Mongbalu</em> in the shapefile. A lookup table of observed-to-canonical name mappings ensures all sources join correctly to the 519-zone geometry. Two zones (<em>Bili</em>, <em>Lubunga</em>) exist in two provinces and require a province suffix to disambiguate.
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       SECTION 3 — ZONE CLASSIFICATION
+  ══════════════════════════════════════════════════════════════════ -->
+  <section id="categories">
+    <h2>3. Zone Classification Criteria</h2>
+    <p>Each of the 519 DRC health zones is assigned a MoH response category based on epidemiological data. Categories A and B are recalculated automatically each time new SitRep data is received. Category C is the only manual component.</p>
+
+    <div class="cat-grid">
+
+      <div class="cat-card cat-a">
+        <div class="cat-card-head">
+          <span class="cat-badge"></span>
+          Category A — Active transmission zone
+        </div>
+        <div class="cat-card-body">
+          <p><strong>Criterion:</strong> the zone has at least one confirmed case recorded at its most recent SitRep reporting date.</p>
+          <p><strong>Source:</strong> INSP SitRep — per-zone cumulative confirmed cases (daily series).</p>
+          <p>Cat A zones are the primary risk areas driving the response. They are the origin zones for the importation risk and mobility layers.</p>
+        </div>
+      </div>
+
+      <div class="cat-card cat-b">
+        <div class="cat-card-head">
+          <span class="cat-badge"></span>
+          Category B — Alert zone
+        </div>
+        <div class="cat-card-body">
+          <p>Either of the following qualifies a zone as Cat B (zone must not already be Cat A):</p>
+          <div class="sub-criterion">
+            <strong>B — Adjacent (limitrophe):</strong> the zone centroid lies within 100 m of any Cat A zone polygon boundary. A 100 m tolerance is used because the health zone shapefile contains micro-gaps between adjacent polygons; a strict boundary-touch test misses genuine neighbours.
+          </div>
+          <div class="sub-criterion">
+            <strong>B — Contacts:</strong> the zone has at least one traced contact of a confirmed case at its most recent SitRep date.
+            <br><em>Source: INSP SitRep — per-zone cumulative traced contacts.</em>
+          </div>
+        </div>
+      </div>
+
+      <div class="cat-card cat-c">
+        <div class="cat-card-head">
+          <span class="cat-badge"></span>
+          Category C — Preparedness zone
+        </div>
+        <div class="cat-card-body">
+          <p><strong>Criterion:</strong> zone is listed in the national MoH Ebola response plan as requiring preparedness activities (commercial axes, provincial interconnection corridors).</p>
+          <p>This list is <strong>manually curated</strong> and cannot be derived from SitRep data. It is maintained as a static input to the pipeline.</p>
+          <p>A zone previously classified as B that no longer meets either B criterion is retained as C rather than dropped entirely.</p>
+        </div>
+      </div>
+
+      <div class="cat-card" style="border-color:#e5e7eb">
+        <div class="cat-card-head" style="background:#f9fafb;color:#374151">
+          <span class="cat-badge" style="background:#9ca3af"></span>
+          Uncategorised zones
+        </div>
+        <div class="cat-card-body">
+          <p>Zones not meeting any criterion are rendered in neutral grey on the map. They receive no MoH response package.</p>
+          <p>The vast majority of the 519 national health zones fall into this group — the response is geographically concentrated in Ituri, Nord-Kivu, Haut-Uele and Tshopo provinces.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="callout callout-warn">
+      <strong>Category C is a curated input, not a computed output.</strong> Any ArcGIS replication must maintain Cat C as a static attribute on the zones layer. It cannot be recalculated from SitRep data alone — the MoH plan designation must be preserved and updated manually.
+    </div>
+
+    <h3>Category precedence</h3>
+    <p>The classification is strictly hierarchical: if a zone qualifies for Cat A, it is Cat A regardless of adjacency or contacts. Cat B is assigned only to zones that do not qualify as Cat A. Cat C is assigned only to zones that qualify for neither A nor B and appear on the MoH plan list.</p>
+
+    <h3>Update frequency</h3>
+    <p>The dashboard is designed to be refreshed with each new SitRep release. Cat A and Cat B are recalculated from the latest data. Cat C requires manual review when new SitRep data shows zones crossing category boundaries.</p>
+  </section>
+
+</div>
+
+<footer>
+  ArcGIS Reference Guide — Ebola DRC WASH Dashboard 2026 · EHA/WASH Cluster DRC
+</footer>
+</body>
+</html>
