@@ -102,7 +102,7 @@ footer{text-align:center;color:#999;font-size:12px;padding:20px}
           <td><strong>Category A zones</strong></td>
           <td><span class="type-kpi">KPI</span></td>
           <td>Count of health zones with at least one active confirmed case</td>
-          <td>INSP SitRep — per-zone cumulative confirmed cases (latest date per zone)</td>
+          <td>INSP SitRep — per-zone cumulative confirmed cases (latest date per zone)<br><code style="font-size:11px;color:#6b7280">insp_sitrep__cumulative_confirmed_cases__daily.csv</code></td>
           <td><strong>ArcGIS Dashboards — Indicator widget</strong>; filter the zones Feature Layer where <code>category = "A"</code> and use COUNT aggregation</td>
         </tr>
         <tr>
@@ -110,7 +110,7 @@ footer{text-align:center;color:#999;font-size:12px;padding:20px}
           <td><strong>Category B zones</strong></td>
           <td><span class="type-kpi">KPI</span></td>
           <td>Count of alert zones — spatially adjacent to Cat A or with confirmed traced contacts</td>
-          <td>INSP SitRep — per-zone cases &amp; contacts traced; DRC health zones shapefile (adjacency)</td>
+          <td>INSP SitRep — per-zone cases &amp; contacts traced; DRC health zones shapefile (adjacency)<br><code style="font-size:11px;color:#6b7280">insp_sitrep__cumulative_confirmed_cases__daily.csv · DRC_Health_zones.shp</code></td>
           <td><strong>ArcGIS Dashboards — Indicator widget</strong>; filter where <code>category = "B"</code></td>
         </tr>
         <tr>
@@ -118,7 +118,7 @@ footer{text-align:center;color:#999;font-size:12px;padding:20px}
           <td><strong>Category C zones</strong></td>
           <td><span class="type-kpi">KPI</span></td>
           <td>Count of preparedness zones designated in the national MoH plan</td>
-          <td>Static MoH plan list (manually curated — not derived from SitRep)</td>
+          <td>Static MoH plan list (manually curated — not derived from SitRep)<br><code style="font-size:11px;color:#6b7280">moh_categories__category__static.csv</code></td>
           <td><strong>ArcGIS Dashboards — Indicator widget</strong>; filter where <code>category = "C"</code></td>
         </tr>
         <tr>
@@ -126,7 +126,7 @@ footer{text-align:center;color:#999;font-size:12px;padding:20px}
           <td><strong>Confirmed cases</strong></td>
           <td><span class="type-kpi">KPI</span></td>
           <td>National cumulative confirmed cases at the most recent SitRep date</td>
-          <td>INSP SitRep — national cumulative confirmed cases (single national time series)</td>
+          <td>INSP SitRep — national cumulative confirmed cases (single national time series)<br><code style="font-size:11px;color:#6b7280">insp_sitrep__cumulative_confirmed_cases__daily.csv</code></td>
           <td><strong>ArcGIS Dashboards — Indicator widget</strong>; hosted table with MAX on the value field</td>
         </tr>
         <tr>
@@ -134,7 +134,7 @@ footer{text-align:center;color:#999;font-size:12px;padding:20px}
           <td><strong>Confirmed deaths</strong></td>
           <td><span class="type-kpi">KPI</span></td>
           <td>National cumulative confirmed deaths at the most recent SitRep date</td>
-          <td>INSP SitRep — national cumulative confirmed deaths (single national time series)</td>
+          <td>INSP SitRep — national cumulative confirmed deaths (single national time series)<br><code style="font-size:11px;color:#6b7280">insp_sitrep__cumulative_confirmed_deaths__daily.csv</code></td>
           <td><strong>ArcGIS Dashboards — Indicator widget</strong>; hosted table with MAX on the value field</td>
         </tr>
         <tr>
@@ -142,7 +142,7 @@ footer{text-align:center;color:#999;font-size:12px;padding:20px}
           <td><strong>HCF in A+B zones</strong></td>
           <td><span class="type-kpi">KPI</span></td>
           <td>Total count of health facilities located in Category A or B zones</td>
-          <td>GRID3 DRC health facility count (per zone) + zone category</td>
+          <td>GRID3 DRC health facility count (per zone) + zone category<br><code style="font-size:11px;color:#6b7280">grid3_healthsites__healthsite_count__static.csv</code></td>
           <td><strong>ArcGIS Dashboards — Indicator widget</strong>; SUM of <code>healthsite_count</code> filtered to zones where <code>category IN ("A","B")</code></td>
         </tr>
         <tr>
@@ -150,7 +150,7 @@ footer{text-align:center;color:#999;font-size:12px;padding:20px}
           <td><strong>WASH partners</strong></td>
           <td><span class="type-kpi">KPI</span></td>
           <td>Count of distinct WASH cluster partners active anywhere in the response area</td>
-          <td>OCHA WASH capacity assessment (Excel, EHA cluster sheet)</td>
+          <td>OCHA WASH capacity assessment (Excel, EHA cluster sheet)<br><code style="font-size:11px;color:#6b7280">Ebola__Evaluation_de_la_capacité_27Mai2026.xlsx</code></td>
           <td><strong>ArcGIS Dashboards — Indicator widget</strong>; hosted table with COUNT DISTINCT on the canonical partner name field</td>
         </tr>
 
@@ -161,7 +161,7 @@ footer{text-align:center;color:#999;font-size:12px;padding:20px}
           <td><strong>MoH zone categories</strong></td>
           <td><span class="type-layer">Map layer</span></td>
           <td>All 519 DRC health zones coloured by MoH category (A = dark red · B = orange · C = amber · uncategorised = grey). Default layer shown on opening.</td>
-          <td>DRC health zones shapefile + derived category attribute (from SitRep cases, contacts, and static C list)</td>
+          <td>DRC health zones shapefile + derived category attribute (from SitRep cases, contacts, and static C list)<br><code style="font-size:11px;color:#6b7280">DRC_Health_zones.shp · moh_categories__category__static.csv</code></td>
           <td><strong>ArcGIS Online Feature Layer</strong> (polygon) with <strong>Unique Value</strong> symbology on the category field. Display in ArcGIS Dashboards <strong>Map widget</strong>; configure layer toggle in the Map widget layer list.</td>
         </tr>
         <tr>
@@ -169,7 +169,7 @@ footer{text-align:center;color:#999;font-size:12px;padding:20px}
           <td><strong>Importation risk</strong></td>
           <td><span class="type-layer">Map layer</span></td>
           <td>Zones coloured by estimated volume of population movement arriving from Cat A zones. Three tiers derived from equal-proportion tertiles: High · Medium · Low. Cat A source zones shown separately.</td>
-          <td>Flowminder outflow OD matrix — Cat A origin rows summed per destination zone (> 100-person threshold)</td>
+          <td>Flowminder outflow OD matrix — Cat A origin rows summed per destination zone (> 100-person threshold)<br><code style="font-size:11px;color:#6b7280">flowminder__outflow__static.matrix.csv</code></td>
           <td><strong>ArcGIS Online Feature Layer</strong> (polygon) with <strong>Classified Breaks</strong> symbology on the importation volume field (3 classes). Toggle layer off by default in the Map widget.</td>
         </tr>
         <tr>
@@ -177,7 +177,7 @@ footer{text-align:center;color:#999;font-size:12px;padding:20px}
           <td><strong>Mobility flow lines</strong></td>
           <td><span class="type-layer">Map layer</span></td>
           <td>Directed lines connecting origin and destination zone centroids, scaled in width by movement volume. Lines originating from Cat A zones are rendered at full opacity; all others are subdued.</td>
-          <td>Flowminder outflow OD matrix — all origin–destination pairs above 100 persons</td>
+          <td>Flowminder outflow OD matrix — all origin–destination pairs above 100 persons<br><code style="font-size:11px;color:#6b7280">flowminder__outflow__static.matrix.csv</code></td>
           <td><strong>ArcGIS Online Feature Layer</strong> (polyline) with <strong>Proportional Symbols</strong> line width based on the volume field. Add a binary field to distinguish Cat A origins for a two-class opacity rule. Toggle off by default.</td>
         </tr>
         <tr>
@@ -185,7 +185,7 @@ footer{text-align:center;color:#999;font-size:12px;padding:20px}
           <td><strong>Health facilities (GRID3)</strong></td>
           <td><span class="type-layer">Map layer</span></td>
           <td>Individual geolocated health facilities in the four operational provinces (Ituri, Nord-Kivu, Haut-Uele, Tshopo), with sub-filtering by facility type. Points cluster at small scales.</td>
-          <td>GRID3 DRC health facilities v8 (point shapefile), spatially joined to health zone</td>
+          <td>GRID3 DRC health facilities v8 (point shapefile), spatially joined to health zone<br><code style="font-size:11px;color:#6b7280">COD_GRID3_health_facilities_v8_0.shp</code></td>
           <td><strong>ArcGIS Online Feature Layer</strong> (point) with <strong>Feature clustering</strong> enabled in the layer settings. Use a Definition Query to limit to the four provinces. A <strong>Serial chart</strong> widget can act as a sub-filter by facility type linked to the map.</td>
         </tr>
         <tr>
@@ -193,7 +193,7 @@ footer{text-align:center;color:#999;font-size:12px;padding:20px}
           <td><strong>WASH partner presence</strong></td>
           <td><span class="type-layer">Map layer</span></td>
           <td>Zone centroids sized proportionally by the number of distinct WASH partners active in each zone. Pop-up lists the partner names.</td>
-          <td>OCHA WASH capacity assessment (Excel, EHA cluster sheet); partner names deduplicated before counting</td>
+          <td>OCHA WASH capacity assessment (Excel, EHA cluster sheet); partner names deduplicated before counting<br><code style="font-size:11px;color:#6b7280">Ebola__Evaluation_de_la_capacité_27Mai2026.xlsx</code></td>
           <td><strong>ArcGIS Online Feature Layer</strong> (point) with <strong>Proportional Symbols</strong> size based on the partner count field. Toggle off by default.</td>
         </tr>
       </tbody>
