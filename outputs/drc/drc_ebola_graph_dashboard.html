@@ -110,7 +110,7 @@ function infoHTML(p){
     : 'On the watchlist by network proximity to active-case zones via observed mobility / displacement / travel-time fallback.';
   return `<h2>${p.nom}${seed}</h2>
    <div class="kv"><b>Vulnerability:</b> ${fmt(p.vuln_score,3)} (${p.tier||'&mdash;'})</div>
-   <div class="kv"><b>Archetype:</b> ${p.archetype||'&mdash;'}</div>
+   <div class="kv"><b>Profile:</b> ${p.archetype||'&mdash;'}</div>
    <div class="kv"><b>Raised by:</b> ${(p.top_drivers||'').replace(/;/g,', ')||'&mdash;'}</div>
    <div class="kv"><b>Lowered by:</b> ${(p.bottom_drivers||'').replace(/;/g,', ')||'&mdash;'}</div>
    <hr style="border:none;border-top:1px solid #ddd;margin:6px 0">
