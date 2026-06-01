@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ebola DRC 2026 - Preventive Risk MVP (SitRep 2026-05-27)</title>
+<title>Ebola DRC 2026 - Preventive Risk Tool (SitRep 2026-05-27)</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <style>
   html,body{margin:0;height:100%;font-family:system-ui,Arial,sans-serif}
@@ -50,7 +50,7 @@
 </style></head><body>
 <div id="map"></div>
 <div id="title" class="panel">
-  <h1>Preventive Risk MVP</h1>
+  <h1>Preventive Risk Tool</h1>
   <div class="sub">Ebola DRC 2026 &middot; SitRep 2026-05-27 &middot; 14 active-case seeds<br>
   Decision support &mdash; <b>relative rankings, not probabilities</b>.</div>
 </div>
@@ -118,7 +118,7 @@ function infoHTML(p){
       ${p.imp_rank==null?'':'<span style="color:#888">(rank #'+p.imp_rank+')</span>'}</div>
    ${bar}
    <div class="kv"><b>Confidence:</b> ${conf==null?'&mdash;':'&plusmn;'+conf.pct+'% ('+conf.word+')'}</div>
-   <div class="kv"><b>Graph source:</b> ${p.source_flag||'&mdash;'}</div>
+   <div class="kv"><b>Mobility data:</b> ${p.source_flag=='flowminder'?'observed':p.source_flag=='gravity_fallback'?'estimated (lower confidence)':'&mdash;'}</div>
    <div class="kv" style="margin-top:5px;color:#555"><i>${means}</i></div>`;
 }
 
@@ -229,7 +229,8 @@ function drawLegend(mode){
   if(map.hasLayer(corridorLayer)){
     el.innerHTML+='<hr style="margin:5px 0"><b>Corridors</b>'+
      '<div><span class="swatch" style="background:#08519c"></span>observed mobility</div>'+
-     '<div><span class="swatch" style="background:#6a51a3"></span>via gravity-fallback (lower confidence)</div>';
+     '<div><span class="swatch" style="background:#6a51a3"></span>estimated mobility* (lower confidence)</div>'+
+     '<div style="color:#666;font-size:9.5px;margin-top:3px">* estimated with a gravity model</div>';
   }
 }
 map.on('overlayadd overlayremove', ()=>drawLegend());

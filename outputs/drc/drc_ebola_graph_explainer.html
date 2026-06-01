@@ -143,7 +143,7 @@
       <div class="kv"><b>Importation risk:</b> <b>23</b> / 100 <span class="muted">(rank #44)</span></div>
       <div class="bar"><div></div></div>
       <div class="kv"><b>Confidence:</b> ±20% (stable)</div>
-      <div class="kv"><b>Graph source:</b> flowminder</div>
+      <div class="kv"><b>Mobility data:</b> observed</div>
       <div class="note">On the watchlist by network proximity to active-case zones
         via observed mobility / displacement / travel-time fallback.</div>
     </div>
@@ -172,9 +172,9 @@
         <tr><td><b>Confidence</b><br><span class="muted mono">±20% (stable)</span></td>
           <td>How sensitive the index is to data uncertainty (from 100 bootstrap runs).</td>
           <td>Smaller % = more reliable: <span class="pill" style="background:rgba(16,185,129,.18);color:var(--ok)">stable &lt;25%</span> <span class="pill" style="background:rgba(245,158,11,.18);color:var(--warn)">moderate 25–50%</span> <span class="pill" style="background:rgba(177,0,38,.15);color:var(--accent)">uncertain &gt;50%</span>. An "uncertain" zone may jump between refreshes.</td></tr>
-        <tr><td><b>Graph source</b><br><span class="muted mono">flowminder</span></td>
-          <td>Whether the zone's movement links come from observed data or a model.</td>
-          <td><span class="mono">flowminder</span> = observed mobility (higher confidence); <span class="mono">gravity_fallback</span> = estimated from population &amp; travel time (lower confidence — interpret cautiously).</td></tr>
+        <tr><td><b>Mobility data</b><br><span class="muted mono">observed</span></td>
+          <td>Whether the zone's movement links come from observed data or an estimate.</td>
+          <td><b>observed</b> = real mobility data (higher confidence); <b>estimated (lower confidence)</b> = inferred from population &amp; travel time where observed data is missing <span class="muted">(a gravity model)</span> — interpret cautiously.</td></tr>
         <tr><td><b>Narrative line</b></td>
           <td>A plain-language summary of why the zone appears.</td>
           <td>For active-case zones this instead states the zone is currently reporting cases (a diffusion seed).</td></tr>
