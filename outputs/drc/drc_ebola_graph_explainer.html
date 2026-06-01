@@ -10,13 +10,8 @@
     --text:#1a202c; --text-muted:#64748b; --accent:#b10026; --accent2:#08519c;
     --code-bg:#f1f5f9; --ok:#10b981; --warn:#f59e0b;
   }
-  @media (prefers-color-scheme:dark){
-    :root{
-      --bg:#0f172a; --surface:#1e293b; --surface2:#172033; --border:#334155;
-      --text:#f1f5f9; --text-muted:#94a3b8; --accent:#f87171; --accent2:#60a5fa;
-      --code-bg:#1e293b; --ok:#34d399; --warn:#fbbf24;
-    }
-  }
+  /* Always light theme (no prefers-color-scheme dark override). */
+  html{color-scheme:light}
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--bg);
     color:var(--text);line-height:1.55;font-size:15px}
