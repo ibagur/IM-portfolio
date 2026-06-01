@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ebola DRC 2026 — Preventive Risk MVP · Partner Guide</title>
+<style>
+  :root{
+    --bg:#ffffff; --surface:#f8f9fa; --surface2:#f1f5f9; --border:#e2e8f0;
+    --text:#1a202c; --text-muted:#64748b; --accent:#b10026; --accent2:#08519c;
+    --code-bg:#f1f5f9; --ok:#10b981; --warn:#f59e0b;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#0f172a; --surface:#1e293b; --surface2:#172033; --border:#334155;
+      --text:#f1f5f9; --text-muted:#94a3b8; --accent:#f87171; --accent2:#60a5fa;
+      --code-bg:#1e293b; --ok:#34d399; --warn:#fbbf24;
+    }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--bg);
+    color:var(--text);line-height:1.55;font-size:15px}
+  .wrap{max-width:1080px;margin:0 auto;padding:32px 22px 64px}
+  header{border-bottom:3px solid var(--accent);padding-bottom:16px;margin-bottom:8px}
+  .eyebrow{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);font-weight:700}
+  h1{font-size:1.7rem;margin:4px 0 6px;line-height:1.2}
+  .lede{color:var(--text-muted);font-size:.95rem;max-width:70ch}
+  h2{font-size:1.15rem;margin:38px 0 6px;padding-top:8px;display:flex;align-items:center;gap:10px}
+  h2 .num{background:var(--accent);color:#fff;border-radius:6px;font-size:.8rem;
+    width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
+  .section-sub{color:var(--text-muted);font-size:.9rem;margin:2px 0 14px}
+  table{border-collapse:collapse;width:100%;font-size:.86rem;margin:10px 0 6px;
+    background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+  thead th{background:var(--surface2);text-align:left;font-size:.74rem;letter-spacing:.04em;
+    text-transform:uppercase;color:var(--text-muted);padding:10px 12px;border-bottom:1px solid var(--border)}
+  td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:hover{background:var(--surface2)}
+  td:first-child,th:first-child{white-space:nowrap}
+  .scripts td:nth-child(2){font-weight:600}
+  code,.mono{font-family:'Cascadia Code','Fira Code',Consolas,monospace;font-size:.85em;
+    background:var(--code-bg);padding:1px 5px;border-radius:4px}
+  .pill{display:inline-block;font-size:.7rem;font-weight:700;border-radius:20px;padding:2px 9px}
+  .callout{border-left:4px solid;padding:11px 15px;border-radius:0 8px 8px 0;margin:12px 0;font-size:.9rem}
+  .callout.info{border-color:var(--accent2);background:rgba(8,81,156,.08)}
+  .callout.tip{border-color:var(--ok);background:rgba(16,185,129,.09)}
+  .callout .ct{font-weight:700;font-size:.8rem;margin-bottom:3px}
+  .callout ul{margin:4px 0 0 18px}.callout li{margin:3px 0}
+  /* mock tooltip replicating the dashboard hover panel */
+  .tt-layout{display:grid;grid-template-columns:300px 1fr;gap:24px;align-items:start;margin:6px 0 4px}
+  @media(max-width:720px){.tt-layout{grid-template-columns:1fr}}
+  .tooltip{background:var(--bg);border:1px solid var(--border);border-radius:8px;
+    box-shadow:0 1px 8px rgba(0,0,0,.18);padding:12px 14px;font-size:13px;position:sticky;top:16px}
+  .tooltip h3{font-size:14px;margin:0 0 7px}
+  .tooltip .kv{margin:3px 0}.tooltip .kv b{color:var(--text)}
+  .seedtag{background:var(--accent);color:#fff;padding:0 6px;border-radius:3px;font-size:10px}
+  .bar{background:var(--border);border-radius:3px;height:9px;margin:4px 0}
+  .bar>div{height:9px;border-radius:3px;background:var(--accent2);width:23%}
+  .muted{color:var(--text-muted)}
+  .rule{border:none;border-top:1px solid var(--border);margin:7px 0}
+  .note{color:var(--text-muted);font-size:12px;font-style:italic;margin-top:6px}
+  .brief{background:var(--surface);border:1px solid var(--border);border-radius:12px;
+    padding:16px 18px;margin-top:18px;font-size:.95rem}
+  .brief b{color:var(--accent)}
+  footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);
+    color:var(--text-muted);font-size:.78rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  @media print{
+    body{font-size:11.5px}.wrap{max-width:none;padding:0}
+    .tooltip{position:static;box-shadow:none}tbody tr:hover{background:none}
+    h2{page-break-after:avoid}table{page-break-inside:auto}tr{page-break-inside:avoid}
+    .tt-layout{grid-template-columns:280px 1fr}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Ebola DRC 2026 · Preventive Risk MVP</div>
+    <h1>Partner Guide: what the maps show &amp; how to read them</h1>
+    <p class="lede">A plain-language reference to the four risk products and the
+      dashboard hover panel. Every value is a <b>prioritisation ranking to guide
+      surveillance — not a prediction or a probability of infection.</b></p>
+  </header>
+
+  <div class="callout info" style="margin-top:18px">
+    <div class="ct">How it works — a graph approach</div>
+    <p>The MVP represents the country as a <b>graph</b> of health zones and the
+      movement between them, then spreads risk along that network:</p>
+    <ul>
+      <li><b>Nodes</b> — the 519 health zones, indexed by canonical <span class="mono">nom</span>.</li>
+      <li><b>Node features</b> — static variables (population, poverty, health-service access…) from <span class="mono">build/long/*.csv</span>.</li>
+      <li><b>Node signals over time</b> — daily INSP case &amp; Point-of-Entry metrics from <span class="mono">build/long/insp_sitrep__*.csv</span>.</li>
+      <li><b>Edges</b> — mobility, displacement and travel-time relationships between zones, from the matrix CSVs.</li>
+    </ul>
+  </div>
+
+  <h2><span class="num">11</span>Scripts at a glance</h2>
+  <p class="section-sub">What actually runs in the pipeline — the data each step uses,
+    the method, and the operational question it answers.</p>
+  <table class="scripts">
+    <thead><tr><th>#</th><th>Product</th><th>Data it uses</th><th>Method</th><th>Question it answers</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Zone vulnerability</td>
+        <td>WorldPop population density; GDP per capita (inverted); CCVI socio-economic deprivation &amp; inequality; FAO urban fraction; GRID3 healthsite density (inverted). Refugee-site presence as a side flag.</td>
+        <td>Six features put on a common scale (z-score), equal-weight averaged, converted to a 0–1 within-country percentile and split into five tiers. K-Means (k=5) groups zones into archetypes.</td>
+        <td><i>"If Ebola reaches this zone, how intrinsically vulnerable is it — population, poverty, health-service access?"</i></td></tr>
+      <tr><td>2</td><td>PoE (border) risk</td>
+        <td>INSP daily Point-of-Entry counts (passengers passed / screened / refused); Imperial College cross-border passenger volumes.</td>
+        <td>Per screening point: unscreened travellers/day = passed − screened (volume × screening leakage), averaged over the latest window. Busy crossings with no screening data are flagged <span class="mono">unmonitored</span>.</td>
+        <td><i>"Which border crossings have the highest screening-gap exposure, and which busy crossings are unmonitored?"</i></td></tr>
+      <tr><td>3</td><td>Importation risk</td>
+        <td>Flowminder mobility (outflow) + gravity-model fallback for uncovered zones + recent IOM-DTM displacement (monthly); INSP confirmed cases as seeds.</td>
+        <td>A movement graph between all 519 zones; Personalised PageRank (α = 0.85) spreads risk outward from zones with a confirmed case in the last 7 days. 100 bootstrap runs give a confidence band.</td>
+        <td><i>"Given where cases are active now, which currently unaffected zones are most network-close to the outbreak?"</i></td></tr>
+      <tr><td>4</td><td>Transmission corridors</td>
+        <td>The same movement graph as #3, plus the top-20 importation-risk destinations and zone centroids.</td>
+        <td>Shortest "effective-distance" paths (high-probability movement = short) from each active-case zone to the high-risk destinations, capped at 4 hops, drawn as map lines.</td>
+        <td><i>"Which plausible movement routes explain why those zones are at risk?"</i></td></tr>
+      <tr><td>5</td><td>Dashboard</td>
+        <td>All four outputs above + the 519-zone map.</td>
+        <td>A single self-contained interactive map (Leaflet) with toggleable layers, hover details and a disclaimer.</td>
+        <td><i>"One combined operational view for coordinators."</i></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout info">
+    <div class="ct">Where this differs from the original plan (deliberate, data-driven)</div>
+    <ul>
+      <li><b>Vulnerability</b> dropped a "nearest-facility travel time" feature (518 of 519 zones already contain a facility, so it carried no signal) and moved refugee-site presence to a <i>flag</i> rather than a scored feature. The composite uses six clean features.</li>
+      <li><b>PoE risk</b> is computed from the INSP data alone (volume and screening from the same records), because the Imperial volume and INSP screening datasets overlap on only two zones. Imperial volumes are kept as context and to flag unmonitored crossings.</li>
+      <li><b>Importation risk</b> uses the Flowminder <b>outflow</b> matrix (rows = where people leave from) and the <b>monthly</b> displacement matrix (the weekly file is too sparse).</li>
+    </ul>
+    <p style="margin-top:8px">All outputs are deterministic (fixed random seed) and key on the canonical zone name <span class="mono">nom</span>, so they slot directly into the 519-zone map.</p>
+  </div>
+
+  <h2><span class="num">12</span>Reading the dashboard tooltip</h2>
+  <p class="section-sub">Hovering a health zone fills the left-hand panel. Below is a
+    worked example (Mambasa) and a line-by-line guide.</p>
+
+  <div class="tt-layout">
+    <div class="tooltip" aria-label="Example tooltip">
+      <h3>Mambasa</h3>
+      <div class="kv"><b>Vulnerability:</b> 0.934 (Very High)</div>
+      <div class="kv"><b>Archetype:</b> high_inequality|low_gdp_pc</div>
+      <div class="kv"><b>Raised by:</b> high_inequality, low_gdp_pc, high_deprivation</div>
+      <div class="kv"><b>Lowered by:</b> low_urban_fraction, low_pop_density</div>
+      <hr class="rule">
+      <div class="kv"><b>Importation risk:</b> <b>23</b> / 100 <span class="muted">(rank #44)</span></div>
+      <div class="bar"><div></div></div>
+      <div class="kv"><b>Confidence:</b> ±20% (stable)</div>
+      <div class="kv"><b>Graph source:</b> flowminder</div>
+      <div class="note">On the watchlist by network proximity to active-case zones
+        via observed mobility / displacement / travel-time fallback.</div>
+    </div>
+
+    <table>
+      <thead><tr><th>Line</th><th>What it tells you</th><th>How to read it</th></tr></thead>
+      <tbody>
+        <tr><td><b>Zone name</b><br><span class="muted mono">Mambasa</span></td>
+          <td>The health zone under the cursor.</td>
+          <td>A red <span class="seedtag">ACTIVE CASE SEED</span> tag appears instead of a rank if the zone is currently reporting confirmed cases.</td></tr>
+        <tr><td><b>Vulnerability</b><br><span class="muted mono">0.934 (Very High)</span></td>
+          <td>How vulnerable the zone is <i>if</i> cases arrive — a 0–1 ranking against all 519 zones, plus its tier.</td>
+          <td>Higher = more vulnerable (0.934 ≈ top 7% nationally). A <i>consequence / readiness</i> score, <b>not</b> where the outbreak is moving.</td></tr>
+        <tr><td><b>Archetype</b><br><span class="muted mono">high_inequality|low_gdp_pc</span></td>
+          <td>The "type" of zone (from clustering) — its two strongest traits.</td>
+          <td>A planning label for grouping similar zones. Not a number to rank on.</td></tr>
+        <tr><td><b>Raised by</b></td>
+          <td>The three factors pushing this zone's vulnerability <b>up</b>.</td>
+          <td>Read literally: <span class="mono">low_gdp_pc</span> = low income, <span class="mono">low_healthsite_density</span> = poor health-service access. Explains <i>why</i> the score is high.</td></tr>
+        <tr><td><b>Lowered by</b></td>
+          <td>The factors pulling the score <b>down</b> — where the zone is below the national average (protective terms).</td>
+          <td>Two zones with the same "Raised by" can score very differently because of this line. A strong entry (e.g. <span class="mono">low_inequality</span>) is often what makes an otherwise-average zone score <i>Very Low</i>. Blank for the most vulnerable zones.</td></tr>
+        <tr><td><b>Importation risk</b><br><span class="muted mono">23 / 100 (rank #44)</span></td>
+          <td>An easy-to-compare <b>0–100 index</b> of how network-close the zone is to active cases, with its watchlist rank and a colour bar.</td>
+          <td><b>Higher number / fuller bar = higher priority.</b> Scaled so the top watchlist zone = 100; bar colour matches the map. <span class="mono">rank #44</span> = 43 zones rank above it. A <b>relative ranking, not a probability</b>.</td></tr>
+        <tr><td><b>Confidence</b><br><span class="muted mono">±20% (stable)</span></td>
+          <td>How sensitive the index is to data uncertainty (from 100 bootstrap runs).</td>
+          <td>Smaller % = more reliable: <span class="pill" style="background:rgba(16,185,129,.18);color:var(--ok)">stable &lt;25%</span> <span class="pill" style="background:rgba(245,158,11,.18);color:var(--warn)">moderate 25–50%</span> <span class="pill" style="background:rgba(177,0,38,.15);color:var(--accent)">uncertain &gt;50%</span>. An "uncertain" zone may jump between refreshes.</td></tr>
+        <tr><td><b>Graph source</b><br><span class="muted mono">flowminder</span></td>
+          <td>Whether the zone's movement links come from observed data or a model.</td>
+          <td><span class="mono">flowminder</span> = observed mobility (higher confidence); <span class="mono">gravity_fallback</span> = estimated from population &amp; travel time (lower confidence — interpret cautiously).</td></tr>
+        <tr><td><b>Narrative line</b></td>
+          <td>A plain-language summary of why the zone appears.</td>
+          <td>For active-case zones this instead states the zone is currently reporting cases (a diffusion seed).</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="brief">
+    <b>One-sentence brief for partners:</b> the colour shows where the outbreak is most
+    likely to reach next (importation risk); the vulnerability score shows how hard it
+    would be to respond there if it does; the lines show the movement routes that connect
+    them. <b>All values are prioritisation rankings to guide surveillance — not predictions
+    or probabilities.</b>
+  </div>
+
+  <footer>
+    <span>Source: <span class="mono">risk_mvp_methods_explainer.md</span> §11–§12 · Ebola DRC 2026</span>
+    <span>Decision support — not automated decisions.</span>
+  </footer>
+</div>
+</body>
+</html>
