@@ -89,6 +89,62 @@
     </ul>
   </div>
 
+  <figure style="margin:18px 0;text-align:center">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 460" width="100%"
+         style="height:auto;max-width:840px" role="img"
+         aria-label="Diagram of the risk network: health zones as nodes with features, movement as labelled edges">
+      <style>text{font-family:system-ui,-apple-system,'Segoe UI',Arial,sans-serif}</style>
+      <defs>
+        <marker id="arr" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12"
+                refX="9" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 Z" fill="#08519c"/></marker>
+      </defs>
+      <rect x="0" y="0" width="860" height="460" fill="#ffffff"/>
+      <text x="24" y="30" font-size="17" font-weight="700" fill="#1a202c">What the risk network contains</text>
+      <text x="24" y="50" font-size="12" fill="#64748b">Health zones (nodes) linked by movement (edges) — the tool spreads risk along these links</text>
+      <circle cx="160" cy="185" r="54" fill="#b10026" opacity="0.08"/>
+      <line x1="200" y1="185" x2="464" y2="185" stroke="#08519c" stroke-width="5" marker-end="url(#arr)"/>
+      <line x1="160" y1="225" x2="160" y2="324" stroke="#08519c" stroke-width="3" marker-end="url(#arr)"/>
+      <line x1="500" y1="221" x2="500" y2="324" stroke="#08519c" stroke-width="2" marker-end="url(#arr)"/>
+      <line x1="196" y1="360" x2="464" y2="360" stroke="#08519c" stroke-width="2" marker-end="url(#arr)"/>
+      <text x="332" y="176" font-size="10.5" fill="#64748b" text-anchor="middle">line thickness = combined edge score</text>
+      <circle cx="160" cy="185" r="40" fill="#fde7ea" stroke="#b10026" stroke-width="2.5"/>
+      <text x="160" y="190" font-size="13" font-weight="700" fill="#1a202c" text-anchor="middle">Zone A</text>
+      <text x="160" y="245" font-size="10.5" font-weight="700" fill="#b10026" text-anchor="middle">active cases</text>
+      <circle cx="500" cy="185" r="36" fill="#eef3fb" stroke="#08306b" stroke-width="2"/>
+      <text x="500" y="190" font-size="13" font-weight="700" fill="#1a202c" text-anchor="middle">Zone B</text>
+      <circle cx="160" cy="360" r="36" fill="#eef3fb" stroke="#08306b" stroke-width="2"/>
+      <text x="160" y="365" font-size="13" font-weight="700" fill="#1a202c" text-anchor="middle">Zone D</text>
+      <circle cx="500" cy="360" r="36" fill="#eef3fb" stroke="#08306b" stroke-width="2"/>
+      <text x="500" y="365" font-size="13" font-weight="700" fill="#1a202c" text-anchor="middle">Zone C</text>
+      <line x1="600" y1="155" x2="536" y2="185" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3 3"/>
+      <rect x="600" y="95" width="244" height="122" rx="10" fill="#f8f9fa" stroke="#cbd5e1"/>
+      <text x="614" y="118" font-size="12" font-weight="700" fill="#08306b">NODE = a health zone</text>
+      <text x="614" y="138" font-size="11" fill="#334155">What each zone knows:</text>
+      <text x="614" y="158" font-size="11" fill="#334155">• population, poverty</text>
+      <text x="614" y="176" font-size="11" fill="#334155">• health-service access, urban share</text>
+      <text x="614" y="194" font-size="11" fill="#334155">• recent cases &amp; border screening</text>
+      <text x="614" y="210" font-size="9.5" fill="#64748b">(static traits + figures updated over time)</text>
+      <line x1="600" y1="330" x2="504" y2="292" stroke="#94a3b8" stroke-width="1" stroke-dasharray="3 3"/>
+      <rect x="600" y="285" width="244" height="122" rx="10" fill="#f8f9fa" stroke="#cbd5e1"/>
+      <text x="614" y="306" font-size="12" font-weight="700" fill="#08519c">EDGE = a movement link</text>
+      <text x="614" y="324" font-size="11" fill="#334155">Its strength blends several signals:</text>
+      <text x="614" y="342" font-size="11" fill="#334155">• observed people movement — 70%</text>
+      <text x="614" y="360" font-size="11" fill="#334155">• recent displacement — 30%</text>
+      <text x="614" y="378" font-size="11" fill="#334155">• travel time fills gaps (estimate)</text>
+      <text x="614" y="398" font-size="11" font-weight="700" fill="#08519c">→ one combined edge score</text>
+      <circle cx="30" cy="438" r="6" fill="#fde7ea" stroke="#b10026" stroke-width="2"/>
+      <text x="42" y="442" font-size="11" fill="#334155">zone with active cases (seed)</text>
+      <line x1="252" y1="438" x2="288" y2="438" stroke="#08519c" stroke-width="4" marker-end="url(#arr)"/>
+      <text x="298" y="442" font-size="11" fill="#334155">movement link — risk flows along the arrows</text>
+    </svg>
+    <figcaption style="font-size:.82rem;color:var(--text-muted);margin-top:6px">
+      The graph in one picture — each <b>node</b> is a health zone carrying its own features;
+      each <b>edge</b> is a movement link whose strength is a <b>weighted blend</b> of several
+      signals (≈70% observed mobility + 30% recent displacement, travel&nbsp;time and population
+      filling gaps) combined into one edge score. Risk diffuses outward from active-case zones
+      along these links.</figcaption>
+  </figure>
+
   <h2><span class="num">11</span>Scripts at a glance</h2>
   <p class="section-sub">What actually runs in the pipeline — the data each step uses,
     the method, and the operational question it answers.</p>
