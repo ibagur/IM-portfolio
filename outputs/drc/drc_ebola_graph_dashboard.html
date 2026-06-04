@@ -34,11 +34,8 @@
   .top10-ctl tr:hover td{background:#eef3fb}
   .top10-ctl .pos{color:#999;width:14px}
   .top10-ctl .nom{font-weight:600}
-  .top10-ctl .vcell{text-align:center;border-radius:3px;font-weight:600;color:#222;
-    min-width:34px;padding:1px 4px}
   .top10-ctl .ibar{background:#eee;border-radius:2px;height:6px;margin-top:2px}
   .top10-ctl .ibar>div{height:6px;border-radius:2px}
-  .warn{color:#b10026;font-weight:700;margin-right:2px}
   @media print{.top10-ctl{max-height:none;overflow:visible}}
   /* Static zone-name labels (seeds + watchlist) — non-interactive overlay */
   .leaflet-div-icon.zlabel-icon{background:none;border:none;width:0;height:0}
@@ -55,8 +52,7 @@
   Decision support &mdash; <b>relative rankings, not probabilities</b>.</div>
 </div>
 <div id="info" class="panel"><div id="info-body"><h2>Hover a health zone</h2>
-  Move the cursor over a zone to see its vulnerability and importation-risk
-  profile.</div></div>
+  Move the cursor over a zone to see its importation-risk profile.</div></div>
 <div id="legend" class="panel"></div>
 <div id="disclaimer" class="panel">
   <b>What this is:</b> a transparent, data-grounded watchlist to prioritise
@@ -73,18 +69,14 @@ L.control.zoom({position:'topright'}).addTo(map);   // zoom + layer control shar
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
   {maxZoom:12, attribution:'&copy; OpenStreetMap'}).addTo(map);
 
-const TIER_COLORS = {'Very Low':'#ffffb2','Low':'#fecc5c','Medium':'#fd8d3c',
-  'High':'#f03b20','Very High':'#bd0026'};
 function impColor(rank){ // rank 1=highest risk; blue palette matching flexdashboard
   if(rank==null) return '#f7f7f7';
-  if(rank<=20) return '#08519c';   // Élevé
-  if(rank<=100) return '#6baed6';  // Moyen
-  return '#c6dbef';                // Faible
+  if(rank<=20) return '#08519c';   // High
+  if(rank<=100) return '#6baed6';  // Medium
+  return '#c6dbef';                // Low
 }
 const seedSet = new Set(DATA.seeds);
 
-function styleVuln(f){return {fillColor:TIER_COLORS[f.properties.tier]||'#eee',
-  weight:1,color:'#666',fillOpacity:.72};}
 function styleImp(f){return {fillColor:seedSet.has(f.properties.nom)?'#d7301f':impColor(f.properties.imp_rank),
   weight:1,color:'#666',fillOpacity:.72};}
 
@@ -101,7 +93,6 @@ function impConfidence(p){ // confidence band -> +/- % of the score, with a stab
 function infoHTML(p){
   const isSeed = seedSet.has(p.nom);
   const seed = isSeed ? ` <span class="seedtag">ACTIVE CASE SEED &mdash; last ${DATA.seed_window}d</span>`:'';
-  const fmt=(x,d=4)=>x==null?'&mdash;':Number(x).toFixed(d);
   const idx=impIndex(p.imp_score), conf=impConfidence(p);
   const barColor=impColor(p.imp_rank);
   const bar = idx==null ? '' :
@@ -118,11 +109,6 @@ function infoHTML(p){
     ? 'Currently reporting confirmed cases (a diffusion seed).'
     : 'On the watchlist by network proximity to active-case zones via observed mobility / displacement / travel-time fallback.';
   return `<h2>${p.nom}${seed}</h2>
-   <div class="kv"><b>Vulnerability:</b> ${fmt(p.vuln_score,3)} (${p.tier||'&mdash;'})</div>
-   <div class="kv"><b>Profile:</b> ${p.archetype||'&mdash;'}</div>
-   <div class="kv"><b>Raised by:</b> ${(p.top_drivers||'').replace(/;/g,', ')||'&mdash;'}</div>
-   <div class="kv"><b>Lowered by:</b> ${(p.bottom_drivers||'').replace(/;/g,', ')||'&mdash;'}</div>
-   <hr style="border:none;border-top:1px solid #ddd;margin:6px 0">
    ${impSection}
    <div class="kv" style="margin-top:5px;color:#555"><i>${means}</i></div>`;
 }
@@ -157,13 +143,10 @@ const poeLayer = L.layerGroup(DATA.poe.filter(p=>p.score!=null||p.basis=='unmoni
                `PoE risk score: ${p.score==null?'unmonitored':p.score.toFixed(1)}`);
 }));
 
-addZones(styleImp);   // Importation risk is the default layer on load
-// Two choropleths share one zone layer; empty radio groups drive the re-style.
-const impRadio=L.layerGroup().addTo(map), vulnRadio=L.layerGroup();
+addZones(styleImp);   // Importation-risk choropleth (sole zone layer)
 const overlays={'Corridors (primary)':corridorLayer,'PoE risk markers':poeLayer};
-const ctl=L.control.layers({'Importation risk':impRadio,'Vulnerability tier':vulnRadio},
-  overlays,{collapsed:false,position:'topright'}).addTo(map);
-map.on('baselayerchange',e=>{addZones(e.name=='Importation risk'?styleImp:styleVuln);drawLegend(e.name);});
+const ctl=L.control.layers(null, overlays,
+  {collapsed:false,position:'topright'}).addTo(map);
 
 // --- Top-10 watchlist table (importation x vulnerability) --------------------
 const propsByNom={};
@@ -189,17 +172,13 @@ function focusZone(nom,lat,lon){
 }
 function renderTop10(){
   const rows=DATA.top10.map(r=>{
-    const warn=r.dual?'<span class="warn" title="Also high vulnerability">&#9888;</span>':'';
-    const vbg=TIER_COLORS[r.tier]||'#eee';
-    const idx=r.imp_index==null?'&mdash;':r.imp_index;
     return `<tr data-nom="${r.nom}" data-lat="${r.lat}" data-lon="${r.lon}">
       <td class="pos">${r.pos}</td>
-      <td><span class="nom">${warn}${r.nom}</span>
+      <td><span class="nom">${r.nom}</span>
         <div class="ibar"><div style="width:${r.imp_index||0}%;background:${impColor(r.rank)}"></div></div></td>
-      <td><div class="vcell" style="background:${vbg}" title="Vulnerability tier: ${r.tier||'n/a'}">${r.vuln_score==null?'&mdash;':r.vuln_score}</div></td>
     </tr>`;}).join('');
   return `<div class="hdr">Top-10 watchlist</div>
-    <div class="sub">importation index (bar) &times; vulnerability (right) &middot; &#9888; = high on both</div>
+    <div class="sub">importation index (bar)</div>
     <table><tbody>${rows}</tbody></table>`;
 }
 const top10Ctl=L.control({position:'topright'});
@@ -216,20 +195,12 @@ top10Ctl.onAdd=function(){
 };
 top10Ctl.addTo(map);   // added after the layer control -> stacks below it
 
-let legendMode = 'Importation risk';
-function drawLegend(mode){
-  if(mode) legendMode = mode;
+function drawLegend(){
   const el=document.getElementById('legend');
-  if(legendMode=='Importation risk'){
-    el.innerHTML='<b>Importation risk (rank)</b><br>'+
-     [['#d7301f','Active seed (Cat A)'],['#08519c','Élevé (top 20)'],
-      ['#6baed6','Moyen (21–100)'],['#c6dbef','Faible (101+)'],['#f7f7f7','Aucun flux / non classé']].map(([c,t])=>
-      `<div><span class="swatch" style="background:${c}"></span>${t}</div>`).join('');
-  } else {
-    el.innerHTML='<b>Vulnerability tier</b><br>'+
-     Object.entries(TIER_COLORS).map(([t,c])=>
-      `<div><span class="swatch" style="background:${c}"></span>${t}</div>`).join('');
-  }
+  el.innerHTML='<b>Importation risk (rank)</b><br>'+
+   [['#d7301f','Active seed (Cat A)'],['#08519c','High (top 20)'],
+    ['#6baed6','Medium (21–100)'],['#c6dbef','Low (101+)'],['#f7f7f7','No flow / unranked']].map(([c,t])=>
+    `<div><span class="swatch" style="background:${c}"></span>${t}</div>`).join('');
   // Corridor entries appear only while the corridors overlay is active.
   if(map.hasLayer(corridorLayer)){
     el.innerHTML+='<hr style="margin:5px 0"><b>Corridors</b>'+
@@ -239,5 +210,5 @@ function drawLegend(mode){
   }
 }
 map.on('overlayadd overlayremove', ()=>drawLegend());
-drawLegend('Importation risk');
+drawLegend();
 </script></body></html>
