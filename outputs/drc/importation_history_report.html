@@ -112,16 +112,16 @@
       <h2>Overview</h2>
       <div class="stats">
         <div class="stat"><div class="stat-value">13</div><div class="stat-sub">snapshots<br>2026-05-15 → 06-01</div></div>
-        <div class="stat"><div class="stat-value">13&rarr;208</div><div class="stat-sub">cumulative<br>confirmed cases</div></div>
-        <div class="stat"><div class="stat-value">21</div><div class="stat-sub">zones became<br>hotspots (Cat A)</div></div>
-        <div class="stat"><div class="stat-value">12</div><div class="stat-sub">pre-flagged High<br>(57% of hotspots)</div></div>
+        <div class="stat"><div class="stat-value">13&rarr;254</div><div class="stat-sub">cumulative<br>confirmed cases</div></div>
+        <div class="stat"><div class="stat-value">24</div><div class="stat-sub">zones became<br>hotspots (Cat A)</div></div>
+        <div class="stat"><div class="stat-value">13</div><div class="stat-sub">pre-flagged High<br>(54% of hotspots)</div></div>
       </div>
       <p>The longitudinal panel spans <strong>13 snapshots</strong>, one per change in the cumulative
-      confirmed-case total, which grew <strong>13 → 208 cases</strong>. Over that window
-      <strong>21 health zones became hotspots</strong> (ever-affected / Cat&nbsp;A).</p>
+      confirmed-case total, which grew <strong>13 → 254 cases</strong>. Over that window
+      <strong>24 health zones became hotspots</strong> (ever-affected / Cat&nbsp;A).</p>
       <p>The validation question — <em>did zones flagged high on the importation watchlist later
       become hotspots?</em> — is answered yes for the majority:
-      <strong>12 of the 21 hotspots carried a “High” importation ranking <em>before</em> their first
+      <strong>13 of the 24 hotspots carried a “High” importation ranking <em>before</em> their first
       confirmed case.</strong></p>
       <div class="callout info">
         <div class="callout-title">ℹ How to read “importance”</div>
@@ -158,13 +158,12 @@
       <h2>Reading it</h2>
       <div class="callout tip">
         <div class="callout-title">✓ Strongest precursor signals</div>
-        <strong>Bunia</strong> and <strong>Karisimbi</strong> both sat at the very top of the
-        watchlist (index 100, rank #1) and confirmed cases within <strong>3</strong> and
-        <strong>7</strong> days respectively.
+        <strong>Bunia</strong> sat at the very top of the
+        watchlist (index 100, rank #1) and confirmed cases within <strong>3</strong> days.
       </div>
       <p>Several zones (<strong>Beni, Komanda, Logo</strong>) started modest but <strong>climbed the
       ranking over successive snapshots</strong> before turning hotspot — the gap between the
-      first-flag index and the pre-hotspot peak shows this (e.g. Beni 8 → 83).</p>
+      first-flag index and the pre-hotspot peak shows this (e.g. Beni 8 → 76).</p>
       <p>Lead times of 14–17 days are <strong>anchored to the panel’s start</strong> (2026-05-15),
       so for those zones the true lead is <em>at least</em> that long.</p>
     </section>
@@ -174,13 +173,18 @@
       <div class="callout warn">
         <div class="callout-title">⚠ Interpret with care</div>
         <ul>
-          <li>Of the 21 hotspots, <strong>9 were not pre-flagged High</strong>: <strong>Rwampara</strong>
+          <li>Of the 24 hotspots, <strong>11 were not pre-flagged High</strong>: <strong>Rwampara</strong>
           was already a hotspot in the first snapshot (no observable lead), and the rest appeared with
           lower-tier or no prior watchlist ranking.</li>
           <li>Importation is a <strong>relative network-proximity ranking, not a probability</strong>.
           This is a retrospective concordance check, <strong>not a forecast</strong>.</li>
           <li>Hotspot = <strong>ever-affected</strong> (cumulative confirmed cases &gt; 0), a sticky
           flag; it differs from the model’s windowed active-seed status.</li>
+          <li>Seeds and ever-affected are now derived from <code>insp_sitrep__cumulative_confirmed_cases</code>
+          (the same source used by the R dashboard), replacing the previous approach of summing
+          <code>new_confirmed_cases</code>. This corrects zones where daily reporting carried ND sentinels
+          despite cases appearing in the cumulative tally (Gethy, Damas), and removes Karisimbi, whose
+          single daily new-case entry on 2026-05-25 was not reflected in the cumulative series (likely a retraction).</li>
         </ul>
       </div>
     </section>
@@ -202,11 +206,12 @@
     {zone:"Nyakunde", first:"2026-05-15", idx:12,  peak:12,  rank:11, became:"2026-05-18", lead:3},
     {zone:"Bambu",    first:"2026-05-15", idx:33,  peak:84,  rank:3,  became:"2026-05-20", lead:5},
     {zone:"Nizi",     first:"2026-05-15", idx:31,  peak:87,  rank:4,  became:"2026-05-21", lead:6},
-    {zone:"Karisimbi",first:"2026-05-18", idx:100, peak:100, rank:1,  became:"2026-05-25", lead:7},
+    {zone:"Beni",     first:"2026-05-15", idx:8,   peak:76,  rank:17, became:"2026-05-29", lead:14},
+    {zone:"Damas",    first:"2026-05-15", idx:7,   peak:38,  rank:18, became:"2026-05-29", lead:14},
+    {zone:"Gethy",    first:"2026-05-15", idx:11,  peak:36,  rank:16, became:"2026-05-29", lead:14},
+    {zone:"Komanda",  first:"2026-05-15", idx:11,  peak:60,  rank:13, became:"2026-05-29", lead:14},
     {zone:"Lita",     first:"2026-05-15", idx:23,  peak:48,  rank:7,  became:"2026-05-29", lead:14},
-    {zone:"Beni",     first:"2026-05-15", idx:8,   peak:83,  rank:17, became:"2026-06-01", lead:17},
-    {zone:"Komanda",  first:"2026-05-15", idx:11,  peak:61,  rank:13, became:"2026-06-01", lead:17},
-    {zone:"Logo",     first:"2026-05-15", idx:11,  peak:46,  rank:15, became:"2026-06-01", lead:17},
+    {zone:"Logo",     first:"2026-05-15", idx:11,  peak:56,  rank:15, became:"2026-06-01", lead:17},
   ];
   const maxLead = Math.max(...rows.map(r => r.lead));
   const tbody = document.getElementById('tbody');
