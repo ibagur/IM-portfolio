@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Importation-risk history — watchlist → hotspot summary</title>
+<style>
+  :root {
+    --bg:#ffffff; --surface:#f8f9fa; --border:#e2e8f0; --text:#1a202c;
+    --text-muted:#718096; --accent:#3b82f6; --accent-hover:#2563eb; --code-bg:#f1f5f9;
+    --hot:#d7301f; --high:#08519c; --med:#6baed6; --low:#c6dbef;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg:#0f172a; --surface:#1e293b; --border:#334155; --text:#f1f5f9;
+      --text-muted:#94a3b8; --accent:#60a5fa; --accent-hover:#93c5fd; --code-bg:#1e293b;
+      --hot:#ef4444; --high:#60a5fa; --med:#7dd3fc; --low:#3b5a80;
+    }
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:system-ui,-apple-system,'Segoe UI',sans-serif; background:var(--bg);
+         color:var(--text); line-height:1.6; }
+  a { color:var(--accent); }
+  .layout { display:grid; grid-template-columns:220px 1fr; gap:40px; max-width:1180px;
+            margin:0 auto; padding:40px 24px; }
+  .toc { position:sticky; top:24px; height:fit-content; font-size:.85rem; }
+  .toc .toc-h { font-size:.7rem; text-transform:uppercase; letter-spacing:.08em;
+                color:var(--text-muted); margin-bottom:8px; }
+  .toc a { display:block; padding:5px 10px; color:var(--text-muted); text-decoration:none;
+           border-left:2px solid var(--border); }
+  .toc a:hover, .toc a.active { color:var(--accent); border-left-color:var(--accent); }
+  header.head { border-bottom:1px solid var(--border); padding-bottom:20px; margin-bottom:28px; }
+  h1 { font-size:1.7rem; line-height:1.25; margin-bottom:8px; }
+  .meta { font-size:.82rem; color:var(--text-muted); }
+  .meta code { background:var(--code-bg); padding:1px 5px; border-radius:4px;
+               font-family:'Cascadia Code','Fira Code',Consolas,monospace; font-size:.8rem; }
+  .tag { display:inline-block; background:var(--accent); color:#fff; font-size:.68rem;
+         font-weight:700; padding:1px 7px; border-radius:10px; vertical-align:middle;
+         margin-left:6px; letter-spacing:.04em; }
+  h2 { font-size:1.2rem; margin:34px 0 12px; padding-top:8px; }
+  h2:first-of-type { margin-top:0; }
+  p { margin:10px 0; }
+  section > p, section > .callout { max-width:70ch; }
+  .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+           gap:14px; margin:6px 0 8px; }
+  .stat { background:var(--surface); border:1px solid var(--border); border-radius:12px;
+          padding:18px 16px; text-align:center; }
+  .stat-value { font-size:1.9rem; font-weight:800; color:var(--accent); line-height:1.1; }
+  .stat-sub { font-size:.78rem; color:var(--text-muted); margin-top:6px; }
+  .lead-note { font-size:.8rem; color:var(--text-muted); }
+  table { border-collapse:collapse; width:100%; font-size:.86rem; margin:10px 0 4px; }
+  thead th { text-align:left; font-size:.72rem; text-transform:uppercase; letter-spacing:.05em;
+             color:var(--text-muted); border-bottom:2px solid var(--border); padding:8px 10px;
+             white-space:nowrap; }
+  tbody td { padding:9px 10px; border-bottom:1px solid var(--border); vertical-align:middle; }
+  tbody tr:hover td { background:var(--surface); }
+  .zone { font-weight:700; }
+  .date { font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .imp-cell { min-width:160px; }
+  .imp-wrap { display:flex; align-items:center; gap:8px; }
+  .imp-track { flex:1; background:var(--border); border-radius:4px; height:9px; min-width:60px; }
+  .imp-fill { height:100%; border-radius:4px; background:var(--high); }
+  .imp-num { font-variant-numeric:tabular-nums; font-weight:700; width:30px; text-align:right; }
+  .rank { color:var(--text-muted); font-size:.78rem; }
+  .lead-wrap { display:flex; align-items:center; gap:8px; }
+  .lead-track { flex:1; background:var(--border); border-radius:4px; height:9px; min-width:50px; }
+  .lead-fill { height:100%; border-radius:4px; background:var(--accent); }
+  .lead-num { font-variant-numeric:tabular-nums; font-weight:700; white-space:nowrap; }
+  .badge-hot { display:inline-block; background:var(--hot); color:#fff; font-size:.72rem;
+               font-weight:700; padding:1px 7px; border-radius:4px; }
+  .callout { border-left:4px solid; padding:12px 16px; border-radius:0 8px 8px 0; margin:16px 0;
+             background:var(--surface); }
+  .callout.info { border-color:#3b82f6; background:rgba(59,130,246,.08); }
+  .callout.tip  { border-color:#10b981; background:rgba(16,185,129,.08); }
+  .callout.warn { border-color:#f59e0b; background:rgba(245,158,11,.08); }
+  .callout-title { font-weight:700; font-size:.82rem; margin-bottom:4px; }
+  .callout ul { margin:6px 0 0 18px; } .callout li { margin:4px 0; }
+  .legend { display:flex; flex-wrap:wrap; gap:14px; font-size:.78rem; color:var(--text-muted);
+            margin:4px 0 0; }
+  .legend span { display:inline-flex; align-items:center; gap:5px; }
+  .sw { width:12px; height:12px; border-radius:3px; display:inline-block; }
+  footer { border-top:1px solid var(--border); margin-top:36px; padding-top:14px;
+           font-size:.78rem; color:var(--text-muted); }
+  @media (max-width:768px) {
+    .layout { grid-template-columns:1fr; gap:20px; padding:24px 16px; }
+    .toc { display:none; }
+    .imp-cell { min-width:120px; }
+  }
+  @media print {
+    .toc { display:none; } .layout { grid-template-columns:1fr; max-width:none; }
+    tbody tr:hover td { background:none; }
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+  <nav class="toc" aria-label="Contents">
+    <div class="toc-h">Contents</div>
+  </nav>
+
+  <main>
+    <header class="head">
+      <h1>Importation-risk history — watchlist → hotspot summary <span class="tag">SitRep 20</span></h1>
+      <div class="meta">
+        Source: <code>outputs/importation_history.csv</code> &middot; seed window: 7 days &middot;
+        as of 2026-06-01.<br>
+        Regenerate via <code>pipenv run python _python/analysis/risk_mvp/07_snapshot_transitions.py</code>
+      </div>
+    </header>
+
+    <section id="overview">
+      <h2>Overview</h2>
+      <div class="stats">
+        <div class="stat"><div class="stat-value">13</div><div class="stat-sub">snapshots<br>2026-05-15 → 06-01</div></div>
+        <div class="stat"><div class="stat-value">13&rarr;208</div><div class="stat-sub">cumulative<br>confirmed cases</div></div>
+        <div class="stat"><div class="stat-value">21</div><div class="stat-sub">zones became<br>hotspots (Cat A)</div></div>
+        <div class="stat"><div class="stat-value">12</div><div class="stat-sub">pre-flagged High<br>(57% of hotspots)</div></div>
+      </div>
+      <p>The longitudinal panel spans <strong>13 snapshots</strong>, one per change in the cumulative
+      confirmed-case total, which grew <strong>13 → 208 cases</strong>. Over that window
+      <strong>21 health zones became hotspots</strong> (ever-affected / Cat&nbsp;A).</p>
+      <p>The validation question — <em>did zones flagged high on the importation watchlist later
+      become hotspots?</em> — is answered yes for the majority:
+      <strong>12 of the 21 hotspots carried a “High” importation ranking <em>before</em> their first
+      confirmed case.</strong></p>
+      <div class="callout info">
+        <div class="callout-title">ℹ How to read “importance”</div>
+        The importation index runs 0–100, where <strong>100 = top of the watchlist</strong>; rank is
+        the zone’s position among all non-hotspot zones at that snapshot.
+      </div>
+    </section>
+
+    <section id="transitions">
+      <h2>High-importation zones that became hotspots</h2>
+      <p class="lead-note">Ordered by the date each zone became a hotspot. Bars show the importance
+      index when first flagged High (filled to the pre-hotspot peak in light), and the lead time
+      between first High flag and first confirmed case.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Zone</th>
+            <th>First flagged High</th>
+            <th class="imp-cell">Importance (peak)</th>
+            <th>Became hotspot</th>
+            <th>Lead time</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+      <div class="legend">
+        <span><span class="sw" style="background:var(--high)"></span>importance when first flagged</span>
+        <span><span class="sw" style="background:var(--med)"></span>climbed to pre-hotspot peak</span>
+        <span><span class="sw" style="background:var(--accent)"></span>lead time (days)</span>
+      </div>
+    </section>
+
+    <section id="reading-it">
+      <h2>Reading it</h2>
+      <div class="callout tip">
+        <div class="callout-title">✓ Strongest precursor signals</div>
+        <strong>Bunia</strong> and <strong>Karisimbi</strong> both sat at the very top of the
+        watchlist (index 100, rank #1) and confirmed cases within <strong>3</strong> and
+        <strong>7</strong> days respectively.
+      </div>
+      <p>Several zones (<strong>Beni, Komanda, Logo</strong>) started modest but <strong>climbed the
+      ranking over successive snapshots</strong> before turning hotspot — the gap between the
+      first-flag index and the pre-hotspot peak shows this (e.g. Beni 8 → 83).</p>
+      <p>Lead times of 14–17 days are <strong>anchored to the panel’s start</strong> (2026-05-15),
+      so for those zones the true lead is <em>at least</em> that long.</p>
+    </section>
+
+    <section id="caveats">
+      <h2>Caveats</h2>
+      <div class="callout warn">
+        <div class="callout-title">⚠ Interpret with care</div>
+        <ul>
+          <li>Of the 21 hotspots, <strong>9 were not pre-flagged High</strong>: <strong>Rwampara</strong>
+          was already a hotspot in the first snapshot (no observable lead), and the rest appeared with
+          lower-tier or no prior watchlist ranking.</li>
+          <li>Importation is a <strong>relative network-proximity ranking, not a probability</strong>.
+          This is a retrospective concordance check, <strong>not a forecast</strong>.</li>
+          <li>Hotspot = <strong>ever-affected</strong> (cumulative confirmed cases &gt; 0), a sticky
+          flag; it differs from the model’s windowed active-seed status.</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>
+      Generated from <code>importation_history.csv</code> (13 snapshots × 3 windows × 519 zones).
+      Preventive risk MVP — Ebola DRC 2026.
+    </footer>
+  </main>
+</div>
+
+<script>
+  // --- transition data (7-day window) ---
+  const rows = [
+    {zone:"Bunia",    first:"2026-05-15", idx:100, peak:100, rank:1,  became:"2026-05-18", lead:3},
+    {zone:"Mongbalu", first:"2026-05-15", idx:48,  peak:48,  rank:2,  became:"2026-05-18", lead:3},
+    {zone:"Katwa",    first:"2026-05-15", idx:24,  peak:24,  rank:5,  became:"2026-05-18", lead:3},
+    {zone:"Butembo",  first:"2026-05-15", idx:16,  peak:16,  rank:8,  became:"2026-05-18", lead:3},
+    {zone:"Nyakunde", first:"2026-05-15", idx:12,  peak:12,  rank:11, became:"2026-05-18", lead:3},
+    {zone:"Bambu",    first:"2026-05-15", idx:33,  peak:84,  rank:3,  became:"2026-05-20", lead:5},
+    {zone:"Nizi",     first:"2026-05-15", idx:31,  peak:87,  rank:4,  became:"2026-05-21", lead:6},
+    {zone:"Karisimbi",first:"2026-05-18", idx:100, peak:100, rank:1,  became:"2026-05-25", lead:7},
+    {zone:"Lita",     first:"2026-05-15", idx:23,  peak:48,  rank:7,  became:"2026-05-29", lead:14},
+    {zone:"Beni",     first:"2026-05-15", idx:8,   peak:83,  rank:17, became:"2026-06-01", lead:17},
+    {zone:"Komanda",  first:"2026-05-15", idx:11,  peak:61,  rank:13, became:"2026-06-01", lead:17},
+    {zone:"Logo",     first:"2026-05-15", idx:11,  peak:46,  rank:15, became:"2026-06-01", lead:17},
+  ];
+  const maxLead = Math.max(...rows.map(r => r.lead));
+  const tbody = document.getElementById('tbody');
+  tbody.innerHTML = rows.map(r => `
+    <tr>
+      <td class="zone">${r.zone}</td>
+      <td class="date">${r.first}</td>
+      <td class="imp-cell">
+        <div class="imp-wrap">
+          <div class="imp-track">
+            <div class="imp-fill" style="background:var(--med);width:${r.peak}%">
+              <div class="imp-fill" style="width:${r.peak ? (r.idx/r.peak*100) : 0}%"></div>
+            </div>
+          </div>
+          <span class="imp-num">${r.idx}</span>
+          <span class="rank">#${r.rank}${r.peak>r.idx ? ' → '+r.peak : ''}</span>
+        </div>
+      </td>
+      <td class="date"><span class="badge-hot">${r.became}</span></td>
+      <td>
+        <div class="lead-wrap">
+          <div class="lead-track"><div class="lead-fill" style="width:${r.lead/maxLead*100}%"></div></div>
+          <span class="lead-num">${r.lead} d</span>
+        </div>
+      </td>
+    </tr>`).join('');
+
+  // --- auto TOC + scroll-spy ---
+  const toc = document.querySelector('.toc');
+  const heads = [...document.querySelectorAll('main h2')];
+  heads.forEach(h => {
+    const sec = h.closest('section');
+    const id = sec ? sec.id : h.textContent.toLowerCase().replace(/\s+/g,'-');
+    if (sec && !sec.id) sec.id = id;
+    const a = document.createElement('a');
+    a.href = '#' + id; a.textContent = h.textContent.replace(/\s+SitRep.*/,'').trim();
+    toc.appendChild(a);
+  });
+  const links = [...toc.querySelectorAll('a')];
+  const spy = () => {
+    let cur = links[0];
+    document.querySelectorAll('main section').forEach((s,i) => {
+      if (s.getBoundingClientRect().top <= 120 && links[i]) cur = links[i];
+    });
+    links.forEach(l => l.classList.toggle('active', l === cur));
+  };
+  document.addEventListener('scroll', spy, {passive:true}); spy();
+</script>
+</body>
+</html>
