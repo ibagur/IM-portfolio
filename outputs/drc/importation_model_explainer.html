@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ebola DRC 2026 — Importation-Risk Model (R Dashboard) · Explainer</title>
+<style>
+  :root{
+    --bg:#ffffff; --surface:#f8f9fa; --surface2:#f1f5f9; --border:#e2e8f0;
+    --text:#1a202c; --text-muted:#64748b; --accent:#b10026; --accent2:#08519c;
+    --code-bg:#f1f5f9; --ok:#10b981; --warn:#f59e0b;
+    --eleve:#d7301f; --moyen:#fc8d59; --faible:#fdcc8a; --grey:#bdbdbd;
+  }
+  html{color-scheme:light}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;background:var(--bg);
+    color:var(--text);line-height:1.55;font-size:15px}
+  .wrap{max-width:1080px;margin:0 auto;padding:32px 22px 64px}
+  header{border-bottom:3px solid var(--accent);padding-bottom:16px;margin-bottom:8px}
+  .eyebrow{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-muted);font-weight:700}
+  h1{font-size:1.7rem;margin:4px 0 6px;line-height:1.2}
+  .lede{color:var(--text-muted);font-size:.95rem;max-width:72ch}
+  h2{font-size:1.15rem;margin:38px 0 6px;padding-top:8px;display:flex;align-items:center;gap:10px}
+  h2 .num{background:var(--accent);color:#fff;border-radius:6px;font-size:.8rem;
+    width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
+  .section-sub{color:var(--text-muted);font-size:.9rem;margin:2px 0 14px}
+  table{border-collapse:collapse;width:100%;font-size:.86rem;margin:10px 0 6px;
+    background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+  thead th{background:var(--surface2);text-align:left;font-size:.74rem;letter-spacing:.04em;
+    text-transform:uppercase;color:var(--text-muted);padding:10px 12px;border-bottom:1px solid var(--border)}
+  td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:hover{background:var(--surface2)}
+  code,.mono{font-family:'Cascadia Code','Fira Code',Consolas,monospace;font-size:.85em;
+    background:var(--code-bg);padding:1px 5px;border-radius:4px}
+  .formula{font-family:'Cascadia Code','Fira Code',Consolas,monospace;font-size:.92rem;
+    background:var(--code-bg);border:1px solid var(--border);border-radius:8px;
+    padding:12px 15px;margin:10px 0;overflow-x:auto}
+  .pill{display:inline-block;font-size:.7rem;font-weight:700;border-radius:20px;padding:2px 9px}
+  .callout{border-left:4px solid;padding:11px 15px;border-radius:0 8px 8px 0;margin:12px 0;font-size:.9rem}
+  .callout.info{border-color:var(--accent2);background:rgba(8,81,156,.08)}
+  .callout.tip{border-color:var(--ok);background:rgba(16,185,129,.09)}
+  .callout.warn{border-color:var(--accent);background:rgba(177,0,38,.07)}
+  .callout .ct{font-weight:700;font-size:.8rem;margin-bottom:3px}
+  .callout ul{margin:4px 0 0 18px}.callout li{margin:3px 0}
+  .steps{list-style:none;counter-reset:s;margin:8px 0}
+  .steps li{counter-increment:s;position:relative;padding:8px 0 8px 44px;border-bottom:1px solid var(--border)}
+  .steps li:last-child{border-bottom:none}
+  .steps li::before{content:counter(s);position:absolute;left:0;top:8px;width:28px;height:28px;
+    background:var(--accent2);color:#fff;border-radius:50%;display:flex;align-items:center;
+    justify-content:center;font-weight:700;font-size:.85rem}
+  .steps b{color:var(--text)}
+  .tier{display:inline-block;width:13px;height:13px;border-radius:3px;vertical-align:middle;margin-right:6px}
+  .muted{color:var(--text-muted)}
+  .brief{background:var(--surface);border:1px solid var(--border);border-radius:12px;
+    padding:16px 18px;margin-top:18px;font-size:.95rem}
+  .brief b{color:var(--accent)}
+  footer{margin-top:40px;padding-top:14px;border-top:1px solid var(--border);
+    color:var(--text-muted);font-size:.78rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+  @media print{
+    body{font-size:11.5px}.wrap{max-width:none;padding:0}
+    tbody tr:hover{background:none}h2{page-break-after:avoid}
+    table{page-break-inside:auto}tr{page-break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Ebola DRC 2026 · WASH Cluster Dashboard</div>
+    <h1>Importation-risk model — the R dashboard explained</h1>
+    <p class="lede">How the dashboard decides <b>which health zones are most likely to
+      receive the virus next</b> from the zones that already have it. This is a
+      <b>single-hop</b> model — deliberately simpler than the Python research model — and
+      every value is a <b>prioritisation ranking to guide surveillance, not a prediction
+      or a probability of infection.</b></p>
+  </header>
+
+  <div class="callout warn" style="margin-top:18px">
+    <div class="ct">Read this first — two different models exist</div>
+    <p>This page describes <b>only the model shown on the R WASH-Cluster dashboard</b>
+      (<span class="mono">output/drc_ebola_dashboard.html</span>). It is <b>single-hop</b>:
+      risk travels exactly one step from each outbreak zone to its direct destinations.</p>
+    <p style="margin-top:6px">A separate <b>multi-hop directed-graph model</b> (Personalised
+      PageRank over the full 519-zone network) lives in the <b>Python research branch</b> and
+      is documented in <span class="mono">risk_mvp_methods_explainer.md</span>. The two share
+      ideas (seeds, mobility edges, gravity fallback) but are <b>not the same model</b> — do
+      not mix their numbers, tiers, or wording. Where the methods explainer says "Personalised
+      PageRank", "diffusion", "multi-hop", or "effective-distance corridors", that is the
+      Python model, <b>not</b> what the dashboard shows.</p>
+  </div>
+
+  <h2><span class="num">1</span>How it works — five plain steps</h2>
+  <p class="section-sub">The model estimates incoming risk for every zone, one outbreak
+    zone at a time, then ranks the receivers.</p>
+  <ol class="steps">
+    <li><b>Seeds — where the risk starts.</b> The starting points are the zones currently
+      reporting confirmed cases (the MoH <b>Cat A</b> foyers). Zones with more <i>recent</i>
+      cases carry more weight, so an active, growing outbreak pushes more risk outward than a
+      quiet one.</li>
+    <li><b>Mobility — how people actually move.</b> From each outbreak zone we follow real
+      population-movement data (Flowminder/Vodacom) to see where people travel. Risk flows
+      along the routes people actually use, not just to neighbours on a map.</li>
+    <li><b>Gravity — a fallback when we have no movement data.</b> A handful of outbreak zones
+      aren't covered by the mobility data. For those we fall back to a sensible estimate:
+      people tend to move toward <b>larger</b> population centres and toward places that are
+      <b>easier to reach</b> (shorter travel time). This keeps every outbreak zone contributing
+      instead of leaving a blind spot.</li>
+    <li><b>Single-hop — one step at a time.</b> We look <b>one step</b> out from each outbreak
+      zone — direct destinations only. We do <b>not</b> chain risk several jumps ahead, because
+      each extra hop adds more uncertainty than signal (confirmed by walk-forward backtesting).</li>
+    <li><b>Tiers — turning it into a watchlist.</b> Every receiving zone is ranked by how much
+      incoming risk it accumulates, then grouped into a colour-coded watchlist (see §4).</li>
+  </ol>
+
+  <h2><span class="num">2</span>The mechanics, precisely</h2>
+  <p class="section-sub">For the technically minded. Implemented in
+    <span class="mono">scripts/01_prepare_dashboard.R</span> · <span class="mono">R/seed_weights.R</span>
+    · <span class="mono">R/gravity.R</span>.</p>
+
+  <p><b>Seed weight</b> for each Cat A origin <span class="mono">i</span> — the confirmed cases
+    it <i>accrued inside the lookback window</i> (7, 14 or 21 days), square-root damped so a
+    single dominant hotspot doesn't swamp everything:</p>
+  <div class="formula">w<sub>i</sub> = &radic;( cumulative_cases<sub>i</sub>[as-of] &minus; cumulative_cases<sub>i</sub>[before window] )</div>
+
+  <p><b>Each origin becomes a destination <i>distribution</i></b> (its row sums to 1), so
+    Flowminder rows and gravity rows live on the same scale and combine cleanly:</p>
+  <div class="formula">covered origin&nbsp;&nbsp; P<sub>i</sub> = normalise( Flowminder outflow row<sub>i</sub> )<br>
+dangling origin&nbsp; P<sub>i</sub> = normalise( gravity row<sub>i</sub> ),&nbsp;&nbsp; grav<sub>ij</sub> &prop; pop<sub>j</sub> / tt<sub>ij</sub><sup>2</sup></div>
+
+  <p><b>Importation score</b> for a receiving zone <span class="mono">j</span> — sum the
+    weighted one-step contributions from every outbreak origin:</p>
+  <div class="formula">importation<sub>j</sub> = &Sigma;<sub>i</sub> w<sub>i</sub> &middot; P<sub>i</sub>[j]</div>
+
+  <div class="callout info">
+    <div class="ct">Why single-hop is a deliberate choice, not a shortcut</div>
+    <p>The score is exactly <b>one matrix step</b> from seeds — there is no iteration,
+      damping factor, or teleport vector. Walk-forward backtesting found multi-hop graph
+      diffusion added essentially <b>zero</b> ranking value for importation here (most newly
+      affected zones are one hop from a seed), while single-hop is simpler to explain and
+      audit. The gravity destination mass uses INS 2026 population estimates for the 104
+      mappable eastern-province zones, WorldPop elsewhere.</p>
+  </div>
+
+  <h2><span class="num">3</span>R dashboard model vs. Python research model</h2>
+  <p class="section-sub">Same building blocks, different machine. Keep them separate.</p>
+  <table>
+    <thead><tr><th>Aspect</th><th>R dashboard <span class="muted">(this page)</span></th><th>Python research branch</th></tr></thead>
+    <tbody>
+      <tr><td><b>Spread mechanism</b></td><td><b>Single-hop</b> — one step from each seed</td><td><b>Multi-hop</b> — Personalised PageRank diffusion (&alpha; = 0.85)</td></tr>
+      <tr><td><b>Graph</b></td><td>Implicit: seed rows &times; destination columns</td><td>Explicit directed graph over all 519 zones</td></tr>
+      <tr><td><b>Seeds</b></td><td>&radic;(in-window new cases), 7/14/21-day switch</td><td>Active-case zones in last 7 days</td></tr>
+      <tr><td><b>Mobility edges</b></td><td>Flowminder outflow + gravity fallback</td><td>Flowminder + gravity + IOM-DTM displacement blend</td></tr>
+      <tr><td><b>Corridors</b></td><td>Not modelled</td><td>Effective-distance shortest paths (&le; 4 hops)</td></tr>
+      <tr><td><b>Uncertainty</b></td><td>Rank only (no bootstrap band)</td><td>100-run bootstrap confidence band</td></tr>
+      <tr><td><b>Output shown</b></td><td>Rank + 4-tier watchlist on the map</td><td>0&ndash;100 index, rank, confidence, archetype</td></tr>
+      <tr><td><b>Validation</b></td><td>R-owned history panel; 14d top-20 hit-rate 18/22 (82%)</td><td><span class="mono">07</span>/<span class="mono">08</span> walk-forward scripts</td></tr>
+    </tbody>
+  </table>
+
+  <h2><span class="num">4</span>Reading the watchlist tiers</h2>
+  <p class="section-sub">Receivers are ranked by incoming Cat A flow, then banded. Bands are
+    <b>rank-based</b>, not equal-volume cuts — so the map colour matches the rank in the popup.</p>
+  <table>
+    <thead><tr><th>Tier</th><th>Rule</th><th>Operational read</th></tr></thead>
+    <tbody>
+      <tr><td><span class="tier" style="background:var(--eleve)"></span><b>&Eacute;lev&eacute;</b></td><td>Rank 1&ndash;20</td><td>The active watchlist — prioritise for pre-positioning &amp; surveillance.</td></tr>
+      <tr><td><span class="tier" style="background:var(--moyen)"></span><b>Moyen</b></td><td>Rank 21&ndash;50</td><td>Moderate incoming flow — monitor.</td></tr>
+      <tr><td><span class="tier" style="background:var(--faible)"></span><b>Faible</b></td><td>Rank 51 &rarr; the 97.5% coverage cutoff</td><td>Low but notable — on the radar.</td></tr>
+      <tr><td><span class="tier" style="background:var(--grey)"></span><b>Non significatif</b></td><td>The remaining low-inflow tail</td><td>Negligible flow (greyed). Stops gravity's tiny everywhere-flows from flooding "Faible".</td></tr>
+    </tbody>
+  </table>
+  <div class="callout info">
+    <div class="ct">Cat A zones, the rank, and the window switch</div>
+    <ul>
+      <li><b>Cat A foyers</b> are <i>sources</i>, not receivers — they are excluded from the
+        ranking and always render as "Cat A" on the map.</li>
+      <li>Popups show the zone's <b>rank</b> (e.g. <i>#7 / N connected zones</i>), not the raw
+        weighted index, which is an arbitrary-scale number.</li>
+      <li>The map exposes a <b>7 / 14 / 21-day window switch</b> (14-day default — the
+        epidemiologist default for Ebola). The window changes the <i>seed weights</i>, never
+        the Cat A set, so a quiet zone decays to weight 0 without being dropped.</li>
+    </ul>
+  </div>
+
+  <h2><span class="num">5</span>Where the ideas come from</h2>
+  <p class="section-sub">The model adapts established methods from the human-mobility and
+    epidemic-modelling literature. The load-bearing reference is Bengtsson et&nbsp;al. (2015).</p>
+  <table>
+    <thead><tr><th>Source</th><th>Idea taken into the R model</th></tr></thead>
+    <tbody>
+      <tr><td><b>Bengtsson et&nbsp;al. (2015)</b><br><span class="muted">Sci. Reports 5:8923 — Haiti cholera</span></td>
+        <td><b>The core score.</b> Their <i>infectious pressure</i> — risk &prop; cases in a source
+          area &times; mobility to a destination — is exactly <span class="mono">importation<sub>j</sub> =
+          &Sigma; w<sub>i</sub>&middot;P<sub>i</sub>[j]</span>. Also their headline finding (observed mobility
+          beats gravity and needs no retrospective tuning) is why we use Flowminder first and
+          gravity only as a fallback.</td></tr>
+      <tr><td><b>Truscott &amp; Ferguson (2012)</b><br><span class="muted">PLoS Comput. Biol.</span></td>
+        <td>The <b>gravity fallback</b> (<span class="mono">pop<sub>j</sub>/tt<sub>ij</sub><sup>2</sup></span>)
+          for zones with no movement data — and its known caveat that plain gravity
+          under-weights rare long-range travel between big centres.</td></tr>
+      <tr><td><b>Matson et&nbsp;al. (2020)</b><br><span class="muted">Emerg. Microbes &amp; Infect.</span></td>
+        <td>Why <b>recent</b> cases drive the seed weights: detection delay (median ~44 days for
+          Ebola) means a stale seed set would over-state spread. Motivates the windowed weighting.</td></tr>
+      <tr><td><b>Bengtsson et&nbsp;al. (2011)</b><br><span class="muted">PLOS Medicine — Haiti</span></td>
+        <td>Treating <b>operator mobility data as a trustworthy primary signal</b>, plus the
+          ownership-bias caveat (under-represents the poorest, who tend to move with phone-owning family).</td></tr>
+      <tr><td><b>Gonz&aacute;lez, Hidalgo &amp; Barab&aacute;si (2008)</b><br><span class="muted">Nature 453:779</span></td>
+        <td>Foundational evidence that human movement is <b>regular and predictable</b> — the
+          justification for building a risk model on mobility matrices at all.</td></tr>
+    </tbody>
+  </table>
+  <div class="callout tip">
+    <div class="ct">Possible future refinement (from Truscott &amp; Ferguson)</div>
+    <p>The gravity fallback currently uses a single Newtonian kernel
+      (<span class="mono">pop<sub>j</sub>/tt<sup>2</sup></span>). A <b>matched kernel</b> (different
+      power-law for short vs. long range) would stop it under-estimating rare long-distance
+      Cat A &rarr; distant-city importation. Not yet implemented.</p>
+  </div>
+
+  <div class="brief">
+    <b>One-sentence brief for partners:</b> the dashboard colours each zone by how much
+    movement reaches it, in one step, from zones that currently have cases — weighted by how
+    recent and how large those outbreaks are — and turns that into a ranked watchlist.
+    <b>Every value is a prioritisation ranking to guide surveillance, not a prediction or a
+    probability.</b>
+  </div>
+
+  <footer>
+    <span>Source: <span class="mono">_R/drc-ebola-hcf-map/</span> · <span class="mono">scripts/01_prepare_dashboard.R</span>, <span class="mono">R/seed_weights.R</span>, <span class="mono">R/gravity.R</span></span>
+    <span>Decision support — not automated decisions.</span>
+  </footer>
+</div>
+</body>
+</html>
