@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Three importation-risk methods — 19 July 2026</title>
+  <style>
+    :root {
+      --bg:#f6f8fb; --paper:#fff; --ink:#162033; --muted:#617086; --line:#dce3ed;
+      --blue:#1d5fa7; --blue-soft:#eaf3ff; --teal:#087b7b; --teal-soft:#e8f7f5;
+      --violet:#6b4bb8; --violet-soft:#f1edff; --amber:#9a6500; --amber-soft:#fff5df;
+      --shadow:0 10px 30px rgba(29,47,76,.08);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg:#101722; --paper:#182230; --ink:#eff5fc; --muted:#afbdcf; --line:#314155;
+              --blue:#77b6ff; --blue-soft:#152b47; --teal:#5bd3ca; --teal-soft:#103b3b;
+              --violet:#c4aeff; --violet-soft:#2f254c; --amber:#ffc867; --amber-soft:#433312;
+              --shadow:none; }
+    }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; font-family:system-ui,-apple-system,"Segoe UI",sans-serif; background:var(--bg); color:var(--ink); line-height:1.55; }
+    .shell { max-width:1260px; margin:0 auto; padding:32px 22px 52px; }
+    header { padding:26px 30px 28px; border-radius:18px; color:#fff; background:linear-gradient(125deg,#12395f,#1c6b94 56%,#0c7774); box-shadow:var(--shadow); }
+    .eyebrow { margin:0 0 8px; font-size:.76rem; font-weight:800; letter-spacing:.11em; text-transform:uppercase; opacity:.82; }
+    h1 { margin:0; max-width:900px; font-size:clamp(1.8rem,4vw,3rem); line-height:1.12; letter-spacing:-.035em; }
+    .lede { max-width:900px; margin:14px 0 0; font-size:1.06rem; opacity:.95; }
+    .badges { display:flex; gap:8px; flex-wrap:wrap; margin-top:20px; }
+    .badge { padding:5px 10px; border:1px solid rgba(255,255,255,.35); border-radius:999px; font-size:.79rem; background:rgba(255,255,255,.11); }
+    .layout { display:grid; grid-template-columns:190px minmax(0,1fr); gap:30px; margin-top:30px; }
+    nav { position:sticky; top:20px; align-self:start; padding:12px 0; }
+    nav a { display:block; padding:7px 10px; color:var(--muted); border-left:2px solid var(--line); text-decoration:none; font-size:.88rem; }
+    nav a:hover { color:var(--blue); border-left-color:var(--blue); }
+    main > section { margin-bottom:34px; }
+    h2 { margin:0 0 14px; font-size:1.38rem; letter-spacing:-.015em; }
+    h3 { margin:0; font-size:1.08rem; }
+    p { margin:0 0 12px; }
+    .callout { margin:0 0 24px; padding:15px 18px; border-left:4px solid var(--amber); border-radius:0 10px 10px 0; background:var(--amber-soft); }
+    .callout strong { display:block; margin-bottom:3px; }
+    .cards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+    .card { padding:20px; border:1px solid var(--line); border-radius:14px; background:var(--paper); box-shadow:var(--shadow); }
+    .card.deterministic { border-top:5px solid var(--blue); }
+    .card.dashboard { border-top:5px solid var(--teal); }
+    .card.article { border-top:5px solid var(--violet); }
+    .tag { display:inline-block; margin:0 0 9px; padding:3px 8px; border-radius:999px; font-size:.72rem; font-weight:750; letter-spacing:.035em; text-transform:uppercase; }
+    .deterministic .tag { background:var(--blue-soft); color:var(--blue); }
+    .dashboard .tag { background:var(--teal-soft); color:var(--teal); }
+    .article .tag { background:var(--violet-soft); color:var(--violet); }
+    .card ul { margin:12px 0 0; padding-left:18px; font-size:.91rem; }
+    .card li { margin:6px 0; }
+    .formula { margin:13px 0 0; padding:10px 12px; border-radius:8px; background:var(--bg); color:var(--muted); font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.82rem; overflow-x:auto; }
+    .shared { display:grid; grid-template-columns:1.25fr 1fr; gap:16px; }
+    .panel { padding:18px 20px; border:1px solid var(--line); border-radius:12px; background:var(--paper); }
+    .panel ul { margin:8px 0 0; padding-left:18px; }
+    .table-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:14px; background:var(--paper); box-shadow:var(--shadow); }
+    table { width:100%; min-width:980px; border-collapse:collapse; font-size:.88rem; }
+    caption { padding:15px 18px; color:var(--muted); text-align:left; caption-side:top; font-size:.88rem; }
+    thead th { padding:12px 13px; background:var(--bg); color:var(--muted); text-align:left; font-size:.75rem; letter-spacing:.065em; text-transform:uppercase; }
+    th.rank { width:54px; text-align:center; }
+    th.det { border-top:4px solid var(--blue); }
+    th.dash { border-top:4px solid var(--teal); }
+    th.art { border-top:4px solid var(--violet); }
+    td { padding:10px 13px; border-top:1px solid var(--line); vertical-align:top; }
+    td.rank { color:var(--muted); text-align:center; font-variant-numeric:tabular-nums; }
+    .zone { display:block; font-weight:720; }
+    .meta { display:block; margin-top:2px; color:var(--muted); font-size:.78rem; font-variant-numeric:tabular-nums; }
+    .score-det { color:var(--blue); }
+    .score-dash { color:var(--teal); }
+    .score-art { color:var(--violet); }
+    .note { margin-top:10px; color:var(--muted); font-size:.84rem; }
+    .conclusion { display:grid; grid-template-columns:1.1fr .9fr; gap:16px; }
+    .recommendations { padding:20px; border-radius:14px; background:linear-gradient(135deg,var(--blue-soft),var(--teal-soft)); border:1px solid var(--line); }
+    .recommendations ol { margin:10px 0 0; padding-left:20px; }
+    .recommendations li { margin:8px 0; }
+    footer { padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:.78rem; }
+    @media (max-width:900px) { .layout { grid-template-columns:1fr; } nav { display:none; } .cards,.shared,.conclusion { grid-template-columns:1fr; } }
+    @media (max-width:560px) { .shell { padding:18px 12px 36px; } header { padding:22px 20px; } .card,.panel,.recommendations { padding:17px; } }
+    @media print { body { background:#fff; color:#111; } .shell { max-width:none; padding:0; } header { box-shadow:none; } nav { display:none; } .layout { display:block; } .card,.panel,.table-wrap { box-shadow:none; } main > section { break-inside:avoid; } }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <p class="eyebrow">DRC Ebola · research and operational comparison</p>
+      <h1>Three importation-risk methods at a common Sunday cutoff</h1>
+      <p class="lede">A short methods brief and side-by-side top-20 watchlists for the current deterministic dashboard model and two Bayesian first-invasion challenger arms.</p>
+      <div class="badges">
+        <span class="badge">Common issue date: Sunday 19 July 2026</span>
+        <span class="badge">Bayesian horizon: 20 July–2 August 2026</span>
+        <span class="badge">Latest public case data available: 20 July 2026</span>
+      </div>
+    </header>
+
+    <div class="layout">
+      <nav aria-label="Contents">
+        <a href="#purpose">Purpose &amp; scope</a>
+        <a href="#methods">Three methods</a>
+        <a href="#common">What is shared</a>
+        <a href="#watchlists">Top-20 watchlists</a>
+        <a href="#consensus">Three-way consensus</a>
+        <a href="#conclusion">Conclusion</a>
+      </nav>
+
+      <main>
+        <section id="purpose">
+          <h2>Purpose and scope</h2>
+          <div class="callout">
+            <strong>Read the outputs differently.</strong>
+            The current dashboard model is a relative importation-risk ranking for surveillance prioritisation; its score is not a probability or a forecast of infection. The two Bayesian arms forecast a zone’s first <em>reported</em> confirmed case, but their 14-day posterior values are still experimental and must not be presented as calibrated operational probabilities.
+          </div>
+          <p>The table below freezes all three lists at the last Sunday for which the Bayesian challenger was issued: <strong>19 July 2026</strong>. The deterministic list uses its 14-day dashboard snapshot at that same cutoff. The Bayesian lists cover the following 14 days, <strong>20 July–2 August</strong>.</p>
+        </section>
+
+        <section id="methods">
+          <h2>The three methods</h2>
+          <div class="cards">
+            <article class="card deterministic">
+              <span class="tag">Operational baseline</span>
+              <h3>Current deterministic risk model</h3>
+              <ul>
+                <li><strong>Target:</strong> prioritise currently unaffected receiving zones by incoming risk from confirmed-case zones (Cat A sources).</li>
+                <li><strong>Source intensity:</strong> square-root of recent incident cases, with a 5-day exponential recency decay; the shown list uses the 14-day window.</li>
+                <li><strong>Mobility:</strong> row-normalised Flowminder/Vodacom outflow; uncovered origins use gravity proportional to destination population divided by travel time squared.</li>
+                <li><strong>Output:</strong> arbitrary-scale score, rank and watchlist tier. It is a one-hop receiver ranking, not a probability.</li>
+              </ul>
+              <div class="formula">risk(j) = Σᵢ seed_weight(i) × mobility(i → j)</div>
+            </article>
+
+            <article class="card dashboard">
+              <span class="tag">Bayesian challenger · arm 1</span>
+              <h3>Bayesian dashboard-pressure arm</h3>
+              <ul>
+                <li><strong>Target:</strong> first reported confirmed case in a zone with no case at the Sunday cutoff; 7-day hazard and cumulative 14-day output.</li>
+                <li><strong>Pressure input:</strong> the existing 14-day dashboard importation score, read from its history file without recalculating or changing the dashboard.</li>
+                <li><strong>Additional structure:</strong> population, deprivation, health-site density, nearest affected-zone travel time, route-missing flag, province effect and a week-to-week baseline random walk.</li>
+                <li><strong>Output:</strong> posterior first-confirmation watchlist and 5th–95th percentile interval.</li>
+              </ul>
+              <div class="formula">cloglog(qᵢₜ) = baselineₜ + Xᵢₜβ + provinceᵢ</div>
+            </article>
+
+            <article class="card article">
+              <span class="tag">Bayesian challenger · arm 2</span>
+              <h3>Bayesian article-pressure arm</h3>
+              <ul>
+                <li><strong>Target and hazard model:</strong> identical to the dashboard-pressure arm, so the arms are comparable.</li>
+                <li><strong>Pressure input:</strong> daily reported incidence is convolved with a generation-time distribution (mean 15.3 days; SD 9.3 days).</li>
+                <li><strong>Mobility:</strong> a 24 May short-trip profile for Bunia, Mongbwalu and Rwampara; unobserved destinations and other origins receive gravity residuals/fallbacks.</li>
+                <li><strong>Output:</strong> a separate posterior first-confirmation watchlist, based on this alternative pressure hypothesis but the same covariates and risk set.</li>
+              </ul>
+              <div class="formula">pressure(j) = Σᵢ infectivity(i) × W(i → j)</div>
+            </article>
+          </div>
+        </section>
+
+        <section id="common">
+          <h2>What the Bayesian arms have in common</h2>
+          <div class="shared">
+            <div class="panel">
+              <h3>Comparable design</h3>
+              <ul>
+                <li>Same Sunday cutoffs, public INSP SitRep report-date target and never-confirmed-zone risk set.</li>
+                <li>A zone leaves the Bayesian risk set permanently after its first reported confirmation.</li>
+                <li>Same covariates, priors, discrete-time complementary-log-log hazard, four-chain fit and convergence gate.</li>
+                <li>Both 19 July fits passed the gate: R-hat ≤ 1.0021, adequate effective sample sizes, and zero divergences.</li>
+              </ul>
+            </div>
+            <div class="panel">
+              <h3>Important limitation</h3>
+              <p>The prospective 14-day outcomes are not mature yet. The values in the next table are useful as experimental rankings and uncertainty summaries, not as calibrated probabilities of infection or a replacement for the dashboard’s operational watchlist.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="watchlists">
+          <h2>Top 20 at the 19 July cutoff</h2>
+          <div class="table-wrap">
+            <table>
+              <caption>Each column is independently ranked. Deterministic cells show the 14-day dashboard score and tier. Bayesian cells show the 14-day posterior mean [5th–95th percentile] for a first <em>reported</em> confirmation.</caption>
+              <thead>
+                <tr><th class="rank">Rank</th><th class="det">Deterministic dashboard model</th><th class="dash">Bayesian dashboard-pressure</th><th class="art">Bayesian article-pressure</th></tr>
+              </thead>
+              <tbody>
+                <tr><td class="rank">1</td><td><span class="zone">Laybo</span><span class="meta score-det">score 2.320 · High</span></td><td><span class="zone">Laybo</span><span class="meta score-dash">1.000 [1.000–1.000]</span></td><td><span class="zone">Rethy</span><span class="meta score-art">0.883 [0.621–0.999]</span></td></tr>
+                <tr><td class="rank">2</td><td><span class="zone">Watsa</span><span class="meta score-det">score 1.620 · High</span></td><td><span class="zone">Watsa</span><span class="meta score-dash">0.873 [0.509–1.000]</span></td><td><span class="zone">Adi</span><span class="meta score-art">0.379 [0.134–0.714]</span></td></tr>
+                <tr><td class="rank">3</td><td><span class="zone">Gombari</span><span class="meta score-det">score 0.951 · High</span></td><td><span class="zone">Biringi</span><span class="meta score-dash">0.786 [0.489–0.985]</span></td><td><span class="zone">Nyarambe</span><span class="meta score-art">0.315 [0.111–0.610]</span></td></tr>
+                <tr><td class="rank">4</td><td><span class="zone">Makoro</span><span class="meta score-det">score 0.903 · High</span></td><td><span class="zone">Rethy</span><span class="meta score-dash">0.620 [0.356–0.892]</span></td><td><span class="zone">Biringi</span><span class="meta score-art">0.288 [0.112–0.540]</span></td></tr>
+                <tr><td class="rank">5</td><td><span class="zone">Biringi</span><span class="meta score-det">score 0.865 · High</span></td><td><span class="zone">Gombari</span><span class="meta score-dash">0.612 [0.231–0.956]</span></td><td><span class="zone">Watsa</span><span class="meta score-art">0.280 [0.070–0.621]</span></td></tr>
+                <tr><td class="rank">6</td><td><span class="zone">Kabondo</span><span class="meta score-det">score 0.638 · High</span></td><td><span class="zone">Makoro</span><span class="meta score-dash">0.573 [0.237–0.907]</span></td><td><span class="zone">Laybo</span><span class="meta score-art">0.269 [0.094–0.524]</span></td></tr>
+                <tr><td class="rank">7</td><td><span class="zone">Rethy</span><span class="meta score-det">score 0.575 · High</span></td><td><span class="zone">Kabondo</span><span class="meta score-dash">0.447 [0.149–0.816]</span></td><td><span class="zone">Jiba</span><span class="meta score-art">0.268 [0.089–0.532]</span></td></tr>
+                <tr><td class="rank">8</td><td><span class="zone">Nyarambe</span><span class="meta score-det">score 0.573 · High</span></td><td><span class="zone">Nyarambe</span><span class="meta score-dash">0.332 [0.132–0.620]</span></td><td><span class="zone">Linga</span><span class="meta score-art">0.222 [0.080–0.431]</span></td></tr>
+                <tr><td class="rank">9</td><td><span class="zone">Lubero</span><span class="meta score-det">score 0.491 · High</span></td><td><span class="zone">Adi</span><span class="meta score-dash">0.250 [0.080–0.512]</span></td><td><span class="zone">Lubero</span><span class="meta score-art">0.216 [0.062–0.483]</span></td></tr>
+                <tr><td class="rank">10</td><td><span class="zone">Mutwanga</span><span class="meta score-det">score 0.448 · High</span></td><td><span class="zone">Angumu</span><span class="meta score-dash">0.215 [0.041–0.426]</span></td><td><span class="zone">Karisimbi</span><span class="meta score-art">0.205 [0.036–0.520]</span></td></tr>
+                <tr><td class="rank">11</td><td><span class="zone">Dungu</span><span class="meta score-det">score 0.429 · High</span></td><td><span class="zone">Lubero</span><span class="meta score-dash">0.196 [0.068–0.389]</span></td><td><span class="zone">Kirotshe</span><span class="meta score-art">0.167 [0.046–0.382]</span></td></tr>
+                <tr><td class="rank">12</td><td><span class="zone">Angumu</span><span class="meta score-det">score 0.396 · High</span></td><td><span class="zone">Bafwagbogbo</span><span class="meta score-dash">0.161 [0.040–0.374]</span></td><td><span class="zone">Yakusu</span><span class="meta score-art">0.146 [0.027–0.381]</span></td></tr>
+                <tr><td class="rank">13</td><td><span class="zone">Bafwagbogbo</span><span class="meta score-det">score 0.361 · High</span></td><td><span class="zone">Jiba</span><span class="meta score-dash">0.157 [0.051–0.329]</span></td><td><span class="zone">Makoro</span><span class="meta score-art">0.129 [0.035–0.300]</span></td></tr>
+                <tr><td class="rank">14</td><td><span class="zone">Tshopo</span><span class="meta score-det">score 0.361 · High</span></td><td><span class="zone">Tshopo</span><span class="meta score-dash">0.139 [0.040–0.303]</span></td><td><span class="zone">Angumu</span><span class="meta score-art">0.118 [0.031–0.259]</span></td></tr>
+                <tr><td class="rank">15</td><td><span class="zone">Adi</span><span class="meta score-det">score 0.198 · High</span></td><td><span class="zone">Mutwanga</span><span class="meta score-dash">0.132 [0.046–0.267]</span></td><td><span class="zone">Kabondo</span><span class="meta score-art">0.117 [0.023–0.301]</span></td></tr>
+                <tr><td class="rank">16</td><td><span class="zone">Rungu</span><span class="meta score-det">score 0.191 · High</span></td><td><span class="zone">Linga</span><span class="meta score-dash">0.107 [0.036–0.221]</span></td><td><span class="zone">Kayna</span><span class="meta score-art">0.107 [0.030–0.247]</span></td></tr>
+                <tr><td class="rank">17</td><td><span class="zone">Niangara</span><span class="meta score-det">score 0.161 · High</span></td><td><span class="zone">Dungu</span><span class="meta score-dash">0.106 [0.035–0.220]</span></td><td><span class="zone">Aba</span><span class="meta score-art">0.105 [0.026–0.254]</span></td></tr>
+                <tr><td class="rank">18</td><td><span class="zone">Bafwasende</span><span class="meta score-det">score 0.148 · High</span></td><td><span class="zone">Yakusu</span><span class="meta score-dash">0.081 [0.017–0.205]</span></td><td><span class="zone">Rungu</span><span class="meta score-art">0.098 [0.025–0.233]</span></td></tr>
+                <tr><td class="rank">19</td><td><span class="zone">Kayna</span><span class="meta score-det">score 0.106 · High</span></td><td><span class="zone">Rungu</span><span class="meta score-dash">0.072 [0.022–0.157]</span></td><td><span class="zone">Mutwanga</span><span class="meta score-art">0.098 [0.028–0.223]</span></td></tr>
+                <tr><td class="rank">20</td><td><span class="zone">Aba</span><span class="meta score-det">score 0.104 · High</span></td><td><span class="zone">Karisimbi</span><span class="meta score-dash">0.066 [0.012–0.171]</span></td><td><span class="zone">Gombari</span><span class="meta score-art">0.096 [0.024–0.229]</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note">The deterministic score is relative and arbitrary-scale: compare ranks within that one list only. Bayesian interval notation is posterior uncertainty around the modelled 14-day first-report risk; it is not a calibrated probability statement.</p>
+
+          <div id="consensus" class="panel" style="margin-top:18px">
+            <h3>Three-way consensus watchlist</h3>
+            <p>The 13 zones below appear in the top 20 of <strong>all three</strong> methods. They are ordered by their mean rank across the deterministic, dashboard-pressure and article-pressure lists. This creates a transparent shared-priority order without combining the models’ incompatible raw scores. Ties are resolved by the better worst individual rank.</p>
+            <div class="table-wrap" style="margin-top:14px">
+              <table style="min-width:680px">
+                <caption>Three-way consensus at the 19 July cutoff. Lower mean rank indicates stronger agreement across methods.</caption>
+                <thead>
+                  <tr><th class="rank">Consensus</th><th>Zone</th><th class="det">Deterministic rank</th><th class="dash">Dashboard-pressure rank</th><th class="art">Article-pressure rank</th><th>Mean rank</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td class="rank">1</td><td><span class="zone">Laybo</span></td><td>1</td><td>1</td><td>6</td><td>2.67</td></tr>
+                  <tr><td class="rank">2</td><td><span class="zone">Watsa</span></td><td>2</td><td>2</td><td>5</td><td>3.00</td></tr>
+                  <tr><td class="rank">3</td><td><span class="zone">Biringi</span></td><td>5</td><td>3</td><td>4</td><td>4.00</td></tr>
+                  <tr><td class="rank">4</td><td><span class="zone">Rethy</span></td><td>7</td><td>4</td><td>1</td><td>4.00</td></tr>
+                  <tr><td class="rank">5</td><td><span class="zone">Nyarambe</span></td><td>8</td><td>8</td><td>3</td><td>6.33</td></tr>
+                  <tr><td class="rank">6</td><td><span class="zone">Makoro</span></td><td>4</td><td>6</td><td>13</td><td>7.67</td></tr>
+                  <tr><td class="rank">7</td><td><span class="zone">Adi</span></td><td>15</td><td>9</td><td>2</td><td>8.67</td></tr>
+                  <tr><td class="rank">8</td><td><span class="zone">Kabondo</span></td><td>6</td><td>7</td><td>15</td><td>9.33</td></tr>
+                  <tr><td class="rank">9</td><td><span class="zone">Gombari</span></td><td>3</td><td>5</td><td>20</td><td>9.33</td></tr>
+                  <tr><td class="rank">10</td><td><span class="zone">Lubero</span></td><td>9</td><td>11</td><td>9</td><td>9.67</td></tr>
+                  <tr><td class="rank">11</td><td><span class="zone">Angumu</span></td><td>12</td><td>10</td><td>14</td><td>12.00</td></tr>
+                  <tr><td class="rank">12</td><td><span class="zone">Mutwanga</span></td><td>10</td><td>15</td><td>19</td><td>14.67</td></tr>
+                  <tr><td class="rank">13</td><td><span class="zone">Rungu</span></td><td>16</td><td>19</td><td>18</td><td>17.67</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <section id="conclusion">
+          <h2>Conclusion and recommendations</h2>
+          <div class="conclusion">
+            <div class="panel">
+              <h3>Brief conclusion</h3>
+              <p>The dashboard-pressure challenger remains closely tied to the operational deterministic signal: its top-ranked zones are predominantly already high in the dashboard list, while the Bayesian model adds a first-confirmation target, covariates and posterior uncertainty. The article-pressure challenger tests a meaningfully different exposure assumption and brings Jiba, Linga, Karisimbi, Kirotshe and Yakusu higher in the watchlist.</p>
+              <p>There is not yet a mature prospective outcome window to declare either challenger better. The models should therefore be interpreted as complementary research watchlists, not competing operational truth claims.</p>
+            </div>
+            <div class="recommendations">
+              <h3>Recommendations</h3>
+              <ol>
+                <li>Keep the deterministic dashboard model as the operational baseline and do not alter its current pipeline.</li>
+                <li>Run both Bayesian arms in shadow mode at each Sunday cutoff and retain their immutable diagnostic archives.</li>
+                <li>Use consensus zones across lists as a focused analyst-review set; among the current top tens these are Adi, Biringi, Laybo, Nyarambe, Rethy and Watsa.</li>
+                <li>Score the 19 July issue after 26 July (7-day) and 2 August (14-day), using recall, precision, Brier/log score and calibration checks.</li>
+                <li>Do not promote posterior values to operational probabilities until several prospective cutoffs and sufficient first-invasion events demonstrate calibration and improvement over the baseline.</li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <footer>
+          Prepared from the R dashboard importation history (14-day snapshot, 19 July 2026) and the two immutable Bayesian challenger archives issued at the same cutoff. The public first-confirmation target is the INSP SitRep report date. This is decision support for review and surveillance planning, not automated decision-making.
+        </footer>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
