@@ -1,5 +1,5 @@
 const REFERENCE_COORDS = [39.9449883, -0.247279];
-const REFERENCE_ZOOM = 15;
+const REFERENCE_ZOOM = 14;
 const translations = {
   es: {
     title: "Focos de incendio sobre imagen satelital",
@@ -160,8 +160,12 @@ function renderPerimeter(data) {
   perimeterLayer.addData(data);
   perimeterBounds = perimeterLayer.getBounds();
   if (!hasSetInitialView && perimeterBounds.isValid()) {
-    map.fitBounds(perimeterBounds.pad(0.35), { maxZoom: 16 });
     hasSetInitialView = true;
+    requestAnimationFrame(() => {
+      map.invalidateSize({ pan: false });
+      map.fitBounds(perimeterBounds.pad(0.35), { maxZoom: 16 });
+      map.setZoom(Math.max(map.getMinZoom(), map.getZoom() - 1));
+    });
   }
 }
 
