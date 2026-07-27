@@ -6,7 +6,7 @@
     <title>Focos de incendio sobre Onda</title>
     <link rel="preconnect" href="https://unpkg.com" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="styles.css?v=20260727-9" />
+    <link rel="stylesheet" href="styles.css?v=20260727-10" />
   </head>
   <body>
     <header>
@@ -18,7 +18,7 @@
         <button id="detections-view" type="button" data-i18n="nearbyDetections">Todas las detecciones próximas</button>
         <label class="toggle"><input id="hotspots-toggle" type="checkbox" checked /> <span data-i18n="showHotspots">Mostrar focos</span></label>
         <label class="toggle"><input id="wind-layer-toggle" type="checkbox" checked /> <span data-i18n="showWindLayer">Mostrar viento</span></label>
-        <label class="toggle"><input id="risk-corridors-toggle" type="checkbox" checked /> <span data-i18n="showRiskCorridors">Mostrar corredores de riesgo</span></label>
+        <label id="risk-corridors-control" class="toggle"><input id="risk-corridors-toggle" type="checkbox" checked /> <span id="risk-corridors-label" data-i18n="showRiskCorridors">Mostrar corredores de riesgo</span></label>
         <div class="language-switch" role="group" aria-label="Idioma" data-i18n-aria="language">
           <button id="language-es" class="language-button active" type="button" aria-pressed="true">ES</button>
           <button id="language-en" class="language-button" type="button" aria-pressed="false">EN</button>
@@ -59,6 +59,6 @@
     </main>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script type="module" src="app.js?v=20260727-14"></script>
+    <script type="module" src="app.js?v=20260727-15"></script>
   </body>
 </html>

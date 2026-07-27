@@ -26,6 +26,8 @@ const translations = {
     showHotspots: "Mostrar focos",
     showWindLayer: "Mostrar viento",
     showRiskCorridors: "Mostrar corredores de riesgo",
+    riskCorridorsLoading: "Calculando corredores…",
+    riskCorridorsUnavailable: "Corredores no disponibles",
     language: "Idioma",
     legendTitle: "Leyenda e información",
     mapLabel: "Mapa satelital con detecciones de incendios activos",
@@ -74,6 +76,8 @@ const translations = {
     showHotspots: "Show hotspots",
     showWindLayer: "Show wind",
     showRiskCorridors: "Show risk corridors",
+    riskCorridorsLoading: "Calculating corridors…",
+    riskCorridorsUnavailable: "Corridors unavailable",
     language: "Language",
     legendTitle: "Legend and information",
     mapLabel: "Satellite map with active-fire detections",
@@ -124,6 +128,7 @@ let latestRiskResult;
 let latestWindObservations;
 let windLayerQueriedAt;
 let windLayerError;
+let riskCorridorsPreferredVisible = true;
 let weatherLastAttemptAt = 0;
 let weatherFetchInProgress;
 let currentSnapshotId;
@@ -137,6 +142,9 @@ const riskPanelElement = document.querySelector(".risk-panel");
 const riskContentElement = document.querySelector("#risk-content");
 const weatherSourceNoteElement = document.querySelector("#weather-source-note");
 const windSourceNoteElement = document.querySelector("#wind-source-note");
+const riskCorridorControlElement = document.querySelector("#risk-corridors-control");
+const riskCorridorToggleElement = document.querySelector("#risk-corridors-toggle");
+const riskCorridorLabelElement = document.querySelector("#risk-corridors-label");
 const mobileLegendQuery = window.matchMedia("(max-width: 680px)");
 const riskColors = { low: "#788a80", watch: "#c68a15", elevated: "#df6724", urgent: "#bc3030" };
 
@@ -397,7 +405,10 @@ function corridorPoints(assessment) {
 
 function renderRiskCorridors() {
   riskCorridorLayer.clearLayers();
-  if (latestRiskResult?.status !== "ready") return;
+  if (latestRiskResult?.status !== "ready") {
+    syncRiskCorridorControl();
+    return;
+  }
   const drawnFeatures = new Set();
   for (const assessment of latestRiskResult.assessments) {
     const key = `${assessment.feature.geometry.coordinates.join(",")}-${assessment.horizon.hours}`;
@@ -411,10 +422,30 @@ function renderRiskCorridors() {
       fillOpacity: 0.18,
     }).bindTooltip(t("riskCorridorTooltip")(assessment.horizon.hours), { sticky: true }).addTo(riskCorridorLayer);
   }
+  syncRiskCorridorControl();
 }
 
 function unavailableRiskText(reason) {
   return t({ stale_snapshot: "riskUnavailableStaleSnapshot", no_recent_detections: "riskUnavailableNoRecent", weather_incomplete: "riskUnavailableWeather", weather_fetch: "riskUnavailableWeatherFetch" }[reason] ?? "riskUnavailableWeather");
+}
+
+function syncRiskCorridorControl() {
+  const isReady = latestRiskResult?.status === "ready" && latestRiskResult.assessments?.length > 0;
+  riskCorridorToggleElement.disabled = !isReady;
+  riskCorridorToggleElement.checked = Boolean(isReady && riskCorridorsPreferredVisible);
+  riskCorridorControlElement.classList.toggle("unavailable", !isReady);
+  if (!latestRiskResult) {
+    riskCorridorLabelElement.textContent = t("riskCorridorsLoading");
+    riskCorridorControlElement.title = t("riskLoading");
+  } else if (!isReady) {
+    riskCorridorLabelElement.textContent = t("riskCorridorsUnavailable");
+    riskCorridorControlElement.title = unavailableRiskText(latestRiskResult.reason);
+  } else {
+    riskCorridorLabelElement.textContent = t("showRiskCorridors");
+    riskCorridorControlElement.removeAttribute("title");
+  }
+  if (isReady && riskCorridorsPreferredVisible) riskCorridorLayer.addTo(map);
+  else map.removeLayer(riskCorridorLayer);
 }
 
 function renderWeatherSourceNote() {
@@ -427,6 +458,7 @@ function renderWeatherSourceNote() {
 }
 
 function renderRisk() {
+  syncRiskCorridorControl();
   if (!latestRiskResult) {
     riskContentElement.textContent = t("riskLoading");
     weatherSourceNoteElement.textContent = "";
@@ -525,7 +557,8 @@ document.querySelector("#wind-layer-toggle").addEventListener("change", event =>
   else map.removeLayer(windLayer);
 });
 document.querySelector("#risk-corridors-toggle").addEventListener("change", event => {
-  if (event.target.checked) riskCorridorLayer.addTo(map);
+  riskCorridorsPreferredVisible = event.target.checked;
+  if (riskCorridorsPreferredVisible) riskCorridorLayer.addTo(map);
   else map.removeLayer(riskCorridorLayer);
 });
 document.querySelector("#language-es").addEventListener("click", () => applyLanguage("es"));

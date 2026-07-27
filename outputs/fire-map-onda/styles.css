@@ -34,6 +34,7 @@ button, .toggle {
 button:hover { background: #e8f0eb; }
 .toggle { display: flex; align-items: center; gap: 7px; cursor: pointer; }
 .toggle input { accent-color: #ff8738; }
+.toggle.unavailable { cursor: not-allowed; opacity: .68; background: #eef2ef; }
 .language-switch { display: inline-flex; overflow: hidden; border: 1px solid #adc2b7; border-radius: 7px; }
 .language-button { border: 0; border-radius: 0; padding-inline: 10px; }
 .language-button + .language-button { border-left: 1px solid #adc2b7; }
