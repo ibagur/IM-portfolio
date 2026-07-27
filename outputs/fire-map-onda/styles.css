@@ -35,6 +35,11 @@ button, .toggle {
 button:hover { background: #2b3d36; }
 .toggle { display: flex; align-items: center; gap: 7px; cursor: pointer; }
 .toggle input { accent-color: #ff8738; }
+.language-switch { display: inline-flex; overflow: hidden; border: 1px solid #43554e; border-radius: 7px; }
+.language-button { border: 0; border-radius: 0; padding-inline: 10px; }
+.language-button + .language-button { border-left: 1px solid #43554e; }
+.language-button.active { color: #18211e; background: #eeb64e; }
+.language-button.active:hover { background: #f5ca70; }
 main { height: min(67vh, 770px); min-height: 440px; position: relative; }
 #map { height: 100%; width: 100%; background: #1a2924; }
 .map-note, .legend {

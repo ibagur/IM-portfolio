@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Fire hotspots over satellite imagery</title>
+    <title>Focos de incendio sobre imagen satelital</title>
     <link rel="preconnect" href="https://unpkg.com" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="styles.css" />
@@ -11,34 +11,38 @@
   <body>
     <header>
       <div>
-        <p class="eyebrow">FIRE DETECTION VIEWER</p>
-        <h1>Hotspots over satellite imagery</h1>
-        <p class="subtitle">39.9449883° N, 0.247279° W · reference position from the supplied Google Maps link</p>
+        <p class="eyebrow" data-i18n="eyebrow">VISOR DE DETECCIONES DE INCENDIOS</p>
+        <h1 data-i18n="heading">Focos de incendio sobre imagen satelital</h1>
+        <p class="subtitle" data-i18n="subtitle">39.9449883° N, 0.247279° O · ubicación de referencia del enlace de Google Maps</p>
       </div>
-      <div class="actions" aria-label="Map controls">
-        <button id="reference-view" type="button">Google reference extent</button>
-        <button id="detections-view" type="button">All nearby detections</button>
-        <label class="toggle"><input id="hotspots-toggle" type="checkbox" checked /> Show hotspots</label>
+      <div class="actions" aria-label="Controles del mapa" data-i18n-aria="mapControls">
+        <button id="reference-view" type="button" data-i18n="referenceView">Extensión de referencia de Google</button>
+        <button id="detections-view" type="button" data-i18n="nearbyDetections">Todas las detecciones próximas</button>
+        <label class="toggle"><input id="hotspots-toggle" type="checkbox" checked /> <span data-i18n="showHotspots">Mostrar focos</span></label>
+        <div class="language-switch" role="group" aria-label="Idioma" data-i18n-aria="language">
+          <button id="language-es" class="language-button active" type="button" aria-pressed="true">ES</button>
+          <button id="language-en" class="language-button" type="button" aria-pressed="false">EN</button>
+        </div>
       </div>
     </header>
 
     <main>
-      <div id="map" aria-label="Satellite map with active-fire detections"></div>
+      <div id="map" aria-label="Mapa satelital con detecciones de incendios activos" data-i18n-aria="mapLabel"></div>
       <aside class="map-note" aria-live="polite">
-        <strong id="detection-count">Loading detections…</strong>
+        <strong id="detection-count">Cargando detecciones…</strong>
         <span id="data-timestamp"></span>
       </aside>
       <aside class="legend">
-        <div><span class="dot low"></span>lower FRP</div>
-        <div><span class="dot high"></span>higher FRP</div>
-        <p>Dot size and colour indicate fire radiative power (MW).</p>
+        <div><span class="dot low"></span><span data-i18n="lowerFrp">FRP menor</span></div>
+        <div><span class="dot high"></span><span data-i18n="higherFrp">FRP mayor</span></div>
+        <p data-i18n="legendText">El tamaño y el color del punto indican la potencia radiativa del fuego (MW).</p>
       </aside>
     </main>
 
     <section class="method">
-      <h2>How to read this view</h2>
-      <p>The yellow outline is the area of interest from the shared Google My Maps layer. Each orange-to-red point is a nearby VIIRS active-fire detection; white-rimmed points fall inside the outline. Compare their positions with the satellite image to assess the likely affected area. A detection is a 375 m pixel, not a mapped fire perimeter: do not interpret the dots alone as the exact boundary of a wildfire. The imagery date may differ from the detection time.</p>
-      <p id="source-note">Source details loading…</p>
+      <h2 data-i18n="howToRead">Cómo interpretar este visor</h2>
+      <p data-i18n="methodText">El contorno amarillo delimita la zona de interés de Google My Maps. Cada punto de color naranja a rojo es una detección cercana de incendio activo de VIIRS; los puntos con borde blanco quedan dentro del contorno. Compare sus posiciones con la imagen satelital para valorar la superficie probablemente afectada. Una detección corresponde a un píxel de 375 m, no a un perímetro cartografiado del incendio: los puntos no delimitan por sí solos la extensión exacta. La fecha de la imagen satelital puede no coincidir con la de la detección.</p>
+      <p id="source-note">Cargando información de la fuente…</p>
     </section>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
