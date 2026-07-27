@@ -1,6 +1,6 @@
 # Fire hotspots over satellite imagery
 
-A small local web map centred on the supplied Google Maps location (39.9449883, -0.247279). It places an Esri satellite basemap below nearby active-fire detections shown by Earth Nullschool, overlays the shared Google My Maps zone of interest, and draws a current-wind grid from Open-Meteo.
+A small local web map centred on the supplied Google Maps location (39.9449883, -0.247279). It places an Esri satellite basemap below nearby active-fire detections shown by Earth Nullschool, overlays the shared Google My Maps zone of interest, draws a current-wind grid from Open-Meteo, and adds a transparent Esri reference layer for towns and geographic names.
 
 ## Run the live-updating map
 

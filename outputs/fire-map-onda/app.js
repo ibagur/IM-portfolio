@@ -25,6 +25,7 @@ const translations = {
     nearbyDetections: "Todas las detecciones próximas",
     showHotspots: "Mostrar focos",
     showWindLayer: "Mostrar viento",
+    showPlaceLabels: "Mostrar nombres geográficos",
     showRiskCorridors: "Mostrar corredores de riesgo",
     riskCorridorsLoading: "Calculando corredores…",
     riskCorridorsUnavailable: "Corredores no disponibles",
@@ -75,6 +76,7 @@ const translations = {
     nearbyDetections: "All nearby detections",
     showHotspots: "Show hotspots",
     showWindLayer: "Show wind",
+    showPlaceLabels: "Show geographic names",
     showRiskCorridors: "Show risk corridors",
     riskCorridorsLoading: "Calculating corridors…",
     riskCorridorsUnavailable: "Corridors unavailable",
@@ -169,6 +171,11 @@ map.getPane("windPane").style.zIndex = "450";
 
 L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
   attribution: "Tiles © Esri — Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
+  maxZoom: 19,
+}).addTo(map);
+
+const placeLabelsLayer = L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}", {
+  attribution: "Labels © Esri, HERE, Garmin, OpenStreetMap contributors, and the GIS user community",
   maxZoom: 19,
 }).addTo(map);
 
@@ -555,6 +562,10 @@ document.querySelector("#hotspots-toggle").addEventListener("change", event => {
 document.querySelector("#wind-layer-toggle").addEventListener("change", event => {
   if (event.target.checked) windLayer.addTo(map);
   else map.removeLayer(windLayer);
+});
+document.querySelector("#place-labels-toggle").addEventListener("change", event => {
+  if (event.target.checked) placeLabelsLayer.addTo(map);
+  else map.removeLayer(placeLabelsLayer);
 });
 document.querySelector("#risk-corridors-toggle").addEventListener("change", event => {
   riskCorridorsPreferredVisible = event.target.checked;
