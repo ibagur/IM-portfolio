@@ -31,12 +31,14 @@
         <strong id="detection-count">Cargando detecciones…</strong>
         <span id="data-timestamp"></span>
       </aside>
-      <aside class="risk-panel" aria-live="polite" aria-labelledby="risk-title">
-        <h2 id="risk-title" data-i18n="riskTitle">Riesgo para Sant Francesc</h2>
-        <p id="risk-introduction" data-i18n="riskIntroduction">Indicador orientativo: no es una predicción confirmada de propagación ni una instrucción de emergencia.</p>
-        <div id="risk-content" class="risk-content" data-i18n="riskLoading">Calculando riesgo con el viento previsto…</div>
-        <p id="weather-source-note" class="weather-source-note"></p>
-      </aside>
+      <details class="risk-panel" open aria-live="polite">
+        <summary data-i18n="riskTitle">Riesgo para Sant Francesc</summary>
+        <div class="risk-panel-content">
+          <p id="risk-introduction" data-i18n="riskIntroduction">Indicador orientativo: no es una predicción confirmada de propagación ni una instrucción de emergencia.</p>
+          <div id="risk-content" class="risk-content" data-i18n="riskLoading">Calculando riesgo con el viento previsto…</div>
+          <p id="weather-source-note" class="weather-source-note"></p>
+        </div>
+      </details>
       <details class="legend">
         <summary data-i18n="legendTitle">Leyenda e información</summary>
         <div class="legend-content">

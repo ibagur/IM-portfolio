@@ -109,6 +109,7 @@ let localBounds;
 let hasSetInitialView = false;
 
 const legendElement = document.querySelector(".legend");
+const riskPanelElement = document.querySelector(".risk-panel");
 const riskContentElement = document.querySelector("#risk-content");
 const weatherSourceNoteElement = document.querySelector("#weather-source-note");
 const mobileLegendQuery = window.matchMedia("(max-width: 680px)");
@@ -120,6 +121,13 @@ function syncLegendDefault(event) {
 
 syncLegendDefault(mobileLegendQuery);
 mobileLegendQuery.addEventListener("change", syncLegendDefault);
+
+function syncRiskPanelDefault(event) {
+  riskPanelElement.open = !event.matches;
+}
+
+syncRiskPanelDefault(mobileLegendQuery);
+mobileLegendQuery.addEventListener("change", syncRiskPanelDefault);
 
 const map = L.map("map", { zoomControl: false, preferCanvas: true }).setView(REFERENCE_COORDS, REFERENCE_ZOOM);
 L.control.zoom({ position: "bottomright" }).addTo(map);
