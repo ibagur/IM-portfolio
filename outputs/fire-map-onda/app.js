@@ -164,7 +164,7 @@ function renderPerimeter(data) {
     requestAnimationFrame(() => {
       map.invalidateSize({ pan: false });
       map.fitBounds(perimeterBounds.pad(0.35), { maxZoom: 16 });
-      map.setZoom(Math.max(map.getMinZoom(), map.getZoom() - 1));
+      map.setZoom(REFERENCE_ZOOM);
     });
   }
 }
