@@ -4,11 +4,18 @@ import {
   destinationPoint,
   summarizeForecast,
 } from "./risk-model.mjs";
+import {
+  createWindGrid,
+  parseCurrentWindPayload,
+  windTravelBearing,
+} from "./wind-layer.mjs";
 
 const REFERENCE_COORDS = [39.9449883, -0.247279];
 const REFERENCE_ZOOM = 14;
 const WEATHER_REFRESH_MS = 10 * 60 * 1000;
+const WIND_LAYER_REFRESH_MS = 10 * 60 * 1000;
 const WEATHER_SOURCE_URL = "https://open-meteo.com/en/docs";
+const WIND_LOCATIONS = createWindGrid(REFERENCE_COORDS);
 const translations = {
   es: {
     title: "Focos de incendio sobre Onda",
@@ -17,12 +24,14 @@ const translations = {
     referenceView: "Extensión de referencia de Google",
     nearbyDetections: "Todas las detecciones próximas",
     showHotspots: "Mostrar focos",
+    showWindLayer: "Mostrar viento",
     showRiskCorridors: "Mostrar corredores de riesgo",
     language: "Idioma",
     legendTitle: "Leyenda e información",
     mapLabel: "Mapa satelital con detecciones de incendios activos",
     lowerFrp: "Foco menos intenso",
     higherFrp: "Foco más intenso",
+    windLegend: "Viento: flecha hacia donde se desplaza · velocidad en km/h",
     riskCorridorLegend: "Corredor direccional orientativo",
     legendText: "El tamaño y el color del punto indican la intensidad estimada de cada foco de incendio.",
     howToRead: "Cómo interpretar este visor",
@@ -50,6 +59,11 @@ const translations = {
     riskCorridorTooltip: hours => `Corredor direccional orientativo · ${hours} h`,
     weatherSource: time => `Viento, humedad, precipitación y humedad superficial previstos desde <a href="${WEATHER_SOURCE_URL}" target="_blank" rel="noreferrer">Open-Meteo</a> · consulta ${time}.`,
     weatherRetained: "No se pudo actualizar el tiempo; se mantiene la última previsión válida.",
+    windLoading: "Cargando viento actual…",
+    windSource: time => `Viento actual de <a href="${WEATHER_SOURCE_URL}" target="_blank" rel="noreferrer">Open-Meteo</a> · consulta independiente ${time}.`,
+    windLoadError: "No se pudo cargar la capa de viento actual.",
+    windRetained: "No se pudo actualizar; se mantiene la última capa válida.",
+    windMarkerLabel: ({ speed, direction, gusts }) => `Viento desde ${direction}° a ${speed} km/h; rachas ${gusts} km/h`,
   },
   en: {
     title: "Fire hotspots over Onda",
@@ -58,12 +72,14 @@ const translations = {
     referenceView: "Google reference extent",
     nearbyDetections: "All nearby detections",
     showHotspots: "Show hotspots",
+    showWindLayer: "Show wind",
     showRiskCorridors: "Show risk corridors",
     language: "Language",
     legendTitle: "Legend and information",
     mapLabel: "Satellite map with active-fire detections",
     lowerFrp: "Less intense hotspot",
     higherFrp: "More intense hotspot",
+    windLegend: "Wind: arrow shows travel direction · speed in km/h",
     riskCorridorLegend: "Indicative directional corridor",
     legendText: "Dot size and colour indicate the estimated intensity of each fire hotspot.",
     howToRead: "How to read this view",
@@ -91,6 +107,11 @@ const translations = {
     riskCorridorTooltip: hours => `Indicative directional corridor · ${hours} h`,
     weatherSource: time => `Forecast wind, humidity, precipitation and shallow soil moisture from <a href="${WEATHER_SOURCE_URL}" target="_blank" rel="noreferrer">Open-Meteo</a> · queried ${time}.`,
     weatherRetained: "Weather refresh failed; the latest valid forecast is retained.",
+    windLoading: "Loading current wind…",
+    windSource: time => `Current wind from <a href="${WEATHER_SOURCE_URL}" target="_blank" rel="noreferrer">Open-Meteo</a> · independently queried ${time}.`,
+    windLoadError: "Current wind layer could not be loaded.",
+    windRetained: "Refresh failed; the latest valid layer is retained.",
+    windMarkerLabel: ({ speed, direction, gusts }) => `Wind from ${direction}° at ${speed} km/h; gusts ${gusts} km/h`,
   },
 };
 
@@ -100,6 +121,9 @@ let latestPerimeterData;
 let latestWeather;
 let latestWeatherError;
 let latestRiskResult;
+let latestWindObservations;
+let windLayerQueriedAt;
+let windLayerError;
 let weatherLastAttemptAt = 0;
 let weatherFetchInProgress;
 let currentSnapshotId;
@@ -112,6 +136,7 @@ const legendElement = document.querySelector(".legend");
 const riskPanelElement = document.querySelector(".risk-panel");
 const riskContentElement = document.querySelector("#risk-content");
 const weatherSourceNoteElement = document.querySelector("#weather-source-note");
+const windSourceNoteElement = document.querySelector("#wind-source-note");
 const mobileLegendQuery = window.matchMedia("(max-width: 680px)");
 const riskColors = { low: "#788a80", watch: "#c68a15", elevated: "#df6724", urgent: "#bc3030" };
 
@@ -131,6 +156,8 @@ mobileLegendQuery.addEventListener("change", syncRiskPanelDefault);
 
 const map = L.map("map", { zoomControl: false, preferCanvas: true }).setView(REFERENCE_COORDS, REFERENCE_ZOOM);
 L.control.zoom({ position: "bottomright" }).addTo(map);
+map.createPane("windPane");
+map.getPane("windPane").style.zIndex = "450";
 
 L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
   attribution: "Tiles © Esri — Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community",
@@ -138,6 +165,7 @@ L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/
 }).addTo(map);
 
 const hotspotLayer = L.layerGroup().addTo(map);
+const windLayer = L.layerGroup().addTo(map);
 const riskCorridorLayer = L.layerGroup().addTo(map);
 const perimeterLayer = L.geoJSON(null, {
   style: {
@@ -170,6 +198,7 @@ function applyLanguage(language) {
   });
   if (latestFireData) renderHotspots(latestFireData);
   else document.querySelector("#detection-count").textContent = t("loading");
+  renderWindLayer();
   renderRisk();
 }
 
@@ -195,6 +224,62 @@ async function fetchJson(path) {
   const response = await fetch(path, { cache: "no-store" });
   if (!response.ok) throw new Error(`${path}: HTTP ${response.status}`);
   return response.json();
+}
+
+function windIcon(observation) {
+  const travelBearing = windTravelBearing(observation.windDirection);
+  const speed = Math.round(observation.windSpeedKmh);
+  return L.divIcon({
+    className: "wind-icon",
+    html: `<div class="wind-marker" title="${t("windMarkerLabel")({ speed, direction: Math.round(observation.windDirection), gusts: Math.round(observation.windGustKmh) })}"><span class="wind-arrow" style="transform: rotate(${travelBearing}deg)" aria-hidden="true">↑</span><span class="wind-speed">${speed} km/h</span></div>`,
+    iconSize: [64, 46],
+    iconAnchor: [32, 23],
+  });
+}
+
+function renderWindSourceNote() {
+  if (!latestWindObservations) {
+    windSourceNoteElement.textContent = windLayerError ? t("windLoadError") : t("windLoading");
+    return;
+  }
+  windSourceNoteElement.innerHTML = t("windSource")(formatTime(windLayerQueriedAt.toISOString()));
+  if (windLayerError) windSourceNoteElement.append(` ${t("windRetained")}`);
+}
+
+function renderWindLayer() {
+  windLayer.clearLayers();
+  if (latestWindObservations) {
+    for (const observation of latestWindObservations) {
+      L.marker([observation.latitude, observation.longitude], {
+        icon: windIcon(observation),
+        pane: "windPane",
+        interactive: false,
+        keyboard: false,
+      }).addTo(windLayer);
+    }
+  }
+  renderWindSourceNote();
+}
+
+async function refreshWindLayer() {
+  const parameters = new URLSearchParams({
+    latitude: WIND_LOCATIONS.map(location => location.latitude).join(","),
+    longitude: WIND_LOCATIONS.map(location => location.longitude).join(","),
+    current: "wind_speed_10m,wind_direction_10m,wind_gusts_10m",
+    timezone: "UTC",
+    wind_speed_unit: "kmh",
+  });
+  try {
+    const response = await fetch(`https://api.open-meteo.com/v1/forecast?${parameters}`, { cache: "no-store" });
+    if (!response.ok) throw new Error(`Open-Meteo current wind: HTTP ${response.status}`);
+    latestWindObservations = parseCurrentWindPayload(await response.json(), WIND_LOCATIONS);
+    windLayerQueriedAt = new Date();
+    windLayerError = undefined;
+  } catch (error) {
+    console.error(error);
+    windLayerError = error;
+  }
+  renderWindLayer();
 }
 
 function renderHotspots(data) {
@@ -435,6 +520,10 @@ document.querySelector("#hotspots-toggle").addEventListener("change", event => {
   if (event.target.checked) hotspotLayer.addTo(map);
   else map.removeLayer(hotspotLayer);
 });
+document.querySelector("#wind-layer-toggle").addEventListener("change", event => {
+  if (event.target.checked) windLayer.addTo(map);
+  else map.removeLayer(windLayer);
+});
 document.querySelector("#risk-corridors-toggle").addEventListener("change", event => {
   if (event.target.checked) riskCorridorLayer.addTo(map);
   else map.removeLayer(riskCorridorLayer);
@@ -443,5 +532,8 @@ document.querySelector("#language-es").addEventListener("click", () => applyLang
 document.querySelector("#language-en").addEventListener("click", () => applyLanguage("en"));
 
 applyLanguage("es");
+// This request is deliberately independent from FIRMS and runs on every page load.
+refreshWindLayer();
 refreshMapData();
+window.setInterval(refreshWindLayer, WIND_LAYER_REFRESH_MS);
 window.setInterval(refreshMapData, 60_000);

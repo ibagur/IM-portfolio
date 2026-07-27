@@ -77,9 +77,16 @@ main { flex: 1; min-height: 440px; display: flex; position: relative; }
 .interpretation p { max-width: 250px; margin: 7px 0 0; }
 .dot { display: inline-block; border-radius: 50%; border: 1px solid rgb(255 255 255 / .7); background: #ffbd51; width: 9px; height: 9px; }
 .dot.high { background: #eb3e25; width: 15px; height: 15px; }
+.wind-swatch { display: inline-flex; align-items: center; gap: 2px; min-width: 30px; color: #fff; background: rgb(11 66 84 / .9); border: 1px solid #7dd5e6; border-radius: 4px; padding: 1px 3px; font-size: 9px; font-weight: 750; }
 .risk-swatch { display: inline-block; width: 18px; height: 10px; border: 1px solid #bd581f; background: rgb(230 104 35 / .28); }
+.wind-source-note { max-width: 250px; margin: 4px 0 0; padding-top: 7px; border-top: 1px solid rgb(69 101 84 / .22); color: #486258; font-size: 12px; line-height: 1.45; }
+.wind-source-note a { color: #815300; }
 .source-note { max-width: 250px; margin: 4px 0 0; padding-top: 7px; border-top: 1px solid rgb(69 101 84 / .22); color: #486258; font-size: 12px; line-height: 1.45; }
 .source-note a { color: #815300; }
+.wind-icon { background: transparent; border: 0; pointer-events: none !important; }
+.wind-marker { display: grid; place-items: center; width: 64px; height: 46px; color: #fff; filter: drop-shadow(0 1px 2px rgb(0 0 0 / .8)); }
+.wind-arrow { grid-area: 1 / 1; display: block; color: #9eeaff; font-size: 29px; font-weight: 900; line-height: 1; transform-origin: center; text-shadow: 0 0 3px #062d3a, 0 0 3px #062d3a; }
+.wind-speed { grid-area: 1 / 1; align-self: end; min-width: 34px; padding: 1px 4px; color: #fff; background: rgb(5 48 63 / .9); border: 1px solid rgb(158 234 255 / .75); border-radius: 5px; font-size: 10px; font-weight: 800; line-height: 1.2; text-align: center; white-space: nowrap; }
 .leaflet-control-attribution { font-size: 10px !important; }
 .hotspot-tooltip { background: rgb(14 23 21 / .93); color: #eff9f0; border: 1px solid #f2a84b; border-radius: 5px; box-shadow: none; font-size: 12px; }
 .hotspot-tooltip::before { border-top-color: #f2a84b; }

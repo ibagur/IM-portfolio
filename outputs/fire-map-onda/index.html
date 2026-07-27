@@ -6,7 +6,7 @@
     <title>Focos de incendio sobre Onda</title>
     <link rel="preconnect" href="https://unpkg.com" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="styles.css?v=20260727-8" />
+    <link rel="stylesheet" href="styles.css?v=20260727-9" />
   </head>
   <body>
     <header>
@@ -17,6 +17,7 @@
         <button id="reference-view" type="button" data-i18n="referenceView">Extensión de referencia de Google</button>
         <button id="detections-view" type="button" data-i18n="nearbyDetections">Todas las detecciones próximas</button>
         <label class="toggle"><input id="hotspots-toggle" type="checkbox" checked /> <span data-i18n="showHotspots">Mostrar focos</span></label>
+        <label class="toggle"><input id="wind-layer-toggle" type="checkbox" checked /> <span data-i18n="showWindLayer">Mostrar viento</span></label>
         <label class="toggle"><input id="risk-corridors-toggle" type="checkbox" checked /> <span data-i18n="showRiskCorridors">Mostrar corredores de riesgo</span></label>
         <div class="language-switch" role="group" aria-label="Idioma" data-i18n-aria="language">
           <button id="language-es" class="language-button active" type="button" aria-pressed="true">ES</button>
@@ -44,8 +45,10 @@
         <div class="legend-content">
           <div><span class="dot low"></span><span data-i18n="lowerFrp">Foco menos intenso</span></div>
           <div><span class="dot high"></span><span data-i18n="higherFrp">Foco más intenso</span></div>
+          <div><span class="wind-swatch">↑ 15</span><span data-i18n="windLegend">Viento: flecha hacia donde se desplaza · velocidad en km/h</span></div>
           <div><span class="risk-swatch"></span><span data-i18n="riskCorridorLegend">Corredor direccional orientativo</span></div>
           <p data-i18n="legendText">El tamaño y el color del punto indican la intensidad estimada de cada foco de incendio.</p>
+          <p id="wind-source-note" class="wind-source-note" aria-live="polite">Cargando viento actual…</p>
           <section class="interpretation" aria-labelledby="interpretation-title">
             <h2 id="interpretation-title" data-i18n="howToRead">Cómo interpretar este visor</h2>
             <p data-i18n="methodText">El contorno amarillo delimita la zona de interés de Google My Maps. Cada punto de color naranja a rojo es una detección cercana de incendio activo de VIIRS; los puntos con borde blanco quedan dentro del contorno. Compare sus posiciones con la imagen satelital para valorar la superficie probablemente afectada. Una detección corresponde a un píxel de 375 m, no a un perímetro cartografiado del incendio: los puntos no delimitan por sí solos la extensión exacta. La fecha de la imagen satelital puede no coincidir con la de la detección.</p>
@@ -56,6 +59,6 @@
     </main>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script type="module" src="app.js?v=20260727-13"></script>
+    <script type="module" src="app.js?v=20260727-14"></script>
   </body>
 </html>
