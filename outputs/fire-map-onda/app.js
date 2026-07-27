@@ -2,10 +2,8 @@ const REFERENCE_COORDS = [39.9449883, -0.247279];
 const REFERENCE_ZOOM = 14;
 const translations = {
   es: {
-    title: "Focos de incendio sobre imagen satelital",
-    eyebrow: "VISOR DE DETECCIONES DE INCENDIOS",
-    heading: "Focos de incendio sobre imagen satelital",
-    subtitle: "39.9449883° N, 0.247279° O · ubicación de referencia del enlace de Google Maps",
+    title: "Focos de incendio sobre Onda",
+    heading: "Focos de incendio sobre Onda",
     mapControls: "Controles del mapa",
     referenceView: "Extensión de referencia de Google",
     nearbyDetections: "Todas las detecciones próximas",
@@ -30,10 +28,8 @@ const translations = {
     retryNote: "No se pudo leer la instantánea local. El servidor volverá a intentarlo en la próxima actualización programada.",
   },
   en: {
-    title: "Fire hotspots over satellite imagery",
-    eyebrow: "FIRE DETECTION VIEWER",
-    heading: "Hotspots over satellite imagery",
-    subtitle: "39.9449883° N, 0.247279° W · reference position from the supplied Google Maps link",
+    title: "Fire hotspots over Onda",
+    heading: "Fire hotspots over Onda",
     mapControls: "Map controls",
     referenceView: "Google reference extent",
     nearbyDetections: "All nearby detections",
