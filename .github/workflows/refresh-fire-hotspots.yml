@@ -1,0 +1,47 @@
+name: Refresh fire hotspots
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-fire-hotspots
+  cancel-in-progress: false
+
+env:
+  # Change this only when the map is hosted in a portfolio subfolder.
+  # Examples: . or projects/fire-map
+  MAP_DIRECTORY: outputs/fire-map-onda
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the published map
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Refresh the FIRMS snapshot
+        run: node "$MAP_DIRECTORY/scripts/export-current-firms.mjs"
+
+      - name: Commit refreshed hotspot files
+        run: |
+          git add "$MAP_DIRECTORY/data/firms-current.geojson" \
+                  "$MAP_DIRECTORY/data/current-hotspots-nearby.kml" \
+                  "$MAP_DIRECTORY/data/zone-of-interest.geojson"
+          if git diff --cached --quiet; then
+            echo "No hotspot changes to publish."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: refresh fire hotspots"
+          git push
