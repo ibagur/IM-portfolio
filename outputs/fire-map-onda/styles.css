@@ -41,7 +41,7 @@ button:hover { background: #e8f0eb; }
 .language-button.active:hover { background: #f7d382; }
 main { flex: 1; min-height: 440px; display: flex; position: relative; }
 #map { flex: 1; width: 100%; background: #dbe6df; }
-.map-note, .legend {
+.map-note, .risk-panel, .legend {
   position: absolute;
   z-index: 500;
   background: rgb(255 255 255 / .92);
@@ -54,6 +54,18 @@ main { flex: 1; min-height: 440px; display: flex; position: relative; }
 }
 .map-note { top: 12px; left: 12px; display: grid; gap: 2px; }
 .map-note span { color: #577067; }
+.risk-panel { top: 78px; left: 12px; width: min(305px, calc(100% - 24px)); }
+.risk-panel h2 { margin: 0; color: #8a5900; font: inherit; font-weight: 750; }
+.risk-panel > p { margin: 6px 0 0; color: #486258; font-size: 12px; line-height: 1.4; }
+.risk-content { display: grid; gap: 6px; margin-top: 8px; }
+.risk-card { display: grid; gap: 3px; padding: 7px 8px; border-left: 4px solid #788a80; border-radius: 4px; background: rgb(239 245 241 / .78); }
+.risk-card[data-risk="watch"] { border-left-color: #c68a15; background: rgb(255 248 226 / .86); }
+.risk-card[data-risk="elevated"] { border-left-color: #df6724; background: rgb(255 239 227 / .88); }
+.risk-card[data-risk="urgent"] { border-left-color: #bc3030; background: rgb(255 232 232 / .9); }
+.risk-card strong { color: #173127; font-size: 12px; }
+.risk-card span { color: #486258; font-size: 11px; line-height: 1.35; }
+.risk-unavailable { margin: 0; color: #6b3d13; font-weight: 650; }
+.weather-source-note { border-top: 1px solid rgb(69 101 84 / .22); padding-top: 6px; }
 .legend { top: 12px; right: 12px; max-height: calc(100% - 110px); margin: 0; overflow-y: auto; }
 .legend summary { display: none; }
 .legend-content { display: grid; gap: 5px; }
@@ -64,6 +76,7 @@ main { flex: 1; min-height: 440px; display: flex; position: relative; }
 .interpretation p { max-width: 250px; margin: 7px 0 0; }
 .dot { display: inline-block; border-radius: 50%; border: 1px solid rgb(255 255 255 / .7); background: #ffbd51; width: 9px; height: 9px; }
 .dot.high { background: #eb3e25; width: 15px; height: 15px; }
+.risk-swatch { display: inline-block; width: 18px; height: 10px; border: 1px solid #bd581f; background: rgb(230 104 35 / .28); }
 .source-note { max-width: 250px; margin: 4px 0 0; padding-top: 7px; border-top: 1px solid rgb(69 101 84 / .22); color: #486258; font-size: 12px; line-height: 1.45; }
 .source-note a { color: #815300; }
 .leaflet-control-attribution { font-size: 10px !important; }
@@ -74,6 +87,7 @@ main { flex: 1; min-height: 440px; display: flex; position: relative; }
   header { align-items: flex-start; flex-direction: column; gap: 10px; padding: 12px 16px; }
   .actions { justify-content: flex-start; }
   main { min-height: 470px; }
+  .risk-panel { top: 78px; left: 8px; width: min(290px, calc(100% - 16px)); }
   .legend { top: 8px; right: 8px; max-height: calc(100% - 16px); padding: 0; overflow: visible; background: transparent; border: 0; backdrop-filter: none; }
   .legend summary { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 10px; color: #244036; background: rgb(255 255 255 / .96); border: 1px solid rgb(69 101 84 / .36); border-radius: 8px; cursor: pointer; font-weight: 700; list-style: none; }
   .legend summary::-webkit-details-marker { display: none; }
