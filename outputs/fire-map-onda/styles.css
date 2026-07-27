@@ -40,7 +40,7 @@ button:hover { background: #2b3d36; }
 .language-button + .language-button { border-left: 1px solid #43554e; }
 .language-button.active { color: #18211e; background: #eeb64e; }
 .language-button.active:hover { background: #f5ca70; }
-main { height: min(67vh, 770px); min-height: 440px; position: relative; }
+main { height: min(76vh, 850px); min-height: 440px; position: relative; }
 #map { height: 100%; width: 100%; background: #1a2924; }
 .map-note, .legend {
   position: absolute;
@@ -63,7 +63,7 @@ main { height: min(67vh, 770px); min-height: 440px; position: relative; }
 .interpretation p { max-width: 250px; margin: 7px 0 0; }
 .dot { display: inline-block; border-radius: 50%; border: 1px solid rgb(255 255 255 / .7); background: #ffbd51; width: 9px; height: 9px; }
 .dot.high { background: #eb3e25; width: 15px; height: 15px; }
-.source-note { max-width: 900px; margin: 0 auto; padding: 18px clamp(20px, 4vw, 30px) 32px; color: #c6d5cc; line-height: 1.55; }
+.source-note { max-width: 250px; margin: 4px 0 0; padding-top: 7px; border-top: 1px solid rgb(217 234 221 / .2); color: #c4d3ca; font-size: 12px; line-height: 1.45; }
 .source-note a { color: #f4c15d; }
 .leaflet-control-attribution { font-size: 10px !important; }
 .hotspot-tooltip { background: rgb(14 23 21 / .93); color: #eff9f0; border: 1px solid #f2a84b; border-radius: 5px; box-shadow: none; font-size: 12px; }
