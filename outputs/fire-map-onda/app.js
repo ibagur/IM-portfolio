@@ -1,5 +1,5 @@
 const REFERENCE_COORDS = [39.9449883, -0.247279];
-const REFERENCE_ZOOM = 14;
+const REFERENCE_ZOOM = 13;
 const translations = {
   es: {
     title: "Focos de incendio sobre imagen satelital",
