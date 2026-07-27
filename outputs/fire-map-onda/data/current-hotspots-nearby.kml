@@ -1,0 +1,2072 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Current nearby active-fire hotspots — Sant Francesc</name>
+    <description>Generated 2026-07-27T12:32:11.673Z from the Earth Nullschool current FIRMS feed. Points are detections, not a verified fire perimeter. Each point states whether it lies inside the My Maps area of interest.</description>
+    <Style id="hotspot"><IconStyle><color>ff3030ff</color><scale>1.15</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/firedept.png</href></Icon></IconStyle></Style>
+    <Placemark>
+      <name>Fire detection · 113.68 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T12:55:00.000Z</p><p><strong>Fire Radiative Power:</strong> 113.68 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.28200000524520874,39.87900161743164,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 38.16 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T12:55:00.000Z</p><p><strong>Fire Radiative Power:</strong> 38.16 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.27900001406669617,39.87799835205078,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 77.15 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T12:55:00.000Z</p><p><strong>Fire Radiative Power:</strong> 77.15 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2770000100135803,39.880001068115234,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 77.15 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T12:55:00.000Z</p><p><strong>Fire Radiative Power:</strong> 77.15 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2720000147819519,39.88100051879883,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 132.22 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T12:55:00.000Z</p><p><strong>Fire Radiative Power:</strong> 132.22 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.26899999380111694,39.87900161743164,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 79.88 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T12:55:00.000Z</p><p><strong>Fire Radiative Power:</strong> 79.88 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2680000066757202,39.87099838256836,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 9.30 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T12:55:00.000Z</p><p><strong>Fire Radiative Power:</strong> 9.30 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2669999897480011,39.867000579833984,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 30.25 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T12:55:00.000Z</p><p><strong>Fire Radiative Power:</strong> 30.25 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.26600000262260437,39.87799835205078,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 16.89 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T12:55:00.000Z</p><p><strong>Fire Radiative Power:</strong> 16.89 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.26600000262260437,39.88399887084961,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 16.89 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T12:55:00.000Z</p><p><strong>Fire Radiative Power:</strong> 16.89 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2639999985694885,39.880001068115234,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 29.53 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T12:55:00.000Z</p><p><strong>Fire Radiative Power:</strong> 29.53 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2630000114440918,39.87200164794922,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 30.25 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T12:55:00.000Z</p><p><strong>Fire Radiative Power:</strong> 30.25 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.26100000739097595,39.87900161743164,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 29.53 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T12:55:00.000Z</p><p><strong>Fire Radiative Power:</strong> 29.53 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.25999999046325684,39.875999450683594,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 209.88 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T12:55:00.000Z</p><p><strong>Fire Radiative Power:</strong> 209.88 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.25600001215934753,39.92100143432617,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 209.88 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T12:55:00.000Z</p><p><strong>Fire Radiative Power:</strong> 209.88 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.25200000405311584,39.922000885009766,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.00 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T12:55:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.00 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.25,39.882999420166016,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 145.62 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T12:55:00.000Z</p><p><strong>Fire Radiative Power:</strong> 145.62 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.25,39.915000915527344,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 54.82 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T12:55:00.000Z</p><p><strong>Fire Radiative Power:</strong> 54.82 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2460000067949295,39.91999816894531,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 46.65 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T12:55:00.000Z</p><p><strong>Fire Radiative Power:</strong> 46.65 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.24500000476837158,39.91600036621094,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 54.82 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T12:55:00.000Z</p><p><strong>Fire Radiative Power:</strong> 54.82 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.24199999868869781,39.92399978637695,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 54.82 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T12:55:00.000Z</p><p><strong>Fire Radiative Power:</strong> 54.82 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2409999966621399,39.92100143432617,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 46.65 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T12:55:00.000Z</p><p><strong>Fire Radiative Power:</strong> 46.65 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.23999999463558197,39.91699981689453,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 46.65 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T12:55:00.000Z</p><p><strong>Fire Radiative Power:</strong> 46.65 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.23899999260902405,39.91400146484375,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 15.03 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T12:55:00.000Z</p><p><strong>Fire Radiative Power:</strong> 15.03 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.23600000143051147,39.922000885009766,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 14.27 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T12:55:00.000Z</p><p><strong>Fire Radiative Power:</strong> 14.27 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.23499999940395355,39.917999267578125,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 14.27 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T12:55:00.000Z</p><p><strong>Fire Radiative Power:</strong> 14.27 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.23399999737739563,39.915000915527344,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 14.27 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T12:55:00.000Z</p><p><strong>Fire Radiative Power:</strong> 14.27 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.23000000417232513,39.91899871826172,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 14.27 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T12:55:00.000Z</p><p><strong>Fire Radiative Power:</strong> 14.27 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2290000021457672,39.91600036621094,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 38.63 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T12:55:00.000Z</p><p><strong>Fire Radiative Power:</strong> 38.63 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.22499999403953552,39.91600036621094,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 3.15 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T12:55:00.000Z</p><p><strong>Fire Radiative Power:</strong> 3.15 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.22300000488758087,39.91299819946289,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 38.63 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T12:55:00.000Z</p><p><strong>Fire Radiative Power:</strong> 38.63 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2199999988079071,39.91699981689453,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 9.30 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 9.30 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2980000078678131,39.86800003051758,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 11.49 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 11.49 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2879999876022339,39.87300109863281,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 11.14 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 11.14 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.28600001335144043,39.86199951171875,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 215.58 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 215.58 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.28299999237060547,39.87300109863281,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 80.17 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 80.17 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.28200000524520874,39.86600112915039,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 7.49 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 7.49 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2809999883174896,39.862998962402344,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 80.17 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 80.17 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2770000100135803,39.869998931884766,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 80.17 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 80.17 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2759999930858612,39.867000579833984,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 7.49 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 7.49 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2759999930858612,39.862998962402344,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 7.49 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 7.49 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2750000059604645,39.86000061035156,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 101.54 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 101.54 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.27300000190734863,39.87799835205078,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 101.54 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 101.54 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2720000147819519,39.874000549316406,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 112.74 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 112.74 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2720000147819519,39.87099838256836,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 112.74 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 112.74 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2709999978542328,39.867000579833984,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 9.33 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 9.33 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.27000001072883606,39.86399841308594,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 9.33 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 9.33 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.26899999380111694,39.86000061035156,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 6.61 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 6.61 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.26899999380111694,39.856998443603516,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 12.07 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 12.07 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2680000066757202,39.88199996948242,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 112.74 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 112.74 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.26600000262260437,39.86800003051758,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 9.33 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 9.33 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.26499998569488525,39.8650016784668,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 9.33 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 9.33 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2639999985694885,39.861000061035156,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 6.61 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 6.61 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2630000114440918,39.858001708984375,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 45.72 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 45.72 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.26100000739097595,39.92300033569336,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 45.72 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 45.72 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.25999999046325684,39.91899871826172,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 117.65 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 117.65 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.257999986410141,39.9119987487793,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 90.95 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 90.95 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.25699999928474426,39.909000396728516,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 90.95 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 90.95 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.25699999928474426,39.904998779296875,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 45.72 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 45.72 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.25600001215934753,39.92300033569336,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 45.72 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 45.72 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2549999952316284,39.91999816894531,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 117.65 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 117.65 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2529999911785126,39.91299819946289,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 90.95 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 90.95 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.25200000405311584,39.90599822998047,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 83.95 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 83.95 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.25,39.92399978637695,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 78.50 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 78.50 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.24899999797344208,39.91699981689453,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 78.50 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 78.50 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.24799999594688416,39.91299819946289,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 64.62 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 64.62 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.24699999392032623,39.90999984741211,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 64.62 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 64.62 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2460000067949295,39.90599822998047,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 4.82 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 4.82 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2460000067949295,39.90299987792969,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 83.95 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 83.95 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.24500000476837158,39.92499923706055,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 83.95 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 83.95 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.24400000274181366,39.92100143432617,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 64.62 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 64.62 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.24199999868869781,39.9109992980957,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 64.62 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 64.62 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2409999966621399,39.90700149536133,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 48.92 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 48.92 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.23999999463558197,39.92499923706055,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 48.92 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 48.92 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.23899999260902405,39.922000885009766,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 36.09 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 36.09 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.23800000548362732,39.915000915527344,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 7.58 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 7.58 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2370000034570694,39.9109992980957,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 36.09 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 36.09 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2329999953508377,39.915000915527344,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 8.18 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 8.18 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2280000001192093,39.91999816894531,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 8.18 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 8.18 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.22699999809265137,39.91600036621094,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.95 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.95 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.22699999809265137,39.9119987487793,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 8.18 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 8.18 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.22200000286102295,39.91699981689453,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.95 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-26T13:14:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.95 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.22100000083446503,39.91299819946289,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 17.52 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 17.52 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.31299999356269836,39.90999984741211,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 6.61 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 6.61 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.30799999833106995,39.91600036621094,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 6.61 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 6.61 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.30799999833106995,39.90999984741211,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.43 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.43 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.30300000309944153,39.86899948120117,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 6.61 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 6.61 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.3019999861717224,39.90999984741211,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 6.61 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 6.61 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.3019999861717224,39.91600036621094,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.43 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.43 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.3019999861717224,39.86399841308594,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.65 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.65 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.30000001192092896,39.86899948120117,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 3.54 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 3.54 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2980000078678131,39.90399932861328,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.65 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.65 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2980000078678131,39.862998962402344,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.85 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.85 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2980000078678131,39.86899948120117,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 3.54 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 3.54 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2939999997615814,39.90399932861328,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 3.68 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 3.68 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2930000126361847,39.909000396728516,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 12.82 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 12.82 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.289000004529953,39.90299987792969,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.79 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.79 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2879999876022339,39.909000396728516,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.94 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.94 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.28600001335144043,39.86899948120117,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 3.21 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 3.21 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2840000092983246,39.94300079345703,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 12.82 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 12.82 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2840000092983246,39.90299987792969,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.79 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.79 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.28299999237060547,39.909000396728516,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.38 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.38 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.28299999237060547,39.86800003051758,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 3.36 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 3.36 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.28200000524520874,39.93199920654297,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 4.94 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 4.94 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2809999883174896,39.944000244140625,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.52 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.52 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2809999883174896,39.880001068115234,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.94 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.94 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2809999883174896,39.862998962402344,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.06 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.06 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2800000011920929,39.94300079345703,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 17.09 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 17.09 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.27900001406669617,39.90299987792969,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.29 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.29 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.27799999713897705,39.909000396728516,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.09 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.09 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.27799999713897705,39.86199951171875,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 3.16 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 3.16 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.27799999713897705,39.9379997253418,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 4.17 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 4.17 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2770000100135803,39.94300079345703,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.85 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.85 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2759999930858612,39.86199951171875,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.06 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.06 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2759999930858612,39.94200134277344,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.09 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.09 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.27399998903274536,39.86199951171875,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 17.09 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 17.09 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.27399998903274536,39.90299987792969,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.85 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.85 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2720000147819519,39.86199951171875,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.50 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.50 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2709999978542328,39.94200134277344,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.24 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.24 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.27000001072883606,39.86199951171875,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 9.98 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 9.98 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.26899999380111694,39.90299987792969,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 4.57 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 4.57 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.26899999380111694,39.94300079345703,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.24 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.24 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2680000066757202,39.86199951171875,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.50 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.50 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2669999897480011,39.94200134277344,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.24 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.24 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.26499998569488525,39.86199951171875,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 9.98 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 9.98 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.26499998569488525,39.902000427246094,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.26 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.26 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2639999985694885,39.85599899291992,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.24 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.24 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2639999985694885,39.86199951171875,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.95 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.95 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2619999945163727,39.85599899291992,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.12 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.12 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.26100000739097595,39.86199951171875,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 4.04 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 4.04 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.26100000739097595,39.902000427246094,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.15 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.15 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.25999999046325684,39.90800094604492,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 0.83 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 0.83 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.25999999046325684,39.85599899291992,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.90 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.90 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.25699999928474426,39.94200134277344,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 4.04 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 4.04 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.25600001215934753,39.902000427246094,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.53 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.53 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2540000081062317,39.94200134277344,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.79 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.79 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.25200000405311584,39.902000427246094,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.79 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.79 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.24699999392032623,39.902000427246094,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 0.60 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 0.60 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2460000067949295,39.88399887084961,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.05 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.05 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2409999966621399,39.9010009765625,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 6.39 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 6.39 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.23499999940395355,39.93600082397461,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 6.69 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 6.69 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.23000000417232513,39.935001373291016,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 7.73 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 7.73 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2290000021457672,39.92399978637695,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 6.69 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 6.69 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2290000021457672,39.93000030517578,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 7.73 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 7.73 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.22499999403953552,39.92399978637695,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 6.69 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 6.69 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.22499999403953552,39.92900085449219,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 5.21 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 5.21 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2199999988079071,39.92300033569336,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 3.45 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 3.45 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2199999988079071,39.92900085449219,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 5.21 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:13:00.000Z</p><p><strong>Fire Radiative Power:</strong> 5.21 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2160000056028366,39.92300033569336,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 6.78 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 6.78 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.32199999690055847,39.90999984741211,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 6.78 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 6.78 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.32199999690055847,39.91400146484375,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 6.96 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 6.96 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.31700000166893005,39.909000396728516,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 6.96 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 6.96 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.31700000166893005,39.91299819946289,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 8.72 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 8.72 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.31700000166893005,39.91699981689453,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 6.96 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 6.96 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.31299999356269836,39.909000396728516,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 6.96 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 6.96 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.31299999356269836,39.91299819946289,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 6.53 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 6.53 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.30799999833106995,39.90800094604492,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 0.91 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 0.91 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.3050000071525574,39.86600112915039,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 0.91 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 0.91 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.3050000071525574,39.87099838256836,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.09 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.09 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.30399999022483826,39.90399932861328,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 6.53 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 6.53 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.30399999022483826,39.90800094604492,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.68 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.68 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.30300000309944153,39.93600082397461,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 0.91 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 0.91 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.30000001192092896,39.869998931884766,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 18.49 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 18.49 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.29899999499320984,39.90700149536133,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.23 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.23 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2980000078678131,39.930999755859375,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 3.68 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 3.68 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.29600000381469727,39.948001861572266,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.11 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.11 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.29499998688697815,39.869998931884766,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 3.74 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 3.74 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.29499998688697815,39.874000549316406,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 18.49 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 18.49 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2939999997615814,39.90700149536133,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.23 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.23 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2930000126361847,39.935001373291016,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.28 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.28 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2919999957084656,39.93899917602539,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 0.70 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 0.70 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.29100000858306885,39.902000427246094,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 3.68 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 3.68 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.29100000858306885,39.946998596191406,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.11 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.11 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.28999999165534973,39.8650016784668,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 32.16 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 32.16 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.28999999165534973,39.90599822998047,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.37 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.37 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.289000004529953,39.88199996948242,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 32.16 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 32.16 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.289000004529953,39.90999984741211,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.83 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.83 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2879999876022339,39.935001373291016,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.92 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.92 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.28700000047683716,39.93899917602539,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 0.70 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 0.70 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.28600001335144043,39.902000427246094,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.92 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.92 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.28600001335144043,39.94300079345703,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.17 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.17 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2849999964237213,39.8650016784668,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 32.16 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 32.16 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2849999964237213,39.90599822998047,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 32.16 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 32.16 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2849999964237213,39.90999984741211,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.92 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.92 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.28200000524520874,39.94200134277344,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 0.86 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 0.86 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.28200000524520874,39.9010009765625,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.17 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.17 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2809999883174896,39.86399841308594,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 21.79 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 21.79 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2809999883174896,39.904998779296875,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.05 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.05 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2800000011920929,39.88100051879883,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.52 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.52 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.27799999713897705,39.94200134277344,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 3.86 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 3.86 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2770000100135803,39.94599914550781,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 0.86 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 0.86 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2770000100135803,39.9010009765625,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.38 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.38 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2770000100135803,39.86399841308594,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 21.79 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 21.79 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2759999930858612,39.904998779296875,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.52 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.52 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.27300000190734863,39.941001892089844,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 3.45 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 3.45 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.27300000190734863,39.85900115966797,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 6.35 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 6.35 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2709999978542328,39.904998779296875,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.93 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.93 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.26899999380111694,39.941001892089844,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 3.35 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 3.35 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.26899999380111694,39.85900115966797,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 6.35 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 6.35 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2669999897480011,39.90399932861328,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 6.35 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 6.35 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2669999897480011,39.90800094604492,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.93 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.93 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2639999985694885,39.941001892089844,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 4.37 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 4.37 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2630000114440918,39.90399932861328,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.20 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.20 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.25999999046325684,39.939998626708984,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 4.37 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 4.37 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2590000033378601,39.90299987792969,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.78 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.78 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.25699999928474426,39.887001037597656,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.20 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.20 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2549999952316284,39.939998626708984,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 3.42 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 3.42 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2540000081062317,39.90299987792969,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 3.42 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 3.42 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2529999911785126,39.90700149536133,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.28 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.28 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2460000067949295,39.93899917602539,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.53 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.53 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.24199999868869781,39.933998107910156,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 0.83 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 0.83 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.23800000548362732,39.922000885009766,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 11.67 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 11.67 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.23800000548362732,39.92599868774414,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 11.67 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 11.67 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.23800000548362732,39.93000030517578,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.53 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.53 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2370000034570694,39.933998107910156,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.40 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.40 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.23600000143051147,39.922000885009766,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 11.17 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 11.17 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2329999953508377,39.92499923706055,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 11.17 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 11.17 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2329999953508377,39.92900085449219,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.34 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.34 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.23199999332427979,39.92100143432617,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.31 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.31 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.23000000417232513,39.92100143432617,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 11.17 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 11.17 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2290000021457672,39.92499923706055,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 11.17 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 11.17 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2290000021457672,39.92900085449219,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.34 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.34 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2280000001192093,39.92100143432617,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 8.78 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T01:34:00.000Z</p><p><strong>Fire Radiative Power:</strong> 8.78 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.22499999403953552,39.92399978637695,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.16 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.16 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.32199999690055847,39.915000915527344,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.48 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.48 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.32199999690055847,39.9119987487793,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.72 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.72 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.32100000977516174,39.909000396728516,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.48 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.48 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.3179999887943268,39.91699981689453,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.16 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.16 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.3179999887943268,39.91400146484375,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.02 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.02 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.3179999887943268,39.9109992980957,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.57 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.57 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.31700000166893005,39.90800094604492,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.02 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.02 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.3140000104904175,39.91600036621094,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.03 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.03 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.31299999356269836,39.91299819946289,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.02 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.02 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.31299999356269836,39.90999984741211,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.57 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.57 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.31200000643730164,39.90700149536133,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.03 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.03 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.3089999854564667,39.9119987487793,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.02 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.02 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.3089999854564667,39.909000396728516,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.36 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.36 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.30799999833106995,39.90599822998047,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.11 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.11 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.3070000112056732,39.9370002746582,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.02 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.02 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.3050000071525574,39.90800094604492,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.36 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.36 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.30399999022483826,39.904998779296875,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.13 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.13 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.30300000309944153,39.93600082397461,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.13 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.13 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.3019999861717224,39.93000030517578,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.01 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.01 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.3009999990463257,39.90999984741211,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 5.60 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 5.60 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.3009999990463257,39.90700149536133,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.91 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.91 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.29899999499320984,39.90299987792969,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.13 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.13 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.29899999499320984,39.935001373291016,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 0.82 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 0.82 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2980000078678131,39.874000549316406,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 0.52 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 0.52 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2980000078678131,39.86899948120117,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 3.30 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 3.30 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.296999990940094,39.909000396728516,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 5.60 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 5.60 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.29600000381469727,39.904998779296875,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.85 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.85 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.29499998688697815,39.933998107910156,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 0.82 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 0.82 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.29499998688697815,39.87900161743164,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.91 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.91 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2939999997615814,39.902000427246094,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 6.53 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 6.53 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2939999997615814,39.94499969482422,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 3.30 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 3.30 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2919999957084656,39.90700149536133,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.74 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.74 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2919999957084656,39.87799835205078,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 5.94 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 5.94 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.29100000858306885,39.90399932861328,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 4.11 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 4.11 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.29100000858306885,39.944000244140625,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.55 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.55 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.289000004529953,39.9010009765625,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 4.11 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 4.11 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.289000004529953,39.9379997253418,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.97 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.97 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2879999876022339,39.882999420166016,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.01 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.01 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2879999876022339,39.94900131225586,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 10.47 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 10.47 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.28700000047683716,39.90599822998047,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 4.11 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 4.11 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.28700000047683716,39.94300079345703,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 0.90 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 0.90 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.28700000047683716,39.86600112915039,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 5.94 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 5.94 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.28600001335144043,39.90299987792969,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 5.94 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 5.94 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2849999964237213,39.90800094604492,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.01 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.01 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2840000092983246,39.948001861572266,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.95 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.95 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2840000092983246,39.875999450683594,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 10.47 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 10.47 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.28299999237060547,39.904998779296875,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 4.45 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 4.45 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.28299999237060547,39.86399841308594,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 6.47 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 6.47 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.28200000524520874,39.902000427246094,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.77 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.77 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.28200000524520874,39.94200134277344,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 6.47 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 6.47 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2809999883174896,39.90700149536133,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.66 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.66 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.27900001406669617,39.88100051879883,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 9.93 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 9.93 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.27900001406669617,39.90399932861328,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 4.45 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 4.45 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.27799999713897705,39.862998962402344,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 6.47 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 6.47 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.27799999713897705,39.900001525878906,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.77 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.77 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2770000100135803,39.939998626708984,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 6.47 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 6.47 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2759999930858612,39.90599822998047,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 9.93 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 9.93 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2750000059604645,39.90299987792969,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.49 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.49 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.27399998903274536,39.85599899291992,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.55 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.55 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.27399998903274536,39.94499969482422,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.90 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.90 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.27300000190734863,39.89899826049805,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.49 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.49 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2720000147819519,39.86199951171875,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.90 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.90 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2720000147819519,39.90399932861328,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.49 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.49 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.27000001072883606,39.85499954223633,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.30 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.30 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.27000001072883606,39.9010009765625,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.49 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.49 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2669999897480011,39.86000061035156,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.30 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.30 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2669999897480011,39.90599822998047,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.90 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.90 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2669999897480011,39.90299987792969,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 0.70 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 0.70 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.26499998569488525,39.94300079345703,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 0.62 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 0.62 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.26100000739097595,39.9010009765625,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.60 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.60 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.25699999928474426,39.90399932861328,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 0.77 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 0.77 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.25600001215934753,39.88600158691406,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.33 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.33 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2540000081062317,39.904998779296875,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 0.96 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 0.96 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.23899999260902405,39.93600082397461,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.61 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.61 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.23800000548362732,39.93000030517578,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.61 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.61 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2370000034570694,39.92399978637695,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.61 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.61 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2329999953508377,39.928001403808594,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.45 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.45 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.23199999332427979,39.922000885009766,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.45 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.45 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2290000021457672,39.926998138427734,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.45 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.45 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.22699999809265137,39.92100143432617,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.45 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T02:53:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.45 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2240000069141388,39.92599868774414,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.12 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.12 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.32600000500679016,39.91400146484375,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.28 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.28 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.32499998807907104,39.915000915527344,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.12 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.12 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.3179999887943268,39.9109992980957,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 3.00 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 3.00 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.31700000166893005,39.9119987487793,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 4.64 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 4.64 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.3089999854564667,39.90800094604492,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 3.00 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 3.00 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.30799999833106995,39.90999984741211,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.57 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.57 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.3059999942779541,39.9379997253418,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 3.52 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 3.52 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.30399999022483826,39.939998626708984,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 4.64 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 4.64 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.3009999990463257,39.904998779296875,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 7.84 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 7.84 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.30000001192092896,39.90700149536133,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.57 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.57 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2980000078678131,39.935001373291016,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 3.98 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 3.98 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.296999990940094,39.9370002746582,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 1.57 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 1.57 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2939999997615814,39.94200134277344,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 5.10 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 5.10 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2939999997615814,39.944000244140625,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 5.83 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 5.83 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2930000126361847,39.88100051879883,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 10.51 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 10.51 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.29100000858306885,39.94900131225586,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 7.51 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 7.51 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.28999999165534973,39.9010009765625,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 7.84 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 7.84 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.289000004529953,39.90299987792969,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 5.10 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 5.10 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.289000004529953,39.95000076293945,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 7.51 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 7.51 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.28700000047683716,39.90800094604492,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 5.10 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 5.10 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.28700000047683716,39.94200134277344,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.40 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.40 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.28700000047683716,39.90999984741211,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 5.83 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 5.83 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2849999964237213,39.87799835205078,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 7.35 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 7.35 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2840000092983246,39.94599914550781,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 5.10 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 5.10 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.28200000524520874,39.948001861572266,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 3.62 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 3.62 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2809999883174896,39.861000061035156,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 11.37 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 11.37 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2800000011920929,39.900001525878906,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 7.51 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 7.51 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.27900001406669617,39.904998779296875,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.75 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.75 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.27799999713897705,39.90700149536133,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 6.59 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 6.59 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2770000100135803,39.875,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 9.25 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 9.25 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2759999930858612,39.9379997253418,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 7.35 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 7.35 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2720000147819519,39.94200134277344,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 4.49 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 4.49 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2680000066757202,39.856998443603516,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 3.80 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 3.80 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2680000066757202,39.902000427246094,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.75 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.75 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2680000066757202,39.90399932861328,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 3.97 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 3.97 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2370000034570694,39.93000030517578,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.30 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.30 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.23600000143051147,39.93199920654297,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.30 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.30 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.23199999332427979,39.92300033569336,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 4.51 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 4.51 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.2280000001192093,39.926998138427734,0</coordinates></Point>
+    </Placemark>
+    <Placemark>
+      <name>Fire detection · 2.30 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-27T03:15:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.30 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.22599999606609344,39.92900085449219,0</coordinates></Point>
+    </Placemark>
+  </Document>
+</kml>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Fire hotspots over satellite imagery</title>
+    <link rel="preconnect" href="https://unpkg.com" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <div>
+        <p class="eyebrow">FIRE DETECTION VIEWER</p>
+        <h1>Hotspots over satellite imagery</h1>
+        <p class="subtitle">39.9449883° N, 0.247279° W · reference position from the supplied Google Maps link</p>
+      </div>
+      <div class="actions" aria-label="Map controls">
+        <button id="reference-view" type="button">Google reference extent</button>
+        <button id="detections-view" type="button">All nearby detections</button>
+        <label class="toggle"><input id="hotspots-toggle" type="checkbox" checked /> Show hotspots</label>
+      </div>
+    </header>
+
+    <main>
+      <div id="map" aria-label="Satellite map with active-fire detections"></div>
+      <aside class="map-note" aria-live="polite">
+        <strong id="detection-count">Loading detections…</strong>
+        <span id="data-timestamp"></span>
+      </aside>
+      <aside class="legend">
+        <div><span class="dot low"></span>lower FRP</div>
+        <div><span class="dot high"></span>higher FRP</div>
+        <p>Dot size and colour indicate fire radiative power (MW).</p>
+      </aside>
+    </main>
+
+    <section class="method">
+      <h2>How to read this view</h2>
+      <p>The yellow outline is the area of interest from the shared Google My Maps layer. Each orange-to-red point is a nearby VIIRS active-fire detection; white-rimmed points fall inside the outline. Compare their positions with the satellite image to assess the likely affected area. A detection is a 375 m pixel, not a mapped fire perimeter: do not interpret the dots alone as the exact boundary of a wildfire. The imagery date may differ from the detection time.</p>
+      <p id="source-note">Source details loading…</p>
+    </section>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

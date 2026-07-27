@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Fire Map</name>
+    <description/>
+    <Style id="poly-FFEA00-2001-77-nodesc-normal">
+      <LineStyle>
+        <color>ff00eaff</color>
+        <width>2.001</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4d00eaff</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="poly-FFEA00-2001-77-nodesc-highlight">
+      <LineStyle>
+        <color>ff00eaff</color>
+        <width>3.0015</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4d00eaff</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="poly-FFEA00-2001-77-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#poly-FFEA00-2001-77-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#poly-FFEA00-2001-77-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Folder>
+      <name>Untitled layer</name>
+      <Placemark>
+        <name>Sant Francesc</name>
+        <styleUrl>#poly-FFEA00-2001-77-nodesc</styleUrl>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                -0.248715,39.9490193,0
+                -0.2482537,39.9480076,0
+                -0.2475885,39.9477115,0
+                -0.2479533,39.9468725,0
+                -0.2487043,39.9459102,0
+                -0.2476636,39.9453426,0
+                -0.2473203,39.945721,0
+                -0.2469448,39.9471111,0
+                -0.2462152,39.9469959,0
+                -0.2461187,39.9474565,0
+                -0.2452925,39.9472344,0
+                -0.2451638,39.9470288,0
+                -0.244402,39.9468479,0
+                -0.2443806,39.9473989,0
+                -0.2447776,39.9475963,0
+                -0.245668,39.9479171,0
+                -0.2447346,39.9489535,0
+                -0.2453355,39.9492167,0
+                -0.2466444,39.9480569,0
+                -0.2472988,39.9484846,0
+                -0.2461187,39.9497759,0
+                -0.248715,39.9490193,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>fire hotspots</name>
+    </Folder>
+  </Document>
+</kml>
