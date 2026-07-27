@@ -163,8 +163,8 @@ function renderPerimeter(data) {
     hasSetInitialView = true;
     requestAnimationFrame(() => {
       map.invalidateSize({ pan: false });
-      map.fitBounds(perimeterBounds.pad(0.35), { maxZoom: 16 });
-      map.setZoom(REFERENCE_ZOOM);
+      map.fitBounds(perimeterBounds.pad(0.35), { animate: false, maxZoom: 16 });
+      map.setZoom(REFERENCE_ZOOM, { animate: false });
     });
   }
 }
