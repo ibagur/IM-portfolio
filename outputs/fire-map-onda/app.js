@@ -9,14 +9,6 @@ L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/
   maxZoom: 19,
 }).addTo(map);
 
-const referenceMarker = L.circleMarker(REFERENCE_COORDS, {
-  radius: 6,
-  color: "#fff",
-  weight: 2,
-  fillColor: "#2ac8ff",
-  fillOpacity: 0.95,
-}).bindTooltip("Google Maps reference location", { direction: "top", offset: [0, -5] }).addTo(map);
-
 const hotspotLayer = L.layerGroup().addTo(map);
 const perimeterLayer = L.geoJSON(null, {
   style: {
