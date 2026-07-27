@@ -6,7 +6,7 @@
     <title>Focos de incendio sobre imagen satelital</title>
     <link rel="preconnect" href="https://unpkg.com" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="styles.css?v=20260727-5" />
+    <link rel="stylesheet" href="styles.css?v=20260727-6" />
   </head>
   <body>
     <header>
@@ -32,19 +32,22 @@
         <strong id="detection-count">Cargando detecciones…</strong>
         <span id="data-timestamp"></span>
       </aside>
-      <aside class="legend">
-        <div><span class="dot low"></span><span data-i18n="lowerFrp">FRP menor</span></div>
-        <div><span class="dot high"></span><span data-i18n="higherFrp">FRP mayor</span></div>
-        <p data-i18n="legendText">El tamaño y el color del punto indican la potencia radiativa del fuego (MW).</p>
-        <section class="interpretation" aria-labelledby="interpretation-title">
-          <h2 id="interpretation-title" data-i18n="howToRead">Cómo interpretar este visor</h2>
-          <p data-i18n="methodText">El contorno amarillo delimita la zona de interés de Google My Maps. Cada punto de color naranja a rojo es una detección cercana de incendio activo de VIIRS; los puntos con borde blanco quedan dentro del contorno. Compare sus posiciones con la imagen satelital para valorar la superficie probablemente afectada. Una detección corresponde a un píxel de 375 m, no a un perímetro cartografiado del incendio: los puntos no delimitan por sí solos la extensión exacta. La fecha de la imagen satelital puede no coincidir con la de la detección.</p>
-        </section>
-        <p id="source-note" class="source-note" aria-live="polite">Cargando información de la fuente…</p>
-      </aside>
+      <details class="legend">
+        <summary data-i18n="legendTitle">Leyenda e información</summary>
+        <div class="legend-content">
+          <div><span class="dot low"></span><span data-i18n="lowerFrp">FRP menor</span></div>
+          <div><span class="dot high"></span><span data-i18n="higherFrp">FRP mayor</span></div>
+          <p data-i18n="legendText">El tamaño y el color del punto indican la potencia radiativa del fuego (MW).</p>
+          <section class="interpretation" aria-labelledby="interpretation-title">
+            <h2 id="interpretation-title" data-i18n="howToRead">Cómo interpretar este visor</h2>
+            <p data-i18n="methodText">El contorno amarillo delimita la zona de interés de Google My Maps. Cada punto de color naranja a rojo es una detección cercana de incendio activo de VIIRS; los puntos con borde blanco quedan dentro del contorno. Compare sus posiciones con la imagen satelital para valorar la superficie probablemente afectada. Una detección corresponde a un píxel de 375 m, no a un perímetro cartografiado del incendio: los puntos no delimitan por sí solos la extensión exacta. La fecha de la imagen satelital puede no coincidir con la de la detección.</p>
+          </section>
+          <p id="source-note" class="source-note" aria-live="polite">Cargando información de la fuente…</p>
+        </div>
+      </details>
     </main>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="app.js?v=20260727-8"></script>
+    <script src="app.js?v=20260727-9"></script>
   </body>
 </html>

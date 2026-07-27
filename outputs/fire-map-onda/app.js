@@ -11,6 +11,7 @@ const translations = {
     nearbyDetections: "Todas las detecciones próximas",
     showHotspots: "Mostrar focos",
     language: "Idioma",
+    legendTitle: "Leyenda e información",
     mapLabel: "Mapa satelital con detecciones de incendios activos",
     lowerFrp: "FRP menor",
     higherFrp: "FRP mayor",
@@ -38,6 +39,7 @@ const translations = {
     nearbyDetections: "All nearby detections",
     showHotspots: "Show hotspots",
     language: "Language",
+    legendTitle: "Legend and information",
     mapLabel: "Satellite map with active-fire detections",
     lowerFrp: "lower FRP",
     higherFrp: "higher FRP",
@@ -57,6 +59,15 @@ const translations = {
   },
 };
 let currentLanguage = "es";
+const legendElement = document.querySelector(".legend");
+const mobileLegendQuery = window.matchMedia("(max-width: 680px)");
+
+function syncLegendDefault(event) {
+  legendElement.open = !event.matches;
+}
+
+syncLegendDefault(mobileLegendQuery);
+mobileLegendQuery.addEventListener("change", syncLegendDefault);
 
 const map = L.map("map", { zoomControl: false, preferCanvas: true }).setView(REFERENCE_COORDS, REFERENCE_ZOOM);
 L.control.zoom({ position: "bottomright" }).addTo(map);
