@@ -3,17 +3,27 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Focos de incendio sobre Onda</title>
+    <title>Focos de incendios sobre Onda</title>
     <link rel="preconnect" href="https://unpkg.com" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link rel="stylesheet" href="styles.css?v=20260727-10" />
+    <link rel="stylesheet" href="styles.css?v=20260728-11" />
   </head>
   <body>
     <header>
-      <div>
-        <h1 data-i18n="heading">Focos de incendio sobre Onda</h1>
+      <div class="header-title-row">
+        <h1 data-i18n="heading">Focos de incendios sobre Onda</h1>
+        <button
+          id="mobile-controls-toggle"
+          class="mobile-controls-toggle"
+          type="button"
+          aria-controls="map-actions"
+          aria-expanded="false"
+          aria-label="Mostrar controles del mapa"
+        >
+          <span class="menu-icon" aria-hidden="true"></span>
+        </button>
       </div>
-      <div class="actions" aria-label="Controles del mapa" data-i18n-aria="mapControls">
+      <div id="map-actions" class="actions" aria-label="Controles del mapa" data-i18n-aria="mapControls">
         <!-- Kept for future use; hidden while the map is used as a monitoring view. -->
         <button id="reference-view" type="button" data-i18n="referenceView" hidden>Extensión de referencia de Google</button>
         <button id="detections-view" type="button" data-i18n="nearbyDetections">Todas las detecciones próximas</button>
@@ -62,6 +72,6 @@
     </main>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script type="module" src="app.js?v=20260728-19"></script>
+    <script type="module" src="app.js?v=20260728-20"></script>
   </body>
 </html>

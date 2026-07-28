@@ -20,9 +20,11 @@ const WEATHER_SOURCE_URL = "https://open-meteo.com/en/docs";
 const WIND_LOCATIONS = createWindGrid(REFERENCE_COORDS);
 const translations = {
   es: {
-    title: "Focos de incendio sobre Onda",
-    heading: "Focos de incendio sobre Onda",
+    title: "Focos de incendios sobre Onda",
+    heading: "Focos de incendios sobre Onda",
     mapControls: "Controles del mapa",
+    showMapControls: "Mostrar controles del mapa",
+    hideMapControls: "Ocultar controles del mapa",
     referenceView: "Extensión de referencia de Google",
     nearbyDetections: "Todas las detecciones próximas",
     showHotspots: "Mostrar focos",
@@ -74,6 +76,8 @@ const translations = {
     title: "Fire hotspots over Onda",
     heading: "Fire hotspots over Onda",
     mapControls: "Map controls",
+    showMapControls: "Show map controls",
+    hideMapControls: "Hide map controls",
     referenceView: "Google reference extent",
     nearbyDetections: "All nearby detections",
     showHotspots: "Show hotspots",
@@ -142,6 +146,8 @@ let localBounds;
 let hasSetInitialView = false;
 
 const legendElement = document.querySelector(".legend");
+const headerElement = document.querySelector("header");
+const mobileControlsToggleElement = document.querySelector("#mobile-controls-toggle");
 const riskPanelElement = document.querySelector(".risk-panel");
 const riskContentElement = document.querySelector("#risk-content");
 const weatherSourceNoteElement = document.querySelector("#weather-source-note");
@@ -156,8 +162,21 @@ function syncLegendDefault(event) {
   legendElement.open = !event.matches;
 }
 
+function setMobileControlsExpanded(expanded) {
+  headerElement.classList.toggle("controls-open", expanded);
+  mobileControlsToggleElement.setAttribute("aria-expanded", String(expanded));
+  mobileControlsToggleElement.setAttribute("aria-label", t(expanded ? "hideMapControls" : "showMapControls"));
+}
+
+function syncMobileControls(event) {
+  setMobileControlsExpanded(false);
+  mobileControlsToggleElement.tabIndex = event.matches ? 0 : -1;
+}
+
 syncLegendDefault(mobileLegendQuery);
 mobileLegendQuery.addEventListener("change", syncLegendDefault);
+syncMobileControls(mobileLegendQuery);
+mobileLegendQuery.addEventListener("change", syncMobileControls);
 
 function syncRiskPanelDefault(event) {
   riskPanelElement.open = !event.matches;
@@ -214,6 +233,7 @@ function applyLanguage(language) {
     button.classList.toggle("active", isActive);
     button.setAttribute("aria-pressed", String(isActive));
   });
+  setMobileControlsExpanded(headerElement.classList.contains("controls-open"));
   if (latestFireData) renderHotspots(latestFireData);
   else document.querySelector("#detection-count").textContent = t("loading");
   renderWindLayer();
@@ -555,6 +575,9 @@ async function refreshMapData() {
 }
 
 document.querySelector("#reference-view").addEventListener("click", () => map.setView(REFERENCE_COORDS, REFERENCE_ZOOM));
+mobileControlsToggleElement.addEventListener("click", () => {
+  setMobileControlsExpanded(!headerElement.classList.contains("controls-open"));
+});
 document.querySelector("#detections-view").addEventListener("click", () => {
   if (localBounds?.isValid()) map.fitBounds(localBounds.pad(0.25), { maxZoom: 15 });
 });
