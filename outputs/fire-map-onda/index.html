@@ -14,7 +14,8 @@
         <h1 data-i18n="heading">Focos de incendio sobre Onda</h1>
       </div>
       <div class="actions" aria-label="Controles del mapa" data-i18n-aria="mapControls">
-        <button id="reference-view" type="button" data-i18n="referenceView">Extensión de referencia de Google</button>
+        <!-- Kept for future use; hidden while the map is used as a monitoring view. -->
+        <button id="reference-view" type="button" data-i18n="referenceView" hidden>Extensión de referencia de Google</button>
         <button id="detections-view" type="button" data-i18n="nearbyDetections">Todas las detecciones próximas</button>
         <label class="toggle"><input id="hotspots-toggle" type="checkbox" checked /> <span data-i18n="showHotspots">Mostrar focos</span></label>
         <label class="toggle"><input id="wind-layer-toggle" type="checkbox" checked /> <span data-i18n="showWindLayer">Mostrar viento</span></label>
@@ -60,6 +61,6 @@
     </main>
 
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script type="module" src="app.js?v=20260728-17"></script>
+    <script type="module" src="app.js?v=20260728-18"></script>
   </body>
 </html>

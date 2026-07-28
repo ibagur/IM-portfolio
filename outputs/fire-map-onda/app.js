@@ -12,6 +12,8 @@ import {
 
 const REFERENCE_COORDS = [39.9449883, -0.247279];
 const REFERENCE_ZOOM = 14;
+// Keep the San Francesc boundary data available without rendering it in the monitoring view.
+const SHOW_SAN_FRANCESC_PERIMETER = false;
 const WEATHER_REFRESH_MS = 10 * 60 * 1000;
 const WIND_LAYER_REFRESH_MS = 10 * 60 * 1000;
 const WEATHER_SOURCE_URL = "https://open-meteo.com/en/docs";
@@ -190,7 +192,8 @@ const perimeterLayer = L.geoJSON(null, {
     fillColor: "#ffdc36",
     fillOpacity: 0.09,
   },
-}).addTo(map);
+});
+if (SHOW_SAN_FRANCESC_PERIMETER) perimeterLayer.addTo(map);
 
 function t(key) {
   return translations[currentLanguage][key];
