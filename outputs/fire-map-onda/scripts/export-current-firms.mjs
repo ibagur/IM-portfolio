@@ -8,6 +8,7 @@
  */
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
+import { HOTSPOT_MONITORING_EXTENT } from "../monitoring-area.mjs";
 
 const SOURCE_URL = "https://gaia.nullschool.net/data/firms/current/current-firms.epak";
 const OUTPUT_PATH = new URL("../data/firms-current.geojson", import.meta.url);
@@ -15,7 +16,7 @@ const IMPORT_KML_PATH = new URL("../data/current-hotspots-nearby.kml", import.me
 const PERIMETER_PATH = new URL("../data/zone-of-interest.kml", import.meta.url);
 const PERIMETER_GEOJSON_PATH = new URL("../data/zone-of-interest.geojson", import.meta.url);
 const PERIMETER_KML_URL = "https://www.google.com/maps/d/kml?mid=1tqpTAqEbdQr_F5Pq8YIQU8QlpNsNeXk&forcekml=1";
-const LOCAL_EXTENT = { west: -0.42, south: 39.78, east: -0.08, north: 40.11 };
+const LOCAL_EXTENT = HOTSPOT_MONITORING_EXTENT;
 
 function escapeXml(value) {
   return String(value).replace(/[<>&"']/g, character => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", "\"": "&quot;", "'": "&apos;" })[character]);

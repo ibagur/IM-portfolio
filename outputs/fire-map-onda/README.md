@@ -10,7 +10,9 @@ node scripts/serve-live-map.mjs
 
 Open `http://127.0.0.1:8000`. While that process runs, it refreshes the FIRMS fire data every 30 minutes. The Sant Francesc forest boundary is fixed in `data/zone-of-interest.kml`; the open browser checks for a new local snapshot every minute and redraws automatically.
 
-The wind overlay is independent from the hotspot snapshot. Every page load requests current 10 m wind direction, speed, and gusts for a fixed 5×5 grid covering Sant Francesc and the southern fire front, and the open page refreshes that layer every 10 minutes. The arrows point in the direction the wind is travelling; labels show speed in km/h.
+The wind overlay is independent from the hotspot snapshot. Every page load requests current 10 m wind direction, speed, and gusts for a fixed corridor grid from Sant Francesc to Vall d'Uixó, including a sample at Vall d'Uixó itself, and the open page refreshes that layer every 10 minutes. The arrows point in the direction the wind is travelling; labels show speed in km/h.
+
+The FIRMS filter extends south beyond Vall d'Uixó. Detections are rendered whenever the live feed contains them, while the initial map remains centred on Sant Francesc at zoom level 14. Use **All nearby detections** or pan south to inspect detections outside the initial viewport.
 
 Use `--port=8010` or `--refresh-minutes=15` to change either setting.
 

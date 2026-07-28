@@ -1,15 +1,21 @@
-// Fixed coverage from Sant Francesc south to the current southern fire front.
-// Keeping this extent static preserves the wind layer's independence from FIRMS.
-const GRID_LATITUDE_OFFSETS = [-0.09, -0.06, -0.03, 0, 0.03];
+import { VALL_DUIXO_COORDS } from "./monitoring-area.mjs";
+
+// Fixed coverage from Sant Francesc south to Vall d'Uixó. Keeping this extent
+// static preserves the wind layer's independence from FIRMS.
+const GRID_LATITUDE_OFFSETS = [-0.12, -0.09, -0.06, -0.03, 0, 0.03];
 const GRID_LONGITUDE_OFFSETS = [-0.08, -0.04, 0, 0.04, 0.08];
 
 export function createWindGrid([latitude, longitude]) {
-  return GRID_LATITUDE_OFFSETS.flatMap(latitudeOffset =>
+  const corridorGrid = GRID_LATITUDE_OFFSETS.flatMap(latitudeOffset =>
     GRID_LONGITUDE_OFFSETS.map(longitudeOffset => ({
       latitude: latitude + latitudeOffset,
       longitude: longitude + longitudeOffset,
     })),
   );
+  return [
+    ...corridorGrid,
+    { latitude: VALL_DUIXO_COORDS[0], longitude: VALL_DUIXO_COORDS[1] },
+  ];
 }
 
 export function windTravelBearing(windFromDegrees) {

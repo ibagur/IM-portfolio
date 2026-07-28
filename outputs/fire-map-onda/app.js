@@ -8,10 +8,12 @@ import {
   createWindGrid,
   parseCurrentWindPayload,
   windTravelBearing,
-} from "./wind-layer.mjs";
+} from "./wind-layer.mjs?v=20260728-2";
+import {
+  MAP_REFERENCE_COORDS as REFERENCE_COORDS,
+  MAP_REFERENCE_ZOOM as REFERENCE_ZOOM,
+} from "./monitoring-area.mjs?v=20260728-1";
 
-const REFERENCE_COORDS = [39.9449883, -0.247279];
-const REFERENCE_ZOOM = 14;
 // Keep the San Francesc boundary data available without rendering it in the monitoring view.
 const SHOW_SAN_FRANCESC_PERIMETER = false;
 const WEATHER_REFRESH_MS = 10 * 60 * 1000;
