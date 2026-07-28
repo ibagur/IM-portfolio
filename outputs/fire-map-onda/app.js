@@ -130,7 +130,7 @@ let latestRiskResult;
 let latestWindObservations;
 let windLayerQueriedAt;
 let windLayerError;
-let riskCorridorsPreferredVisible = true;
+let riskCorridorsPreferredVisible = false;
 let weatherLastAttemptAt = 0;
 let weatherFetchInProgress;
 let currentSnapshotId;
