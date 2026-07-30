@@ -1,2 +1,6 @@
 
 .DS_Store
+
+# Local agent tooling config (may contain credentials)
+.codex/
+.serena/
