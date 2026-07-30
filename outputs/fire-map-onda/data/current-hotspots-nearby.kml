@@ -2,50 +2,8 @@
 <kml xmlns="http://www.opengis.net/kml/2.2">
   <Document>
     <name>Current nearby active-fire hotspots — Sant Francesc</name>
-    <description>Generated 2026-07-30T17:00:49.746Z from the Earth Nullschool current FIRMS feed. Points are detections, not a verified fire perimeter. Each point states whether it lies inside the My Maps area of interest.</description>
+    <description>Generated 2026-07-30T18:56:14.021Z from the Earth Nullschool current FIRMS feed. Points are detections, not a verified fire perimeter. Each point states whether it lies inside the My Maps area of interest.</description>
     <Style id="hotspot"><IconStyle><color>ff3030ff</color><scale>1.15</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/firedept.png</href></Icon></IconStyle></Style>
-    <Placemark>
-      <name>Fire detection · 25.89 MW</name>
-      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-29T13:57:00.000Z</p><p><strong>Fire Radiative Power:</strong> 25.89 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
-      <styleUrl>#hotspot</styleUrl>
-      <Point><coordinates>-0.30399999022483826,39.90399932861328,0</coordinates></Point>
-    </Placemark>
-    <Placemark>
-      <name>Fire detection · 14.72 MW</name>
-      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-29T13:57:00.000Z</p><p><strong>Fire Radiative Power:</strong> 14.72 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
-      <styleUrl>#hotspot</styleUrl>
-      <Point><coordinates>-0.3019999861717224,39.904998779296875,0</coordinates></Point>
-    </Placemark>
-    <Placemark>
-      <name>Fire detection · 14.72 MW</name>
-      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-29T13:57:00.000Z</p><p><strong>Fire Radiative Power:</strong> 14.72 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
-      <styleUrl>#hotspot</styleUrl>
-      <Point><coordinates>-0.3009999990463257,39.89799880981445,0</coordinates></Point>
-    </Placemark>
-    <Placemark>
-      <name>Fire detection · 17.11 MW</name>
-      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-29T13:57:00.000Z</p><p><strong>Fire Radiative Power:</strong> 17.11 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
-      <styleUrl>#hotspot</styleUrl>
-      <Point><coordinates>-0.296999990940094,39.90399932861328,0</coordinates></Point>
-    </Placemark>
-    <Placemark>
-      <name>Fire detection · 14.72 MW</name>
-      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-29T13:57:00.000Z</p><p><strong>Fire Radiative Power:</strong> 14.72 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
-      <styleUrl>#hotspot</styleUrl>
-      <Point><coordinates>-0.2930000126361847,39.89899826049805,0</coordinates></Point>
-    </Placemark>
-    <Placemark>
-      <name>Fire detection · 5.95 MW</name>
-      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-29T13:57:00.000Z</p><p><strong>Fire Radiative Power:</strong> 5.95 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
-      <styleUrl>#hotspot</styleUrl>
-      <Point><coordinates>-0.27900001406669617,39.887001037597656,0</coordinates></Point>
-    </Placemark>
-    <Placemark>
-      <name>Fire detection · 34.08 MW</name>
-      <description><![CDATA[<p><strong>Detected:</strong> 2026-07-29T13:57:00.000Z</p><p><strong>Fire Radiative Power:</strong> 34.08 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
-      <styleUrl>#hotspot</styleUrl>
-      <Point><coordinates>-0.26499998569488525,39.893001556396484,0</coordinates></Point>
-    </Placemark>
     <Placemark>
       <name>Fire detection · 2.24 MW</name>
       <description><![CDATA[<p><strong>Detected:</strong> 2026-07-30T01:58:00.000Z</p><p><strong>Fire Radiative Power:</strong> 2.24 MW</p><p><strong>Zone:</strong> Outside the area of interest (Sant Francesc)</p>]]></description>
