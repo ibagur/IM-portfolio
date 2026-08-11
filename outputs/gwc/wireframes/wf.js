@@ -53,26 +53,42 @@ function lines({ w, h, series, years, fmt = fmtPct, yMax, suffix = '' }) {
   years.forEach((y, i) => {
     s += `<text x="${X(i)}" y="${h - 6}" text-anchor="middle" font-size="10" fill="${INK3}">${y}${i === years.length - 1 ? ' YTD' : ''}</text>`;
   });
-  series.forEach(se => {
+  // end labels are pushed apart so near-equal series don't overprint each other
+  const ends = series.map(se => {
+    const lv = se.values[se.values.length - 1];
+    return lv == null ? null : Y(lv);
+  });
+  const lab = declash(ends.map(v => v == null ? 1e6 : v), 12, P.t + 4, P.t + ih - 2);
+  series.forEach((se, k) => {
     const c = se.emph ? (se.color || ACC) : INK3;
     const pts = se.values.map((v, i) => v == null ? null : [X(i), Y(v)]).filter(Boolean);
     s += `<polyline points="${pts.map(p => p.join(',')).join(' ')}" fill="none" stroke="${c}"
-      stroke-width="${se.emph ? 2.5 : 1.5}" stroke-linejoin="round" ${se.emph ? '' : 'stroke-dasharray="0"'}/>`;
+      stroke-width="${se.emph ? 2.5 : 1.5}" stroke-linejoin="round"/>`;
     pts.forEach(p => { s += `<circle cx="${p[0]}" cy="${p[1]}" r="${se.emph ? 4.5 : 3.5}" fill="${c}" stroke="#fff" stroke-width="2"/>`; });
     const lv = se.values[se.values.length - 1];
-    if (lv != null) s += `<text x="${X(years.length - 1) + 8}" y="${Y(lv) + 3.5}" font-size="11" font-weight="${se.emph ? 700 : 400}" fill="${se.emph ? INK : INK3}">${fmt(lv)}</text>`;
+    if (lv != null) s += `<text x="${X(years.length - 1) + 8}" y="${lab[k] + 3.5}" font-size="11" font-weight="${se.emph ? 700 : 400}" fill="${se.emph ? INK : INK3}">${fmt(lv)}</text>`;
   });
   return s + '</svg>';
 }
 
-/* Push labels apart so none overlap, keeping their original order. */
-function declash(ys, minGap) {
+/* Push labels apart so none overlap, keeping their original order.
+   If the stack runs past maxY it is shifted back up as a block, so labels
+   never spill out of the plot area. */
+function declash(ys, minGap, minY, maxY) {
   const idx = ys.map((y, i) => [y, i]).sort((a, b) => a[0] - b[0]);
   const out = new Array(ys.length);
   let prev = -Infinity;
   for (const [y, i] of idx) {
     const v = Math.max(y, prev + minGap);
     out[i] = v; prev = v;
+  }
+  if (maxY != null && prev > maxY) {
+    let shift = prev - maxY;
+    if (minY != null) {
+      const top = Math.min(...out);
+      shift = Math.min(shift, Math.max(0, top - minY));
+    }
+    for (let i = 0; i < out.length; i++) out[i] -= shift;
   }
   return out;
 }
@@ -84,8 +100,8 @@ function slope({ w, h, items, left = '2023', right = '2026', topN = 8 }) {
   const max = Math.max(...items.flatMap(d => [d.y2023, d.y2026])) * 1.05;
   const Y = v => P.t + ih - ih * v / max;
   const shown = items.slice(0, topN);
-  const la = declash(shown.map(d => Y(d.y2023)), 13);
-  const ra = declash(shown.map(d => Y(d.y2026)), 13);
+  const la = declash(shown.map(d => Y(d.y2023)), 13, P.t + 4, P.t + ih - 2);
+  const ra = declash(shown.map(d => Y(d.y2026)), 13, P.t + 4, P.t + ih - 2);
   let s = `<svg width="${w}" height="${h}">`;
   s += `<text x="${P.l}" y="11" text-anchor="middle" font-size="10" font-weight="700" fill="${INK2}">${left}</text>`;
   s += `<text x="${P.l + iw}" y="11" text-anchor="middle" font-size="10" font-weight="700" fill="${INK2}">${right}</text>`;

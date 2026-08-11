@@ -1,0 +1,116 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="wf.css"></head><body>
+<div class="page">
+  <div class="hdr">
+    <h1>Global WASH Cluster — Evolution over time, 2023–2026</h1>
+    <span class="sub">Single-country view — the same page 2, scoped to one response plan</span>
+    <span class="tag">Concept B · Coverage funnel · Page 2 · Single country</span>
+  </div>
+  <div class="pagetabs"><div>1 · Current year</div><div class="on">2 · Evolution over time</div><div>3 · Localization</div></div>
+
+  <div class="story">
+    <div class="txt"><b id="cn"></b> runs against the global trend: people in need <b id="s1"></b> to <b id="s2"></b> since 2023,
+      while funding received fell from <b id="s3"></b> to <b id="s4"></b>. It is now the largest caseload in the plan set and the second largest unmet requirement.</div>
+    <div class="ctl">
+      <span class="lbl">Scope</span>
+      <span class="toggle"><span class="on">Same 23 countries</span><span>All countries in each plan</span></span>
+    </div>
+  </div>
+
+  <div class="body" style="flex-direction:column">
+
+    <div class="card" style="flex:0 0 auto;padding:7px 11px">
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="font-size:11px;color:var(--ink-2)">View</span>
+        <span class="subtabs"><span>Global</span><span class="on">Single country</span></span>
+        <div class="slicers" style="width:330px">
+          <div class="slicer"><div class="box"><span>Region · MENA</span><span>▾</span></div></div>
+          <div class="slicer"><div class="box" style="border-color:#009999;background:#F2FAFA"><span><b>Country · Sudan</b></span><span>▾</span></div></div>
+        </div>
+        <span class="note" style="margin-left:auto">Every visual on page 2 re-draws for the selected country. In Power BI this is the same page under a bookmark, not a new one.</span>
+      </div>
+    </div>
+
+    <!-- ROW 1 — the country's own scale over time -->
+    <div class="row" style="flex:1 1 44%;min-height:0">
+      <div class="card grow"><h3>People in need</h3><div id="c1"></div></div>
+      <div class="card grow"><h3>People targeted</h3><div id="c2"></div></div>
+      <div class="card grow"><h3>People reached</h3><div id="c3"></div><div class="note">Max across sub-sectors, to avoid double counting.</div></div>
+      <div class="card grow"><h3>Funding received — FTS</h3><div id="c4"></div></div>
+    </div>
+
+    <!-- ROW 2 — the country's ratios, its sub-sector mix, and where it sits against the others -->
+    <div class="row" style="flex:1 1 42%;min-height:0">
+      <div class="card" style="flex:0 0 30%">
+        <h3>Ambition, delivery and funding — this country against the 23-country average</h3>
+        <div id="rr"></div>
+      </div>
+      <div class="card" style="flex:0 0 36%">
+        <h3>Sub-sector coverage — target (grey) against reached (colour)</h3>
+        <div class="row" id="fac" style="gap:6px"></div>
+      </div>
+      <div class="card grow">
+        <h3>Where this country sits — share of appeal funded, 2026, all 23 countries</h3>
+        <div id="rank"></div>
+      </div>
+    </div>
+
+    <div class="caveat" style="flex:0 0 auto">
+      <b>Same caveats as the global view.</b> The reach measure changed after 2023, and 2026 is a partial year marked YTD.
+      A single-country series is not affected by the change in the plan set, so the scope toggle only alters the comparison average shown alongside it.
+    </div>
+  </div>
+
+  <div class="footer">Source: GWC HNRP dashboards 2023–2026 (published semantic models), FTS · Extracted 2026-08-10 · Wireframe, not final styling</div>
+</div>
+
+<script src="wf-data.js"></script><script src="wf.js"></script><script>
+const ISO = 'SDN';
+const C = D.country_series[ISO];
+const Y = D.years;
+
+cn.textContent = C.name;
+s1.textContent = fmtM(C.pin_wash[0]); s2.textContent = fmtM(C.pin_wash[3]);
+s3.textContent = fmtM(C.fund_received[0]).replace('M', 'M'); s4.textContent = fmtM(C.fund_received[3]);
+
+const W = 358, H = 236;
+c1.innerHTML = cols({ w: W, h: H, values: C.pin_wash, years: Y });
+c2.innerHTML = cols({ w: W, h: H, values: C.target_wash, years: Y });
+c3.innerHTML = cols({ w: W, h: H, values: C.reached_comparable, years: Y });
+c4.innerHTML = cols({ w: W, h: H, values: C.fund_received, years: Y, fmt: v => (v / 1e6).toFixed(0) + 'M' });
+
+// country ratios against the 23-country average — emphasis, not categorical
+const amb = Y.map((_, i) => C.target_wash[i] && C.pin_wash[i] ? +(C.target_wash[i] / C.pin_wash[i] * 100).toFixed(1) : null);
+const fnd = Y.map((_, i) => C.fund_received[i] && C.fund_requested[i] ? +(C.fund_received[i] / C.fund_requested[i] * 100).toFixed(1) : null);
+rr.innerHTML = '<div style="font-size:10px;color:var(--ink-2);margin-bottom:2px">Ambition — targeted ÷ in need</div>'
+  + lines({ w: 400, h: 112, years: Y, suffix: '%', yMax: 80, series: [
+      { name: 'panel avg', values: D.panel_target_over_pin },
+      { name: C.name, values: amb, emph: true }] })
+  + '<div style="font-size:10px;color:var(--ink-2);margin:6px 0 2px">Funding — received ÷ requested</div>'
+  + lines({ w: 400, h: 112, years: Y, suffix: '%', yMax: 80, series: [
+      { name: 'panel avg', values: D.panel_pct_funded },
+      { name: C.name, values: fnd, emph: true }] });
+
+fac.innerHTML = [['Water', 'water', '#46AED8'], ['Sanitation', 'sanitation', '#7355A9'], ['Hygiene', 'hygiene', '#33994B']]
+  .map(([t, k, c]) => `<div>${facet({
+    w: 168, h: 248, title: t, years: Y,
+    target: C['target_' + k], reached: C['reached_' + k], color: c
+  })}</div>`).join('');
+
+// ranked bar of % funded across all 23, the selected country highlighted.
+// Two columns so all 23 fit the card without spilling into the caveat band.
+const all = D.table2026.slice().sort((a, b) => b.pct_funded - a.pct_funded);
+const mxp = Math.max(...all.map(r => r.pct_funded));
+const half = Math.ceil(all.length / 2);
+const row = (r, n) => {
+  const on = r.iso === ISO;
+  return `<div style="display:flex;align-items:center;gap:5px;font-size:9px;line-height:1.5">
+    <span style="width:14px;text-align:right;color:var(--ink-3)">${n}</span>
+    <span style="width:92px;text-align:right;color:${on ? 'var(--ink)' : 'var(--ink-2)'};font-weight:${on ? 700 : 400};overflow:hidden;white-space:nowrap;text-overflow:ellipsis">${r.name}</span>
+    <span style="flex:1;height:7px;background:var(--track);border-radius:2px;overflow:hidden">
+      <span style="display:block;height:100%;width:${r.pct_funded / mxp * 100}%;background:${on ? '#009999' : '#C9CCCE'};border-radius:2px"></span></span>
+    <span style="width:30px;text-align:right;font-weight:${on ? 700 : 400};color:${on ? 'var(--ink)' : 'var(--ink-3)'}">${r.pct_funded}%</span></div>`;
+};
+rank.innerHTML = `<div style="display:flex;gap:14px">
+  <div style="flex:1">${all.slice(0, half).map((r, k) => row(r, k + 1)).join('')}</div>
+  <div style="flex:1">${all.slice(half).map((r, k) => row(r, half + k + 1)).join('')}</div></div>`;
+</script></body></html>

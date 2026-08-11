@@ -29,6 +29,26 @@ body {
 .pagetabs div { padding: 7px 18px; font-size: 12px; color: var(--ink-3); border-right: 1px solid var(--rule); }
 .pagetabs div.on { color: var(--ink); font-weight: 700; box-shadow: inset 0 -2px 0 var(--accent); background: #fff; }
 
+/* story strip — the finding, stated. Sits directly under the page tabs. */
+.story { display: flex; align-items: center; gap: 14px; padding: 9px 14px; background: #F2FAFA;
+  border-bottom: 1px solid var(--rule); border-left: 4px solid var(--accent); }
+.story .txt { font-size: 13.5px; line-height: 1.4; color: var(--ink); }
+.story .txt b { color: #00807F; }
+.story .ctl { margin-left: auto; display: flex; align-items: center; gap: 9px; flex: 0 0 auto; }
+.story .ctl .lbl { font-size: 10px; text-transform: uppercase; letter-spacing: .07em; color: var(--ink-3); }
+
+/* view sub-tabs (Global / Single country) */
+.subtabs { display: inline-flex; border: 1px solid var(--rule); border-radius: 3px; overflow: hidden; font-size: 11px; }
+.subtabs span { padding: 4px 12px; color: var(--ink-3); background: var(--panel); }
+.subtabs span.on { background: var(--ink); color: #fff; font-weight: 700; }
+
+/* compact tile listing fields that are not collected yet */
+.pending { flex: 0 0 240px; border: 1px dashed var(--rule); border-radius: 3px; padding: 7px 9px;
+  background: repeating-linear-gradient(135deg, #fff, #fff 6px, #FAFAFA 6px, #FAFAFA 12px); }
+.pending .hd { font-size: 9px; letter-spacing: .06em; text-transform: uppercase; color: #B0653A; margin-bottom: 4px; }
+.pending ul { margin: 0; padding-left: 13px; }
+.pending li { font-size: 10.5px; color: var(--ink-2); line-height: 1.5; }
+
 .body { flex: 1; display: flex; gap: 10px; padding: 10px; min-height: 0; }
 .col { display: flex; flex-direction: column; gap: 10px; min-height: 0; }
 
@@ -52,7 +72,8 @@ body {
 .kpi.acc .val { color: var(--accent); }
 .kpi .spark { margin-top: 5px; }
 .todo { border-style: dashed !important; background: repeating-linear-gradient(135deg, #fff, #fff 6px, #FAFAFA 6px, #FAFAFA 12px); }
-.todo .flag { position: absolute; top: 6px; right: 8px; font-size: 8px; letter-spacing: .06em; color: #B0653A; border: 1px solid #E0BFA8; background: #FFF6EF; padding: 1px 4px; border-radius: 2px; }
+.flag { font-size: 8px; letter-spacing: .06em; color: #B0653A; border: 1px solid #E0BFA8; background: #FFF6EF; padding: 1px 4px; border-radius: 2px; white-space: nowrap; }
+.todo .flag { position: absolute; top: 6px; right: 8px; }
 .todo .lab { padding-right: 66px; }
 
 /* hero */

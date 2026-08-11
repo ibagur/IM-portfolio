@@ -10,20 +10,40 @@ h1 { font-size: 27px; letter-spacing: -.2px; }
 .cell .t { font-size: 14px; font-weight: 700; }
 .cell .d { font-size: 12.5px; color: #6E7178; }
 .cell img { width: 100%; display: block; border: 1px solid #C9CCCE; }
+.cell .n.rev { background: #024E6C; }
+.cell.rev img { border: 2px solid #009999; }
+.cell .box { border: 1px solid #C9CCCE; background: #FAFBFB; padding: 16px 18px 16px 8px; height: calc(100% - 26px); }
+.cell .box ol { margin: 0 0 0 20px; }
+.cell .box li { font-size: 13px; line-height: 1.55; color: #6E7178; margin-bottom: 10px; }
+.cell .box li b { color: #333; }
 .foot { margin-top: 22px; border-top: 1px solid #D5D8DA; padding-top: 12px; font-size: 12.5px; color: #6E7178; line-height: 1.6; }
 .foot b { color: #333; }
 .foot ul { margin: 5px 0 0 17px; }
 </style></head><body>
 
-<h1>GWC HNRP dashboard — page 1 and page 2 mock-ups for review</h1>
-<div class="lede">Three concepts, drawn against <b>real 2023–2026 figures</b> pulled from the four published dashboards. This is the paper-and-pencil stage David asked for:
-comment on <b>layout and choice of measures</b>, not colour — GWC styling comes after we agree a concept. Page 3 (localization) is not covered here.</div>
+<h1>GWC HNRP dashboard — page 1 and page 2 mock-ups</h1>
+<div class="lede"><b>Concept B has been revised following review</b> and now runs to three screens; A and C are unchanged so the comparison still stands.
+All drawn against <b>real 2023–2026 figures</b> pulled from the four published dashboards. Comment on <b>layout and choice of measures</b>, not colour —
+GWC styling comes after we agree a concept. Page 3 (localization) is not covered here.</div>
 
 <div class="grid">
+  <div class="cell rev"><div class="cap"><span class="n rev">B · Page 1 — revised</span><span class="t">Coverage funnel</span><span class="d">story line, KPI ribbon, map, analytic country table</span></div><img src="wireframes/concept_B_page1.png"></div>
+  <div class="cell rev"><div class="cap"><span class="n rev">B · Page 2 — revised</span><span class="t">Global view</span><span class="d">three ratios, country slope chart, sub-sector facets</span></div><img src="wireframes/concept_B_page2.png"></div>
+  <div class="cell rev"><div class="cap"><span class="n rev">B · Page 2 — new</span><span class="t">Single-country view</span><span class="d">focus the whole page on a single response plan</span></div><img src="wireframes/concept_B_page2_country.png"></div>
+  <div class="cell">
+    <div class="cap"><span class="n" style="background:#6E7178">What changed in B</span></div>
+    <div class="box">
+      <ol>
+        <li><b>Country focus.</b> Page 2 gains a Global / Single country sub-tab and country slicers. The third screen shows the country state, using Sudan. In Power BI this is one bookmark on the same page, not a new page.</li>
+        <li><b>A story line on every page</b>, stating the finding rather than repeating the title.</li>
+        <li><b>The 23-country toggle is promoted</b> into the story line, with its consequence spelled out — it is the answer to the 30→23 problem, so it should not be a control in the corner.</li>
+        <li><b>WASH share of the total appeal</b> added as a flagged "to collect" line on both pages. Needs appeal-level totals from FTS.</li>
+        <li><b>Distribution fixes.</b> The KPI ribbon no longer spends two of six tiles on empty placeholders; the map gained a measure selector so it can shade by a rate rather than a count; the country table no longer clips its last row.</li>
+      </ol>
+    </div>
+  </div>
   <div class="cell"><div class="cap"><span class="n">A · Page 1</span><span class="t">Continuity</span><span class="d">today's layout, decongested, plus a prioritized block</span></div><img src="wireframes/concept_A_page1.png"></div>
   <div class="cell"><div class="cap"><span class="n">A · Page 2</span><span class="t">Continuity</span><span class="d">four trend columns, caveat band</span></div><img src="wireframes/concept_A_page2.png"></div>
-  <div class="cell"><div class="cap"><span class="n">B · Page 1</span><span class="t">Coverage funnel</span><span class="d">KPI ribbon with sparklines, map, analytic country table</span></div><img src="wireframes/concept_B_page1.png"></div>
-  <div class="cell"><div class="cap"><span class="n">B · Page 2</span><span class="t">Coverage funnel</span><span class="d">three ratios, country slope chart, sub-sector facets</span></div><img src="wireframes/concept_B_page2.png"></div>
   <div class="cell"><div class="cap"><span class="n">C · Page 1</span><span class="t">Advocacy-led</span><span class="d">hero figures, map shaded by funding gap</span></div><img src="wireframes/concept_C_page1.png"></div>
   <div class="cell"><div class="cap"><span class="n">C · Page 2</span><span class="t">Advocacy-led</span><span class="d">one indexed chart, composition of each year's total</span></div><img src="wireframes/concept_C_page2.png"></div>
 </div>
@@ -35,9 +55,8 @@ comment on <b>layout and choice of measures</b>, not colour — GWC styling come
     <li><b>The funding collapse is real.</b> Received fell ~70% on both scopes; the share funded went 42% → 12%. This is the defensible advocacy line.</li>
     <li><b>The reach measure changed after 2023.</b> The 2023 headline used <i>People reached</i> (81.0M); 2024 onward use <i>Max people reached</i>. On the common basis 2023 is 58.9M, so part of the 2023→2024 drop is definitional.</li>
   </ul>
-  <b style="display:block;margin-top:9px">Five data issues to decide on before we build</b>
+  <b style="display:block;margin-top:9px">Four data issues to decide on before we build</b>
   <ul>
-    <li><b>Region column is scrambled</b> in the 2026 tracker from row 11 down — Ukraine reads ESARO, Venezuela MENA, Somalia WCARO. The live region slicer is therefore mis-grouping countries.</li>
     <li><b>Mali's country code cell contains 41053442</b> (its funding-requested figure) instead of MLI. Lebanon is coded LEB, Malawi MLW — neither is a valid ISO3, which breaks year-on-year joins.</li>
     <li><b>Max people reached returns 0</b> for Chad, CAR, Somalia and Yemen although each has a reported WASH reach figure — this is why 2026 shows "N/A".</li>
     <li><b>The hygiene progress bar on the live 2026 dashboard (52.3%) cannot be reproduced</b> from the tracker, which gives 8.7%. Water (13.9%) and sanitation (10.2%) reproduce exactly.</li>

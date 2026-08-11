@@ -2,21 +2,35 @@
 <div class="page">
   <div class="hdr">
     <h1>Global WASH Cluster — Evolution over time, 2023–2026</h1>
-    <span class="sub">Need is steady on a like-for-like basis; funding is not</span>
-    <span class="tag">Concept B · Coverage funnel · Page 2</span>
+    <span class="sub">Needs, targets, reach and funding across four planning cycles</span>
+    <span class="tag">Concept B · Coverage funnel · Page 2 · Global</span>
   </div>
   <div class="pagetabs"><div>1 · Current year</div><div class="on">2 · Evolution over time</div><div>3 · Localization</div></div>
+
+  <!-- STORY — the scope toggle sits here, because the toggle IS the story -->
+  <div class="story">
+    <div class="txt">Across the <b>23 countries that appealed in every cycle</b>, people in need is flat — <b id="sa"></b> to <b id="sb"></b>.
+      Funding received fell <b id="sc"></b>. Most of the headline drop in need is <b>ten countries leaving the plan set</b>, not need receding.</div>
+    <div class="ctl">
+      <span class="lbl">Scope</span>
+      <span class="toggle"><span class="on">Same 23 countries</span><span>All countries in each plan</span></span>
+    </div>
+  </div>
 
   <div class="body" style="flex-direction:column">
 
     <div class="card" style="flex:0 0 auto;padding:7px 11px">
-      <div style="display:flex;align-items:center;gap:14px">
-        <span style="font-size:11px;color:var(--ink-2)">Scope</span>
-        <span class="toggle"><span class="on">Same 23 countries every year</span><span>All countries in each plan</span></span>
+      <div style="display:flex;align-items:center;gap:12px">
+        <span style="font-size:11px;color:var(--ink-2)">View</span>
+        <span class="subtabs"><span class="on">Global</span><span>Single country</span></span>
+        <div class="slicers" style="width:330px">
+          <div class="slicer"><div class="box"><span>Region · All</span><span>▾</span></div></div>
+          <div class="slicer"><div class="box"><span>Country · All</span><span>▾</span></div></div>
+        </div>
         <span class="legend" style="margin-left:auto">
           <span><i class="ln" style="background:#009999"></i>Same 23 countries</span>
           <span><i class="ln" style="background:#8E9096"></i>All countries in each plan</span>
-          <span><i style="background:repeating-linear-gradient(45deg,#fff,#fff 2px,#009999 2px,#009999 4px);border:1px solid #009999"></i>2026 = Jan–Apr, YTD</span>
+          <span><i style="background:repeating-linear-gradient(45deg,#fff,#fff 2px,#009999 2px,#009999 4px);border:1px solid #009999"></i>2026 = YTD</span>
         </span>
       </div>
     </div>
@@ -31,12 +45,14 @@
       <div class="card grow">
         <h3>Delivery — people reached as a share of people targeted</h3>
         <div id="r2"></div>
-        <div class="note">2026 is YTD (Jan–Apr) and will rise as countries report.</div>
+        <div class="note">2026 is YTD and will rise as countries report.</div>
       </div>
       <div class="card grow">
         <h3>Funding — received as a share of requested</h3>
         <div id="r3"></div>
         <div class="note">Near-identical on both scopes, so this fall is real, not composition.</div>
+        <div class="note" style="margin-top:4px;color:#B0653A">
+          <b>WASH share of the total appeal — to collect.</b> Needs appeal-level totals from FTS; not held in the tracker.</div>
       </div>
     </div>
 
@@ -54,10 +70,8 @@
     </div>
 
     <div class="caveat" style="flex:0 0 auto">
-      <b>Why the headline and the like-for-like line disagree.</b>
-      Across all plans, people in need falls 188.3M → 137.5M (−27%). Across the 23 countries present in every cycle it is 143.6M → 137.5M (−4%) — so most of the headline fall is
-      <b>ten countries leaving the plan set</b>, not need receding. Funding received falls ~70% on both scopes, so that decline is real.
-      Two further breaks: the reach measure changed after 2023 (<i>People reached</i> 81.0M → <i>Max people reached</i> 58.9M on the common basis), and 2026 covers January–April only.
+      <b>Two further breaks to keep in mind.</b> The reach measure changed after 2023 — the dashboard headline then used <i>People reached</i> (81.0M), 2024 onward use
+      <i>Max people reached</i> (58.9M for 2023 on the common basis), so part of the 2023→2024 drop is definitional. And 2026 is a partial year, marked YTD throughout.
     </div>
   </div>
 
@@ -65,7 +79,11 @@
 </div>
 
 <script src="wf-data.js"></script><script src="wf.js"></script><script>
-const W = 476, H = 258;
+sa.textContent = fmtM(D.panel_pin_wash[0]);
+sb.textContent = fmtM(D.panel_pin_wash[3]);
+sc.textContent = Math.round((1 - D.panel_fund_received[3] / D.panel_fund_received[0]) * 100) + '%';
+
+const W = 476, H = 236;
 r1.innerHTML = lines({
   w: W, h: H, years: D.years, suffix: '%', yMax: 80, series: [
     { name: 'All', values: D.years.map((_, i) => +(D.all_target_wash[i] / D.all_pin_wash[i] * 100).toFixed(1)) },
@@ -84,7 +102,7 @@ r3.innerHTML = lines({
 sl.innerHTML = slope({ w: 690, h: 300, items: D.slope, topN: 8 });
 fac.innerHTML = [['Water', 'water', '#46AED8'], ['Sanitation', 'sanitation', '#7355A9'], ['Hygiene', 'hygiene', '#33994B']]
   .map(([t, k, c]) => `<div>${facet({
-    w: 240, h: 258, title: t, years: D.years,
+    w: 240, h: 246, title: t, years: D.years,
     target: D['panel_target_' + k], reached: D['panel_reached_' + k], color: c
   })}</div>`).join('');
 </script></body></html>
