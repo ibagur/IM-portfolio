@@ -1,0 +1,47 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { width: 2000px; background: #fff; font-family: "Helvetica Neue", Arial, sans-serif; color: #333; padding: 30px 34px 26px; }
+h1 { font-size: 27px; letter-spacing: -.2px; }
+.lede { font-size: 14.5px; color: #6E7178; margin-top: 6px; line-height: 1.5; max-width: 1500px; }
+.lede b { color: #333; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 26px; margin-top: 22px; }
+.cell .cap { display: flex; align-items: baseline; gap: 9px; margin-bottom: 6px; }
+.cell .n { font-size: 11px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: #fff; background: #009999; padding: 2px 8px; border-radius: 2px; }
+.cell .t { font-size: 14px; font-weight: 700; }
+.cell .d { font-size: 12.5px; color: #6E7178; }
+.cell img { width: 100%; display: block; border: 1px solid #C9CCCE; }
+.foot { margin-top: 22px; border-top: 1px solid #D5D8DA; padding-top: 12px; font-size: 12.5px; color: #6E7178; line-height: 1.6; }
+.foot b { color: #333; }
+.foot ul { margin: 5px 0 0 17px; }
+</style></head><body>
+
+<h1>GWC HNRP dashboard — page 1 and page 2 mock-ups for review</h1>
+<div class="lede">Three concepts, drawn against <b>real 2023–2026 figures</b> pulled from the four published dashboards. This is the paper-and-pencil stage David asked for:
+comment on <b>layout and choice of measures</b>, not colour — GWC styling comes after we agree a concept. Page 3 (localization) is not covered here.</div>
+
+<div class="grid">
+  <div class="cell"><div class="cap"><span class="n">A · Page 1</span><span class="t">Continuity</span><span class="d">today's layout, decongested, plus a prioritized block</span></div><img src="wireframes/concept_A_page1.png"></div>
+  <div class="cell"><div class="cap"><span class="n">A · Page 2</span><span class="t">Continuity</span><span class="d">four trend columns, caveat band</span></div><img src="wireframes/concept_A_page2.png"></div>
+  <div class="cell"><div class="cap"><span class="n">B · Page 1</span><span class="t">Coverage funnel</span><span class="d">KPI ribbon with sparklines, map, analytic country table</span></div><img src="wireframes/concept_B_page1.png"></div>
+  <div class="cell"><div class="cap"><span class="n">B · Page 2</span><span class="t">Coverage funnel</span><span class="d">three ratios, country slope chart, sub-sector facets</span></div><img src="wireframes/concept_B_page2.png"></div>
+  <div class="cell"><div class="cap"><span class="n">C · Page 1</span><span class="t">Advocacy-led</span><span class="d">hero figures, map shaded by funding gap</span></div><img src="wireframes/concept_C_page1.png"></div>
+  <div class="cell"><div class="cap"><span class="n">C · Page 2</span><span class="t">Advocacy-led</span><span class="d">one indexed chart, composition of each year's total</span></div><img src="wireframes/concept_C_page2.png"></div>
+</div>
+
+<div class="foot">
+  <b>Three things the data says, whichever concept we pick.</b>
+  <ul>
+    <li><b>The 27% fall in people in need is mostly composition.</b> Across the 23 countries that appealed in every cycle, need went 143.6M → 137.5M (−4%). Ten countries left the plan set. Both scopes are on every page-2 concept via a toggle.</li>
+    <li><b>The funding collapse is real.</b> Received fell ~70% on both scopes; the share funded went 42% → 12%. This is the defensible advocacy line.</li>
+    <li><b>The reach measure changed after 2023.</b> The 2023 headline used <i>People reached</i> (81.0M); 2024 onward use <i>Max people reached</i>. On the common basis 2023 is 58.9M, so part of the 2023→2024 drop is definitional.</li>
+  </ul>
+  <b style="display:block;margin-top:9px">Five data issues to decide on before we build</b>
+  <ul>
+    <li><b>Region column is scrambled</b> in the 2026 tracker from row 11 down — Ukraine reads ESARO, Venezuela MENA, Somalia WCARO. The live region slicer is therefore mis-grouping countries.</li>
+    <li><b>Mali's country code cell contains 41053442</b> (its funding-requested figure) instead of MLI. Lebanon is coded LEB, Malawi MLW — neither is a valid ISO3, which breaks year-on-year joins.</li>
+    <li><b>Max people reached returns 0</b> for Chad, CAR, Somalia and Yemen although each has a reported WASH reach figure — this is why 2026 shows "N/A".</li>
+    <li><b>The hygiene progress bar on the live 2026 dashboard (52.3%) cannot be reproduced</b> from the tracker, which gives 8.7%. Water (13.9%) and sanitation (10.2%) reproduce exactly.</li>
+    <li><b>Prioritized PiN severity 4–5, prioritized target and prioritized funding are not collected</b>. They sit on the GHO monitoring dashboard and are shown as "to collect" placeholders.</li>
+  </ul>
+</div>
+</body></html>
