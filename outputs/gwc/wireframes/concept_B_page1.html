@@ -1,0 +1,101 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="wf.css"></head><body>
+<div class="page">
+  <div class="hdr">
+    <h1>Global WASH Cluster — Humanitarian Needs &amp; Response Plans</h1>
+    <span class="sub">Needs, Targets, Results &amp; Funding · January–April 2026</span>
+    <span class="tag">Concept B · Coverage funnel · Page 1</span>
+  </div>
+  <div class="pagetabs"><div class="on">1 · Current year</div><div>2 · Evolution over time</div><div>3 · Localization</div></div>
+
+  <div class="body" style="flex-direction:column">
+
+    <!-- BAND 1 — KPI ribbon, each tile carrying its own 2023-26 sparkline -->
+    <div class="card" style="flex:0 0 auto">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px">
+        <h3 style="margin:0">The 2026 response at a glance — each tile trends 2023→2026, see page 2</h3>
+        <div class="slicers" style="width:430px">
+          <div class="slicer"><label>Region</label><div class="box"><span>All</span><span>▾</span></div></div>
+          <div class="slicer"><label>Country</label><div class="box"><span>All</span><span>▾</span></div></div>
+          <div class="slicer" style="flex:0 0 58px"><label>&nbsp;</label><div class="box" style="justify-content:center"><span>↺</span></div></div>
+        </div>
+      </div>
+      <div class="kpirow">
+        <div class="kpi"><div class="lab">People in need</div><div class="val" id="k1"></div><div class="spark" id="s1"></div></div>
+        <div class="kpi todo"><span class="flag">TO COLLECT</span><div class="lab">PiN prioritized · severity 4–5</div><div class="val" style="color:#B0B3B6">—</div><div class="meta">GHO monitoring dashboard</div></div>
+        <div class="kpi"><div class="lab">People targeted</div><div class="val" id="k2"></div><div class="spark" id="s2"></div></div>
+        <div class="kpi todo"><span class="flag">TO COLLECT</span><div class="lab">People targeted prioritized</div><div class="val" style="color:#B0B3B6">—</div><div class="meta">GHO monitoring dashboard</div></div>
+        <div class="kpi acc"><div class="lab">People reached · YTD</div><div class="val" id="k3"></div><div class="spark" id="s3"></div></div>
+        <div class="kpi acc"><div class="lab">Funding received</div><div class="val" id="k4"></div><div class="spark" id="s4"></div></div>
+      </div>
+    </div>
+
+    <!-- BAND 2 — map + funding and sub-sector coverage -->
+    <div class="row" style="flex:1 1 46%;min-height:0">
+      <div class="card" style="flex:0 0 60%">
+        <h3>People in need of humanitarian WASH assistance — 2026</h3>
+        <div class="map">
+          <div class="ph"><b>World choropleth</b>PiN by country · graduated fill<br>click to cross-filter the ribbon and the table below</div>
+          <div class="maplegend">
+            <div class="ramp"><i style="background:#EAF4F4"></i><i style="background:#BFDEDE"></i><i style="background:#7FBDBD"></i><i style="background:#409B9B"></i><i style="background:#009999"></i></div>
+            <div>1.0M — 27.1M people in need</div>
+          </div>
+        </div>
+      </div>
+      <div class="col grow">
+        <div class="card" style="flex:0 0 auto">
+          <h3>Funding — WASH sector, FTS</h3>
+          <div class="meter">
+            <div class="top"><span>Received against requested</span><span class="n" id="fp"></span></div>
+            <div class="track"><div class="fill" id="ff"></div></div>
+          </div>
+          <div class="note">Requested <b id="fq"></b> · Received <b id="fr"></b> · Gap <b id="fg"></b> · lowest of the four cycles</div>
+        </div>
+        <div class="card grow">
+          <h3>Coverage by sub-sector — reached against target, YTD</h3>
+          <div id="subs"></div>
+          <div class="note" style="margin-top:auto">Only 12 of 23 countries have reported reach so far in 2026, so these read low by construction.
+          The hygiene bar published on the live 2026 dashboard (52.3%) cannot be reproduced from the tracker — water and sanitation reproduce exactly.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BAND 3 — the analytic country table -->
+    <div class="card" style="flex:1 1 34%;min-height:0">
+      <h3>By country — sortable, and the answer to "who is working in my district?"</h3>
+      <div style="overflow:hidden"><table class="tbl" id="tb"></table></div>
+    </div>
+  </div>
+
+  <div class="footer">Source: GWC HNRP Tracker (Main sheet), FTS, GHO monitoring dashboard · Figures real, extracted 2026-08-10 · Wireframe, not final styling</div>
+</div>
+
+<script src="wf-data.js"></script><script src="wf.js"></script><script>
+const i = 3;
+k1.textContent = fmtM(D.all_pin_wash[i]); s1.innerHTML = spark({ values: D.all_pin_wash });
+k2.textContent = fmtM(D.all_target_wash[i]); s2.innerHTML = spark({ values: D.all_target_wash });
+k3.textContent = fmtM(D.all_reached_comparable[i]); s3.innerHTML = spark({ values: D.all_reached_comparable });
+k4.textContent = fmtBn(D.all_fund_received[i]); s4.innerHTML = spark({ values: D.all_fund_received });
+const rq = D.all_fund_requested[i], rc = D.all_fund_received[i];
+fp.textContent = fmtPct(rc / rq * 100); ff.style.width = (rc / rq * 100) + '%';
+fq.textContent = fmtBn(rq); fr.textContent = fmtBn(rc); fg.textContent = fmtBn(rq - rc);
+subs.innerHTML = [['Water', D.cov_water, '#46AED8'], ['Sanitation', D.cov_sanitation, '#7355A9'], ['Hygiene', D.cov_hygiene, '#33994B']]
+  .map(([n, v, c]) => `<div class="meter"><div class="top"><span>${n}</span><span class="n">${fmtPct(v[i])}</span></div>
+   <div class="track"><div class="fill" style="width:${v[i]}%;background:${c}"></div></div></div>`).join('');
+
+const rows = D.table2026.slice(0, 13);
+const mx = Math.max(...D.table2026.map(r => r.pin));
+tb.innerHTML = `<colgroup><col style="width:200px"><col style="width:80px"><col style="width:96px"><col style="width:110px">
+  <col style="width:96px"><col style="width:104px"><col style="width:96px"><col style="width:92px"><col style="width:80px"><col></colgroup>
+  <thead><tr><th>Country</th><th>Region</th><th class="n">People in need</th><th>&nbsp;</th>
+  <th class="n">Targeted</th><th class="n">Reached YTD</th><th class="n">% of target</th><th class="n">% funded</th><th class="n">Partners</th><th></th></tr></thead><tbody>`
+  + rows.map(r => `<tr>
+    <td>${r.name}</td><td style="color:var(--ink-3)">${r.region}</td>
+    <td class="n">${(r.pin / 1e6).toFixed(1)}M</td>
+    <td><div class="minibar"><i style="width:${r.pin / mx * 100}%"></i></div></td>
+    <td class="n">${(r.target / 1e6).toFixed(1)}M</td>
+    <td class="n">${r.reached ? (r.reached / 1e6).toFixed(2) + 'M' : '–'}</td>
+    <td class="n">${r.cov != null ? r.cov + '%' : '–'}</td>
+    <td class="n">${r.pct_funded}%</td>
+    <td class="n">${r.partners || '–'}</td><td></td></tr>`).join('')
+  + `</tbody>`;
+</script></body></html>

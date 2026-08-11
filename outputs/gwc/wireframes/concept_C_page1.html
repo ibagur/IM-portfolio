@@ -1,0 +1,82 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="wf.css"></head><body>
+<div class="page">
+  <div class="hdr">
+    <h1>Global WASH Cluster — Humanitarian Needs &amp; Response Plans</h1>
+    <span class="sub">January–April 2026</span>
+    <span class="tag">Concept C · Advocacy-led · Page 1</span>
+  </div>
+  <div class="pagetabs"><div class="on">1 · Current year</div><div>2 · Evolution over time</div><div>3 · Localization</div></div>
+
+  <div class="body" style="flex-direction:column">
+
+    <!-- The page leads with one statement, not a grid of numbers -->
+    <div class="row" style="flex:0 0 152px">
+      <div class="card hero" style="flex:0 0 34%;justify-content:center">
+        <div class="num" id="h1"></div>
+        <div class="cap">people need humanitarian WASH assistance across <b id="hc"></b> response plans in 2026.</div>
+      </div>
+      <div class="card hero" style="flex:0 0 30%;justify-content:center">
+        <div class="num acc" id="h2"></div>
+        <div class="cap">of the WASH appeal is funded — the lowest share of the last four cycles, down from 42% in 2023.</div>
+      </div>
+      <div class="card todo hero" style="flex:1;justify-content:center">
+        <span class="flag">TO COLLECT</span>
+        <div class="num" style="color:#B0B3B6">—</div>
+        <div class="cap">people in <b>acute</b> need, severity 4–5 — the figure this page is designed to lead with once it is collected from the GHO monitoring dashboard.</div>
+      </div>
+    </div>
+
+    <div class="row grow" style="min-height:0">
+      <div class="card" style="flex:0 0 62%">
+        <h3>Where the funding gap bites — unmet WASH requirements by country, 2026</h3>
+        <div class="map">
+          <div class="ph"><b>World choropleth — shaded by funding gap, not by PiN</b>
+            the same map, re-purposed: dark = largest unmet requirement<br>this is the advocacy question, and it is not what the current map answers</div>
+          <div class="maplegend">
+            <div class="ramp"><i style="background:#FBE7E5"></i><i style="background:#F5C3BE"></i><i style="background:#ED9A93"></i><i style="background:#E6776E"></i><i style="background:#E36159"></i></div>
+            <div>Unmet requirement, US$ · 1M — 453M</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col grow">
+        <div class="card" style="flex:0 0 auto">
+          <h3>From need to delivery — 2026 YTD</h3>
+          <div id="funnel"></div>
+        </div>
+        <div class="card grow">
+          <h3>Twelve countries with the largest unmet requirement</h3>
+          <div style="overflow:hidden"><table class="tbl" id="gap"></table></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">Source: GWC HNRP Tracker (Main sheet), FTS, GHO monitoring dashboard · Figures real, extracted 2026-08-10 · Wireframe, not final styling</div>
+</div>
+
+<script src="wf-data.js"></script><script src="wf.js"></script><script>
+const i = 3;
+h1.textContent = fmtM(D.all_pin_wash[i]);
+hc.textContent = D.countries[i];
+h2.textContent = fmtPct(D.all_fund_received[i] / D.all_fund_requested[i] * 100);
+
+// Funnel: one hue, length carries the magnitude — no ramp needed.
+const steps = [['People in need', D.all_pin_wash[i]], ['Targeted', D.all_target_wash[i]], ['Reached YTD', D.all_reached_comparable[i]]];
+const mx = steps[0][1];
+funnel.innerHTML = steps.map(([n, v]) => `<div class="meter">
+  <div class="top"><span>${n}</span><span class="n">${fmtM(v)}</span></div>
+  <div class="track"><div class="fill" style="width:${v / mx * 100}%"></div></div>
+  <div class="note">${(v / mx * 100).toFixed(1)}% of people in need</div></div>`).join('');
+
+// Ranked by unmet requirement in US$ (requested − received), which is what the title claims.
+const rows = D.table2026.slice().sort((a, b) => b.gap - a.gap).slice(0, 12);
+const mg = rows[0].gap;
+gap.innerHTML = `<colgroup><col style="width:150px"><col style="width:88px"><col style="width:112px"><col style="width:76px"><col style="width:96px"></colgroup>
+  <thead><tr><th>Country</th><th class="n">Unmet US$</th><th>&nbsp;</th><th class="n">% funded</th><th class="n">People in need</th></tr></thead><tbody>`
+  + rows.map(r => `<tr><td>${r.name}</td>
+     <td class="n"><b>${(r.gap / 1e6).toFixed(0)}M</b></td>
+     <td><div class="minibar"><i style="width:${r.gap / mg * 100}%;background:#E36159"></i></div></td>
+     <td class="n">${r.pct_funded}%</td>
+     <td class="n">${(r.pin / 1e6).toFixed(1)}M</td></tr>`).join('') + `</tbody>`;
+</script></body></html>

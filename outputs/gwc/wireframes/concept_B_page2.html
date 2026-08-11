@@ -1,0 +1,90 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="wf.css"></head><body>
+<div class="page">
+  <div class="hdr">
+    <h1>Global WASH Cluster — Evolution over time, 2023–2026</h1>
+    <span class="sub">Need is steady on a like-for-like basis; funding is not</span>
+    <span class="tag">Concept B · Coverage funnel · Page 2</span>
+  </div>
+  <div class="pagetabs"><div>1 · Current year</div><div class="on">2 · Evolution over time</div><div>3 · Localization</div></div>
+
+  <div class="body" style="flex-direction:column">
+
+    <div class="card" style="flex:0 0 auto;padding:7px 11px">
+      <div style="display:flex;align-items:center;gap:14px">
+        <span style="font-size:11px;color:var(--ink-2)">Scope</span>
+        <span class="toggle"><span class="on">Same 23 countries every year</span><span>All countries in each plan</span></span>
+        <span class="legend" style="margin-left:auto">
+          <span><i class="ln" style="background:#009999"></i>Same 23 countries</span>
+          <span><i class="ln" style="background:#8E9096"></i>All countries in each plan</span>
+          <span><i style="background:repeating-linear-gradient(45deg,#fff,#fff 2px,#009999 2px,#009999 4px);border:1px solid #009999"></i>2026 = Jan–Apr, YTD</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- ROW 1 — the three ratios. Ratios are composition-proof, so they survive the country-set change. -->
+    <div class="row" style="flex:1 1 42%;min-height:0">
+      <div class="card grow">
+        <h3>Ambition — people targeted as a share of people in need</h3>
+        <div id="r1"></div>
+        <div class="note">Cluster plans to reach a smaller share of those in need than in 2023.</div>
+      </div>
+      <div class="card grow">
+        <h3>Delivery — people reached as a share of people targeted</h3>
+        <div id="r2"></div>
+        <div class="note">2026 is YTD (Jan–Apr) and will rise as countries report.</div>
+      </div>
+      <div class="card grow">
+        <h3>Funding — received as a share of requested</h3>
+        <div id="r3"></div>
+        <div class="note">Near-identical on both scopes, so this fall is real, not composition.</div>
+      </div>
+    </div>
+
+    <!-- ROW 2 — who fell, and where the sub-sector effort went -->
+    <div class="row" style="flex:1 1 44%;min-height:0">
+      <div class="card" style="flex:0 0 46%">
+        <h3>Funding coverage by country, 2023 → 2026 — eight largest falls labelled</h3>
+        <div id="sl"></div>
+      </div>
+      <div class="card grow">
+        <h3>Sub-sector coverage — target (grey) against reached (colour)</h3>
+        <div class="row" id="fac" style="gap:6px"></div>
+        <div class="note" style="margin-top:auto">Targets themselves have shrunk in every sub-sector; sanitation coverage has fallen furthest.</div>
+      </div>
+    </div>
+
+    <div class="caveat" style="flex:0 0 auto">
+      <b>Why the headline and the like-for-like line disagree.</b>
+      Across all plans, people in need falls 188.3M → 137.5M (−27%). Across the 23 countries present in every cycle it is 143.6M → 137.5M (−4%) — so most of the headline fall is
+      <b>ten countries leaving the plan set</b>, not need receding. Funding received falls ~70% on both scopes, so that decline is real.
+      Two further breaks: the reach measure changed after 2023 (<i>People reached</i> 81.0M → <i>Max people reached</i> 58.9M on the common basis), and 2026 covers January–April only.
+    </div>
+  </div>
+
+  <div class="footer">Source: GWC HNRP dashboards 2023–2026 (published semantic models), FTS · Extracted 2026-08-10 · Wireframe, not final styling</div>
+</div>
+
+<script src="wf-data.js"></script><script src="wf.js"></script><script>
+const W = 476, H = 258;
+r1.innerHTML = lines({
+  w: W, h: H, years: D.years, suffix: '%', yMax: 80, series: [
+    { name: 'All', values: D.years.map((_, i) => +(D.all_target_wash[i] / D.all_pin_wash[i] * 100).toFixed(1)) },
+    { name: 'Panel', values: D.panel_target_over_pin, emph: true }]
+});
+r2.innerHTML = lines({
+  w: W, h: H, years: D.years, suffix: '%', yMax: 80, series: [
+    { name: 'All', values: D.years.map((_, i) => +(D.all_reached_comparable[i] / D.all_target_wash[i] * 100).toFixed(1)) },
+    { name: 'Panel', values: D.panel_reached_over_target, emph: true }]
+});
+r3.innerHTML = lines({
+  w: W, h: H, years: D.years, suffix: '%', yMax: 80, series: [
+    { name: 'All', values: D.all_pct_funded },
+    { name: 'Panel', values: D.panel_pct_funded, emph: true }]
+});
+sl.innerHTML = slope({ w: 690, h: 300, items: D.slope, topN: 8 });
+fac.innerHTML = [['Water', 'water', '#46AED8'], ['Sanitation', 'sanitation', '#7355A9'], ['Hygiene', 'hygiene', '#33994B']]
+  .map(([t, k, c]) => `<div>${facet({
+    w: 240, h: 258, title: t, years: D.years,
+    target: D['panel_target_' + k], reached: D['panel_reached_' + k], color: c
+  })}</div>`).join('');
+</script></body></html>

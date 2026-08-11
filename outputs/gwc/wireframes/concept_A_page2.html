@@ -1,0 +1,60 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="wf.css"></head><body>
+<div class="page">
+  <div class="hdr">
+    <h1>Global WASH Cluster — Evolution over time, 2023–2026</h1>
+    <span class="sub">Needs, targets, reach and funding across four planning cycles</span>
+    <span class="tag">Concept A · Continuity · Page 2</span>
+  </div>
+  <div class="pagetabs"><div>1 · Current year</div><div class="on">2 · Evolution over time</div><div>3 · Localization</div></div>
+
+  <div class="body" style="flex-direction:column">
+    <div class="card" style="flex:0 0 auto;padding:8px 11px">
+      <div class="slicers" style="align-items:center">
+        <div style="font-size:11px;color:var(--ink-2)">Scope
+          <span class="toggle" style="margin-left:8px"><span class="on">All countries in each plan</span><span>Same 23 countries every year</span></span>
+        </div>
+        <div class="slicer" style="flex:0 0 150px"><label>Region</label><div class="box"><span>All</span><span>▾</span></div></div>
+        <div class="slicer" style="flex:0 0 150px"><label>Country</label><div class="box"><span>All</span><span>▾</span></div></div>
+      </div>
+    </div>
+
+    <div class="row grow">
+      <div class="card grow"><h3>People in need</h3><div id="c1"></div></div>
+      <div class="card grow"><h3>People targeted</h3><div id="c2"></div></div>
+    </div>
+    <div class="row grow">
+      <div class="card grow"><h3>People reached</h3><div id="c3"></div><div class="note">Max across sub-sectors, to avoid double counting.</div></div>
+      <div class="card grow"><h3>Funding received — WASH, FTS</h3><div id="c4"></div></div>
+    </div>
+
+    <div class="row" style="flex:0 0 116px">
+      <div class="card flat" style="flex:0 0 300px">
+        <h3>Countries in scope each year</h3>
+        <div id="scope"></div>
+        <div class="note" style="margin-top:5px">Ten countries left the plan set between 2023 and 2026.</div>
+      </div>
+      <div class="caveat grow">
+        <b>Read these trends with three caveats.</b> They can each move a line without anything changing on the ground.
+        <ul>
+          <li><b>Country range.</b> 33 plans in 2023 against 23 in 2026 — most of the fall in total need is countries leaving the set, not need declining. Switch the scope toggle to compare like with like.</li>
+          <li><b>Definition of reach.</b> The 2023 dashboard headline used <i>People reached</i> (81.0M); 2024 onward use <i>Max people reached</i> (48.7M in 2024). On the common definition 2023 is 58.9M, so part of the 2023→2024 drop is the measure, not the response.</li>
+          <li><b>Period.</b> 2026 covers January–April only and is marked YTD throughout. It is not comparable to a full year.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">Source: GWC HNRP dashboards 2023–2026 (published semantic models), FTS · Extracted 2026-08-10 · Wireframe, not final styling</div>
+</div>
+
+<script src="wf-data.js"></script><script src="wf.js"></script><script>
+const W = 745, H = 292;
+c1.innerHTML = cols({ w: W, h: H, values: D.all_pin_wash, years: D.years });
+c2.innerHTML = cols({ w: W, h: H, values: D.all_target_wash, years: D.years });
+c3.innerHTML = cols({ w: W, h: H, values: D.all_reached_comparable, years: D.years });
+c4.innerHTML = cols({ w: W, h: H, values: D.all_fund_received, years: D.years, fmt: fmtBn });
+scope.innerHTML = D.years.map((y, i) => `<div style="display:flex;align-items:center;gap:7px;font-size:11px;margin-bottom:3px">
+  <span style="width:30px;color:var(--ink-3)">${y}</span>
+  <span style="height:9px;background:${i === 3 ? '#009999' : '#8E9096'};width:${D.countries[i] / 33 * 150}px;border-radius:2px"></span>
+  <b>${D.countries[i]}</b></div>`).join('');
+</script></body></html>

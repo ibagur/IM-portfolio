@@ -1,0 +1,100 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="wf.css"></head><body>
+<div class="page">
+  <div class="hdr">
+    <h1>Global WASH Cluster — Humanitarian Needs &amp; Response Plans</h1>
+    <span class="sub">Needs, Targets, Results &amp; Funding</span>
+    <span class="tag">Concept A · Continuity · Page 1</span>
+  </div>
+  <div class="pagetabs"><div class="on">1 · Current year</div><div>2 · Evolution over time</div><div>3 · Localization</div></div>
+
+  <div class="body">
+    <!-- LEFT: filters + map, as today -->
+    <div class="col" style="width:52%">
+      <div class="card">
+        <div class="slicers">
+          <div class="slicer"><label>Region</label><div class="box"><span>All</span><span>▾</span></div></div>
+          <div class="slicer"><label>Country</label><div class="box"><span>All</span><span>▾</span></div></div>
+          <div class="slicer" style="flex:0 0 118px"><label>Response plan</label><div class="box"><span>All</span><span>▾</span></div></div>
+          <div class="slicer" style="flex:0 0 62px"><label>&nbsp;</label><div class="box" style="justify-content:center"><span>↺ Reset</span></div></div>
+        </div>
+      </div>
+      <div class="card grow">
+        <h3>People in need of humanitarian WASH assistance — 2026</h3>
+        <div class="map">
+          <div class="ph"><b>World choropleth</b>PiN by country · graduated fill<br>click a country to cross-filter the page</div>
+          <div class="maplegend">
+            <div class="ramp"><i style="background:#EAF4F4"></i><i style="background:#BFDEDE"></i><i style="background:#7FBDBD"></i><i style="background:#409B9B"></i><i style="background:#009999"></i></div>
+            <div>1.0M — 27.1M people in need</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: KPI stack, as today, plus the new prioritized block -->
+    <div class="col" style="width:48%">
+      <div class="card">
+        <h3>Scale of the 2026 response</h3>
+        <div class="kpirow">
+          <div class="kpi"><div class="lab">Countries / platforms</div><div class="val sm" id="kc"></div></div>
+          <div class="kpi"><div class="lab">Cluster partners</div><div class="val sm" id="kp"></div></div>
+          <div class="kpi"><div class="lab">People in need</div><div class="val" id="kpin"></div></div>
+          <div class="kpi"><div class="lab">People targeted</div><div class="val" id="ktg"></div></div>
+          <div class="kpi acc"><div class="lab">People reached (YTD)</div><div class="val" id="krc"></div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Prioritized need and funding — new on this page</h3>
+        <div class="kpirow">
+          <div class="kpi todo"><span class="flag">TO COLLECT</span><div class="lab">PiN prioritized<br>severity 4–5</div><div class="val" style="color:#B0B3B6">— · —</div><div class="meta">GHO monitoring dashboard</div></div>
+          <div class="kpi todo"><span class="flag">TO COLLECT</span><div class="lab">People targeted prioritized</div><div class="val" style="color:#B0B3B6">— · —</div><div class="meta">GHO monitoring dashboard</div></div>
+          <div class="kpi todo"><span class="flag">TO COLLECT</span><div class="lab">Prioritized funding requested</div><div class="val" style="color:#B0B3B6">— · —</div><div class="meta">GHO monitoring dashboard</div></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Funding — WASH sector, FTS</h3>
+        <div class="row" style="align-items:flex-start">
+          <div style="flex:1">
+            <div class="meter">
+              <div class="top"><span>Received against requested</span><span class="n" id="fpct"></span></div>
+              <div class="track"><div class="fill" id="ffill"></div></div>
+              <div class="note" style="margin-top:4px">Requested <b id="freq"></b> · Received <b id="frcv"></b> · Gap <b id="fgap"></b></div>
+            </div>
+          </div>
+        </div>
+        <div class="note">Meter replaces the current two-slice donut: a single ratio against a limit reads faster and avoids a pie of two slices.</div>
+      </div>
+
+      <div class="card" style="flex:0 0 150px">
+        <h3>Response progress by sub-sector — reached against target</h3>
+        <div id="subs"></div>
+        <div class="note">Partial for 2026: only 12 of 23 countries have reported reach.</div>
+      </div>
+
+      <div class="card grow">
+        <h3>National coordination platforms — unchanged from the current page 1</h3>
+        <div id="ncp" style="columns:3;column-gap:14px;font-size:10.5px;line-height:1.65;color:var(--ink-2)"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">Source: GWC HNRP Tracker (Main sheet), FTS, JMP 2024, GHO monitoring dashboard · Figures shown are real, extracted 2026-08-10 · Wireframe, not final styling</div>
+</div>
+
+<script src="wf-data.js"></script><script src="wf.js"></script><script>
+const i = 3; // 2026
+kc.textContent = D.countries[i];
+kp.textContent = D.all_partners[i];
+kpin.textContent = fmtM(D.all_pin_wash[i]);
+ktg.textContent = fmtM(D.all_target_wash[i]);
+krc.textContent = fmtM(D.all_reached_comparable[i]);
+const rq = D.all_fund_requested[i], rc = D.all_fund_received[i];
+fpct.textContent = fmtPct(rc / rq * 100);
+ffill.style.width = (rc / rq * 100) + '%';
+freq.textContent = fmtBn(rq); frcv.textContent = fmtBn(rc); fgap.textContent = fmtBn(rq - rc);
+subs.innerHTML = [['Water', D.cov_water], ['Sanitation', D.cov_sanitation], ['Hygiene', D.cov_hygiene]]
+  .map(([n, v]) => `<div class="meter"><div class="top"><span>${n}</span><span class="n">${fmtPct(v[i])}</span></div>
+   <div class="track"><div class="fill" style="width:${v[i]}%"></div></div></div>`).join('');
+ncp.innerHTML = D.table2026.map(r => `<div>${r.name} <span style="color:var(--ink-3)">↗</span></div>`).join('');
+</script></body></html>
