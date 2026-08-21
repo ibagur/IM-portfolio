@@ -2,7 +2,7 @@
 <kml xmlns="http://www.opengis.net/kml/2.2">
   <Document>
     <name>Current nearby active-fire hotspots — Sant Francesc</name>
-    <description>Generated 2026-08-21T17:30:34.040Z from the Earth Nullschool current FIRMS feed. Points are detections, not a verified fire perimeter. Each point states whether it lies inside the My Maps area of interest.</description>
+    <description>Generated 2026-08-21T18:38:31.142Z from the Earth Nullschool current FIRMS feed. Points are detections, not a verified fire perimeter. Each point states whether it lies inside the My Maps area of interest.</description>
     <Style id="hotspot"><IconStyle><color>ff3030ff</color><scale>1.15</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/firedept.png</href></Icon></IconStyle></Style>
 
   </Document>
