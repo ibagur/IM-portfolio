@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Local web server with a 30-minute FIRMS refresh cycle and fixed perimeter.
+ * Local web server with a 30-minute FIRMS refresh cycle.
  * Usage: node scripts/serve-live-map.mjs
  * Optional: --port=8000 --refresh-minutes=30
  */
@@ -80,7 +80,7 @@ try {
 
 server.listen(port, "127.0.0.1", () => {
   console.log(`Live fire map: http://127.0.0.1:${port}`);
-  console.log(`Refreshing FIRMS fire data every ${refreshMinutes} minutes; the forest perimeter is fixed.`);
+  console.log(`Refreshing FIRMS fire data near El Saler every ${refreshMinutes} minutes.`);
 });
 
 const timer = setInterval(() => {

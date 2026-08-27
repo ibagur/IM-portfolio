@@ -3,13 +3,15 @@ import {
   HOTSPOT_MONITORING_EXTENT,
   MAP_REFERENCE_COORDS,
   MAP_REFERENCE_ZOOM,
-  VALL_DUIXO_COORDS,
   extentContains,
 } from "../monitoring-area.mjs";
 
-assert.deepEqual(MAP_REFERENCE_COORDS, [39.9449883, -0.247279], "the initial map centre must remain unchanged");
-assert.equal(MAP_REFERENCE_ZOOM, 14, "the initial map zoom must remain unchanged");
-assert.ok(extentContains(VALL_DUIXO_COORDS), "the hotspot extent must include Vall d'Uixó");
-assert.ok(HOTSPOT_MONITORING_EXTENT.south < VALL_DUIXO_COORDS[0], "the hotspot extent should continue south of Vall d'Uixó");
+assert.deepEqual(MAP_REFERENCE_COORDS, [39.3678262, -0.3309518], "the map must use the supplied El Saler centre");
+assert.equal(MAP_REFERENCE_ZOOM, 15, "the initial map zoom should show the supplied centre and nearby detections together");
+assert.ok(extentContains(MAP_REFERENCE_COORDS), "the hotspot extent must contain the El Saler centre");
+assert.ok(HOTSPOT_MONITORING_EXTENT.south < MAP_REFERENCE_COORDS[0]);
+assert.ok(HOTSPOT_MONITORING_EXTENT.north > MAP_REFERENCE_COORDS[0]);
+assert.ok(HOTSPOT_MONITORING_EXTENT.west < MAP_REFERENCE_COORDS[1]);
+assert.ok(HOTSPOT_MONITORING_EXTENT.east > MAP_REFERENCE_COORDS[1]);
 
 console.log("monitoring-area tests passed");

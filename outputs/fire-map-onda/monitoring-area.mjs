@@ -1,17 +1,15 @@
-export const MAP_REFERENCE_COORDS = Object.freeze([39.9449883, -0.247279]);
-export const MAP_REFERENCE_ZOOM = 14;
+// User-supplied Google Maps view for the current El Saler fires.
+export const MAP_REFERENCE_COORDS = Object.freeze([39.3678262, -0.3309518]);
+export const MAP_REFERENCE_ZOOM = 15;
 
-// Southern monitoring anchor: official AEMET municipal coordinates for
-// la Vall d'Uixó. This does not change the map's initial view.
-export const VALL_DUIXO_COORDS = Object.freeze([39.82421754, -0.22806489]);
-
-// The hotspot filter deliberately extends beyond Vall d'Uixó so any FIRMS
-// detections approaching or passing the town are retained in the snapshot.
+// Operational collection window around El Saler and the southern edge of
+// Valencia. It is intentionally wider than the initial viewport so nearby
+// detections remain available through the "all detections" control.
 export const HOTSPOT_MONITORING_EXTENT = Object.freeze({
-  west: -0.42,
-  south: 39.78,
-  east: -0.08,
-  north: 40.11,
+  west: -0.46,
+  south: 39.27,
+  east: -0.20,
+  north: 39.48,
 });
 
 export function extentContains([latitude, longitude], extent = HOTSPOT_MONITORING_EXTENT) {

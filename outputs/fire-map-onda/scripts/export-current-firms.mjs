@@ -6,55 +6,27 @@
  *
  * Usage: node scripts/export-current-firms.mjs
  */
-import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
+import { mkdir, rename, writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
-import { HOTSPOT_MONITORING_EXTENT } from "../monitoring-area.mjs";
+import { HOTSPOT_MONITORING_EXTENT, MAP_REFERENCE_COORDS } from "../monitoring-area.mjs";
 
 const SOURCE_URL = "https://gaia.nullschool.net/data/firms/current/current-firms.epak";
 const OUTPUT_PATH = new URL("../data/firms-current.geojson", import.meta.url);
 const IMPORT_KML_PATH = new URL("../data/current-hotspots-nearby.kml", import.meta.url);
-const PERIMETER_PATH = new URL("../data/zone-of-interest.kml", import.meta.url);
-const PERIMETER_GEOJSON_PATH = new URL("../data/zone-of-interest.geojson", import.meta.url);
-const PERIMETER_KML_URL = "https://www.google.com/maps/d/kml?mid=1tqpTAqEbdQr_F5Pq8YIQU8QlpNsNeXk&forcekml=1";
 const LOCAL_EXTENT = HOTSPOT_MONITORING_EXTENT;
+const MAP_NAME = "Foco de incendios el Saler";
 
 function escapeXml(value) {
   return String(value).replace(/[<>&"']/g, character => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", "\"": "&quot;", "'": "&apos;" })[character]);
 }
 
-function parsePerimeterKml(kml) {
-  const name = /<Placemark>[\s\S]*?<name>([\s\S]*?)<\/name>[\s\S]*?<Polygon>/i.exec(kml)?.[1]?.trim() ?? "Area of interest";
-  const coordinateText = /<Polygon>[\s\S]*?<coordinates>\s*([\s\S]*?)\s*<\/coordinates>/i.exec(kml)?.[1];
-  if (!coordinateText) throw new Error("The My Maps KML has no polygon coordinates.");
-  const coordinates = coordinateText.trim().split(/\s+/).map(item => {
-    const [longitude, latitude] = item.split(",").map(Number);
-    return [longitude, latitude];
-  });
-  if (coordinates.length < 4 || !coordinates.every(([lon, lat]) => Number.isFinite(lon) && Number.isFinite(lat))) {
-    throw new Error("The My Maps perimeter coordinates are invalid.");
-  }
-  return { name: name.replace(/<[^>]+>/g, ""), coordinates };
-}
-
-function pointInPolygon([longitude, latitude], polygon) {
-  let inside = false;
-  for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
-    const [x1, y1] = polygon[i];
-    const [x2, y2] = polygon[j];
-    const crossesLatitude = (y1 > latitude) !== (y2 > latitude);
-    if (crossesLatitude && longitude < ((x2 - x1) * (latitude - y1)) / (y2 - y1) + x1) inside = !inside;
-  }
-  return inside;
-}
-
-function createHotspotKml(features, perimeterName, generatedAt) {
+function createHotspotKml(features, generatedAt) {
   const placemarks = features.map(feature => {
     const [lon, lat] = feature.geometry.coordinates;
     const { detected_at: detectedAt, frp_mw: frp } = feature.properties;
-    const zoneText = feature.properties.inside_area_of_interest ? "Inside the area of interest" : "Outside the area of interest";
-    return `    <Placemark>\n      <name>${escapeXml(`Fire detection · ${frp.toFixed(2)} MW`)}</name>\n      <description><![CDATA[<p><strong>Detected:</strong> ${detectedAt}</p><p><strong>Fire Radiative Power:</strong> ${frp.toFixed(2)} MW</p><p><strong>Zone:</strong> ${zoneText} (${perimeterName})</p>]]></description>\n      <styleUrl>#hotspot</styleUrl>\n      <Point><coordinates>${lon},${lat},0</coordinates></Point>\n    </Placemark>`;
+    return `    <Placemark>\n      <name>${escapeXml(`Fire detection · ${frp.toFixed(2)} MW`)}</name>\n      <description><![CDATA[<p><strong>Detected:</strong> ${detectedAt}</p><p><strong>Fire Radiative Power:</strong> ${frp.toFixed(2)} MW</p><p>VIIRS active-fire detection near El Saler; this point is not a verified fire perimeter.</p>]]></description>\n      <styleUrl>#hotspot</styleUrl>\n      <Point><coordinates>${lon},${lat},0</coordinates></Point>\n    </Placemark>`;
   }).join("\n");
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<kml xmlns="http://www.opengis.net/kml/2.2">\n  <Document>\n    <name>Current nearby active-fire hotspots — ${escapeXml(perimeterName)}</name>\n    <description>Generated ${generatedAt} from the Earth Nullschool current FIRMS feed. Points are detections, not a verified fire perimeter. Each point states whether it lies inside the My Maps area of interest.</description>\n    <Style id="hotspot"><IconStyle><color>ff3030ff</color><scale>1.15</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/firedept.png</href></Icon></IconStyle></Style>\n${placemarks}\n  </Document>\n</kml>\n`;
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<kml xmlns="http://www.opengis.net/kml/2.2">\n  <Document>\n    <name>${escapeXml(MAP_NAME)} — current active-fire detections</name>\n    <description>Generated ${generatedAt} from the Earth Nullschool current FIRMS feed. Points are VIIRS detections near El Saler, not a verified fire perimeter.</description>\n    <Style id="hotspot"><IconStyle><color>ff3030ff</color><scale>1.15</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/firedept.png</href></Icon></IconStyle></Style>\n${placemarks}\n  </Document>\n</kml>\n`;
 }
 
 function decodeDelta(encoded, elementType, count, scale) {
@@ -140,10 +112,6 @@ function parseEpak(buffer) {
 const fireResponse = await fetch(SOURCE_URL);
 if (!fireResponse.ok) throw new Error(`Fire data download failed: ${fireResponse.status} ${fireResponse.statusText}`);
 
-// The forest boundary is intentionally fixed. This local KML is the canonical
-// perimeter used for every snapshot, even if the shared My Maps layer changes.
-const perimeterKml = await readFile(PERIMETER_PATH, "utf8");
-const perimeter = parsePerimeterKml(perimeterKml);
 const { header, blocks } = parseEpak(await fireResponse.arrayBuffer());
 const [timestamp, longitude, latitude, frp] = blocks;
 if (![timestamp, longitude, latitude, frp].every(Boolean)) throw new Error("Fire payload is missing required columns.");
@@ -160,36 +128,22 @@ for (let i = 0; i < timestamp.length; i++) {
     properties: {
       detected_at: new Date(timestamp[i]).toISOString(),
       frp_mw: Number(frp[i].toFixed(2)),
-      inside_area_of_interest: pointInPolygon([lon, lat], perimeter.coordinates),
     },
   });
 }
 
 const generatedAt = new Date().toISOString();
-const detectionsInsideArea = features.filter(feature => feature.properties.inside_area_of_interest).length;
 const featureCollection = {
   type: "FeatureCollection",
   generated_at: generatedAt,
   source_url: SOURCE_URL,
   source: "VIIRS NRT active fire data via FIRMS / NASA, supplied by Earth Nullschool",
-  area_of_interest: {
-    name: perimeter.name,
-    source_url: PERIMETER_KML_URL,
-    geometry: { type: "Polygon", coordinates: [perimeter.coordinates] },
+  reference_location: {
+    name: "El Saler, Valencia",
+    coordinates: [MAP_REFERENCE_COORDS[1], MAP_REFERENCE_COORDS[0]],
   },
   local_extent: LOCAL_EXTENT,
-  detections_inside_area_of_interest: detectionsInsideArea,
   features,
-};
-
-const perimeterGeojson = {
-  type: "FeatureCollection",
-  source_url: PERIMETER_KML_URL,
-  features: [{
-    type: "Feature",
-    properties: { name: perimeter.name },
-    geometry: { type: "Polygon", coordinates: [perimeter.coordinates] },
-  }],
 };
 
 async function writeAtomically(targetUrl, contents) {
@@ -201,6 +155,5 @@ async function writeAtomically(targetUrl, contents) {
 
 await mkdir(new URL("../data/", import.meta.url), { recursive: true });
 await writeAtomically(OUTPUT_PATH, `${JSON.stringify(featureCollection)}\n`);
-await writeAtomically(IMPORT_KML_PATH, createHotspotKml(features, perimeter.name, generatedAt));
-await writeAtomically(PERIMETER_GEOJSON_PATH, `${JSON.stringify(perimeterGeojson)}\n`);
-console.log(`Wrote ${features.length} nearby active-fire detections (${detectionsInsideArea} inside '${perimeter.name}') to ${IMPORT_KML_PATH.pathname}`);
+await writeAtomically(IMPORT_KML_PATH, createHotspotKml(features, generatedAt));
+console.log(`Wrote ${features.length} active-fire detections near El Saler to ${IMPORT_KML_PATH.pathname}`);

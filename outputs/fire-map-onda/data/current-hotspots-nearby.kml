@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2">
   <Document>
-    <name>Current nearby active-fire hotspots — Sant Francesc</name>
-    <description>Generated 2026-08-27T10:58:36.493Z from the Earth Nullschool current FIRMS feed. Points are detections, not a verified fire perimeter. Each point states whether it lies inside the My Maps area of interest.</description>
+    <name>Foco de incendios el Saler — current active-fire detections</name>
+    <description>Generated 2026-08-27T17:15:56.269Z from the Earth Nullschool current FIRMS feed. Points are VIIRS detections near El Saler, not a verified fire perimeter.</description>
     <Style id="hotspot"><IconStyle><color>ff3030ff</color><scale>1.15</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/firedept.png</href></Icon></IconStyle></Style>
-
+    <Placemark>
+      <name>Fire detection · 8.69 MW</name>
+      <description><![CDATA[<p><strong>Detected:</strong> 2026-08-27T13:16:00.000Z</p><p><strong>Fire Radiative Power:</strong> 8.69 MW</p><p>VIIRS active-fire detection near El Saler; this point is not a verified fire perimeter.</p>]]></description>
+      <styleUrl>#hotspot</styleUrl>
+      <Point><coordinates>-0.3230000138282776,39.36600112915039,0</coordinates></Point>
+    </Placemark>
   </Document>
 </kml>

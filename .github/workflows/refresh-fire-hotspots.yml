@@ -35,8 +35,7 @@ jobs:
       - name: Commit refreshed hotspot files
         run: |
           git add "$MAP_DIRECTORY/data/firms-current.geojson" \
-                  "$MAP_DIRECTORY/data/current-hotspots-nearby.kml" \
-                  "$MAP_DIRECTORY/data/zone-of-interest.geojson"
+                  "$MAP_DIRECTORY/data/current-hotspots-nearby.kml"
           if git diff --cached --quiet; then
             echo "No hotspot changes to publish."
             exit 0

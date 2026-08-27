@@ -1,6 +1,6 @@
-# Fire hotspots over satellite imagery
+# Foco de incendios el Saler
 
-A small local web map centred on the supplied Google Maps location (39.9449883, -0.247279). It places an Esri satellite basemap below nearby active-fire detections shown by Earth Nullschool, overlays the shared Google My Maps zone of interest, draws a current-wind grid from Open-Meteo, and adds a transparent Esri reference layer for towns and geographic names.
+A small web map centred on the supplied El Saler, Valencia location (39.3678262, -0.3309518). It places an Esri satellite basemap below nearby active-fire detections from the current Earth Nullschool/FIRMS feed, draws a local current-wind grid from Open-Meteo, and adds a transparent Esri reference layer for towns and geographic names.
 
 ## Run the live-updating map
 
@@ -8,11 +8,11 @@ A small local web map centred on the supplied Google Maps location (39.9449883, 
 node scripts/serve-live-map.mjs
 ```
 
-Open `http://127.0.0.1:8000`. While that process runs, it refreshes the FIRMS fire data every 30 minutes. The Sant Francesc forest boundary is fixed in `data/zone-of-interest.kml`; the open browser checks for a new local snapshot every minute and redraws automatically.
+Open `http://127.0.0.1:8000`. While that process runs, it refreshes the FIRMS fire data every 30 minutes. The open browser checks for a new local snapshot every minute and redraws automatically.
 
-The wind overlay is independent from the hotspot snapshot. Every page load requests current 10 m wind direction, speed, and gusts for a fixed corridor grid from Sant Francesc to Vall d'Uixó, including a sample at Vall d'Uixó itself, and the open page refreshes that layer every 10 minutes. The arrows point in the direction the wind is travelling; labels show speed in km/h.
+The wind overlay is independent from the hotspot snapshot. Every page load requests current 10 m wind direction, speed, and gusts for a fixed 5 × 5 grid around El Saler, and the open page refreshes that layer every 10 minutes. The arrows point in the direction the wind is travelling; labels show speed in km/h.
 
-The FIRMS filter extends south beyond Vall d'Uixó. Detections are rendered whenever the live feed contains them, while the initial map remains centred on Sant Francesc at zoom level 14. Use **All nearby detections** or pan south to inspect detections outside the initial viewport.
+The FIRMS filter covers El Saler, l'Albufera, and the southern edge of Valencia. Detections are rendered whenever the current feed contains them, while the initial view stays centred on the user-supplied location at zoom level 15 so nearby detections remain visible beside the information panel. Use **All nearby detections** to inspect detections outside the initial viewport.
 
 Use `--port=8010` or `--refresh-minutes=15` to change either setting.
 
@@ -20,7 +20,7 @@ Use `--port=8010` or `--refresh-minutes=15` to change either setting.
 
 GitHub Pages serves the map but cannot run the refresh script itself. The included GitHub Actions workflow at `.github/workflows/refresh-fire-hotspots.yml` runs it every 30 minutes, commits the latest GeoJSON and My Maps KML, and lets GitHub Pages publish those new files.
 
-If this map is placed in a subfolder of the portfolio repository, set `MAP_DIRECTORY` near the top of that workflow to the map's repository-relative folder, for example `projects/fire-map`. Keep `data/zone-of-interest.kml` with the map: it is the fixed Sant Francesc forest boundary used for every refresh.
+If this map is placed in a subfolder of the portfolio repository, set `MAP_DIRECTORY` near the top of that workflow to the map's repository-relative folder, for example `outputs/fire-map-onda`.
 
 After pushing the workflow, open **Actions → Refresh fire hotspots → Run workflow** once to publish the first updated snapshot. The hosted `index.html` then checks the published data every minute and redraws when GitHub Pages serves a newer snapshot.
 
@@ -32,17 +32,17 @@ Run a local static server from this folder, then open the shown address:
 python3 -m http.server 8000
 ```
 
-The map opens on the shared perimeter. Use **All nearby detections** to see the surrounding clusters and **Show hotspots** to compare the imagery alone. White-rimmed detections are inside the perimeter.
+The map opens on El Saler. Use **All nearby detections** to see surrounding clusters and **Show hotspots** to compare the imagery alone.
 
 ## Refresh the detections
 
-The checked-in snapshot is intentionally local and reproducible. To refresh it from the public Earth Nullschool FIRMS payload and the shared My Maps boundary:
+The checked-in snapshot is intentionally local and reproducible. To refresh it from the public Earth Nullschool FIRMS payload:
 
 ```sh
 node scripts/export-current-firms.mjs
 ```
 
-The script downloads the `current-firms.epak` payload, decodes a local fire extent, and marks each detection against the exact My Maps polygon. It writes both the HTML map data and `data/current-hotspots-nearby.kml`.
+The script downloads the `current-firms.epak` payload and decodes the configured El Saler monitoring extent. It writes both the HTML map data and `data/current-hotspots-nearby.kml`.
 
 ## Import into Google My Maps
 
@@ -50,4 +50,4 @@ The script downloads the `current-firms.epak` payload, decodes a local fire exte
 2. Choose `data/current-hotspots-nearby.kml`.
 3. Name the layer **Current hotspots**.
 
-The KML contains all latest detections in the surrounding fire area, with each point description stating whether it is inside the zone already drawn in My Maps. Refresh it with the command above whenever you need a newer snapshot. Active-fire detections identify burning pixels; they do not provide a verified fire perimeter. Satellite imagery can also pre-date the event.
+The KML contains all latest detections in the configured area. Refresh it with the command above whenever you need a newer snapshot. Active-fire detections identify burning pixels; they do not provide a verified fire perimeter. Satellite imagery can also pre-date the event.

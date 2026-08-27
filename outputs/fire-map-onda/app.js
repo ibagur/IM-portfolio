@@ -8,11 +8,11 @@ import {
   createWindGrid,
   parseCurrentWindPayload,
   windTravelBearing,
-} from "./wind-layer.mjs?v=20260728-2";
+} from "./wind-layer.mjs?v=20260827-1";
 import {
   MAP_REFERENCE_COORDS as REFERENCE_COORDS,
   MAP_REFERENCE_ZOOM as REFERENCE_ZOOM,
-} from "./monitoring-area.mjs?v=20260728-1";
+} from "./monitoring-area.mjs?v=20260827-2";
 
 // Keep the San Francesc boundary data available without rendering it in the monitoring view.
 const SHOW_SAN_FRANCESC_PERIMETER = false;
@@ -22,8 +22,8 @@ const WEATHER_SOURCE_URL = "https://open-meteo.com/en/docs";
 const WIND_LOCATIONS = createWindGrid(REFERENCE_COORDS);
 const translations = {
   es: {
-    title: "Focos de incendios sobre Onda",
-    heading: "Focos de incendios sobre Onda",
+    title: "Foco de incendios el Saler",
+    heading: "Foco de incendios el Saler",
     mapControls: "Controles del mapa",
     showMapControls: "Mostrar controles del mapa",
     hideMapControls: "Ocultar controles del mapa",
@@ -44,9 +44,9 @@ const translations = {
     riskCorridorLegend: "Corredor direccional orientativo",
     legendText: "El tamaño y el color del punto indican la intensidad estimada de cada foco de incendio.",
     howToRead: "Cómo interpretar este visor",
-    methodText: "La zona de interés de Sant Francesc procede de Google My Maps. Cada punto de color naranja a rojo es una detección cercana de incendio activo de VIIRS; los puntos con borde blanco quedan dentro de esa zona. Compare sus posiciones con la imagen satelital para valorar la superficie probablemente afectada. Una detección corresponde a un píxel de 375 m, no a un perímetro cartografiado del incendio: los puntos no delimitan por sí solos la extensión exacta. La fecha de la imagen satelital puede no coincidir con la de la detección.",
+    methodText: "El visor se centra en El Saler, Valencia. Cada punto de color naranja a rojo es una detección cercana de incendio activo de VIIRS. Compare su posición con la imagen satelital como referencia: una detección corresponde a un píxel de 375 m, no a un perímetro cartografiado, y la fecha de la imagen puede no coincidir con la detección.",
     loading: "Cargando detecciones…",
-    count: (nearby, inside) => `${nearby} detecciones de incendios próximas · ${inside} dentro de la zona`,
+    count: nearby => `${nearby} detecciones de incendios próximas a El Saler`,
     noDetections: "No hay detecciones locales en esta instantánea",
     insideZone: "Dentro de la zona",
     outsideZone: "Fuera de la zona",
@@ -75,8 +75,8 @@ const translations = {
     windMarkerLabel: ({ speed, direction, gusts }) => `Viento desde ${direction}° a ${speed} km/h; rachas ${gusts} km/h`,
   },
   en: {
-    title: "Fire hotspots over Onda",
-    heading: "Fire hotspots over Onda",
+    title: "El Saler fire hotspots",
+    heading: "El Saler fire hotspots",
     mapControls: "Map controls",
     showMapControls: "Show map controls",
     hideMapControls: "Hide map controls",
@@ -97,9 +97,9 @@ const translations = {
     riskCorridorLegend: "Indicative directional corridor",
     legendText: "Dot size and colour indicate the estimated intensity of each fire hotspot.",
     howToRead: "How to read this view",
-    methodText: "The Sant Francesc area of interest comes from the shared Google My Maps layer. Each orange-to-red point is a nearby VIIRS active-fire detection; white-rimmed points fall inside that area. Compare their positions with the satellite image to assess the likely affected area. A detection is a 375 m pixel, not a mapped fire perimeter: do not interpret the dots alone as the exact boundary of a wildfire. The imagery date may differ from the detection time.",
+    methodText: "This view is centred on El Saler, Valencia. Each orange-to-red point is a nearby VIIRS active-fire detection. Compare its position with the satellite image for context: a detection is a 375 m pixel, not a mapped fire perimeter, and the imagery date may differ from the detection time.",
     loading: "Loading detections…",
-    count: (nearby, inside) => `${nearby} nearby active-fire detections · ${inside} inside the zone`,
+    count: nearby => `${nearby} active-fire detections near El Saler`,
     noDetections: "No local detections in this snapshot",
     insideZone: "Inside zone",
     outsideZone: "Outside zone",
@@ -330,9 +330,8 @@ function renderHotspots(data) {
     const { frp_mw: frp, detected_at: detectedAt } = feature.properties;
     times.push(new Date(detectedAt).getTime());
     const marker = L.circleMarker([lat, lon], frpStyle(frp));
-    if (feature.properties.inside_area_of_interest) marker.setStyle({ color: "#fff", weight: 2 });
     marker
-      .bindTooltip(`<strong>${t("firePower")}: ${frp.toFixed(2)} MW</strong><br>${t("detected")}: ${formatTime(detectedAt)}<br>${feature.properties.inside_area_of_interest ? t("insideZone") : t("outsideZone")}`, { className: "hotspot-tooltip", direction: "top", offset: [0, -7] })
+      .bindTooltip(`<strong>${t("firePower")}: ${frp.toFixed(2)} MW</strong><br>${t("detected")}: ${formatTime(detectedAt)}`, { className: "hotspot-tooltip", direction: "top", offset: [0, -7] })
       .addTo(hotspotLayer);
   }
 
@@ -340,7 +339,7 @@ function renderHotspots(data) {
     localBounds = L.geoJSON(data).getBounds();
     const earliest = new Date(Math.min(...times)).toISOString();
     const latest = new Date(Math.max(...times)).toISOString();
-    document.querySelector("#detection-count").textContent = t("count")(data.features.length, data.detections_inside_area_of_interest ?? 0);
+    document.querySelector("#detection-count").textContent = t("count")(data.features.length);
     document.querySelector("#data-timestamp").textContent = `${formatTime(earliest)} – ${formatTime(latest)}`;
   } else {
     document.querySelector("#detection-count").textContent = t("noDetections");
@@ -550,23 +549,13 @@ async function refreshRiskNowcast(fireData, perimeterData) {
 
 async function refreshMapData() {
   try {
-    const [fireData, perimeterData] = await Promise.all([
-      fetchJson("data/firms-current.geojson"),
-      fetchJson("data/zone-of-interest.geojson"),
-    ]);
+    const fireData = await fetchJson("data/firms-current.geojson");
     const snapshotId = fireData.generated_at ?? JSON.stringify(fireData.features);
-    const perimeterId = JSON.stringify(perimeterData.features);
     if (snapshotId !== currentSnapshotId) {
       latestFireData = fireData;
       renderHotspots(fireData);
       currentSnapshotId = snapshotId;
     }
-    if (perimeterId !== currentPerimeterId) {
-      latestPerimeterData = perimeterData;
-      renderPerimeter(perimeterData);
-      currentPerimeterId = perimeterId;
-    }
-    if (latestFireData && latestPerimeterData) refreshRiskNowcast(latestFireData, latestPerimeterData);
   } catch (error) {
     console.error(error);
     document.querySelector("#detection-count").textContent = t("loadError");
