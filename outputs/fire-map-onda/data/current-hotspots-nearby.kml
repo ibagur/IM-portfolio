@@ -2,7 +2,7 @@
 <kml xmlns="http://www.opengis.net/kml/2.2">
   <Document>
     <name>Foco de incendios el Saler — current active-fire detections</name>
-    <description>Generated 2026-08-29T23:03:01.374Z from the Earth Nullschool current FIRMS feed. Points are VIIRS detections near El Saler, not a verified fire perimeter.</description>
+    <description>Generated 2026-08-30T01:29:58.994Z from the Earth Nullschool current FIRMS feed. Points are VIIRS detections near El Saler, not a verified fire perimeter.</description>
     <Style id="hotspot"><IconStyle><color>ff3030ff</color><scale>1.15</scale><Icon><href>http://maps.google.com/mapfiles/kml/shapes/firedept.png</href></Icon></IconStyle></Style>
 
   </Document>
